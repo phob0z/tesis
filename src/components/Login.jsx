@@ -19,6 +19,8 @@ const Login = () => {
       mensaje = "Debe ingresar una cédula";
     if (cedula.trim().length < 10)
       mensaje = "La cédula debe tener al menos 10 dígitos";
+    if (!(/^[0-9]+$/.test(cedula)))
+      mensaje = "Solo puede contener números";
     return mensaje;
   }
 
