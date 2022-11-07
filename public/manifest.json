@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Sistema de gestión de notas",
+  "name": "Sistema de gestión de notas de la I.E.F. Miguel de Santiago",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,0 +1,187 @@
+.ball1 {
+  animation: ball1 5s linear infinite;
+  display: block;
+  position: absolute;
+  width: 9rem;
+  height: 9rem;
+  left: 1.7rem;
+  top: -2.5rem;
+  border-radius: 50%;
+  background-color: #6d1118;
+  transition: 0.3s background-color;
+}
+
+.ball1:hover {
+  background-color: #a01b25;
+}
+
+.ball2 {
+  animation: ball2 6s linear infinite;
+  display: block;
+  position: absolute;
+  width: 2.6rem;
+  height: 2.6rem;
+  left: 10rem;
+  top: 7.7rem;
+  border-radius: 50%;
+  background-color: #a01b25;
+  transition: 0.3s background-color;
+}
+
+.ball2:hover {
+  background-color: #6d1118;
+}
+
+.ball3 {
+  animation: ball3 7s linear infinite;
+  display: block;
+  position: absolute;
+  width: 33.1rem;
+  height: 33.1rem;
+  left: -16.6rem;
+  bottom: -16.25rem;
+  border-radius: 50%;
+  background-color: #a01b25;
+  transition: 0.3s background-color;
+}
+
+.ball3:hover {
+  background-color: #6d1118;
+}
+
+.ball4 {
+  animation: ball4 6s linear infinite;
+  display: block;
+  position: absolute;
+  width: 34.7rem;
+  height: 34.7rem;
+  right: 17.4rem;
+  bottom: -31.6rem;
+  border-radius: 50%;
+  background: #6d1118;
+  transition: 0.3s background-color;
+}
+
+.ball4:hover {
+  background-color: #a01b25;
+}
+
+.ball5 {
+  animation: ball5 6s linear infinite;
+  display: block;
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  right: 3.2rem;
+  bottom: 6.3rem;
+  border-radius: 50%;
+  background: #a01b25;
+  transition: 0.3s background-color;
+}
+
+.ball5:hover {
+  background-color: #6d1118;
+}
+
+.ball6 {
+  animation: ball6 5.2s linear infinite;
+  display: block;
+  position: absolute;
+  width: 3.9rem;
+  height: 3.9rem;
+  right: 11.3rem;
+  bottom: 14.5rem;
+  border-radius: 50%;
+  background: #6d1118;
+  transition: 0.3s background-color;
+}
+
+.ball6:hover {
+  background-color: #a01b25;
+}
+
+.ball7 {
+  animation: ball7 9s linear infinite;
+  display: block;
+  position: absolute;
+  width: 33.1rem;
+  height: 33.1rem;
+  right: -14rem;
+  top: -26rem;
+  border-radius: 50%;
+  background: #6d1118;
+  transition: 0.3s background-color;
+}
+
+.ball7:hover {
+  background-color: #a01b25;
+}
+
+@media (max-height: 320px), (max-width: 440px){
+  .ball1, .ball2, .ball3, .ball4, .ball5, .ball6, .ball7 {
+    display: none;
+  }
+}
+
+@keyframes ball1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-5px, 10px) scale(1.05);
+  }
+}
+
+@keyframes ball2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(5px, 15px) scale(1.1);
+  }
+}
+
+@keyframes ball3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-10px, -15px) scale(1.05);
+  }
+}
+
+@keyframes ball4 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(10px, 10px) scale(1.05);
+  }
+}
+
+@keyframes ball5 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-10px, -15px) scale(1.07);
+  }
+}
+
+@keyframes ball6 {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ball7 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(20px, -5px) scale(1.08);
+  }
+}

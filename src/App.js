@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect, useState } from "react";
+// import { Link, Routes, Route } from "react-router-dom";
+// import "./App.css";
+// import List from "./components/List";
+// import { Login } from "./pages/Login";
 
 function App() {
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    const consultarUsuarios = async () => {
+      try {
+        const peticion = await fetch(
+          "https://63509cf03e9fa1244e498f8b.mockapi.io/api/v1/users"
+        );
+        const respuesta = await peticion.json();
+        setUsuarios(respuesta);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    consultarUsuarios();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      {/* <Link to="#">Learn React</Link>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <section>
+              <h1>Leonel</h1>
+            </section>
+          }
+        ></Route>
+      </Routes> */}
+      {/* <List usuarios={usuarios}/> */}
+      {/* <Login/> */}
+    </Fragment>
   );
 }
 

@@ -1,0 +1,51 @@
+.botonRojo {
+  width: 24rem;
+  background: #6d1118;
+  border-radius: 3.125rem;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border: 0;
+  font-family: "Carter One";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #ffffff;
+  min-height: 2.6rem;
+  margin-bottom: 1.25rem;
+  transition: 0.3s background-color;
+}
+
+.botonRojo:hover {
+  background-color: #a01b25;
+  cursor: pointer;
+}
+
+.botonRojo:active {
+  transform: translate(-0.1rem, 0.1rem);
+  box-shadow: -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.25);
+}
+
+.botonAzul {
+  width: 24rem;
+  background: blue;
+  border-radius: 3.125rem;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border: 0;
+  font-family: "Carter One";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #ffffff;
+  min-height: 2.6rem;
+  margin-bottom: 1.25rem;
+  transition: 0.3s background-color;
+}
+
+.botonAzul:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.botonAzul:active {
+  transform: translate(-0.1rem, 0.1rem);
+  box-shadow: -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.25);
+}
