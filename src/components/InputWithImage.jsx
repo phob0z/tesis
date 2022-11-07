@@ -11,6 +11,7 @@ const InputWithImage = (props) => {
   };
   const onBlur = () => {
     setFocussed(false);
+    props.onBlur();
   };
 
   return (
@@ -23,7 +24,7 @@ const InputWithImage = (props) => {
           <input
             id={props.label}
             type={props.type}
-            placeholder={`${focussed ? "": props.label}`}
+            placeholder={`${focussed ? "" : props.label}`}
             value={props.value}
             onChange={props.onChange}
             onFocus={onFocus}
@@ -50,6 +51,7 @@ InputWithImage.defaultProps = {
   onChange: () => "",
   focussed: false,
   label: "default label",
+  onBlur: () => "",
 };
 
 export default InputWithImage;

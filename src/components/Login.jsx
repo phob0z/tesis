@@ -10,7 +10,24 @@ import Button from "./atoms/Button";
 
 const Login = () => {
   const [cedula, setCedula] = useState("");
+  const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
+
+  const errorCedula = () => {
+    if (cedula.trim() !== "") {
+      return "Debe ingresar una cédula";
+    }
+  }
+
+  const showCedulaError = !errorCedula() && cedulaTouched;
+
+  const cedulaChangeHandler = (event) => {
+    setCedula(event.target.value);
+  };
+
+  const cedulaBlurHandler = (event) => {
+    setCedulaTouched(true);
+  };
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -31,10 +48,13 @@ const Login = () => {
     //   setCedula("");
     //   setPassword("");
     // }
-  };
+    setCedulaTouched(true);
 
-  const cedulaChangeHandler = (event) => {
-    setCedula(event.target.value);
+    if (!errorCedula) {
+      return;
+    }
+
+    setCedula("");
   };
 
   const passwordChangeHandler = (event) => {
@@ -53,9 +73,11 @@ const Login = () => {
             value={cedula}
             onChange={cedulaChangeHandler}
             label={"Cédula"}
+            onBlur={cedulaBlurHandler}
           >
             <AccountIcon color="white" />
           </InputWithImage>
+          {showCedulaError && <label className={classes.error}>{errorCedula}</label>}
           <InputWithImage
             value={password}
             onChange={passwordChangeHandler}

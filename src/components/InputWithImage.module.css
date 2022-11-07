@@ -31,7 +31,6 @@
 .inputContainer:hover {
   border: 0.0625rem solid;
   border-color: #a01b25;
-  background: rgba(160, 27, 37, 0.15);
 }
 
 .inputContainer input {
@@ -59,7 +58,6 @@
 .inputContainer.focussed {
   border: 0.0625rem solid;
   border-color: #a01b25;
-  /* background: rgba(160, 27, 37, 0.5); */
 }
 
 .inputContainer.focussed input {
