@@ -14,12 +14,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const errorCedula = () => {
-    if (cedula.trim() !== "") {
-      return "Debe ingresar una cédula";
-    }
+    let mensaje = "";
+    if (cedula.trim() === "")
+      mensaje = "Debe ingresar una cédula";
+    if (cedula.trim().length < 10)
+      mensaje = "La cédula debe tener al menos 10 dígitos";
+    return mensaje;
   }
 
-  const showCedulaError = !errorCedula() && cedulaTouched;
+  const mensajeCedula = errorCedula();
+
+  if (!!mensajeCedula) {
+    console.log(mensajeCedula);
+  }
+
+  const showCedulaError = !!mensajeCedula && cedulaTouched;
 
   const cedulaChangeHandler = (event) => {
     setCedula(event.target.value);
@@ -77,7 +86,7 @@ const Login = () => {
           >
             <AccountIcon color="white" />
           </InputWithImage>
-          {showCedulaError && <label className={classes.error}>{errorCedula}</label>}
+          {showCedulaError && <label className={classes.error}>{mensajeCedula}</label>}
           <InputWithImage
             value={password}
             onChange={passwordChangeHandler}
