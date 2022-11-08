@@ -12,27 +12,30 @@ const Login = () => {
   const [cedula, setCedula] = useState("");
   const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
-  const errorCedula = () => {
-    let mensaje = "";
-    if (cedula.trim() === "")
-      mensaje = "Debe ingresar una cédula";
+  var cedulaError = "";
+  var passwordError = "";
+
+  if (cedulaTouched) {
     if (cedula.trim().length < 10)
-      mensaje = "La cédula debe tener al menos 10 dígitos";
+      cedulaError = "La cédula debe tener al menos 10 dígitos";
     if (!(/^[0-9]+$/.test(cedula)))
-      mensaje = "Solo puede contener números";
-    return mensaje;
+      cedulaError = "La cédula solo puede contener números";
+    if (cedula.trim() === "")
+      cedulaError = "Debe ingresar una cédula";
   }
 
-  const mensajeCedula = errorCedula();
-
-  if (!!mensajeCedula) {
-    console.log(mensajeCedula);
+  if (passwordTouched) {
+    if (password.trim() === "")
+      passwordError = "Debe ingresar una contraseña";
   }
 
-  const showCedulaError = !!mensajeCedula && cedulaTouched;
+  const cedulaShowError = cedulaTouched && !!cedulaError;
+  const passwordShowError = passwordTouched && !!passwordError;
 
   const cedulaChangeHandler = (event) => {
+    setCedulaTouched(true);
     setCedula(event.target.value);
   };
 
@@ -40,9 +43,17 @@ const Login = () => {
     setCedulaTouched(true);
   };
 
+  const passwordChangeHandler = (event) => {
+    setPasswordTouched(true);
+    setPassword(event.target.value);
+  };
+
+  const passwordBlurHandler = (event) => {
+    setPasswordTouched(true);
+  };
+
   const onLogin = async (e) => {
     e.preventDefault();
-    console.log(cedula, password);
     // try {
     //   const response = await axios.post(
     //     "http://localhost:8000/api/login",
@@ -61,15 +72,14 @@ const Login = () => {
     // }
     setCedulaTouched(true);
 
-    if (!errorCedula) {
+    if (!!cedulaError) {
+      console.log("Existe error, no enviar");
       return;
     }
 
+    console.log("NO existe error, enviar");
     setCedula("");
-  };
-
-  const passwordChangeHandler = (event) => {
-    setPassword(event.target.value);
+    setPassword("");
   };
 
   return (
@@ -88,15 +98,17 @@ const Login = () => {
           >
             <AccountIcon color="white" />
           </InputWithImage>
-          {showCedulaError && <label className={classes.error}>{mensajeCedula}</label>}
+          {cedulaShowError && <label className={classes.error}>{cedulaError}</label>}
           <InputWithImage
             value={password}
             onChange={passwordChangeHandler}
             label={"Contraseña"}
             type="password"
+            onBlur={passwordBlurHandler}
           >
             <PasswordKeyIcon color="white" />
           </InputWithImage>
+          {passwordShowError && <label className={classes.error}>{passwordError}</label>}
           <Link className={classes.boxFooter} to="forgotPassword">
             ¿Olvidó su contraseña?
           </Link>

@@ -4,7 +4,7 @@ import classes from "./Button.module.css";
 
 const Button = (props) => {
   return (
-    <button className={classes[props.clase]} type={props.type} onClick={props.onClick}>
+    <button className={classes[props.clase]} type={props.type} onClick={props.onClick} disabled={props.disabled}>
       {props.label}
     </button>
   );
@@ -15,13 +15,15 @@ Button.propTypes = {
   type: PropTypes.string,
   clase: PropTypes.string,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
   label: "default label",
   type: "submit",
   clase: "botonRojo",
-  // onClick: () => {console.log("Default click function on button");},
+  onClick: () => {},
+  disabled: false,
 };
 
 export default Button;
