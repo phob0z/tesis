@@ -22,6 +22,7 @@ Button.defaultProps = {
   label: "default label",
   type: "submit",
   clase: "botonRojo",
+  /* onClick: () => {console.log("Boton habilitado")}, */
   onClick: () => {},
   disabled: false,
 };

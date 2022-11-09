@@ -18,8 +18,8 @@ const Login = () => {
   var passwordError = "";
 
   if (cedulaTouched) {
-    if (cedula.trim().length < 10)
-      cedulaError = "La cédula debe tener al menos 10 dígitos";
+    if (cedula.trim().length !== 10)
+      cedulaError = "La cédula debe tener 10 dígitos";
     if (!(/^[0-9]+$/.test(cedula)))
       cedulaError = "La cédula solo puede contener números";
     if (cedula.trim() === "")
@@ -54,25 +54,28 @@ const Login = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await axios.post(
-    //     "http://localhost:8000/api/login",
-    //     { cedula, password },
-    //     { headers: { accept: "application/json" } }
-    //   );
-    //   console.log(response);
-    //   const { access_token, token_type, user } = response.data.data;
-    //   console.warn(access_token, token_type, user);
-    //   // login(user, `${token_type} ${access_token}`);
-    //   // navigate("/");
-    // } catch (error) {
-    //   console.log(error.response.data.message, "error");
-    //   setCedula("");
-    //   setPassword("");
-    // }
     setCedulaTouched(true);
+    setPasswordTouched(true);
 
-    if (!!cedulaError) {
+    /* try {
+      const response = await axios.post(
+        // "https://phob0z-fakeback.herokuapp.com/api/login",
+        "http://localhost:8000/api/login",
+        { cedula, password },
+        { headers: { accept: "application/json" } }
+      );
+      console.log(response);
+      const { access_token, token_type, user } = response.data.data;
+      console.warn(access_token, token_type, user);
+      // login(user, `${token_type} ${access_token}`);
+      // navigate("/");
+    } catch (error) {
+      console.log(error.response.data.message, "error");
+      setCedula("");
+      setPassword("");
+    } */
+
+    if (!!cedulaError || !!passwordError) {
       console.log("Existe error, no enviar");
       return;
     }
