@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import AuthProvider from "../contexts/auth/AuthProvider";
+
+import Background from "../components/templates/Background";
+import Menu from "../components/templates/Menu"
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth//ForgotPassword";
-import EmailSent from "../pages/auth/EmailSent";
 import PublicRoute from "./PublicRoute";
-import Background from "../components/templates/Background";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRouter = () => {
   return (
@@ -14,43 +16,31 @@ const AppRouter = () => {
       <Background />
       <AuthProvider>
         <Routes>
-          <Route path="/*" element={<Navigate to="login" />} />
           <Route
             path="login/*"
             element={
               <PublicRoute>
                 <Routes>
-                  <Route path="/*" element={<Navigate to="/login" />} />
-                  <Route path="/" element={<Login />} />
-                  <Route path="forgotPassword" element={<ForgotPassword />} />
-                  <Route path="emailSent" element={<EmailSent />} />
+                  <Route path="/*" element={<Login />} />
+                  <Route path="/forgotPassword" element={<ForgotPassword />} />
                 </Routes>
               </PublicRoute>
             }
           />
+        <Route
+          path="/*"
+          element={
+            <PrivateRoute>
+              <Routes>
+              <Route path="/" element={<Menu />} />
+                {/* <Route element={<DashboardTemplate />}></Route> */}
+              </Routes>
+            </PrivateRoute>
+          }
+        />
+
         </Routes>
 
-        {/* <Routes>
-        <Route element={<AuthTemplate />}>
-          <Route path="/*" element={<Navigate to="login" />} />
-          <Route path="login" exact element={<Login />} />
-          <Route path="forgotPassword" element={<ForgotPassword />} />
-          <Route path="emailSent" element={<EmailSent />} />
-        </Route>
-      </Routes> */}
-
-        {/* <Route
-          path="login/*"
-          element={
-            <PublicRoute>
-              <Routes>
-                <Route element={<AuthTemplate />}>
-                  <Route path="/*" element={<Login />} />
-                </Route>
-              </Routes>
-            </PublicRoute>
-          }
-        /> */}
 
         {/* <Route
           path="/*"
@@ -79,8 +69,8 @@ const AppRouter = () => {
               </Routes>
             </PrivateRoute>
           }
-        /> */}
-        {/* </Routes> */}
+        />
+        </Routes> */}
       </AuthProvider>
     </Fragment>
   );

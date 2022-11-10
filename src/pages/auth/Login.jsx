@@ -41,7 +41,7 @@ const Login = () => {
     setCedula(event.target.value);
   };
 
-  const cedulaBlurHandler = (event) => {
+  const cedulaBlurHandler = () => {
     setCedulaTouched(true);
   };
 
@@ -50,40 +50,41 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const passwordBlurHandler = (event) => {
+  const passwordBlurHandler = () => {
     setPasswordTouched(true);
   };
 
-  const onLogin = async (e) => {
-    e.preventDefault();
+  const onLogin = async (event) => {
+    event.preventDefault();
     setCedulaTouched(true);
     setPasswordTouched(true);
 
+    if (!cedula || !password || !!cedulaError || !!passwordError) {
+      return;
+    }
+
     try {
       const response = await axios.post(
-        // "https://phob0z-fakeback.herokuapp.com/api/login",
         "http://localhost:8000/api/login",
         { cedula, password },
         { headers: { accept: "application/json" } }
       );
       const { access_token, token_type, user } = response.data.data;
-      console.warn(access_token, token_type, user);
       login(user, `${token_type} ${access_token}`);
       // navigate("/");
+
+      /*
+      TODO:
+        AQUÍ SPIN LOADER
+        - Si no es correcto, mostrar mensaje de error.
+          - Credenciales incorrectas.
+          - Error de conexión.
+          - ?
+        - Si es correcto, solo cargar siguiente.
+      */
     } catch (error) {
-      console.log(error.response.data.message, "error");
-      // setCedula("");
-      // setPassword("");
+      console.log("Error: ", error.response.data.message);
     }
-
-    if (!!cedulaError || !!passwordError) {
-      console.log("Existe error, no enviar");
-      return;
-    }
-
-    console.log("NO existe error, enviar");
-    setCedula("");
-    setPassword("");
   };
 
   return (
@@ -96,8 +97,8 @@ const Login = () => {
           <span className={classes.boxTitle}>Ingrese para continuar</span>
           <InputWithImage
             value={cedula}
-            onChange={cedulaChangeHandler}
             label={"Cédula"}
+            onChange={cedulaChangeHandler}
             onBlur={cedulaBlurHandler}
           >
             <AccountIcon color="white" />
@@ -107,9 +108,9 @@ const Login = () => {
           )}
           <InputWithImage
             value={password}
-            onChange={passwordChangeHandler}
             label={"Contraseña"}
             type="password"
+            onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
           >
             <PasswordKeyIcon color="white" />

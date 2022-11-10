@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import classes from "./InputWithImage.module.css";
 import { useState } from "react";
-/* import ErrorIcon from "./atoms/icons/ErrorIcon"; */
 
 const InputWithImage = (props) => {
   const [focussed, setFocussed] = useState(false);
@@ -32,7 +31,6 @@ const InputWithImage = (props) => {
             onBlur={onBlur}
           />
           <label htmlFor={props.label}>{props.label}</label>
-          {/* <ErrorIcon className={classes.errorIcon} color="#6d1118"/> */}
         </div>
       </div>
     </Fragment>
