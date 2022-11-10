@@ -1,8 +1,10 @@
-// import axios from "axios";
 import React, { Fragment } from "react";
-import classes from "./Auth.module.css";
+// import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
-import Button from "./atoms/Button";
+import Button from "../../components/atoms/Button";
+
+import classes from "./Auth.module.css";
 
 function EmailSent() {
   const navigate = useNavigate();

@@ -1,33 +1,36 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import Login from "../components/Login";
 import AuthProvider from "../contexts/auth/AuthProvider";
-import ForgotPassword from "../components/ForgotPassword";
-import EmailSent from "../components/EmailSent";
+import Login from "../pages/auth/Login";
+import ForgotPassword from "../pages/auth//ForgotPassword";
+import EmailSent from "../pages/auth/EmailSent";
 import PublicRoute from "./PublicRoute";
+import Background from "../components/templates/Background";
 
 const AppRouter = () => {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path="/*" element={<Navigate to="login" />} />
-        <Route
-          path="login/*"
-          element={
-            <PublicRoute>
-              <Routes>
-                <Route path="/*" element={<Navigate to="/login" />} />
-                <Route path="/" element={<Login />} />
-                <Route path="forgotPassword" element={<ForgotPassword />} />
-                <Route path="emailSent" element={<EmailSent />} />
-              </Routes>
-            </PublicRoute>
-          }
-        />
-      </Routes>
+    <Fragment>
+      <Background />
+      <AuthProvider>
+        <Routes>
+          <Route path="/*" element={<Navigate to="login" />} />
+          <Route
+            path="login/*"
+            element={
+              <PublicRoute>
+                <Routes>
+                  <Route path="/*" element={<Navigate to="/login" />} />
+                  <Route path="/" element={<Login />} />
+                  <Route path="forgotPassword" element={<ForgotPassword />} />
+                  <Route path="emailSent" element={<EmailSent />} />
+                </Routes>
+              </PublicRoute>
+            }
+          />
+        </Routes>
 
-      {/* <Routes>
+        {/* <Routes>
         <Route element={<AuthTemplate />}>
           <Route path="/*" element={<Navigate to="login" />} />
           <Route path="login" exact element={<Login />} />
@@ -36,7 +39,7 @@ const AppRouter = () => {
         </Route>
       </Routes> */}
 
-      {/* <Route
+        {/* <Route
           path="login/*"
           element={
             <PublicRoute>
@@ -49,7 +52,7 @@ const AppRouter = () => {
           }
         /> */}
 
-      {/* <Route
+        {/* <Route
           path="/*"
           element={
             <PrivateRoute>
@@ -77,8 +80,9 @@ const AppRouter = () => {
             </PrivateRoute>
           }
         /> */}
-      {/* </Routes> */}
-    </AuthProvider>
+        {/* </Routes> */}
+      </AuthProvider>
+    </Fragment>
   );
 };
 

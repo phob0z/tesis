@@ -1,10 +1,12 @@
-// import axios from "axios";
 import React, { Fragment, useState } from "react";
-import InputWithImage from "./InputWithImage";
-import classes from "./Auth.module.css";
+// import axios from "axios";
+
+import InputWithImage from "../../components/atoms/InputWithImage";
 import { useNavigate } from "react-router-dom";
-import AccountIcon from "./atoms/icons/AccountIcon";
-import Button from "./atoms/Button";
+import AccountIcon from "../../components/icons/AccountIcon";
+import Button from "../../components/atoms/Button";
+
+import classes from "./Auth.module.css";
 
 function ForgotPassword() {
   const navigate = useNavigate();
