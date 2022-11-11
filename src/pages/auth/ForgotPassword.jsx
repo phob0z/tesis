@@ -49,6 +49,18 @@ function ForgotPassword() {
       AQUÍ, LÓGICA PARA RECUPERAR LA CONTRASEÑA!!!
       - Con async await.
       - Si no hay errores cambiar hacer: setSent(true)
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/forgotPassword",
+        { cedula },
+        { headers: { accept: "application/json" } }
+      );
+      // navigate("/");
+    } catch (error) {
+      console.log("Error: ", error.response.data.message);
+    }
+
     */
     setSent(true);
   };

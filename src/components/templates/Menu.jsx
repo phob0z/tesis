@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
+import Backdrop from "../atoms/Backdrop";
+import Modal from "../atoms/Modal";
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -43,6 +45,9 @@ const Menu = () => {
       <button type="button" onClick={onLogout}>
         Logout
       </button>
+      <Backdrop>
+        <Modal/>
+      </Backdrop>
     </Fragment>
   );
 };

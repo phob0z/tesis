@@ -3,7 +3,8 @@ html {
 }
 
 body {
-  font-family: "Nunito", Arial, Helvetica, sans-serif;
+  font-family: "Open Sans";
+  font-weight: 400;
   background: #d6d6d6;
   /* Hide vertical scrollbar */
   overflow-y: hidden;

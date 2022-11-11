@@ -1,0 +1,53 @@
+.modal {
+  position: absolute;
+  background-color: transparent;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  padding: 0;
+  border-radius: 1rem;
+  min-width: 20rem;
+  max-width: 30rem;
+  cursor: pointer;
+  z-index: 50;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%);
+  animation: slide-down 0.3s;
+}
+
+.header {
+  text-align: center;
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 400;
+  border-radius: 1rem 1rem 0 0;
+  background-color: #6d1118;
+}
+
+.body {
+  background-color: white;
+}
+
+.message {
+  padding: 10px;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.footer {
+  border-radius: 0 0 1rem 1rem;
+  background-color: #6d1118;
+  font-size: 0.7rem;
+  color: white;
+  font-weight: 200;
+  text-align: center;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
