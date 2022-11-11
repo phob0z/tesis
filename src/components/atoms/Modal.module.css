@@ -25,10 +25,11 @@
 
 .body {
   background-color: white;
+  border-radius: 0 0 1rem 1rem;
 }
 
 .message {
-  text-align: justify;
+  text-align: center;
   padding: 10px;
   font-size: 0.8rem;
   font-weight: 400;

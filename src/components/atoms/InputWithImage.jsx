@@ -29,6 +29,7 @@ const InputWithImage = (props) => {
             onChange={props.onChange}
             onFocus={onFocus}
             onBlur={onBlur}
+            maxlength={props.maxlength}
           />
           <label htmlFor={props.label}>{props.label}</label>
         </div>
@@ -43,6 +44,8 @@ InputWithImage.propTypes = {
   onChange: PropTypes.func,
   focussed: PropTypes.bool,
   label: PropTypes.string,
+  onBlur: PropTypes.func,
+  maxlength: PropTypes.string,
 };
 
 InputWithImage.defaultProps = {
@@ -52,6 +55,7 @@ InputWithImage.defaultProps = {
   focussed: false,
   label: "default label",
   onBlur: () => "",
+  maxlength: "10",
 };
 
 export default InputWithImage;

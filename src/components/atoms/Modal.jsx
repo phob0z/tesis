@@ -16,7 +16,7 @@ const Modal = (props) => {
       <div className={classes.body}>
         <div className={classes.message}>{props.message}</div>
       </div>
-      <div className={classes.footer}>{props.footer}</div>
+      {/* <div className={classes.footer}>{props.footer}</div> */}
     </div>
   );
 };

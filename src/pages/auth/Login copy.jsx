@@ -12,20 +12,20 @@ import classes from "./Auth.module.css";
 import Backdrop from "../../components/atoms/Backdrop";
 import Spinner from "../../components/atoms/Spinner";
 import Modal from "../../components/atoms/Modal";
-import AlertContext from "../../contexts/alert/AlertContext";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
-  const { isLoading, setIsLoading } = useContext(AlertContext);
 
   const [cedula, setCedula] = useState("");
   const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
-  // const closeModal = () => {
-  //   setHasError(false);
-  // };
+  const closeModal = () => {
+    setHasError(false);
+  };
 
   const closeSpinner = () => {
     setIsLoading(false);
@@ -99,7 +99,7 @@ const Login = () => {
       */
     } catch (error) {
       setIsLoading(false);
-      // setHasError(true);
+      setHasError(true);
       console.log("Error: ", error.response.data.message);
     }
     setIsLoading(false);
@@ -108,9 +108,9 @@ const Login = () => {
   return (
     <Fragment>
       <Backdrop show={isLoading}/>
-      {/* <Backdrop show={hasError}/> */}
+      <Backdrop show={hasError}/>
       <Spinner show={isLoading} close={closeSpinner}/>
-      {/* <Modal show={hasError} close={closeModal} title="MODAL" message="Mensajito" footer="footer"/> */}
+      <Modal show={hasError} close={closeModal} title="MODAL" message="Mensajito" footer="footer"/>
       <span className={classes.title}>
         Sistema de gestión de notas Miguel de Santiago
       </span>
