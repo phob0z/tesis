@@ -11,7 +11,7 @@ const Modal = (props) => {
     >
       <div className={classes.header}>
         {props.title}
-        <CloseIcon className={classes.close} color="white" onClick={props.closed}/>
+        <CloseIcon className={classes.close} color="white" onClick={props.close}/>
       </div>
       <div className={classes.body}>
         <div className={classes.message}>{props.message}</div>
@@ -27,6 +27,7 @@ Modal.propTypes = {
   message: PropTypes.string,
   footer: PropTypes.string,
   show: PropTypes.bool,
+  close: PropTypes.func,
 };
 
 Modal.defaultProps = {
@@ -35,6 +36,7 @@ Modal.defaultProps = {
   message: "Mensaje por defecto",
   footer: "",
   show: false,
+  close: () => {},
 };
 
 export default Modal;

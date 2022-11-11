@@ -4,12 +4,14 @@ import axios from "axios";
 
 import InputWithImage from "../../components/atoms/InputWithImage";
 import AccountIcon from "../../components/icons/AccountIcon";
-import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
+import PasswordKeyIcon from "../../components/icons/CloseIcon";
 import Button from "../../components/atoms/Button";
 import AuthContext from "../../contexts/auth/AuthContext";
 
 import classes from "./Auth.module.css";
 import Backdrop from "../../components/atoms/Backdrop";
+import Spinner from "../../components/atoms/Spinner";
+import Modal from "../../components/atoms/Modal";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -18,7 +20,16 @@ const Login = () => {
   const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  
+  const closeModal = () => {
+    setHasError(false);
+  };
+
+  const closeSpinner = () => {
+    setIsLoading(false);
+  };
 
   var cedulaError = "";
   var passwordError = "";
@@ -88,6 +99,7 @@ const Login = () => {
       */
     } catch (error) {
       setIsLoading(false);
+      setHasError(true);
       console.log("Error: ", error.response.data.message);
     }
     setIsLoading(false);
@@ -95,7 +107,10 @@ const Login = () => {
 
   return (
     <Fragment>
-      {isLoading && <Backdrop/>}
+      <Backdrop show={isLoading}/>
+      <Backdrop show={hasError}/>
+      <Spinner show={isLoading} close={closeSpinner}/>
+      <Modal show={hasError} close={closeModal} title="MODAL" message="Mensajito"/>
       <span className={classes.title}>
         Sistema de gestión de notas Miguel de Santiago
       </span>

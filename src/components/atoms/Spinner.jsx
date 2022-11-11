@@ -1,23 +1,18 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import classes from "./Spinner.module.css";
 
 const Spinner = (props) => {
   return (
-    <Fragment>
-      <div
-        className={`${classes.spinner} ${
-          props.show ? classes.show : classes.hide
-        }`}
-        onClick={props.closed}
-      ></div>
-      <div
-        className={`${classes.spinner2} ${
-          props.show ? classes.show : classes.hide
-        }`}
-        onClick={props.closed}
-      ></div>
-    </Fragment>
+    <div
+      className={`${
+        props.show ? classes.show : classes.hide
+      }`}
+      // onClick={props.close}
+    >
+      <div className={classes.spinner}></div>
+      <div className={classes.spinner2}></div>
+    </div>
   );
 };
 
