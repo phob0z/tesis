@@ -6,6 +6,7 @@ import AuthContext from "../../contexts/auth/AuthContext";
 import Backdrop from "../atoms/Backdrop";
 import Modal from "../atoms/Modal";
 import { useState } from "react";
+import Spinner from "../atoms/Spinner";
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Menu = () => {
   const { user, logout } = useContext(AuthContext);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [spinnerIsOpen, setSpinnerIsOpen] = useState(false);
 
   const showModal = () => {
     setModalIsOpen(true);
@@ -20,6 +22,14 @@ const Menu = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const showSpinner = () => {
+    setSpinnerIsOpen(true);
+  };
+
+  const closeSpinner = () => {
+    setSpinnerIsOpen(false);
   };
 
   // const location = useLocation();
@@ -61,8 +71,13 @@ const Menu = () => {
       <button type="button" onClick={showModal}>
         Modal
       </button>
-      <Backdrop show={modalIsOpen} />
+      <button type="button" onClick={showSpinner}>
+        Spinner
+      </button>
+      
       <Modal show={modalIsOpen} closed={closeModal} title="MODAL" message="Mensajito"/>
+      <Spinner show={spinnerIsOpen} closed={closeSpinner}/>
+      <Backdrop show={spinnerIsOpen} />
     </Fragment>
   );
 };
