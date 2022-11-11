@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AccountIcon = ({ color }) => {
+const AccountIcon = (props) => {
   return (
     <svg
       data-icon="account-icon"
@@ -11,7 +11,7 @@ const AccountIcon = ({ color }) => {
       width="1.8rem"
     >
       <path
-        fill={color}
+        fill={props.color}
         d="M11.3 34.7q3.1-1.95 6.125-2.9T24 30.85q3.55 0 6.65 1 3.1 1 6.1 2.85 2.1-2.75
         2.95-5.275.85-2.525.85-5.425 0-7-4.775-11.775T24 7.45q-7 0-11.775 4.775T7.45 24q0
         2.9.85 5.4.85 2.5 3 5.3ZM24 25.85q-3.05 0-5.1-2.05t-2.05-5.1q0-3 2.05-5.075T24

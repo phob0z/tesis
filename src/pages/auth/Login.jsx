@@ -9,6 +9,7 @@ import Button from "../../components/atoms/Button";
 import AuthContext from "../../contexts/auth/AuthContext";
 
 import classes from "./Auth.module.css";
+import Backdrop from "../../components/atoms/Backdrop";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -17,6 +18,7 @@ const Login = () => {
   const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   var cedulaError = "";
   var passwordError = "";
@@ -63,6 +65,8 @@ const Login = () => {
       return;
     }
 
+    setIsLoading(true);
+
     try {
       const response = await axios.post(
         "http://localhost:8000/api/login",
@@ -83,12 +87,15 @@ const Login = () => {
         - Si es correcto, solo cargar siguiente.
       */
     } catch (error) {
+      setIsLoading(false);
       console.log("Error: ", error.response.data.message);
     }
+    setIsLoading(false);
   };
 
   return (
     <Fragment>
+      {isLoading && <Backdrop/>}
       <span className={classes.title}>
         Sistema de gestión de notas Miguel de Santiago
       </span>

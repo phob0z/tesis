@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthProvider from "../contexts/auth/AuthProvider";
 
 import Background from "../components/templates/Background";
-import Menu from "../components/templates/Menu"
+import Menu from "../components/templates/Menu";
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth//ForgotPassword";
 import PublicRoute from "./PublicRoute";
@@ -27,20 +27,17 @@ const AppRouter = () => {
               </PublicRoute>
             }
           />
-        <Route
-          path="/*"
-          element={
-            <PrivateRoute>
-              <Routes>
-              <Route path="/" element={<Menu />} />
-                {/* <Route element={<DashboardTemplate />}></Route> */}
-              </Routes>
-            </PrivateRoute>
-          }
-        />
-
+          <Route
+            path="/*"
+            element={
+              <PrivateRoute>
+                <Routes>
+                  <Route path="/" element={<Menu />} />
+                </Routes>
+              </PrivateRoute>
+            }
+          />
         </Routes>
-
 
         {/* <Route
           path="/*"

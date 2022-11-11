@@ -5,14 +5,27 @@ import axios from "axios";
 import AuthContext from "../../contexts/auth/AuthContext";
 import Backdrop from "../atoms/Backdrop";
 import Modal from "../atoms/Modal";
+import { useState } from "react";
 
 const Menu = () => {
   const navigate = useNavigate();
 
   const { user, logout } = useContext(AuthContext);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const showModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   // const location = useLocation();
   // const urlActual = location.pathname;
   const token = localStorage.getItem("token");
+
   console.log(user.role);
 
   const onLogout = async () => {
@@ -45,9 +58,11 @@ const Menu = () => {
       <button type="button" onClick={onLogout}>
         Logout
       </button>
-      <Backdrop>
-        <Modal/>
-      </Backdrop>
+      <button type="button" onClick={showModal}>
+        Modal
+      </button>
+      <Backdrop show={modalIsOpen} />
+      <Modal show={modalIsOpen} closed={closeModal} title="MODAL" message="Mensajito"/>
     </Fragment>
   );
 };

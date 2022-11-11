@@ -8,8 +8,7 @@
   border-radius: 1rem;
   min-width: 20rem;
   max-width: 30rem;
-  cursor: pointer;
-  z-index: 50;
+  z-index: 10;
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   transform: translate(-50%, -50%);
   animation: slide-down 0.3s;
@@ -29,6 +28,7 @@
 }
 
 .message {
+  text-align: justify;
   padding: 10px;
   font-size: 0.8rem;
   font-weight: 400;
@@ -41,6 +41,19 @@
   color: white;
   font-weight: 200;
   text-align: center;
+  padding: 0 0 0.155rem 0;
+  min-height: 0.7rem;
+}
+
+.close {
+  position: absolute;
+  right: 0.2rem;
+  top: 0.1rem;
+}
+
+.close:hover,
+.close:focus {
+  cursor: pointer;
 }
 
 @keyframes slide-down {
@@ -50,4 +63,12 @@
   100% {
     transform: translate(-50%, -50%) scale(1);
   }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
