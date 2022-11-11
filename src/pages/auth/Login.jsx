@@ -86,16 +86,13 @@ const Login = () => {
       );
       const { access_token, token_type, user } = response.data.data;
       login(user, `${token_type} ${access_token}`);
-      // navigate("/");
 
       /*
       TODO:
-        AQUÍ SPIN LOADER
-        - Si no es correcto, mostrar mensaje de error.
+        Mostrar mensaje de error.
           - Credenciales incorrectas.
           - Error de conexión.
           - ?
-        - Si es correcto, solo cargar siguiente.
       */
     } catch (error) {
       setIsLoading(false);
@@ -107,8 +104,7 @@ const Login = () => {
 
   return (
     <Fragment>
-      <Backdrop show={isLoading}/>
-      <Backdrop show={hasError}/>
+      <Backdrop show={isLoading || hasError}/>
       <Spinner show={isLoading} close={closeSpinner}/>
       <Modal show={hasError} close={closeModal} title="MODAL" message="Mensajito"/>
       <span className={classes.title}>
