@@ -1,19 +1,37 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import AuthProvider from "../contexts/auth/AuthProvider";
-
-import Background from "../components/templates/Background";
-import Menu from "../components/templates/Menu";
-import Login from "../pages/auth/Login";
-import ForgotPassword from "../pages/auth//ForgotPassword";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 
+import AuthProvider from "../contexts/auth/AuthProvider";
+
+import Login from "../pages/auth/Login";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import Menu from "../components/templates/Menu";
+
+import Background from "../components/templates/Background";
+import Spinner from "../components/atoms/Spinner";
+import Backdrop from "../components/atoms/Backdrop";
+import Modal from "../components/atoms/Modal";
+import AlertContext from "../contexts/alert/AlertContext";
+
 const AppRouter = () => {
+  const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
+  const closeModal = () => {
+    setHasError(false);
+  };
   return (
     <Fragment>
       <Background />
+      <Backdrop show={isLoading || hasError} />
+      <Spinner show={isLoading}/>
+      <Modal
+        show={hasError}
+        close={closeModal}
+        title={modal.title}
+        message={modal.message}
+      />
       <AuthProvider>
         <Routes>
           <Route

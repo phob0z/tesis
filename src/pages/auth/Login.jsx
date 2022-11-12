@@ -7,29 +7,21 @@ import AccountIcon from "../../components/icons/AccountIcon";
 import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
 import Button from "../../components/atoms/Button";
 import AuthContext from "../../contexts/auth/AuthContext";
+import AlertContext from "../../contexts/alert/AlertContext";
+// import Backdrop from "../../components/atoms/Backdrop";
+// import Spinner from "../../components/atoms/Spinner";
+// import Modal from "../../components/atoms/Modal";
 
 import classes from "./Auth.module.css";
-import Backdrop from "../../components/atoms/Backdrop";
-import Spinner from "../../components/atoms/Spinner";
-import Modal from "../../components/atoms/Modal";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [cedula, setCedula] = useState("");
   const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  
-  const closeModal = () => {
-    setHasError(false);
-  };
-
-  const closeSpinner = () => {
-    setIsLoading(false);
-  };
 
   var cedulaError = "";
   var passwordError = "";
@@ -96,6 +88,7 @@ const Login = () => {
       */
     } catch (error) {
       setIsLoading(false);
+      setModal({title: "ERROR", message: "Credenciales incorrectas"});
       setHasError(true);
       console.log("Error: ", error.response.data.message);
     }
@@ -104,9 +97,6 @@ const Login = () => {
 
   return (
     <Fragment>
-      <Backdrop show={isLoading || hasError}/>
-      <Spinner show={isLoading} close={closeSpinner}/>
-      <Modal show={hasError} close={closeModal} title="MODAL" message="Mensajito" footer="footer"/>
       <span className={classes.title}>
         Sistema de gestión de notas Miguel de Santiago
       </span>
