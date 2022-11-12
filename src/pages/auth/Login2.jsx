@@ -4,7 +4,7 @@ import axios from "axios";
 
 import InputWithImage from "../../components/atoms/InputWithImage";
 import AccountIcon from "../../components/icons/AccountIcon";
-import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
+import PasswordKeyIcon from "../../components/icons/CloseIcon";
 import Button from "../../components/atoms/Button";
 import AuthContext from "../../contexts/auth/AuthContext";
 
@@ -12,20 +12,20 @@ import classes from "./Auth.module.css";
 import Backdrop from "../../components/atoms/Backdrop";
 import Spinner from "../../components/atoms/Spinner";
 import Modal from "../../components/atoms/Modal";
+import AlertContext from "../../contexts/alert/AlertContext";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const { isLoading, setIsLoading } = useContext(AlertContext);
 
   const [cedula, setCedula] = useState("");
   const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   
-  const closeModal = () => {
-    setHasError(false);
-  };
+  // const closeModal = () => {
+  //   setHasError(false);
+  // };
 
   const closeSpinner = () => {
     setIsLoading(false);
@@ -86,17 +86,20 @@ const Login = () => {
       );
       const { access_token, token_type, user } = response.data.data;
       login(user, `${token_type} ${access_token}`);
+      // navigate("/");
 
       /*
       TODO:
-        Mostrar mensaje de error.
+        AQUÍ SPIN LOADER
+        - Si no es correcto, mostrar mensaje de error.
           - Credenciales incorrectas.
           - Error de conexión.
           - ?
+        - Si es correcto, solo cargar siguiente.
       */
     } catch (error) {
       setIsLoading(false);
-      setHasError(true);
+      // setHasError(true);
       console.log("Error: ", error.response.data.message);
     }
     setIsLoading(false);
@@ -104,9 +107,10 @@ const Login = () => {
 
   return (
     <Fragment>
-      <Backdrop show={isLoading || hasError}/>
+      <Backdrop show={isLoading}/>
+      {/* <Backdrop show={hasError}/> */}
       <Spinner show={isLoading} close={closeSpinner}/>
-      <Modal show={hasError} close={closeModal} title="MODAL" message="Mensajito" footer="footer"/>
+      {/* <Modal show={hasError} close={closeModal} title="MODAL" message="Mensajito" footer="footer"/> */}
       <span className={classes.title}>
         Sistema de gestión de notas Miguel de Santiago
       </span>
@@ -118,7 +122,7 @@ const Login = () => {
             label={"Cédula"}
             onChange={cedulaChangeHandler}
             onBlur={cedulaBlurHandler}
-            maxLength="10"
+            maxlength="10"
           >
             <AccountIcon color="white" />
           </InputWithImage>
@@ -131,7 +135,7 @@ const Login = () => {
             type="password"
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
-            maxLength="30"
+            maxlength="30"
           >
             <PasswordKeyIcon color="white" />
           </InputWithImage>
