@@ -6,12 +6,11 @@
   border: 0;
   font-family: "Carter One";
   font-style: normal;
-  font-weight: 400;
   font-size: 1.1rem;
   color: #ffffff;
   min-height: 2.6rem;
   margin-bottom: 1.25rem;
-  transition: 0.3s background-color;
+  transition: 0.2s background-color;
 }
 
 .button:hover {
@@ -41,10 +40,10 @@
 
 .exitButton:hover {
   cursor: pointer;
-  transform: scale(1.1);
   font-size: 1.15rem;
   color: #D2A647;
   text-shadow: 0 0 #000;
+  transform: scale(1.1);
 }
 
 .exitButton:active {

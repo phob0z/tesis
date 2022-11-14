@@ -1,0 +1,24 @@
+.optionBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+  min-width: 8.2rem;
+}
+
+.option {
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 0.08rem 0.08rem #000, -0.08rem -0.08rem #000,
+    0.08rem -0.08rem #000, -0.08rem 0.08rem #000;
+  transition: 0.1s ease-in-out;
+}
+
+.option:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  color: #d2a647;
+  text-shadow: 0 0 #000;
+}
