@@ -1,4 +1,4 @@
-.botonRojo {
+.button {
   width: 24rem;
   background: #6d1118;
   border-radius: 3.125rem;
@@ -14,12 +14,41 @@
   transition: 0.3s background-color;
 }
 
-.botonRojo:hover {
-  background-color: #a01b25;
+.button:hover {
+  background-color: #A01B25;
   cursor: pointer;
 }
 
-.botonRojo:active {
+.button:active {
   transform: translate(-0.1rem, 0.1rem);
   box-shadow: -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.25);
 }
+
+.exitButton {
+  background: #A01B25;
+  border-radius: 0.625rem;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border: 0;
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.1rem;
+  color: #ffffff;
+  min-height: 2.3rem;
+  min-width: 5rem;
+  text-shadow: 0.08rem 0.08rem #000, -0.08rem -0.08rem #000, 0.08rem -0.08rem #000, -0.08rem 0.08rem #000;
+  transition: 0.1s ease-in-out;
+}
+
+.exitButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  font-size: 1.15rem;
+  color: #D2A647;
+  text-shadow: 0 0 #000;
+}
+
+.exitButton:active {
+  transform: translate(-0.1rem, 0.1rem) scale(1.1);
+  box-shadow: -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.25);
+}
+

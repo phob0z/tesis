@@ -8,11 +8,10 @@ import AuthProvider from "../contexts/auth/AuthProvider";
 
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
-import Menu from "../components/templates/Menu";
+import Menu from "../components/Menu/Menu";
 
 import Background from "../components/templates/Background";
 import Spinner from "../components/atoms/Spinner";
-import Backdrop from "../components/atoms/Backdrop";
 import Modal from "../components/atoms/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
 
@@ -24,7 +23,6 @@ const AppRouter = () => {
   return (
     <Fragment>
       <Background />
-      <Backdrop show={isLoading || hasError} />
       <Spinner show={isLoading}/>
       <Modal
         show={hasError}

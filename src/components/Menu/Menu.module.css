@@ -1,0 +1,45 @@
+.menu {
+  display: flex;
+  position: absolute;
+  background: #6d1118;
+  top: 1.5rem;
+  right: 50%;
+  transform: translateX(50%);
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0 0.625rem 0.625rem 0;
+  /* border: #d6d6d6 solid 0.08rem; */
+  border: grey solid 0.05rem;
+}
+
+.optionBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 8.2rem;
+  min-height: 4rem;
+}
+
+.option {
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.2rem;
+  color: #d6d6d6;
+  text-shadow: 0.08rem 0.08rem #000, -0.08rem -0.08rem #000, 0.08rem -0.08rem #000, -0.08rem 0.08rem #000;
+  transition: 0.1s ease-in-out;
+}
+
+.option:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  color: #D2A647;
+  text-shadow: 0 0 #000;
+}
+
+.logoutBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 6rem;
+  min-height: 4rem;
+  padding-right: 0.4rem;
+}

@@ -8,9 +8,6 @@ import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
 import Button from "../../components/atoms/Button";
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
-// import Backdrop from "../../components/atoms/Backdrop";
-// import Spinner from "../../components/atoms/Spinner";
-// import Modal from "../../components/atoms/Modal";
 
 import classes from "./Auth.module.css";
 
@@ -78,19 +75,10 @@ const Login = () => {
       );
       const { access_token, token_type, user } = response.data.data;
       login(user, `${token_type} ${access_token}`);
-
-      /*
-      TODO:
-        Mostrar mensaje de error.
-          - Credenciales incorrectas.
-          - Error de conexión.
-          - ?
-      */
     } catch (error) {
       setIsLoading(false);
-      setModal({title: "ERROR", message: "Credenciales incorrectas"});
+      setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
-      console.log("Error: ", error.response.data.message);
     }
     setIsLoading(false);
   };
@@ -132,7 +120,7 @@ const Login = () => {
             ¿Olvidó su contraseña?
           </Link>
         </div>
-        <Button label="Ingresar" clase="botonRojo" />
+        <Button type="submit">Ingresar</Button>
       </form>
     </Fragment>
   );

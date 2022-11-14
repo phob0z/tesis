@@ -82,7 +82,7 @@ function ForgotPassword() {
           <InputWithImage
             value={cedula}
             label={"Cédula"}
-            onChange={cedulaChangeHandler}            
+            onChange={cedulaChangeHandler}
             onBlur={cedulaBlurHandler}
             maxlength="10"
           >
@@ -93,13 +93,8 @@ function ForgotPassword() {
           )}
           <span className={classes.boxFooter}>&nbsp;</span>
         </div>
-        <Button label="Recuperar" clase="botonRojo" />
-        <Button
-          type="button"
-          label="Volver"
-          clase="botonRojo"
-          onClick={onVolver}
-        />
+        <Button type="submit">Recuperar</Button>
+        <Button onClick={onVolver}>Volver</Button>
       </form>
     </Fragment>
   );

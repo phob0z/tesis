@@ -17,6 +17,16 @@ const AuthProvider = ({ children }) => {
         user: null,
       };
     }
+
+    if (action.type === "USER") {
+      const user = JSON.parse(localStorage.getItem("user"));
+      user.full_name = action.payload;
+      localStorage.setItem("user", JSON.stringify(user));
+      return {
+        ...state,
+        user: user,
+      };
+    }
   };
 
   const initialization = () => {
@@ -43,12 +53,18 @@ const AuthProvider = ({ children }) => {
     dispatch(action);
   };
 
+  const setUser = (user) => {
+    const action = { type: "USER", payload: user };
+    dispatch(action);
+  };
+
   return (
     <AuthContext.Provider
       value={{
         ...authState,
-        login: login,
-        logout: logout,
+        login,
+        logout,
+        setUser,
       }}
     >
       {children}

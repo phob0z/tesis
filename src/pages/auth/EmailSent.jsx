@@ -23,7 +23,7 @@ function EmailSent() {
           <span className={classes.boxTitle}>Si la cédula se encuentra en la base de datos se enviará un mensaje al correo electrónico asociado.
 Por favor revise su correo y siga las instrucciones.</span>
         </div>
-        <Button type="button" label="Volver" clase="botonRojo" onClick={onVolver}/>
+        <Button onClick={onVolver}>Volver</Button>
       </form>
     </Fragment>
   );
