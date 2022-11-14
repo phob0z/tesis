@@ -1,0 +1,15 @@
+Internationalize
+(https://blog.shahednasser.com/how-to-internationalize-a-react-app/)
+
+Refresh/reset/expire token
+
+-Como front, si ya existe user y token, check token, si todo está bien continuar.
+-Como front, si ya existe user y token, check token, si no es correcto hacer logout,
+y borrar user y token e ir a Login.
+-Como front, si no existe usuario o token, borrar usuario o token e ir al Login.
+-Como front, intentar hacer login, si ya existe token y pueden haber multiples login,
+no hay problema (Que el backend cree un nuevo token cada vez pero con expiración)
+-Como front, intentar hacer login, si solo puede haber un token (login) por usuario y
+el token ya existe (si estoy intentando hacer login yo no tengo user o token), entonces
+hacer un logout con la cédula y el password (porque no tengo token)
+- Si existe el token o el user, pero el token no existe en la BD, borrar token y user de localStorage

@@ -62,6 +62,11 @@ const Login = () => {
     setPasswordTouched(true);
 
     if (!cedula || !password || !!cedulaError || !!passwordError) {
+      if (!!cedulaError)
+        setModal({title: "ERROR", message: cedulaError});
+      if (!!passwordError)
+        setModal({title: "ERROR", message: passwordError});
+      setHasError(true);
       return;
     }
 

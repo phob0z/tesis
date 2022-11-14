@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
         user: action.payload,
       };
     }
+
     if (action.type === "LOGOUT") {
       return {
         ...state,
@@ -30,10 +31,15 @@ const AuthProvider = ({ children }) => {
   };
 
   const initialization = () => {
+    // Hacer una llamada a un API CheckToken, enviar usuario y el token, si devuelve correcto,
+    // el token está bien si devuelve falso, logged: false, user: null
     const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
     return {
+      // logged: !!user&&!!token,
       logged: !!user,
-      user: user,
+      // user: !!user&&!!token? user: null,
+      user
     };
   };
 
@@ -43,6 +49,8 @@ const AuthProvider = ({ children }) => {
     const action = { type: "LOGIN", payload: user };
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
+    // const user2 = { ...user, token };
+    // console.log(user2);
     dispatch(action);
   };
 
