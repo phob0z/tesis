@@ -74,7 +74,8 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/login",
+        `${process.env.REACT_APP_BACK_URL}/api/v1/login`,
+        // "http://localhost:8000/api/login",
         { cedula, password },
         { headers: { accept: "application/json" } }
       );

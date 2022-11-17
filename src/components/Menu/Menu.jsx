@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -13,12 +13,12 @@ import Photo from "./Photo";
 
 const Menu = () => {
   const navigate = useNavigate();
+
   const { user, logout } = useContext(AuthContext);
   const { setIsLoading, setHasError } = useContext(AlertContext);
 
-  useEffect(() => {
-    console.log(user.role);
-  }, [user]);
+  const [subMenu, setSubMenu] = useState(false);
+  console.log(subMenu);
 
   const token = localStorage.getItem("token");
 
@@ -44,7 +44,7 @@ const Menu = () => {
       <div className={classes.options}>
         <Option>Perfil</Option>
         <Option>Información</Option>
-        <Option>Usuarios</Option>
+        <Option onMouseOver={() => {setSubMenu(true)}} onMouseOut={() => {setSubMenu(false)}}>Usuarios</Option>
         <Option>Materias</Option>
         <Option>Calificaciones</Option>
         <Option>Reportes</Option>
@@ -53,6 +53,7 @@ const Menu = () => {
             Salir
           </Button>
         </div>
+        {/* {subMenu && <Submenu/>} */}
       </div>
       <Photo src={user.image} alt={`Imagen de ${user.full_name}`}/>
     </div>

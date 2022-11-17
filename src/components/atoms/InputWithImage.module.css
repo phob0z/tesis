@@ -29,8 +29,7 @@
 }
 
 .inputContainer:hover {
-  border: 0.0625rem solid;
-  border-color: #a01b25;
+  border: 0.0625rem #a01b25 solid;
 }
 
 .inputContainer input {

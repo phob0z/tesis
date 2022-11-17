@@ -13,3 +13,5 @@ no hay problema (Que el backend cree un nuevo token cada vez pero con expiració
 el token ya existe (si estoy intentando hacer login yo no tengo user o token), entonces
 hacer un logout con la cédula y el password (porque no tengo token)
 - Si existe el token o el user, pero el token no existe en la BD, borrar token y user de localStorage
+
+Reportes: API con un array con la información.

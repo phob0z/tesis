@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
     // Hacer una llamada a un API CheckToken, enviar usuario y el token, si devuelve correcto,
     // el token está bien si devuelve falso, logged: false, user: null
     const user = JSON.parse(localStorage.getItem("user"));
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     return {
       // logged: !!user&&!!token,
       logged: !!user,
