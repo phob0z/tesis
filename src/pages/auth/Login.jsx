@@ -62,8 +62,10 @@ const Login = () => {
     setPasswordTouched(true);
 
     if (!cedula || !password || !!cedulaError || !!passwordError) {
-      if (!!cedulaError) setModal({ title: "ERROR", message: cedulaError });
-      if (!!passwordError) setModal({ title: "ERROR", message: passwordError });
+      if (!!cedulaError)
+        setModal({title: "ERROR", message: cedulaError});
+      if (!!passwordError)
+        setModal({title: "ERROR", message: passwordError});
       setHasError(true);
       return;
     }
@@ -75,7 +77,7 @@ const Login = () => {
         `${process.env.REACT_APP_BACK_URL}/api/v1/login/`,
         // "http://localhost:8000/api/login",
         { cedula, password },
-        { headers: { accept: "application/json", withCredentials: false } }
+        { headers: { accept: "application/json" } }
       );
       const { access_token, token_type, user } = response.data.data;
       login(user, `${token_type} ${access_token}`);
