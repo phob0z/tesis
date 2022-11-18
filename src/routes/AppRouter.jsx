@@ -22,6 +22,7 @@ const AppRouter = () => {
   };
   return (
     <Fragment>
+      {console.log(process.env.REACT_APP_BACK_URL)}s
       <Background />
       <Spinner show={isLoading}/>
       <Modal
