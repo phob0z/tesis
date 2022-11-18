@@ -3,7 +3,7 @@ import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/atoms/Button";
 import Option from "./Option";
@@ -12,7 +12,7 @@ import classes from "./Menu.module.css";
 import Photo from "./Photo";
 
 const Menu = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { user, logout } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
@@ -25,19 +25,14 @@ const Menu = () => {
   const onLogout = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BACK_URL}/logout/`,
-        // "http://127.0.0.1:8000/api/logout",
-        { token },
+        {},
         { headers: { accept: "application/json", authorization: token } }
       );
-      logout();
-      console.log(`"Response: " ${response}`);
-      
+      logout();      
       // navigate("/login", { replace: true });
     } catch (error) {
-      console.log(`"error: " ${error}`);
-      console.log(`"error.response: " ${error.response}`);
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
