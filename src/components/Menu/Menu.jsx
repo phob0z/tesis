@@ -23,6 +23,9 @@ const Menu = () => {
   const token = localStorage.getItem("token");
 
   const onLogout = async () => {
+    console.log(`Imagen de ${user.full_name}`);
+    console.log(`Imagen de ${user.src}`);
+    
     setIsLoading(true);
     try {
       await axios.post(
