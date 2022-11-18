@@ -20,7 +20,7 @@ const Menu = () => {
     setIsLoading(true);
     try {
       await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/logout/`,
+        `${process.env.REACT_APP_BACK_URL}/logout`,
         // "http://127.0.0.1:8000/api/logout",
         {},
         { headers: { accept: "application/json", authorization: token } }
