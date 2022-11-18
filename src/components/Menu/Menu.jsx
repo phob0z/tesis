@@ -27,7 +27,7 @@ const Menu = () => {
     try {
       await axios.post(
         // "http://127.0.0.1:8000/api/logout",
-        "https://sismds-back.vercel.app/api/v1/logout",
+        "https://sismds-back.vercel.app/api/v1/logout/",
         // `${process.env.REACT_APP_BACK_URL}/logout/`,
         {},
         { headers: { accept: "application/json", authorization: token } }
