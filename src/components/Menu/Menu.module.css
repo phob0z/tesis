@@ -7,6 +7,15 @@
   transform: translateX(calc(50% - 2.312rem));
 }
 
+.subMenu {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 3.5rem;
+  right: 50%;
+  transform: translateX(calc(50% - 2.312rem));
+}
+
 .options {
   display: flex;
   background: #6d1118;

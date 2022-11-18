@@ -8,7 +8,7 @@ import AuthProvider from "../contexts/auth/AuthProvider";
 
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
-import Menu from "../components/Menu/Menu";
+import Menu from "../components/menu/Menu";
 
 import Background from "../components/templates/Background";
 import Spinner from "../components/atoms/Spinner";

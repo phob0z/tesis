@@ -9,6 +9,7 @@ import Option from "./Option";
 
 import classes from "./Menu.module.css";
 import Photo from "./Photo";
+import SubMenu from "./SubMenu";
 
 const Menu = () => {
 
@@ -60,6 +61,7 @@ const Menu = () => {
           </Button>
         </div>
         {/* {subMenu && <Submenu/>} */}
+        <SubMenu/>
       </div>
       <Photo src={user.src} alt={`Imagen de ${user.full_name}`} />
     </div>
