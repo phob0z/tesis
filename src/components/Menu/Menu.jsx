@@ -3,7 +3,6 @@ import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
-// import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/atoms/Button";
 import Option from "./Option";
@@ -12,20 +11,15 @@ import classes from "./Menu.module.css";
 import Photo from "./Photo";
 
 const Menu = () => {
-  // const navigate = useNavigate();
 
   const { user, logout } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [subMenu, setSubMenu] = useState(false);
-  console.log(subMenu);
 
   const token = localStorage.getItem("token");
 
   const onLogout = async () => {
-    console.log(`Imagen de ${user.full_name}`);
-    console.log(`Imagen de ${user.src}`);
-    
     setIsLoading(true);
     try {
       await axios.post(
@@ -33,8 +27,7 @@ const Menu = () => {
         {},
         { headers: { accept: "application/json", authorization: token } }
       );
-      logout();      
-      // navigate("/login", { replace: true });
+      logout();
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -48,7 +41,16 @@ const Menu = () => {
       <div className={classes.options}>
         <Option>Perfil</Option>
         <Option>Información</Option>
-        <Option onMouseOver={() => {setSubMenu(true)}} onMouseOut={() => {setSubMenu(false)}}>Usuarios</Option>
+        <Option
+          onMouseOver={() => {
+            setSubMenu(true);
+          }}
+          onMouseOut={() => {
+            setSubMenu(false);
+          }}
+        >
+          Usuarios
+        </Option>
         <Option>Materias</Option>
         <Option>Calificaciones</Option>
         <Option>Reportes</Option>
@@ -59,7 +61,7 @@ const Menu = () => {
         </div>
         {/* {subMenu && <Submenu/>} */}
       </div>
-      <Photo src={user.image} alt={`Imagen de ${user.full_name}`}/>
+      <Photo src={user.src} alt={`Imagen de ${user.full_name}`} />
     </div>
   );
 };
