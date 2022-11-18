@@ -32,7 +32,7 @@ const Menu = () => {
         { headers: { accept: "application/json", authorization: token } }
       );
       logout();
-      navigate("/login", { replace: true });
+      // navigate("/login", { replace: true });
     } catch (error) {
       setIsLoading(false);
       setHasError(true);
