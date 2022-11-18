@@ -32,8 +32,12 @@ const Menu = () => {
         { headers: { accept: "application/json", authorization: token } }
       );
       logout();
+      console.log(`"Response: " ${response}`);
+      
       // navigate("/login", { replace: true });
     } catch (error) {
+      console.log(`"error: " ${error}`);
+      console.log(`"error.response: " ${error.response}`);
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
