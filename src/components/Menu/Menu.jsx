@@ -15,7 +15,7 @@ const Menu = () => {
   const navigate = useNavigate();
 
   const { user, logout } = useContext(AuthContext);
-  const { setIsLoading, setHasError } = useContext(AlertContext);
+  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [subMenu, setSubMenu] = useState(false);
   console.log(subMenu);
@@ -25,17 +25,17 @@ const Menu = () => {
   const onLogout = async () => {
     setIsLoading(true);
     try {
-      await axios.post(
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/logout/`,
         // "http://127.0.0.1:8000/api/logout",
-        "https://sismds-back.vercel.app/api/v1/logout/",
-        // `${process.env.REACT_APP_BACK_URL}/logout/`,
-        {},
+        { token },
         { headers: { accept: "application/json", authorization: token } }
       );
       logout();
       // navigate("/login", { replace: true });
     } catch (error) {
       setIsLoading(false);
+      setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
     setIsLoading(false);
