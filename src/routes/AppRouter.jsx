@@ -8,12 +8,13 @@ import AuthProvider from "../contexts/auth/AuthProvider";
 
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
-import Menu from "../components/Menu/Menu";
+import Menu from "../components/menu/Menu";
 
 import Background from "../components/templates/Background";
 import Spinner from "../components/atoms/Spinner";
 import Modal from "../components/atoms/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
+import ResetPassword from "../pages/auth/ResetPassword";
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -39,6 +40,7 @@ const AppRouter = () => {
                 <Routes>
                   <Route path="/*" element={<Login />} />
                   <Route path="/forgotPassword" element={<ForgotPassword />} />
+                  <Route path="/resetPassword" element={<ResetPassword />} />
                 </Routes>
               </PublicRoute>
             }

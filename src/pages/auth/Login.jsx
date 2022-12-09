@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import InputWithImage from "../../components/atoms/InputWithImage";
+import Input from "../../components/atoms/Input";
 import AccountIcon from "../../components/icons/AccountIcon";
 import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
 import Button from "../../components/atoms/Button";
@@ -20,8 +20,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
 
-  var cedulaError = "";
-  var passwordError = "";
+  var cedulaError = null;
+  var passwordError = null;
 
   if (cedulaTouched) {
     if (cedula.trim().length !== 10)
@@ -61,10 +61,10 @@ const Login = () => {
     setCedulaTouched(true);
     setPasswordTouched(true);
 
-    if (!cedula || !password || !!cedulaError || !!passwordError) {
+    if (!!cedulaError || !!passwordError) {
       if (!!cedulaError)
         setModal({title: "ERROR", message: cedulaError});
-      if (!!passwordError)
+      else if (!!passwordError)
         setModal({title: "ERROR", message: passwordError});
       setHasError(true);
       return;
@@ -72,20 +72,32 @@ const Login = () => {
 
     setIsLoading(true);
 
+    let user = {
+      "name_1": "Leonel",
+      "last_name1": "Molina",
+      "role": "secretaria",
+      "avatar": "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png"
+    };
+    let token_type = "Bearer";
+    let access_token = "1234567890";
+
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/login/`,
-        // "http://localhost:8000/api/login",
-        { cedula, password },
-        { headers: { accept: "application/json" } }
-      );
-      const { access_token, token_type, user } = response.data.data;
+    //   const response = await axios.post(
+    //     `${process.env.REACT_APP_BACK_URL}/login/`,
+    //     // "http://localhost:8000/api/login",
+    //     { cedula, password },
+    //     { headers: { accept: "application/json" } }
+    //   );
+    //   const { access_token, token_type, user } = response.data.data;
       login(user, `${token_type} ${access_token}`);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
+
+
+
     setIsLoading(false);
   };
 
@@ -97,7 +109,7 @@ const Login = () => {
       <form className={classes.login} onSubmit={onLogin}>
         <div className={classes.box}>
           <span className={classes.boxTitle}>Ingrese para continuar</span>
-          <InputWithImage
+          <Input
             value={cedula}
             label={"Cédula"}
             onChange={cedulaChangeHandler}
@@ -105,11 +117,11 @@ const Login = () => {
             maxLength="10"
           >
             <AccountIcon color="white" />
-          </InputWithImage>
+          </Input>
           {cedulaShowError && (
             <label className={classes.error}>{cedulaError}</label>
           )}
-          <InputWithImage
+          <Input
             value={password}
             label={"Contraseña"}
             type="password"
@@ -118,7 +130,7 @@ const Login = () => {
             maxLength="30"
           >
             <PasswordKeyIcon color="white" />
-          </InputWithImage>
+          </Input>
           {passwordShowError && (
             <label className={classes.error}>{passwordError}</label>
           )}

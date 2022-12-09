@@ -16,11 +16,11 @@ function EmailSent() {
   return (
     <Fragment>
       <span className={classes.title}>
-        Recuperar contraseña
+        Correo Enviado
       </span>
       <form className={classes.login}>
         <div className={classes.box}>
-          <span className={classes.boxTitle}>Si la cédula se encuentra en la base de datos se enviará un mensaje al correo electrónico asociado.
+          <span className={classes.boxTitle}>Si el correo se encuentra en la base de datos se enviará un mensaje al correo electrónico asociado.
 Por favor revise su correo y siga las instrucciones.</span>
         </div>
         <Button onClick={onVolver}>Volver</Button>

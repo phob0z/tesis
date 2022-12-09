@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import classes from "./InputWithImage.module.css";
+import classes from "./Input.module.css";
 import { useState } from "react";
 
-const InputWithImage = (props) => {
+const Input = (props) => {
   const [focussed, setFocussed] = useState(false);
 
   const onFocus = () => {
@@ -38,7 +38,7 @@ const InputWithImage = (props) => {
   );
 };
 
-InputWithImage.propTypes = {
+Input.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
@@ -48,7 +48,7 @@ InputWithImage.propTypes = {
   maxLength: PropTypes.string,
 };
 
-InputWithImage.defaultProps = {
+Input.defaultProps = {
   type: "text",
   value: "",
   onChange: () => "",
@@ -58,4 +58,4 @@ InputWithImage.defaultProps = {
   maxLength: "10",
 };
 
-export default InputWithImage;
+export default Input;

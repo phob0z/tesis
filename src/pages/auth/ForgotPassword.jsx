@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
-import InputWithImage from "../../components/atoms/InputWithImage";
-import { useNavigate } from "react-router-dom";
+import Input from "../../components/atoms/Input";
 import AccountIcon from "../../components/icons/AccountIcon";
 import Button from "../../components/atoms/Button";
 import EmailSent from "./EmailSent";
@@ -12,36 +12,35 @@ import classes from "./Auth.module.css";
 function ForgotPassword() {
   const navigate = useNavigate();
 
-  const [cedula, setCedula] = useState("");
-  const [cedulaTouched, setCedulaTouched] = useState(false);
+  const [correo, setCorreo] = useState("");
+  const [correoTouched, setCorreoTouched] = useState(false);
   const [sent, setSent] = useState(false);
 
-  var cedulaError = "";
+  var correoError = "";
 
-  if (cedulaTouched) {
-    if (cedula.trim().length !== 10)
-      cedulaError = "La cédula debe tener 10 dígitos";
-    if (!/^[0-9]+$/.test(cedula))
-      cedulaError = "La cédula solo puede contener números";
-    if (cedula.trim() === "") cedulaError = "Debe ingresar una cédula";
+  if (correoTouched) {
+        if (!correo.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)) {
+      correoError = "Debe ingresar un correo válido";
+    }
+    if (correo.trim() === "") correoError = "Debe ingresar un correo";
   }
 
-  const cedulaShowError = cedulaTouched && !!cedulaError;
+  const cedulaShowError = correoTouched && !!correoError;
 
   const cedulaChangeHandler = (event) => {
-    setCedulaTouched(true);
-    setCedula(event.target.value);
+    setCorreoTouched(true);
+    setCorreo(event.target.value);
   };
 
   const cedulaBlurHandler = (event) => {
-    setCedulaTouched(true);
+    setCorreoTouched(true);
   };
 
   const onForgotPassword = (e) => {
     e.preventDefault();
-    setCedulaTouched(true);
+    setCorreoTouched(true);
 
-    if (!cedula || !!cedulaError) {
+    if (!correo || !!correoError) {
       return;
     }
 
@@ -53,7 +52,7 @@ function ForgotPassword() {
     try {
       const response = await axios.post(
         "http://localhost:8000/api/forgotPassword",
-        { cedula },
+        { correo },
         { headers: { accept: "application/json" } }
       );
       // navigate("/");
@@ -77,19 +76,19 @@ function ForgotPassword() {
       <form className={classes.login} onSubmit={onForgotPassword}>
         <div className={classes.box}>
           <span className={classes.boxTitle}>
-            Ingrese su cédula para recuperar
+            Ingrese su correo para recuperar la contraseña
           </span>
-          <InputWithImage
-            value={cedula}
-            label={"Cédula"}
+          <Input
+            value={correo}
+            label={"Correo"}
             onChange={cedulaChangeHandler}
             onBlur={cedulaBlurHandler}
-            maxlength="10"
+            maxLength="30"
           >
             <AccountIcon color="white" />
-          </InputWithImage>
+          </Input>
           {cedulaShowError && (
-            <label className={classes.error}>{cedulaError}</label>
+            <label className={classes.error}>{correoError}</label>
           )}
           <span className={classes.boxFooter}>&nbsp;</span>
         </div>

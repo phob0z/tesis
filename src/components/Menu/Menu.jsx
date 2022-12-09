@@ -22,11 +22,11 @@ const Menu = () => {
   const onLogout = async () => {
     setIsLoading(true);
     try {
-      await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/logout/`,
-        {},
-        { headers: { accept: "application/json", authorization: token } }
-      );
+      // await axios.post(
+      //   `${process.env.REACT_APP_BACK_URL}/logout/`,
+      //   {},
+      //   { headers: { accept: "application/json", authorization: token } }
+      // );
       logout();
     } catch (error) {
       setIsLoading(false);
@@ -61,7 +61,7 @@ const Menu = () => {
         </div>
         {/* {subMenu && <Submenu/>} */}
       </div>
-      <Photo src={user.src} alt={`Imagen de ${user.full_name}`} />
+      <Photo src={user.avatar} alt={`Imagen de ${user.name_1}`} />
     </div>
   );
 };
