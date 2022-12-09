@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -19,21 +19,46 @@ const Login = () => {
   const [cedulaTouched, setCedulaTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [cedulaError, setCedulaError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  var cedulaError = false;
-  var passwordError = false;
+  // var cedulaError = false;
+  // var passwordError = false;
 
-  if (cedulaTouched) {
+  useEffect(() => {
     if (cedula.trim().length !== 10)
-      cedulaError = "La cédula debe tener 10 dígitos";
-    if (!/^[0-9]+$/.test(cedula))
-      cedulaError = "La cédula solo puede contener números";
-    if (cedula.trim() === "") cedulaError = "Debe ingresar una cédula";
-  }
+      // cedulaError = "La cédula debe tener 10 dígitos";
+      setCedulaError("La cédula debe tener 10 dígitos");
+    else if (!/^[0-9]+$/.test(cedula))
+      // cedulaError = "La cédula solo puede contener números";
+      setCedulaError("La cédula solo puede contener números");
+    else if (cedula.trim() === "")
+      // cedulaError = "Debe ingresar una cédula";
+      setCedulaError("Debe ingresar una cédula");
+    else setCedulaError("");
+  }, [cedula]);
 
-  if (passwordTouched) {
-    if (password.trim() === "") passwordError = "Debe ingresar una contraseña";
-  }
+  // if (cedulaTouched) {
+  //   if (cedula.trim().length !== 10)
+  //     // cedulaError = "La cédula debe tener 10 dígitos";
+  //     setCedulaError("La cédula debe tener 10 dígitos");
+  //   if (!/^[0-9]+$/.test(cedula))
+  //     // cedulaError = "La cédula solo puede contener números";
+  //     setCedulaError("La cédula solo puede contener números");
+  //   if (cedula.trim() === "")
+  //     // cedulaError = "Debe ingresar una cédula";
+  //     setCedulaError("Debe ingresar una cédula");
+  // }
+
+  useEffect(() => {
+    if (password.trim() === "")
+      setPasswordError("Debe ingresar una contraseña");
+    else setPasswordError("");
+  }, [password]);
+
+  // if (passwordTouched) {
+  //   if (password.trim() === "") passwordError = "Debe ingresar una contraseña";
+  // }
 
   const cedulaShowError = cedulaTouched && !!cedulaError;
   const passwordShowError = passwordTouched && !!passwordError;
@@ -61,11 +86,17 @@ const Login = () => {
     setCedulaTouched(true);
     setPasswordTouched(true);
 
-    if (!cedula || cedulaError || !password || passwordError) {
-      if (cedulaError) setModal({ title: "ERROR", message: cedulaError });
-      else if (passwordError)
-        setModal({ title: "ERROR", message: passwordError });
-      if (cedulaError || passwordError) setHasError(true);
+    if (cedulaError || passwordError) {
+      setModal({
+        title: "ERROR",
+        message: cedulaError
+          ? cedulaError + "\n" + passwordError
+          : passwordError,
+      });
+      setHasError(true);
+      // else if (passwordError)
+      // setModal({ title: "ERROR", message: passwordError });
+      // if (cedulaError || passwordError) setHasError(true);
       return;
     }
 

@@ -33,6 +33,7 @@
   padding: 10px;
   font-size: 0.8rem;
   font-weight: 400;
+  white-space: pre-line;
 }
 
 .footer {
