@@ -1,11 +1,22 @@
 .bigContainer {
   display: flex;
   border-radius: 0.625rem;
+  border: 0.0625rem solid;
+  border-color: transparent;
   margin: 0.625rem 0 0.625rem 0;
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   width: 100%;
   height: 2.6rem;
-  background-color: transparent;
+  background: rgba(160, 27, 37, 0.15);
+}
+
+.bigContainer:hover {
+  border: 0.0625rem #a01b25 solid;
+}
+
+.bigContainer.focussed {
+  border: 0.0625rem solid;
+  border-color: #a01b25;
 }
 
 .imageBox {
@@ -15,22 +26,40 @@
   background: #a01b25;
   border-radius: 0.625rem 0 0 0.625rem;
   min-width: 2.6rem;
+  margin-top: -0.08rem;
+  margin-left: -0.08rem;
+  margin-bottom: -0.08rem;
+}
+
+.revealPassword {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.6rem;
+  max-width: 2.6rem;
+  min-height: 2.6rem;
+  max-height: 2.6rem;
+  color: rgba(160, 27, 37, 0.40);
+}
+
+.revealPassword:hover {
+  cursor: pointer;
+  color: rgba(160, 27, 37, 0.80);
 }
 
 .inputContainer {
   display: flex;
   flex-direction: column;
-  background: rgba(160, 27, 37, 0.15);
   border-radius: 0 0.625rem 0.625rem 0;
-  border: 0.0625rem solid;
-  border-color: transparent;
+  /* border: 0.0625rem solid; */
+  /* border-color: transparent; */
   transition: 0.3s background-color ease-in-out;
   width: 100%;
 }
 
-.inputContainer:hover {
+/* .inputContainer:hover {
   border: 0.0625rem #a01b25 solid;
-}
+} */
 
 .inputContainer input {
   border: 0;
@@ -52,11 +81,6 @@
   font-family: "Open Sans";
   font-weight: 900;
   font-size: 0.8rem;
-}
-
-.inputContainer.focussed {
-  border: 0.0625rem solid;
-  border-color: #a01b25;
 }
 
 .inputContainer.focussed input {

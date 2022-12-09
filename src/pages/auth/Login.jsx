@@ -131,6 +131,7 @@ const Login = () => {
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
             maxLength="30"
+            showRevealPassword={true}
           >
             <PasswordKeyIcon color="white" />
           </Input>

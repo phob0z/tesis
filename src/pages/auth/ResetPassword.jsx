@@ -1,6 +1,6 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
@@ -11,7 +11,7 @@ import classes from "./Auth.module.css";
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setHasError, setModal } = useContext(AlertContext);
 
   const location = useLocation();
   const queryParameters = new URLSearchParams(location.search);
@@ -21,33 +21,36 @@ function ResetPassword() {
 
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [confirmationTouched, setConfirmationTouched] = useState(false);
-  // const [sent, setSent] = useState(false);
+  const [confirmationError, setConfirmationError] = useState("");
 
-  var passwordError = "";
-  var confirmationError = "";
-  if (passwordTouched) {
-    if (password.trim() === "") passwordError = "Debe ingresar una contraseña";
+  useEffect(() => {
+    if (password.trim() === "")
+      setPasswordError("Debe ingresar una contraseña");
     else if (password.length < 8)
-      passwordError = "La contraseña debe tener al menos 8 caracteres";
+      setPasswordError("La contraseña debe tener al menos 8 caracteres");
     else if (password.length > 32)
-      passwordError = "La contraseña debe tener menos de 32 caracteres";
+      setPasswordError("La contraseña debe tener menos de 32 caracteres");
     else if (!password.match(".*\\d.*"))
-      passwordError = "La contraseña debe tener al menos un número";
+      setPasswordError("La contraseña debe tener al menos un número");
     else if (!password.match(".*[a-z].*"))
-      passwordError = "La contraseña debe tener al menos una letra minúscula";
+      setPasswordError("La contraseña debe tener al menos una letra minúscula");
     else if (!password.match(".*[A-Z].*"))
-      passwordError = "La contraseña debe tener al menos una letra mayúscula";
-    // else if (!password.match(".*[*.!@#$%^&(){}[]:'\";<>,.?/~`_+-=|\\].*"))
+      setPasswordError("La contraseña debe tener al menos una letra mayúscula");
     else if (!password.match(/(?=.*?[#?=_!@$\-\\%^&*`~\(\)\[\]{};:'",<.>\/+])/))
-      passwordError = "La contraseña debe tener al menos un carácter especial";
-  }
+      setPasswordError(
+        "La contraseña debe tener al menos un carácter especial"
+      );
+    else setPasswordError("");
+  }, [password]);
 
-  if (confirmationTouched) {
+  useEffect(() => {
     if (password !== confirmation)
-      confirmationError = "Las contraseñas no coinciden";
-  }
+      setConfirmationError("Las contraseñas no coinciden");
+    else setConfirmationError("");
+  }, [confirmation, password]);
 
   const passwordShowError = passwordTouched && !!passwordError;
   const confirmationShowError = confirmationTouched && !!confirmationError;
@@ -75,11 +78,14 @@ function ResetPassword() {
     setPasswordTouched(true);
     setConfirmationTouched(true);
 
-    if (!password || passwordError || !confirmation || confirmationError) {
-      if (passwordError) setModal({ title: "ERROR", message: passwordError });
-      else if (confirmationError)
-        setModal({ title: "ERROR", message: confirmationError });
-      if (passwordError || confirmationError) setHasError(true);
+    if (passwordError || confirmationError) {
+      setModal({
+        title: "ERROR",
+        message: passwordError
+          ? passwordError + "\n" + confirmationError
+          : confirmationError,
+      });
+      setHasError(true);
       return;
     }
 
@@ -99,9 +105,13 @@ function ResetPassword() {
       console.log("Error: ", error.response.data.message);
     }
     */
-
+    setModal({
+      title: "CORRECTO",
+      message: "Contraseña actualizada correctamente\nIngrese de nuevo",
+    });
+    setHasError(true);
+    //stop
     navigate("/login");
-    // setSent(true);
   };
 
   const onVolver = () => {

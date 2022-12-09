@@ -5,14 +5,21 @@ import { useState } from "react";
 
 const Input = (props) => {
   const [focussed, setFocussed] = useState(false);
+  const [visibility, setVisibility] = useState(false);
 
   const onFocus = () => {
     setFocussed(true);
   };
+
   const onBlur = () => {
     setFocussed(false);
     props.onBlur();
   };
+
+  const onSetVisibility = () => {
+    
+    setVisibility(!visibility);
+  }
 
   return (
     <Fragment>
@@ -20,7 +27,11 @@ const Input = (props) => {
         {props.children !== undefined && (
           <div className={classes.imageBox}>{props.children}</div>
         )}
-        <div className={`${classes.inputContainer} ${focussed ? classes.focussed : ""}`}>
+        <div
+          className={`${classes.inputContainer} ${
+            focussed ? classes.focussed : ""
+          }`}
+        >
           <input
             id={props.label}
             type={props.type}
@@ -30,9 +41,17 @@ const Input = (props) => {
             onFocus={onFocus}
             onBlur={onBlur}
             maxLength={props.maxLength}
+            showRevealPassword={props.showRevealPassword}
           />
           <label htmlFor={props.label}>{props.label}</label>
         </div>
+        {props.showRevealPassword && (
+          <div className={classes.revealPassword} onClick={onSetVisibility}>
+            <span class="material-symbols-outlined">
+              {props.type === "password" ? "visibility" : "visibility_off"}
+            </span>
+          </div>
+        )}
       </div>
     </Fragment>
   );
@@ -46,6 +65,7 @@ Input.propTypes = {
   label: PropTypes.string,
   onBlur: PropTypes.func,
   maxLength: PropTypes.string,
+  showRevealPassword: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -56,6 +76,7 @@ Input.defaultProps = {
   label: "default label",
   onBlur: () => "",
   maxLength: "10",
+  showRevealPassword: false,
 };
 
 export default Input;
