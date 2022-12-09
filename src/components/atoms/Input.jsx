@@ -6,6 +6,7 @@ import { useState } from "react";
 const Input = (props) => {
   const [focussed, setFocussed] = useState(false);
   const [visibility, setVisibility] = useState(false);
+  const [type, setType] = useState(props.type);
 
   const onFocus = () => {
     setFocussed(true);
@@ -17,7 +18,7 @@ const Input = (props) => {
   };
 
   const onSetVisibility = () => {
-    
+    type === "password"? setType("text"): setType("password");
     setVisibility(!visibility);
   }
 
@@ -34,21 +35,20 @@ const Input = (props) => {
         >
           <input
             id={props.label}
-            type={props.type}
+            type={type}
             placeholder={`${focussed ? "" : props.label}`}
             value={props.value}
             onChange={props.onChange}
             onFocus={onFocus}
             onBlur={onBlur}
             maxLength={props.maxLength}
-            showRevealPassword={props.showRevealPassword}
           />
           <label htmlFor={props.label}>{props.label}</label>
         </div>
         {props.showRevealPassword && (
           <div className={classes.revealPassword} onClick={onSetVisibility}>
-            <span class="material-symbols-outlined">
-              {props.type === "password" ? "visibility" : "visibility_off"}
+            <span className="material-symbols-outlined">
+              {type === "password" ? "visibility" : "visibility_off"}
             </span>
           </div>
         )}
