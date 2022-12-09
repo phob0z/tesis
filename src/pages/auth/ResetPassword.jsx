@@ -27,7 +27,6 @@ function ResetPassword() {
 
   var passwordError = "";
   var confirmationError = "";
-
   if (passwordTouched) {
     if (password.trim() === "") passwordError = "Debe ingresar una contraseña";
     else if (password.length < 8)
@@ -76,12 +75,11 @@ function ResetPassword() {
     setPasswordTouched(true);
     setConfirmationTouched(true);
 
-    if (!password || !!passwordError || !confirmation || !!confirmationError) {
-      if (!!passwordError)
-        setModal({ title: "ERROR", message: passwordError });
-      if (!!confirmationError)
+    if (!password || passwordError || !confirmation || confirmationError) {
+      if (passwordError) setModal({ title: "ERROR", message: passwordError });
+      else if (confirmationError)
         setModal({ title: "ERROR", message: confirmationError });
-      setHasError(true);
+      if (passwordError || confirmationError) setHasError(true);
       return;
     }
 

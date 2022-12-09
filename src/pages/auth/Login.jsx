@@ -20,8 +20,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
 
-  var cedulaError = null;
-  var passwordError = null;
+  var cedulaError = false;
+  var passwordError = false;
 
   if (cedulaTouched) {
     if (cedula.trim().length !== 10)
@@ -61,42 +61,40 @@ const Login = () => {
     setCedulaTouched(true);
     setPasswordTouched(true);
 
-    if (!cedula || !password || !!cedulaError || !!passwordError) {
-      if (!!cedulaError)
-        setModal({title: "ERROR", message: cedulaError});
-      else if (!!passwordError)
-        setModal({title: "ERROR", message: passwordError});
-      setHasError(true);
+    if (!cedula || cedulaError || !password || passwordError) {
+      if (cedulaError) setModal({ title: "ERROR", message: cedulaError });
+      else if (passwordError)
+        setModal({ title: "ERROR", message: passwordError });
+      if (cedulaError || passwordError) setHasError(true);
       return;
     }
 
     setIsLoading(true);
 
     let user = {
-      "name_1": "Leonel",
-      "last_name1": "Molina",
-      "role": "secretaria",
-      "avatar": "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png"
+      name_1: "Leonel",
+      last_name1: "Molina",
+      role: "secretaria",
+      avatar:
+        "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
     };
     let token_type = "Bearer";
     let access_token = "1234567890";
 
     try {
-    //   const response = await axios.post(
-    //     `${process.env.REACT_APP_BACK_URL}/login/`,
-    //     // "http://localhost:8000/api/login",
-    //     { cedula, password },
-    //     { headers: { accept: "application/json" } }
-    //   );
-    //   const { access_token, token_type, user } = response.data.data;
+      //   const response = await axios.post(
+      //     `${process.env.REACT_APP_BACK_URL}/login/`,
+      //     // "http://localhost:8000/api/login",
+      //     { cedula, password },
+      //     { headers: { accept: "application/json" } }
+      //   );
+      //   const { access_token, token_type, user } = response.data.data;
       login(user, `${token_type} ${access_token}`);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
-
-
 
     setIsLoading(false);
   };
