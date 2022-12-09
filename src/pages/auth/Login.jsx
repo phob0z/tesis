@@ -22,43 +22,20 @@ const Login = () => {
   const [cedulaError, setCedulaError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  // var cedulaError = false;
-  // var passwordError = false;
-
   useEffect(() => {
     if (cedula.trim().length !== 10)
-      // cedulaError = "La cédula debe tener 10 dígitos";
       setCedulaError("La cédula debe tener 10 dígitos");
     else if (!/^[0-9]+$/.test(cedula))
-      // cedulaError = "La cédula solo puede contener números";
       setCedulaError("La cédula solo puede contener números");
-    else if (cedula.trim() === "")
-      // cedulaError = "Debe ingresar una cédula";
-      setCedulaError("Debe ingresar una cédula");
+    else if (cedula.trim() === "") setCedulaError("Debe ingresar una cédula");
     else setCedulaError("");
   }, [cedula]);
-
-  // if (cedulaTouched) {
-  //   if (cedula.trim().length !== 10)
-  //     // cedulaError = "La cédula debe tener 10 dígitos";
-  //     setCedulaError("La cédula debe tener 10 dígitos");
-  //   if (!/^[0-9]+$/.test(cedula))
-  //     // cedulaError = "La cédula solo puede contener números";
-  //     setCedulaError("La cédula solo puede contener números");
-  //   if (cedula.trim() === "")
-  //     // cedulaError = "Debe ingresar una cédula";
-  //     setCedulaError("Debe ingresar una cédula");
-  // }
 
   useEffect(() => {
     if (password.trim() === "")
       setPasswordError("Debe ingresar una contraseña");
     else setPasswordError("");
   }, [password]);
-
-  // if (passwordTouched) {
-  //   if (password.trim() === "") passwordError = "Debe ingresar una contraseña";
-  // }
 
   const cedulaShowError = cedulaTouched && !!cedulaError;
   const passwordShowError = passwordTouched && !!passwordError;
@@ -94,9 +71,6 @@ const Login = () => {
           : passwordError,
       });
       setHasError(true);
-      // else if (passwordError)
-      // setModal({ title: "ERROR", message: passwordError });
-      // if (cedulaError || passwordError) setHasError(true);
       return;
     }
 

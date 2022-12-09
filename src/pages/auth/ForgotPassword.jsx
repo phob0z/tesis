@@ -1,29 +1,32 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import AccountIcon from "../../components/icons/AccountIcon";
 import Button from "../../components/atoms/Button";
 import EmailSent from "./EmailSent";
+import AlertContext from "../../contexts/alert/AlertContext";
 
 import classes from "./Auth.module.css";
 
+
 function ForgotPassword() {
+  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+
   const navigate = useNavigate();
 
   const [correo, setCorreo] = useState("");
   const [correoTouched, setCorreoTouched] = useState(false);
+  const [correoError, setCorreoError] = useState("");
   const [sent, setSent] = useState(false);
 
-  var correoError = "";
-
-  if (correoTouched) {
-        if (!correo.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)) {
-      correoError = "Debe ingresar un correo válido";
-    }
-    if (correo.trim() === "") correoError = "Debe ingresar un correo";
-  }
+  useEffect(() => {
+    if (!correo.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/))
+      setCorreoError("Debe ingresar un correo válido");
+    else if (correo.trim() === "") setCorreoError("Debe ingresar un correo");
+    else setCorreoError("");
+  }, [correo]);
 
   const cedulaShowError = correoTouched && !!correoError;
 
@@ -40,7 +43,9 @@ function ForgotPassword() {
     e.preventDefault();
     setCorreoTouched(true);
 
-    if (!correo || !!correoError) {
+    if (correoError) {
+      setModal({ title: "ERROR", message: correoError });
+      setHasError(true);
       return;
     }
 
