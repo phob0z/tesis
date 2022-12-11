@@ -7,26 +7,34 @@
   transform: translateX(calc(50% - 2.312rem));
 }
 
-.subMenu {
-  display: flex;
-  flex-direction: row-reverse;
-  position: absolute;
-  top: 3.5rem;
-  right: 50%;
-  transform: translateX(calc(50% - 2.312rem));
-}
-
 .options {
   display: flex;
   background: #6d1118;
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   border-radius: 0 0.625rem 0.625rem 0;
-  /* border: grey solid 0.05rem; */
-  /* border-left: 0; */
   padding-right: 0.4rem;
   margin-left: -0.0125rem;
   max-width: fit-content;
   max-height: 4rem;
+}
+
+.subMenu {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 4.5rem;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.subOptions {
+  display: flex;
+  background: #6d1118;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.625rem;
+  padding-right: 0.4rem;
+  margin-left: -0.0125rem;
+  max-width: fit-content;
 }
 
 .logoutBox {

@@ -7,7 +7,7 @@ function Photo(props) {
   return (
     <div className={classes.photoContainer}>
       <div className={classes.photoBox}>
-        <div className={classes.photo} onClick={console.log(props.src)}>
+        <div className={classes.photo}>
           <img src={props.src} alt={props.alt} onClick={props.onClick} />
         </div>
       </div>

@@ -1,16 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import classes from "./Menu.module.css"
-import Option from './Option';
+import classes from "./Menu.module.css";
+import SubOption from "./SubOption";
 
-function SubMenu() {
+function SubMenu(props) {
   return (
     <div className={classes.subMenu}>
-      <div className={classes.options}>
-        <Option>Perfil</Option>
-        <Option>Información</Option>
-        <Option>Materias</Option>
-        <Option>Calificaciones</Option>
+      <div className={classes.subOptions}>
+        {props.subOptions.map((option) => (
+          <SubOption key={option.title} route={option.route}  onMouseOver={props.onMouseOver} onMouseOut={props.onMouseOut}>{option.title}</SubOption>
+        ))}
       </div>
     </div>
   );
