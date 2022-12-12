@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
       };
     }
 
-    if (action.type === "USER") {
+    if (action.type === "SETUSER") {
       const user = JSON.parse(localStorage.getItem("user"));
       user.full_name = action.payload;
       localStorage.setItem("user", JSON.stringify(user));
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
       // logged: !!user&&!!token,
       logged: !!user,
       // user: !!user&&!!token? user: null,
-      user
+      user,
     };
   };
 
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const setUser = (user) => {
-    const action = { type: "USER", payload: user };
+    const action = { type: "SETUSER", payload: user };
     dispatch(action);
   };
 

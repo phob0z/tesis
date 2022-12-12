@@ -6,7 +6,7 @@ import classes from "./Option.module.css";
 function Option(props) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/aqui");
+    navigate(props.route);
   }
 
   return (

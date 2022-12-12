@@ -1,0 +1,22 @@
+.container {
+  position: absolute;
+  left: 5rem;
+  right: 5rem;
+  top: 12rem;
+  bottom: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 1.25rem;
+  padding: 1.6rem;
+}
+
+.containerOptions {
+  position: absolute;
+  background: #6c6c6c;
+  border-radius: 0.625rem;
+  right: 1rem;
+  top: -1.25rem;
+  filter: drop-shadow(-0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25));
+  min-width: 10rem;
+  min-height: 2.5rem;
+}

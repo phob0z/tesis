@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -10,41 +10,75 @@ import Option from "./Option";
 import classes from "./Menu.module.css";
 import Photo from "./Photo";
 import SubMenu from "./SubMenu";
+import { useMemo } from "react";
 
 const Menu = () => {
-  var subMenuTimer;
-  const fadeSubmenu = 1000;
-
-  const menuOptions = [
-    { title: "Perfil", route: "profile" },
-    { title: "Información", route: "information" },
-    {
-      title: "Usuarios",
-      subMenu: [
-        { title: "Usuarios1", route: "Usuarios1" },
-        { title: "Usuarios2", route: "Usuarios2" },
-        { title: "Usuarios3", route: "Usuarios3" },
-        { title: "Usuarios4", route: "Usuarios4" },
-      ],
-      route: "users",
-    },
-    {
-      title: "Materias",
-      subMenu: [
-        { title: "Materia1", route: "Materia1" },
-        { title: "Materia2", route: "Materia2" },
-      ],
-      route: "subjects",
-    },
-    { title: "Calificaciones", route: "grades" },
-    { title: "Reportes", route: "reports" },
-  ];
-
   const { user, logout } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [showSubMenu, setShowSubMenu] = useState(false);
   const [subMenu, setSubMenu] = useState();
+
+  const menuSecretary = useMemo(() => [
+    { title: "Perfil", route: "/profile" },
+    { title: "Información", route: "/information" },
+    {
+      title: "Usuarios",
+      subMenu: [
+        { title: "Usuarios1", route: "/usuarios1" },
+        { title: "Usuarios2", route: "/usuarios2" },
+        { title: "Usuarios3", route: "/usuarios3" },
+        { title: "Usuarios4", route: "/usuarios4" },
+      ],
+      route: "#",
+    },
+    {
+      title: "Materias",
+      subMenu: [
+        { title: "Materia1", route: "/materia1" },
+        { title: "Materia2", route: "/materia2" },
+      ],
+      route: "#",
+    },
+    { title: "Calificaciones", route: "/grades" },
+    { title: "Reportes", route: "/reports" },
+  ], []);
+
+  const menuTeacher = useMemo(() => [
+    { title: "Perfil", route: "/profile" },
+    { title: "Información", route: "/information" },
+    { title: "Calificaciones", route: "/grades" },
+    { title: "Reportes", route: "/reports" },
+  ], []);
+
+  const menuStudent = useMemo(() => [
+    { title: "Perfil", route: "/profile" },
+    { title: "Información", route: "/information" },
+    { title: "Calificaciones", route: "/grades" },
+    { title: "Reportes", route: "/reports" },
+  ], []);
+
+  const [menu, setMenu] = useState(menuSecretary);
+
+  useEffect(() => {
+    switch (user.role) {
+      case "secretaria":
+        setMenu(menuSecretary);
+        break;
+      case "profesor":
+        setMenu(menuTeacher);
+        break;
+      case "estudiante":
+        setMenu(menuStudent);
+        break;
+      default:
+        setMenu(menuStudent);
+        break;
+    }
+  }, [user, menuSecretary, menuTeacher, menuStudent]);
+  
+  var subMenuTimer;
+  const fadeSubmenu = 1000;
 
   const handleMenu = (e) => {
     if (e.type === "mouseout") {
@@ -54,7 +88,7 @@ const Menu = () => {
     }
     if (e.type === "mouseover") {
       clearTimeout(subMenuTimer);
-      const option = menuOptions.find(
+      const option = menu.find(
         ({ title }) => title === e.target.innerText
       );
       if (option.subMenu !== undefined) {
@@ -76,7 +110,7 @@ const Menu = () => {
     setShowSubMenu(true);
   };
 
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   const onLogout = async () => {
     setIsLoading(true);
@@ -98,10 +132,11 @@ const Menu = () => {
   return (
     <div className={classes.menu}>
       <div className={classes.options}>
-        {menuOptions.map((option) => (
+        {menu.map((option) => (
           // console.log(option.title) &&
           // console.log(Object.keys(option)[0])
           <Option
+            route={option.route}
             key={option.title}
             onMouseOver={(e) => {
               handleMenu(e);

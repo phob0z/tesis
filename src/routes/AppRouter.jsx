@@ -15,6 +15,7 @@ import Spinner from "../components/atoms/Spinner";
 import Modal from "../components/atoms/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
 import ResetPassword from "../pages/auth/ResetPassword";
+import Profile from "../pages/Profile";
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -24,7 +25,7 @@ const AppRouter = () => {
   return (
     <Fragment>
       <Background />
-      <Spinner show={isLoading}/>
+      <Spinner show={isLoading} />
       <Modal
         show={hasError}
         close={closeModal}
@@ -50,7 +51,23 @@ const AppRouter = () => {
             element={
               <PrivateRoute>
                 <Routes>
-                  <Route path="/" element={<Menu />} />
+                  <Route
+                    path="/"
+                    element={
+                      <Fragment>
+                        <Menu />
+                      </Fragment>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <Fragment>
+                        <Menu />
+                        <Profile />
+                      </Fragment>
+                    }
+                  />
                 </Routes>
               </PrivateRoute>
             }

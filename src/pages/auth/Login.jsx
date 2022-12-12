@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import AccountIcon from "../../components/icons/AccountIcon";
@@ -76,17 +76,16 @@ const Login = () => {
 
     setIsLoading(true);
 
-    let user = {
-      name_1: "Leonel",
-      last_name1: "Molina",
-      role: "secretaria",
-      avatar:
-        "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
-    };
-    let token_type = "Bearer";
-    let access_token = "1234567890";
-
     try {
+      let user = {
+        name_1: "Leonel",
+        last_name1: "Molina",
+        role: "secretaria",
+        avatar:
+          "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+      };
+      let token_type = "Bearer";
+      let access_token = "1234567890";
       //   const response = await axios.post(
       //     `${process.env.REACT_APP_BACK_URL}/login/`,
       //     // "http://localhost:8000/api/login",

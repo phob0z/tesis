@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import AccountIcon from "../../components/icons/AccountIcon";
@@ -13,6 +13,7 @@ import classes from "./Auth.module.css";
 
 function ForgotPassword() {
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  console.log(setIsLoading);
 
   const navigate = useNavigate();
 
@@ -22,7 +23,8 @@ function ForgotPassword() {
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    if (!correo.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/))
+    // if (!correo.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/))
+    if (!correo.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
       setCorreoError("Debe ingresar un correo válido");
     else if (correo.trim() === "") setCorreoError("Debe ingresar un correo");
     else setCorreoError("");
@@ -35,12 +37,12 @@ function ForgotPassword() {
     setCorreo(event.target.value);
   };
 
-  const cedulaBlurHandler = (event) => {
+  const cedulaBlurHandler = () => {
     setCorreoTouched(true);
   };
 
-  const onForgotPassword = (e) => {
-    e.preventDefault();
+  const onForgotPassword = (event) => {
+    event.preventDefault();
     setCorreoTouched(true);
 
     if (correoError) {

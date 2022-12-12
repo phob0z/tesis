@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
@@ -15,9 +15,11 @@ function ResetPassword() {
 
   const location = useLocation();
   const queryParameters = new URLSearchParams(location.search);
-  // console.log(location);
+  console.log(location);
   const token = queryParameters.get("token");
   const email = queryParameters.get("email");
+  console.log(token);
+  console.log(email);
 
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
@@ -39,7 +41,7 @@ function ResetPassword() {
       setPasswordError("La contraseña debe tener al menos una letra minúscula");
     else if (!password.match(".*[A-Z].*"))
       setPasswordError("La contraseña debe tener al menos una letra mayúscula");
-    else if (!password.match(/(?=.*?[#?=_!@$\-\\%^&*`~\(\)\[\]{};:'",<.>\/+])/))
+    else if (!password.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/))
       setPasswordError(
         "La contraseña debe tener al menos un carácter especial"
       );
@@ -131,6 +133,7 @@ function ResetPassword() {
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
             maxLength="30"
+            showRevealPassword="true"
           >
             <PasswordKeyIcon color="white" />
           </Input>
@@ -144,6 +147,7 @@ function ResetPassword() {
             onChange={confirmationChangeHandler}
             onBlur={confirmationBlurHandler}
             maxLength="30"
+            showRevealPassword="true"
           >
             <PasswordKeyIcon color="white" />
           </Input>
