@@ -1,0 +1,39 @@
+.cardContainer {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* position: absolute; */
+  width: 19rem;
+  background: #d6d6d6;
+  border-radius: 0.625rem;
+  padding: 0.625rem;
+  margin: 0.5rem;
+  /* height: 2.5rem; */
+}
+
+.main {
+  display: flex;
+}
+
+.label {
+  display: flex;
+  min-width: 6rem;
+  font-family: "Carter One";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.1rem;
+  align-items: center;
+  color: #000000;
+  margin-bottom: -0.4rem;
+  padding-left: 0.3rem;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  align-self: center;
+}

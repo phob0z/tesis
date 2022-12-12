@@ -1,4 +1,6 @@
 import React, { Fragment, useContext } from "react";
+import Card from "../components/atoms/Card";
+import MainContainer from "../components/atoms/MainContainer";
 import AuthContext from "../contexts/auth/AuthContext";
 
 import classes from "./Profile.module.css";
@@ -6,12 +8,15 @@ import classes from "./Profile.module.css";
 function Profile() {
   const { user } = useContext(AuthContext);
   console.log(user);
+  const options={
+    title: "ASD",
+    onClick: "sort"
+  }
+
   return (
-    <Fragment>
-      <div className={classes.container}>
-        <div className={classes.containerOptions}></div>Profile
-      </div>
-    </Fragment>
+    <MainContainer options={options}>
+      
+    </MainContainer>
   );
 }
 
