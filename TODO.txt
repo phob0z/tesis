@@ -15,3 +15,6 @@ hacer un logout con la cédula y el password (porque no tengo token)
 - Si existe el token o el user, pero el token no existe en la BD, borrar token y user de localStorage
 
 Reportes: API con un array con la información.
+
+Integrar Input e InputLight
+Mover MainContainer a /templates
