@@ -91,6 +91,7 @@ function ForgotPassword() {
             onChange={cedulaChangeHandler}
             onBlur={cedulaBlurHandler}
             maxLength="30"
+            color="red"
           >
             <AccountIcon color="white" />
           </Input>

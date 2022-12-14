@@ -1,4 +1,4 @@
-.bigContainer {
+.redContainer {
   display: flex;
   border-radius: 0.625rem;
   border: 0.0625rem solid;
@@ -10,11 +10,11 @@
   background: rgba(160, 27, 37, 0.15);
 }
 
-.bigContainer:hover {
+.redContainer:hover {
   border: 0.0625rem #a01b25 solid;
 }
 
-.bigContainer.focussed {
+.redContainer.focussed {
   border: 0.0625rem solid;
   border-color: #a01b25;
 }
@@ -31,7 +31,7 @@
   margin-bottom: -0.08rem;
 }
 
-.revealPassword {
+.redRevealPassword {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,12 +42,12 @@
   color: rgba(160, 27, 37, 0.40);
 }
 
-.revealPassword:hover {
+.redRevealPassword:hover {
   cursor: pointer;
   color: rgba(160, 27, 37, 0.80);
 }
 
-.inputContainer {
+.redInputContainer {
   display: flex;
   flex-direction: column;
   border-radius: 0 0.625rem 0.625rem 0;
@@ -61,7 +61,7 @@
   border: 0.0625rem #a01b25 solid;
 } */
 
-.inputContainer input {
+.redInputContainer input {
   border: 0;
   min-height: 100%;
   background-color: transparent;
@@ -73,7 +73,7 @@
   font-size: 0.8rem;
 }
 
-.inputContainer input + label {
+.redInputContainer input + label {
   margin-top: -3.2rem;
   margin-left: 0.92rem;
   opacity: 0;
@@ -83,13 +83,72 @@
   font-size: 0.8rem;
 }
 
-.inputContainer.focussed input {
+.redInputContainer.focussed input {
   padding-top: 0.5rem;
   outline: 0;
 }
 
-.inputContainer.focussed input + label {
+.redInputContainer.focussed input + label {
   padding-top: 0.3rem;
   opacity: 1;
   color: #6d1118;
+}
+
+.blueContainer {
+  display: flex;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid;
+  border-color: transparent;
+  margin: 0.625rem 0 0.625rem 0;
+  height: 1.9rem;
+  background: rgba(255, 255, 255, 0.65);
+  min-width: 100%;
+}
+
+.blueContainer:hover {
+  border: 0.0625rem #208CCD solid;
+}
+
+.blueContainer.focussed {
+  border: 0.0625rem solid;
+  border-color: #208CCD;
+}
+
+.blueRevealPassword {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  max-width: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  color: rgba(32, 140, 205, 0.40);
+}
+
+.blueRevealPassword:hover {
+  cursor: pointer;
+  color: rgba(32, 140, 205, 0.80);
+}
+
+.blueInputContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0.625rem 0.625rem 0;
+  transition: 0.3s background-color ease-in-out;
+  min-width: 90%;
+}
+
+.blueInputContainer input {
+  border: 0;
+  min-height: 100%;
+  background-color: transparent;
+  margin-top: -0.1rem;
+  padding-left: 1rem;
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.blueInputContainer.focussed input {
+  outline: 0;
 }

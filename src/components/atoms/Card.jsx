@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import classes from "./Card.module.css";
-// import Input from "./Input";
-import InputLight from "./InputLight";
+import Input from "./Input";
+// import InputLight from "./InputLight";
 
 function Card(props) {
   const [value, setValue] = useState("");
@@ -17,13 +17,14 @@ function Card(props) {
     <div className={classes.cardContainer}>
       <div className={classes.label}>{props.label}</div>
       <div className={classes.inputBox}>
-        <InputLight
+        <Input
           value={value}
           label={"Contraseña"}
           // type="password"
           onChange={valueChangeHandler}
           onBlur={console.log("Blur")}
           maxLength="30"
+          color="blue"
           // showRevealPassword={true}
         />
       </div>

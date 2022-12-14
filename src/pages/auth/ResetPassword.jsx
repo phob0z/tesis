@@ -134,6 +134,7 @@ function ResetPassword() {
             onBlur={passwordBlurHandler}
             maxLength="30"
             showRevealPassword="true"
+            color="red"
           >
             <PasswordKeyIcon color="white" />
           </Input>
@@ -148,6 +149,7 @@ function ResetPassword() {
             onBlur={confirmationBlurHandler}
             maxLength="30"
             showRevealPassword="true"
+            color="red"
           >
             <PasswordKeyIcon color="white" />
           </Input>

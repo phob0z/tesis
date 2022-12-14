@@ -24,12 +24,12 @@ const Input = (props) => {
 
   return (
     <Fragment>
-      <div className={classes.bigContainer}>
+      <div className={`${props.color === "red"? classes.redContainer:classes.blueContainer}`}>
         {props.children !== undefined && (
           <div className={classes.imageBox}>{props.children}</div>
         )}
         <div
-          className={`${classes.inputContainer} ${
+          className={`${props.color === "red"? classes.redInputContainer:classes.blueInputContainer} ${
             focussed ? classes.focussed : ""
           }`}
         >
@@ -43,10 +43,10 @@ const Input = (props) => {
             onBlur={onBlur}
             maxLength={props.maxLength}
           />
-          <label htmlFor={props.label}>{props.label}</label>
+          {props.color === "red"? <label htmlFor={props.label}>{props.label}</label>: ""}
         </div>
         {props.showRevealPassword && (
-          <div className={classes.revealPassword} onClick={onSetVisibility}>
+          <div className={`${props.color === "red"? classes.redRevealPassword:classes.blueRevealPassword}`} onClick={onSetVisibility}>
             <span className="material-symbols-outlined">
               {type === "password" ? "visibility" : "visibility_off"}
             </span>
