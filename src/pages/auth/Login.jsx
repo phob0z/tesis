@@ -117,7 +117,7 @@ const Login = () => {
             onChange={cedulaChangeHandler}
             onBlur={cedulaBlurHandler}
             maxLength="10"
-            color="red"
+            // color="red"
           >
             <AccountIcon color="white" />
           </Input>
@@ -132,7 +132,7 @@ const Login = () => {
             onBlur={passwordBlurHandler}
             maxLength="30"
             showRevealPassword={true}
-            color="red"
+            // color="red"
           >
             <PasswordKeyIcon color="white" />
           </Input>

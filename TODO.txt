@@ -16,5 +16,8 @@ hacer un logout con la cédula y el password (porque no tengo token)
 
 Reportes: API con un array con la información.
 
-Integrar Input e InputLight
-Mover MainContainer a /templates
+Mover las comprobaciones y errores al componente Input
+    Dependiendo del type hacer la validacion correspondiente.
+    Debe tener una función que devuelva al padre el error.
+
+Quitar del Input el label

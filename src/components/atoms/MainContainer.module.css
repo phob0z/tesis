@@ -21,6 +21,8 @@
   /* grid-template-columns: repeat(4, max-content); */
   grid-template-rows: repeat(4, max-content);
   grid-auto-flow: column;
+  background-color: #d6d6d6;
+  border-radius: 0.625rem;
   /* auto-fit, minmax(19rem, max-content) */
 }
 

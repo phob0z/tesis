@@ -2,8 +2,14 @@
   width: 19rem;
   background: #d6d6d6;
   border-radius: 0.625rem;
-  padding: 0.625rem;
-  margin: 0.5rem;
+  /* padding-top: 0.625rem;
+  padding-right: 0.625rem;
+  padding-left: 0.625rem; */
+  /* padding: 0.625rem; */
+  margin-top: 0.625rem;
+  margin-right: 0.625rem;
+  margin-left: 0.625rem;
+  /* margin: 0.625rem; */
   height: max-content;
 }
 
@@ -19,9 +25,10 @@
   font-weight: 400;
   font-size: 1.1rem;
   align-items: center;
-  color: #000000;
+  color: #000000bb;
   margin-bottom: -0.4rem;
   padding-left: 0.3rem;
+  text-shadow: -0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
 }
 
 .inputBox {

@@ -7,14 +7,14 @@ function MainContainer(props) {
     <div className={classes.mainContainer}>
       <div className={classes.containerOptions} options={props.options} />
       <div className={classes.subContainer}>
-        <Card label="Nombre" />
-        <Card label="Apellido" />
-        <Card label="ASDASDASD" />
-        <Card label="QWEWQeqwe" />
-        <Card label="NASD" />
-        <Card label="ZXCZXCZXC" />
-        <Card label="ASDASD" />
-        <Card label="AZXZXCC" />
+        <Card label="Nombre" maxLength="20"/>
+        <Card label="Apellido" maxLength="20"/>
+        <Card label="Cédula" maxLength="20"/>
+        <Card label="Correo" maxLength="20"/>
+        <Card label="Teléfono" maxLength="20"/>
+        <Card label="Teléfono celular" maxLength="20"/>
+        <Card label="Dirección" maxLength="20"/>
+        {/* <Card label="AZXZXCC" /> */}
         {/* <Card label="ZXCASD" />
         <Card label="ASDASD" />
         <Card label="AZXZXCC" />

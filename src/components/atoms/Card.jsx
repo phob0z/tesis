@@ -2,11 +2,10 @@ import React, { useState } from "react";
 
 import classes from "./Card.module.css";
 import Input from "./Input";
-// import InputLight from "./InputLight";
 
 function Card(props) {
   const [value, setValue] = useState("");
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const valueChangeHandler = (event) => {
     // setCedulaTouched(true);
@@ -19,16 +18,17 @@ function Card(props) {
       <div className={classes.inputBox}>
         <Input
           value={value}
-          label={"Contraseña"}
-          // type="password"
+          label={props.label}
+          type={props.type}
           onChange={valueChangeHandler}
-          onBlur={console.log("Blur")}
-          maxLength="30"
-          color="blue"
-          // showRevealPassword={true}
+          // onBlur={onBlur}
+          maxLength={props.maxLength}
+          color={props.color}
+          showRevealPassword={props.showRevealPassword}
+          disabled={props.disabled}
         />
       </div>
-      {error && <div className={classes.error}>error</div>}
+      {/* {error && <div className={classes.error}>error</div>} */}
     </div>
   );
 }

@@ -10,7 +10,8 @@
   font-family: "Carter One";
   font-style: normal;
   font-size: 1.2rem;
-  color: white;
+  /* color: white; */
+  color: #f3f3f3;
   text-shadow: 0.08rem 0.08rem #000, -0.08rem -0.08rem #000,
     0.08rem -0.08rem #000, -0.08rem 0.08rem #000;
   transition: 0.1s ease-in-out;
