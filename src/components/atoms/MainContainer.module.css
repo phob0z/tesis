@@ -18,11 +18,11 @@
 .subContainer {
   flex-grow: 1;
   display: grid;
-  /* grid-template-columns: repeat(4, max-content); */
-  grid-template-rows: repeat(4, max-content);
+  grid-template-columns: repeat(4, max-content);
   grid-auto-flow: column;
   background-color: #d6d6d6;
   border-radius: 0.625rem;
+  padding: 1rem;
   /* auto-fit, minmax(19rem, max-content) */
 }
 

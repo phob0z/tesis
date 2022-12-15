@@ -13,7 +13,6 @@ import classes from "./Auth.module.css";
 
 function ForgotPassword() {
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
-  console.log(setIsLoading);
 
   const navigate = useNavigate();
 

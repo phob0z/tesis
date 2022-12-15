@@ -23,7 +23,7 @@ function Card(props) {
           onChange={valueChangeHandler}
           // onBlur={onBlur}
           maxLength={props.maxLength}
-          color={props.color}
+          theme={props.theme}
           showRevealPassword={props.showRevealPassword}
           disabled={props.disabled}
         />

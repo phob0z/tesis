@@ -9,7 +9,6 @@ const Input = (props) => {
   const [type, setType] = useState(props.type);
 
   const onFocus = () => {
-    console.log("FOCUSED");
     setFocussed(true);
   };
 
@@ -23,12 +22,16 @@ const Input = (props) => {
     setVisibility(!visibility);
   };
 
-  var color = props.color === "red" ? classes.red : classes.blue;
+  var theme;
+
+  if (props.theme === "red") theme = classes.red;
+  else if (props.theme === "blue") theme = classes.blue;
+  else theme = classes.simple;
 
   return (
     <Fragment>
       <div
-        className={`${classes.container} ${color} ${
+        className={`${classes.container} ${theme} ${
           focused ? classes.focused : ""
         }`}
       >
@@ -36,7 +39,7 @@ const Input = (props) => {
           <div className={classes.imageBox}>{props.children}</div>
         )}
         <div
-          className={`${classes.inputContainer} ${color} ${color} ${
+          className={`${classes.inputContainer} ${theme} ${
             focused ? classes.focused : ""
           }`}
         >
@@ -51,7 +54,7 @@ const Input = (props) => {
             maxLength={props.maxLength}
             disabled={props.disabled}
           />
-          {props.color === "red" ? (
+          {props.theme === "red" ? (
             <label htmlFor={props.label}>{props.label}</label>
           ) : (
             ""
@@ -59,7 +62,7 @@ const Input = (props) => {
         </div>
         {props.showRevealPassword && (
           <div
-            className={`${classes.revealPassword} ${color}`}
+            className={`${classes.revealPassword} ${theme}`}
             onClick={onSetVisibility}
           >
             <span className="material-symbols-outlined">
@@ -80,7 +83,7 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   maxLength: PropTypes.string,
   showRevealPassword: PropTypes.bool,
-  color: PropTypes.string,
+  theme: PropTypes.string,
   disabled: PropTypes.string,
 };
 
@@ -92,7 +95,7 @@ Input.defaultProps = {
   onBlur: () => "",
   maxLength: "10",
   showRevealPassword: false,
-  color: "red",
+  theme: "red",
   disabled: "",
 };
 
