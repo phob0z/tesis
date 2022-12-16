@@ -15,21 +15,28 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
-  const [cedula, setCedula] = useState("");
-  const [cedulaTouched, setCedulaTouched] = useState(false);
+  const [identificacion, setIdentificacion] = useState("");
+  const [identificacionTouched, setIdentificacionTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const [cedulaError, setCedulaError] = useState("");
+  const [identificacionError, setIdentificacionError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
-    if (cedula.trim().length !== 10)
-      setCedulaError("La cédula debe tener 10 dígitos");
-    else if (!/^[0-9]+$/.test(cedula))
-      setCedulaError("La cédula solo puede contener números");
-    else if (cedula.trim() === "") setCedulaError("Debe ingresar una cédula");
-    else setCedulaError("");
-  }, [cedula]);
+    if (identificacion.trim() === "")
+      setIdentificacionError("Debe ingresar una identificación");
+    else if (identificacion.trim().length < 10)
+      setIdentificacionError(
+        "La identificación debe tener al menos 10 caracteres"
+      );
+    else if (identificacion.trim().length > 20)
+      setIdentificacionError(
+        "La identificación debe tener menos de 20 caracteres"
+      );
+    else if (!identificacion.match(/^\w+$/))
+      setIdentificacionError("Debe ingresar una identificación válida");
+    else setIdentificacionError("");
+  }, [identificacion]);
 
   useEffect(() => {
     if (password.trim() === "")
@@ -37,16 +44,16 @@ const Login = () => {
     else setPasswordError("");
   }, [password]);
 
-  const cedulaShowError = cedulaTouched && !!cedulaError;
+  const identificacionShowError = identificacionTouched && !!identificacionError;
   const passwordShowError = passwordTouched && !!passwordError;
 
-  const cedulaChangeHandler = (event) => {
-    setCedulaTouched(true);
-    setCedula(event.target.value);
+  const identificacionChangeHandler = (event) => {
+    setIdentificacionTouched(true);
+    setIdentificacion(event.target.value);
   };
 
-  const cedulaBlurHandler = () => {
-    setCedulaTouched(true);
+  const identificacionBlurHandler = () => {
+    setIdentificacionTouched(true);
   };
 
   const passwordChangeHandler = (event) => {
@@ -60,14 +67,14 @@ const Login = () => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-    setCedulaTouched(true);
+    setIdentificacionTouched(true);
     setPasswordTouched(true);
 
-    if (cedulaError || passwordError) {
+    if (identificacionError || passwordError) {
       setModal({
         title: "ERROR",
-        message: cedulaError
-          ? cedulaError + "\n" + passwordError
+        message: identificacionError
+          ? identificacionError + "\n" + passwordError
           : passwordError,
       });
       setHasError(true);
@@ -90,7 +97,7 @@ const Login = () => {
       //   const response = await axios.post(
       //     `${process.env.REACT_APP_BACK_URL}/login/`,
       //     // "http://localhost:8000/api/login",
-      //     { cedula, password },
+      //     { identificacion, password },
       //     { headers: { accept: "application/json" } }
       //   );
       //   const { access_token, token_type, user } = response.data.data;
@@ -113,17 +120,16 @@ const Login = () => {
         <div className={classes.box}>
           <span className={classes.boxTitle}>Ingrese para continuar</span>
           <Input
-            value={cedula}
-            label={"Cédula"}
-            onChange={cedulaChangeHandler}
-            onBlur={cedulaBlurHandler}
-            maxLength="10"
-            // color="red"
+            value={identificacion}
+            label={"Identificación"}
+            onChange={identificacionChangeHandler}
+            onBlur={identificacionBlurHandler}
+            maxLength="20"
           >
             <AccountIcon color="white" />
           </Input>
-          {cedulaShowError && (
-            <label className={classes.error}>{cedulaError}</label>
+          {identificacionShowError && (
+            <label className={classes.error}>{identificacionError}</label>
           )}
           <Input
             value={password}
@@ -133,7 +139,6 @@ const Login = () => {
             onBlur={passwordBlurHandler}
             maxLength="30"
             showRevealPassword={true}
-            // color="red"
           >
             <PasswordKeyIcon color="white" />
           </Input>

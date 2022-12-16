@@ -20,8 +20,6 @@ Mover las comprobaciones y errores al componente Input
     Dependiendo del type hacer la validacion correspondiente.
     Debe tener una función que devuelva al padre el error.
 
-Quitar del Input el label
-
 Roles en ingles "secretary, "teacher", "student"
 
 Preguntarle a la inge:
@@ -54,3 +52,43 @@ FRONTEND debe chequear mandar ese pedido de API cada inicio de aplicacion
     llamada SQL con filtros filtro[0], filtro[1], filtro[2]
 
 Hacer scroll dentro del MainContainer
+
+
+validacion correo:
+
+  useEffect(() => {
+    if (!correo.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
+      setCorreoError("Debe ingresar un correo válido");
+    else if (correo.trim() === "") setCorreoError("Debe ingresar un correo");
+    else setCorreoError("");
+  }, [correo]);
+
+validacion identificacion
+
+  useEffect(() => {
+    // if (!identificacion.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
+    if (identificacion.trim() === "")
+      setidentificacionError("Debe ingresar una identificación");
+    else if (identificacion.trim().length < 10)
+      setidentificacionError(
+        "La identificación debe tener al menos 10 caracteres"
+      );
+    else if (identificacion.trim().length > 20)
+      setidentificacionError(
+        "La identificación debe tener menos de 20 caracteres"
+      );
+    else if (!identificacion.match(/^\w+$/))
+      setidentificacionError("Debe ingresar una identificación válida");
+    else setidentificacionError("");
+  }, [identificacion]);
+
+validacion cedula:
+
+  useEffect(() => {
+    if (cedula.trim().length !== 10)
+      setCedulaError("La cédula debe tener 10 dígitos");
+    else if (!/^[0-9]+$/.test(cedula))
+      setCedulaError("La cédula solo puede contener números");
+    else if (cedula.trim() === "") setCedulaError("Debe ingresar una cédula");
+    else setCedulaError("");
+  }, [cedula]);

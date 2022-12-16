@@ -10,42 +10,50 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import classes from "./Auth.module.css";
 
-
 function ForgotPassword() {
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const navigate = useNavigate();
 
-  const [correo, setCorreo] = useState("");
-  const [correoTouched, setCorreoTouched] = useState(false);
-  const [correoError, setCorreoError] = useState("");
+  const [identificacion, setidentificacion] = useState("");
+  const [identificacionTouched, setidentificacionTouched] = useState(false);
+  const [identificacionError, setidentificacionError] = useState("");
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    // if (!correo.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/))
-    if (!correo.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
-      setCorreoError("Debe ingresar un correo válido");
-    else if (correo.trim() === "") setCorreoError("Debe ingresar un correo");
-    else setCorreoError("");
-  }, [correo]);
+    if (identificacion.trim() === "")
+      setidentificacionError("Debe ingresar una identificación");
+    else if (identificacion.trim().length < 10)
+      setidentificacionError(
+        "La identificación debe tener al menos 10 caracteres"
+      );
+    else if (identificacion.trim().length > 20)
+      setidentificacionError(
+        "La identificación debe tener menos de 20 caracteres"
+      );
+    else if (!identificacion.match(/^\w+$/))
+      setidentificacionError("Debe ingresar una identificación válida");
+    else setidentificacionError("");
+  }, [identificacion]);
 
-  const cedulaShowError = correoTouched && !!correoError;
+  const identificacionShowError =
+    identificacionTouched && !!identificacionError;
 
-  const cedulaChangeHandler = (event) => {
-    setCorreoTouched(true);
-    setCorreo(event.target.value);
+  const identificacionChangeHandler = (event) => {
+    setidentificacionTouched(true);
+    setidentificacion(event.target.value);
   };
 
-  const cedulaBlurHandler = () => {
-    setCorreoTouched(true);
+  const identificacionBlurHandler = () => {
+    setidentificacionTouched(true);
   };
 
   const onForgotPassword = (event) => {
     event.preventDefault();
-    setCorreoTouched(true);
+    setidentificacionTouched(true);
 
-    if (correoError) {
-      setModal({ title: "ERROR", message: correoError });
+    if (identificacionError) {
+      setModal({ title: "ERROR", message: identificacionError });
       setHasError(true);
       return;
     }
@@ -82,20 +90,21 @@ function ForgotPassword() {
       <form className={classes.login} onSubmit={onForgotPassword}>
         <div className={classes.box}>
           <span className={classes.boxTitle}>
-            Ingrese su correo para recuperar la contraseña
+            {/* Ingrese su correo para recuperar la contraseña */}
+            Ingrese su identificación para recuperar la contraseña
           </span>
           <Input
-            value={correo}
-            label={"Correo"}
-            onChange={cedulaChangeHandler}
-            onBlur={cedulaBlurHandler}
-            maxLength="30"
+            value={identificacion}
+            label={"Identificación"}
+            onChange={identificacionChangeHandler}
+            onBlur={identificacionBlurHandler}
+            maxLength="20"
             color="red"
           >
             <AccountIcon color="white" />
           </Input>
-          {cedulaShowError && (
-            <label className={classes.error}>{correoError}</label>
+          {identificacionShowError && (
+            <label className={classes.error}>{identificacionError}</label>
           )}
           <span className={classes.boxFooter}>&nbsp;</span>
         </div>
