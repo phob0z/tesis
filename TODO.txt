@@ -16,19 +16,12 @@ hacer un logout con la cédula y el password (porque no tengo token)
 
 Reportes: API con un array con la información.
 
-Mover las comprobaciones y errores al componente Input
-    Dependiendo del type hacer la validacion correspondiente.
-    Debe tener una función que devuelva al padre el error.
-
-Roles en ingles "secretary, "teacher", "student"
-
 Preguntarle a la inge:
 - Si solo cedula o tal vez tambien pasaporte
 - Si NOMBRES o nombre_1 y nombre_2, igual para apellidos
 - Si lo que estamos trayendo de el login esta buien o le falta
 
-Cambiar de cédula a identificacion en olvide la contraseña
-Identificacion validación min 10 max 20
+LABELs del MainCointainer
 
 Coso de DATE del año de nacimiento
 
@@ -36,23 +29,19 @@ Botón de guardar en Perfil, Raul me manda una respuesta y dependiendo de eso, m
 (o mensaje pequeño abajo de correcto)
 
 -- Menos importante, pero importante --
-Cambiar validaciones a que esten dentro del Input
-
-
+Mover las comprobaciones y errores al componente Input
+    Dependiendo del type hacer la validacion correspondiente.
+    Debe tener una función que devuelva al padre el error.
 
 BACKEND debe expirar de LEY el token 24h
 BACKEND un API que reciba la identificacion y el token y devuelva un mensaje diciendo verdadero si corresponden o falso y no corresponden (si no existe el token)
 FRONTEND debe chequear mandar ese pedido de API cada inicio de aplicacion
 
 
-
     filtro["8vo","all","all"];
     calificaciones(token, filtro)
 
     llamada SQL con filtros filtro[0], filtro[1], filtro[2]
-
-Hacer scroll dentro del MainContainer
-
 
 validacion correo:
 

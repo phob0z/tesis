@@ -1,0 +1,21 @@
+.subContainer {
+  background: #d6d6d6;
+  border-radius: 0.625rem;
+  padding: 0.5rem;
+}
+
+.subTitle {
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.4rem;
+  color: #2d2d2d;
+  text-shadow: 0 0 #000;
+  padding-left: 1rem;
+  background-color: aqua;
+  border-radius: 0.625rem;
+  /* text-align: center; */
+  /* align-self: center; */
+  /* align-items: center; */
+  align-content: center;
+  width: fit-content;
+}

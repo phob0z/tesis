@@ -1,54 +1,108 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import Card from "../components/atoms/Card";
-import classes from "./Profile.module.css";
+import AuthContext from "../contexts/auth/AuthContext";
+import MainContainer from "../components/templates/MainContainer";
+import SubContainer from "../components/templates/SubContainer";
 
 function ProfileStudent() {
+  const { user } = useContext(AuthContext);
   return (
-    <div className={classes.mainContainer}>
-      <div className={classes.containerOptions} />
-      <div className={classes.subContainer}>
-        <div className={classes.subSet}>
-          INFO PERSONAL
-          <Card theme="simple" label="Nombres" maxLength="35" disabled />
-          <Card theme="simple" label="Apellidos" maxLength="35" disabled />
-          <Card theme="simple" label="Cédula" maxLength="20" disabled />
-          INFO DE LOS PADRES
-          <Card
-            theme="simple"
-            label="Nombres del padre"
-            maxLength="20"
-            disabled
-          />
-          <Card
-            theme="simple"
-            label="Nombres de la madre"
-            maxLength="20"
-            disabled
-          />
-        </div>
-        <div className={classes.subSet}>
-          INFO DE CONTACTO
-          <Card theme="simple" label="Correo" maxLength="20" disabled />
-          <Card
-            theme="simple"
-            label="Teléfono convencional"
-            maxLength="9"
-            disabled
-          />
-          <Card
-            theme="simple"
-            label="Teléfono celular"
-            maxLength="10"
-            disabled
-          />
-          <Card theme="simple" label="Dirección" maxLength="50" disabled />
-        </div>
-        <div className={classes.subSet}>
-          CUENTA
-          <Card theme="simple" label="Contraseña" maxLength="50" />
-        </div>
-      </div>
-    </div>
+    <MainContainer title="Perfil">
+      <SubContainer>
+        INFO PERSONAL
+        <Card
+          theme="simple"
+          label="Nombres"
+          value={user.name}
+          maxLength="35"
+          disabled
+        />
+        <Card
+          theme="simple"
+          label="Apellidos"
+          value={user.last_name}
+          maxLength="35"
+          disabled
+        />
+        <Card
+          theme="simple"
+          label="Cédula"
+          value={user.identification}
+          maxLength="20"
+          disabled
+        />
+        <Card
+          theme="simple"
+          label="Fecha de nacimiento"
+          value={user.birthdate}
+          maxLength="20"
+          disabled
+        />
+      </SubContainer>
+      <SubContainer>
+        INFO DE LOS PADRES
+        <Card
+          theme="simple"
+          label="Nombres del padre"
+          maxLength="20"
+          disabled
+        />
+        <Card
+          theme="simple"
+          label="Nombres de la madre"
+          maxLength="20"
+          disabled
+        />
+      </SubContainer>
+      <SubContainer>
+        INFO DE CONTACTO
+        <Card
+          theme="simple"
+          label="Correo"
+          value={user.email}
+          maxLength="20"
+          disabled
+        />
+        <Card
+          theme="simple"
+          label="Teléfono convencional"
+          value={user.home_phone}
+          maxLength="9"
+          disabled
+        />
+        <Card
+          theme="simple"
+          label="Teléfono celular"
+          value={user.personal_phone}
+          maxLength="10"
+          disabled
+        />
+        <Card
+          theme="simple"
+          label="Dirección"
+          value={user.address}
+          maxLength="50"
+          disabled
+        />
+      </SubContainer>
+      <SubContainer>
+        CAMBIAR CONTRASEÑA
+        <Card
+          theme="simple"
+          type="password"
+          showRevealPassword
+          label="Cambiar contraseña"
+          maxLength="50"
+        />
+        <Card
+          theme="simple"
+          type="password"
+          showRevealPassword
+          label="Confirmar contraseña"
+          maxLength="50"
+        />
+      </SubContainer>
+    </MainContainer>
   );
 }
 
