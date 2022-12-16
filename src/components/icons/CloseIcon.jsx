@@ -42,4 +42,8 @@ CloseIcon.propTypes = {
   color: PropTypes.string,
 };
 
+CloseIcon.defaultProps = {
+  color: "#f3f3f3",
+};
+
 export default CloseIcon;

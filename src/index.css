@@ -18,9 +18,9 @@ body {
   }
 }
 
-@media (max-width: 1024px), (max-height: 768px) {
+@media (max-width: 900px), (max-height: 768px) {
   html {
-    font-size: 90%;
+    font-size: 80%;
   }
 }
 

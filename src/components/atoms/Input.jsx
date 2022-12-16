@@ -35,9 +35,16 @@ const Input = (props) => {
           focused ? classes.focused : ""
         }`}
       >
-        {props.children !== undefined && (
+        {(props.children !== undefined && (
           <div className={classes.imageBox}>{props.children}</div>
-        )}
+        )) ||
+          (props.disabled && (
+            <div className={classes.imageBox}>
+              <div className={classes.imageBoxIcon}>
+                <span className="material-symbols-outlined">lock</span>
+              </div>
+            </div>
+          ))}
         <div
           className={`${classes.inputContainer} ${theme} ${
             focused ? classes.focused : ""
@@ -84,7 +91,7 @@ Input.propTypes = {
   maxLength: PropTypes.string,
   showRevealPassword: PropTypes.bool,
   theme: PropTypes.string,
-  disabled: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -96,7 +103,7 @@ Input.defaultProps = {
   maxLength: "10",
   showRevealPassword: false,
   theme: "red",
-  disabled: "",
+  disabled: false,
 };
 
 export default Input;

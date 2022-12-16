@@ -19,9 +19,8 @@ const AuthProvider = ({ children }) => {
       };
     }
 
-    if (action.type === "SETUSER") {
-      const user = JSON.parse(localStorage.getItem("user"));
-      user.full_name = action.payload;
+    if (action.type === "PROFILE") {
+      const user = action.payload;
       localStorage.setItem("user", JSON.stringify(user));
       return {
         ...state,
@@ -49,8 +48,6 @@ const AuthProvider = ({ children }) => {
     const action = { type: "LOGIN", payload: user };
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
-    // const user2 = { ...user, token };
-    // console.log(user2);
     dispatch(action);
   };
 
@@ -61,8 +58,9 @@ const AuthProvider = ({ children }) => {
     dispatch(action);
   };
 
-  const setUser = (user) => {
-    const action = { type: "SETUSER", payload: user };
+  const setProfile = (user) => {
+    const action = { type: "PROFILE", payload: user };
+    localStorage.setItem("user", JSON.stringify(user));
     dispatch(action);
   };
 
@@ -72,7 +70,7 @@ const AuthProvider = ({ children }) => {
         ...authState,
         login,
         logout,
-        setUser,
+        setProfile,
       }}
     >
       {children}

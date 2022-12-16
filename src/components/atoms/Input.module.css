@@ -31,6 +31,14 @@
   margin-bottom: -0.08rem;
 }
 
+.imageBoxIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f3f3f3;
+  cursor: default;
+}
+
 .revealPassword.red {
   display: flex;
   align-items: center;

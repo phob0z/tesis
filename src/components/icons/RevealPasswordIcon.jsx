@@ -22,4 +22,8 @@ RevealPasswordIcon.propTypes = {
   color: PropTypes.string,
 };
 
+RevealPasswordIcon.defaultProps = {
+  color: "#f3f3f3",
+};
+
 export default RevealPasswordIcon;

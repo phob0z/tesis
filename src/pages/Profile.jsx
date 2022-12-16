@@ -1,23 +1,20 @@
-import React, { Fragment, useContext } from "react";
-import Card from "../components/atoms/Card";
-import MainContainer from "../components/atoms/MainContainer";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/auth/AuthContext";
 
-import classes from "./Profile.module.css";
+import ProfileSecretary from "./ProfileSecretary";
+import ProfileTeacher from "./ProfileTeacher";
+import ProfileStudent from "./ProfileStudent";
 
 function Profile() {
   const { user } = useContext(AuthContext);
-  console.log(user);
-  const options={
-    title: "ASD",
-    onClick: "sort"
-  }
+  const [profileTemplate, setProfileTemplate] = useState(<ProfileStudent />);
+  useEffect(() => {
+    if (user.role === "secretary") setProfileTemplate(<ProfileSecretary />);
+    else if (user.role === "teacher") setProfileTemplate(<ProfileTeacher />);
+    else setProfileTemplate(<ProfileStudent />);
+  }, [user]);
 
-  return (
-    <MainContainer options={options}>
-      
-    </MainContainer>
-  );
+  return profileTemplate;
 }
 
 export default Profile;

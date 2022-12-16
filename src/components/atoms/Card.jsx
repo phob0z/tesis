@@ -4,7 +4,7 @@ import classes from "./Card.module.css";
 import Input from "./Input";
 
 function Card(props) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(props.value);
   // const [error, setError] = useState(false);
 
   const valueChangeHandler = (event) => {

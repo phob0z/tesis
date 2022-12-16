@@ -28,4 +28,8 @@ AccountIcon.propTypes = {
   color: PropTypes.string,
 };
 
+AccountIcon.defaultProps = {
+  color: "#f3f3f3",
+};
+
 export default AccountIcon;

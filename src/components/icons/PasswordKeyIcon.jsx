@@ -25,4 +25,8 @@ PasswordKeyIcon.propTypes = {
   color: PropTypes.string,
 };
 
+PasswordKeyIcon.defaultProps = {
+  color: "#f3f3f3",
+};
+
 export default PasswordKeyIcon;

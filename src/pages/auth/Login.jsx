@@ -126,7 +126,7 @@ const Login = () => {
             onBlur={identificacionBlurHandler}
             maxLength="20"
           >
-            <AccountIcon color="white" />
+            <AccountIcon />
           </Input>
           {identificacionShowError && (
             <label className={classes.error}>{identificacionError}</label>
@@ -140,7 +140,7 @@ const Login = () => {
             maxLength="30"
             showRevealPassword={true}
           >
-            <PasswordKeyIcon color="white" />
+            <PasswordKeyIcon />
           </Input>
           {passwordShowError && (
             <label className={classes.error}>{passwordError}</label>

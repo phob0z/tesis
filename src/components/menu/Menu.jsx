@@ -13,62 +13,71 @@ import SubMenu from "./SubMenu";
 import { useMemo } from "react";
 
 const Menu = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, setProfile } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [showSubMenu, setShowSubMenu] = useState(false);
   const [subMenu, setSubMenu] = useState();
 
-  const menuSecretary = useMemo(() => [
-    { title: "Perfil", route: "/profile" },
-    { title: "Información", route: "/information" },
-    {
-      title: "Usuarios",
-      subMenu: [
-        { title: "Usuarios1", route: "/usuarios1" },
-        { title: "Usuarios2", route: "/usuarios2" },
-        { title: "Usuarios3", route: "/usuarios3" },
-        { title: "Usuarios4", route: "/usuarios4" },
-      ],
-      route: "#",
-    },
-    {
-      title: "Materias",
-      subMenu: [
-        { title: "Materia1", route: "/materia1" },
-        { title: "Materia2", route: "/materia2" },
-      ],
-      route: "#",
-    },
-    { title: "Calificaciones", route: "/grades" },
-    { title: "Reportes", route: "/reports" },
-  ], []);
+  const menuSecretary = useMemo(
+    () => [
+      { title: "Perfil", route: "/profile" },
+      { title: "Información", route: "/information" },
+      {
+        title: "Usuarios",
+        subMenu: [
+          { title: "Usuarios1", route: "/usuarios1" },
+          { title: "Usuarios2", route: "/usuarios2" },
+          { title: "Usuarios3", route: "/usuarios3" },
+          { title: "Usuarios4", route: "/usuarios4" },
+        ],
+        route: "#",
+      },
+      {
+        title: "Materias",
+        subMenu: [
+          { title: "Materia1", route: "/materia1" },
+          { title: "Materia2", route: "/materia2" },
+        ],
+        route: "#",
+      },
+      { title: "Calificaciones", route: "/grades" },
+      { title: "Reportes", route: "/reports" },
+    ],
+    []
+  );
 
-  const menuTeacher = useMemo(() => [
-    { title: "Perfil", route: "/profile" },
-    { title: "Información", route: "/information" },
-    { title: "Calificaciones", route: "/grades" },
-    { title: "Reportes", route: "/reports" },
-  ], []);
+  const menuTeacher = useMemo(
+    () => [
+      { title: "Perfil", route: "/profile" },
+      { title: "Información", route: "/information" },
+      { title: "Calificaciones", route: "/grades" },
+      { title: "Reportes", route: "/reports" },
+    ],
+    []
+  );
 
-  const menuStudent = useMemo(() => [
-    { title: "Perfil", route: "/profile" },
-    { title: "Información", route: "/information" },
-    { title: "Calificaciones", route: "/grades" },
-    { title: "Reportes", route: "/reports" },
-  ], []);
+  const menuStudent = useMemo(
+    () => [
+      { title: "Perfil", route: "/profile" },
+      { title: "Información", route: "/information" },
+      { title: "Calificaciones", route: "/grades" },
+      { title: "Reportes", route: "/reports" },
+    ],
+    []
+  );
 
   const [menu, setMenu] = useState(menuSecretary);
 
   useEffect(() => {
     switch (user.role) {
-      case "secretaria":
+      case "secretary":
         setMenu(menuSecretary);
         break;
-      case "profesor":
+      case "teacher":
         setMenu(menuTeacher);
         break;
-      case "estudiante":
+      case "student":
         setMenu(menuStudent);
         break;
       default:
@@ -76,7 +85,7 @@ const Menu = () => {
         break;
     }
   }, [user, menuSecretary, menuTeacher, menuStudent]);
-  
+
   var subMenuTimer;
   const fadeSubmenu = 1000;
 
@@ -88,9 +97,7 @@ const Menu = () => {
     }
     if (e.type === "mouseover") {
       clearTimeout(subMenuTimer);
-      const option = menu.find(
-        ({ title }) => title === e.target.innerText
-      );
+      const option = menu.find(({ title }) => title === e.target.innerText);
       if (option.subMenu !== undefined) {
         setSubMenu(option.subMenu);
         setShowSubMenu(true);
@@ -110,8 +117,6 @@ const Menu = () => {
     setShowSubMenu(true);
   };
 
-  // const token = localStorage.getItem("token");
-
   const onLogout = async () => {
     setIsLoading(true);
     try {
@@ -126,6 +131,40 @@ const Menu = () => {
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
+    setIsLoading(false);
+  };
+
+  const onProfileHandler = async () => {
+    setIsLoading(true);
+
+    try {
+      let newUser = {
+        name: "Leonel",
+        last_name: "Molina",
+        identification: "1758963050",
+        birthdate: "18-06-1988",
+        email: "leonel@gmail.com",
+        home_phone: "123456789",
+        personal_phone: "1234567890",
+        address: "Quito",
+        role: user.role,
+        avatar: user.avatar,
+      };
+      // const token = localStorage.getItem("token");
+      //   const response = await axios.post(
+      //     `${process.env.REACT_APP_BACK_URL}/profile/`,
+      //     // "http://localhost:8000/api/profile",
+      //     { token },
+      //     { headers: { accept: "application/json" } }
+      //   );
+      //   const { access_token, token_type, user } = response.data.data;
+      setProfile(newUser);
+    } catch (error) {
+      setIsLoading(false);
+      setModal({ title: "ERROR", message: error.response.data.message });
+      setHasError(true);
+    }
+
     setIsLoading(false);
   };
 
@@ -144,6 +183,7 @@ const Menu = () => {
             onMouseOut={(e) => {
               handleMenu(e);
             }}
+            onClick={onProfileHandler}
           >
             {option.title}
           </Option>

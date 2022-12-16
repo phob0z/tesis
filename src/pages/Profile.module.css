@@ -1,0 +1,46 @@
+.mainContainer {
+  position: absolute;
+  top: 25%;
+  /* bottom: 10%; */
+  left: 50%;
+  transform: translate(-50%);
+  background: #000000bb;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 1.25rem;
+  padding: 1.2rem;
+  max-width: 88%;
+  flex-grow: 1;
+}
+
+.subContainer {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  background-color: #d6d6d6;
+  border-radius: 0.625rem;
+  padding: 1rem;
+  max-height: 94.2%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.containerTitle {
+  position: absolute;
+  background: #6d1119;
+  border-radius: 0.625rem;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  width: 20rem;
+  text-align: center;
+  padding: 0.4rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.4rem;
+  /* color: #f3f3f3; */
+  /* text-shadow: 0.08rem 0.08rem #000, -0.08rem -0.08rem #000,
+    0.08rem -0.08rem #000, -0.08rem 0.08rem #000; */
+  /* transition: 0.1s ease-in-out; */
+  color: #d2a647;
+  text-shadow: 0 0 #000;
+}
