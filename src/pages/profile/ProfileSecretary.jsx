@@ -1,15 +1,14 @@
-import React, { Fragment, useContext } from "react";
-import Card from "../components/atoms/Card";
-import AuthContext from "../contexts/auth/AuthContext";
-import MainContainer from "../components/templates/MainContainer";
-import SubContainer from "../components/templates/SubContainer";
+import React, { useContext } from "react";
+import Card from "../../components/atoms/Card";
+import AuthContext from "../../contexts/auth/AuthContext";
+import MainContainer from "../../components/templates/container/MainContainer";
+import SubContainer from "../../components/templates/container/SubContainer";
 
-function ProfileTeacher() {
+function ProfileSecretary() {
   const { user } = useContext(AuthContext);
   return (
     <MainContainer title="Perfil">
-      <SubContainer>
-        INFO PERSONAL
+      <SubContainer subTitle="INFO PERSONAL">
         <Card theme="simple" label="Nombres" value={user.name} maxLength="35" />
         <Card
           theme="simple"
@@ -53,7 +52,7 @@ function ProfileTeacher() {
         />
       </SubContainer>
       <SubContainer>
-        CAMBIAR CONTRASEÑA
+        CUENTA CAMBIAR CONTRASEÑA
         <Card
           theme="simple"
           type="password"
@@ -73,4 +72,4 @@ function ProfileTeacher() {
   );
 }
 
-export default ProfileTeacher;
+export default ProfileSecretary;

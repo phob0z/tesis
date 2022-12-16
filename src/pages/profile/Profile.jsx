@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../contexts/auth/AuthContext";
+import AuthContext from "../../contexts/auth/AuthContext";
 
 import ProfileSecretary from "./ProfileSecretary";
 import ProfileTeacher from "./ProfileTeacher";

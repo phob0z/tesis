@@ -58,6 +58,8 @@ function ForgotPassword() {
       return;
     }
 
+    setIsLoading(true);
+
     /*
       AQUÍ, LÓGICA PARA RECUPERAR LA CONTRASEÑA!!!
       - Con async await.
@@ -77,6 +79,8 @@ function ForgotPassword() {
     */
     setSent(true);
   };
+
+  setIsLoading(false);
 
   const onVolver = () => {
     navigate("/login");

@@ -8,14 +8,16 @@ import AuthProvider from "../contexts/auth/AuthProvider";
 
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
+import ResetPassword from "../pages/auth/ResetPassword";
 import Menu from "../components/menu/Menu";
+import Profile from "../pages/profile/Profile";
 
 import Background from "../components/templates/Background";
 import Spinner from "../components/atoms/Spinner";
 import Modal from "../components/atoms/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
-import ResetPassword from "../pages/auth/ResetPassword";
-import Profile from "../pages/Profile";
+
+
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
