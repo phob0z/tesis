@@ -8,8 +8,7 @@ function ProfileStudent() {
   const { user } = useContext(AuthContext);
   return (
     <MainContainer title="Perfil">
-      <SubContainer>
-        INFO PERSONAL
+      <SubContainer subTitle="INFO PERSONAL">
         <Card
           theme="simple"
           label="Nombres"
@@ -39,8 +38,7 @@ function ProfileStudent() {
           disabled
         />
       </SubContainer>
-      <SubContainer>
-        INFO DE LOS PADRES
+      <SubContainer subTitle="INFO DE LOS PADRES">
         <Card
           theme="simple"
           label="Nombres del padre"
@@ -54,8 +52,7 @@ function ProfileStudent() {
           disabled
         />
       </SubContainer>
-      <SubContainer>
-        INFO DE CONTACTO
+      <SubContainer subTitle="INFO DE CONTACTO">
         <Card
           theme="simple"
           label="Correo"
@@ -85,8 +82,7 @@ function ProfileStudent() {
           disabled
         />
       </SubContainer>
-      <SubContainer>
-        CAMBIAR CONTRASEÑA
+      <SubContainer subTitle="CAMBIAR CONTRASEÑA">
         <Card
           theme="simple"
           type="password"

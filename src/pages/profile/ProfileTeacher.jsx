@@ -8,8 +8,7 @@ function ProfileTeacher() {
   const { user } = useContext(AuthContext);
   return (
     <MainContainer title="Perfil">
-      <SubContainer>
-        INFO PERSONAL
+      <SubContainer subTitle="INFO PERSONAL">
         <Card theme="simple" label="Nombres" value={user.name} maxLength="35" />
         <Card
           theme="simple"
@@ -30,8 +29,7 @@ function ProfileTeacher() {
           maxLength="20"
         />
       </SubContainer>
-      <SubContainer>
-        INFO DE CONTACTO
+      <SubContainer subTitle="INFO DE CONTACTO">
         <Card theme="simple" label="Correo" value={user.email} maxLength="20" />
         <Card
           theme="simple"
@@ -52,8 +50,7 @@ function ProfileTeacher() {
           maxLength="50"
         />
       </SubContainer>
-      <SubContainer>
-        CAMBIAR CONTRASEÑA
+      <SubContainer subTitle="CAMBIAR CONTRASEÑA">
         <Card
           theme="simple"
           type="password"
