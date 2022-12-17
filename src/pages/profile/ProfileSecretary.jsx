@@ -29,8 +29,7 @@ function ProfileSecretary() {
           maxLength="20"
         />
       </SubContainer>
-      <SubContainer>
-        INFO DE CONTACTO
+      <SubContainer subTitle="INFO DE CONTACTO">
         <Card theme="simple" label="Correo" value={user.email} maxLength="20" />
         <Card
           theme="simple"
@@ -51,13 +50,12 @@ function ProfileSecretary() {
           maxLength="50"
         />
       </SubContainer>
-      <SubContainer>
-        CUENTA CAMBIAR CONTRASEÑA
+      <SubContainer subTitle="CAMBIAR CONTRASEÑA">
         <Card
           theme="simple"
           type="password"
           showRevealPassword
-          label="Cambiar contraseña"
+          label="Nueva contraseña"
           maxLength="50"
         />
         <Card

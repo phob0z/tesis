@@ -100,7 +100,7 @@ const Login = () => {
       //     { identificacion, password },
       //     { headers: { accept: "application/json" } }
       //   );
-      //   const { access_token, token_type, user } = response.data.data;
+      //   const { access_token, token_type, user, avatar } = response.data.data;
       login(user, `${token_type} ${access_token}`);
     } catch (error) {
       setIsLoading(false);

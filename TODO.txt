@@ -21,7 +21,7 @@ Preguntarle a la inge:
 - Si NOMBRES o nombre_1 y nombre_2, igual para apellidos
 - Si lo que estamos trayendo de el login esta buien o le falta
 
-LABELs del MainCointainer
+Validación de los campos en el perfil
 
 Coso de DATE del año de nacimiento
 
