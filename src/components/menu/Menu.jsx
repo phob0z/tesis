@@ -175,8 +175,6 @@ const Menu = () => {
     <div className={classes.menu}>
       <div className={classes.options}>
         {menu.map((option) => (
-          // console.log(option.title) &&
-          // console.log(Object.keys(option)[0])
           <Option
             route={option.route}
             key={option.title}
