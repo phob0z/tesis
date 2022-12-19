@@ -95,7 +95,7 @@ const Login = () => {
       // let access_token = "1234567890";
       // user['avatar'] = avatar;
         const response = await axios.post(
-          `${process.env.REACT_APP_BACK_URL}/login/`,
+          `${process.env.REACT_APP_BACK_URL}/login`,
           // "http://localhost:8000/api/login",
           { identificacion, password },
           { headers: { accept: "application/json" } }
