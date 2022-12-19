@@ -11,12 +11,14 @@ import ForgotPassword from "../pages/auth/ForgotPassword";
 import ResetPassword from "../pages/auth/ResetPassword";
 import Menu from "../components/menu/Menu";
 import Profile from "../pages/profile/Profile";
+import Home from "../pages/home/Home";
+import Information from "../pages/information/Information";
 
 import Background from "../components/background/Background";
 import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
-import Home from "../pages/home/Home";
+
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -69,7 +71,7 @@ const AppRouter = () => {
                     <Route
                       path="/information"
                       element={
-                        <Profile />
+                        <Information />
                       }
                     />
                   </Routes>

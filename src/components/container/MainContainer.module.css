@@ -25,11 +25,10 @@
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20rem;
   text-align: center;
   padding: 0.4rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding-right: 6rem;
+  padding-left: 6rem;
   font-family: "Carter One";
   font-style: normal;
   font-size: 1.4rem;
