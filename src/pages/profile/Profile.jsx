@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth/AuthContext";
 
-import ProfileSecretary from "./ProfileSecretary";
-import ProfileTeacher from "./ProfileTeacher";
-import ProfileStudent from "./ProfileStudent";
+import Secretary from "./Secretary";
+import Teacher from "./Teacher";
+import Student from "./Student";
 
 function Profile() {
   const { user } = useContext(AuthContext);
   const [profileTemplate, setProfileTemplate] = useState();
   useEffect(() => {
-    if (user.role === "secretary") setProfileTemplate(<ProfileSecretary />);
-    else if (user.role === "teacher") setProfileTemplate(<ProfileTeacher />);
-    else setProfileTemplate(<ProfileStudent />);
+    if (user.role === "secretary") setProfileTemplate(<Secretary />);
+    else if (user.role === "teacher") setProfileTemplate(<Teacher />);
+    else setProfileTemplate(<Student />);
   }, [user]);
 
   return profileTemplate;
