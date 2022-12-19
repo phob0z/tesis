@@ -17,8 +17,6 @@ import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
 
-
-
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
   const closeModal = () => {
@@ -52,25 +50,29 @@ const AppRouter = () => {
             path="/*"
             element={
               <PrivateRoute>
-                <Routes>
-                  <Route
-                    path="/"
-                    element={
-                      <Fragment>
-                        <Menu />
-                      </Fragment>
-                    }
-                  />
-                  <Route
-                    path="/profile"
-                    element={
-                      <Fragment>
-                        <Menu />
-                        <Profile />
-                      </Fragment>
-                    }
-                  />
-                </Routes>
+                <Fragment>
+                  <Menu />
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                          {/* <Home /> */}
+                      }
+                    />
+                    <Route
+                      path="/profile"
+                      element={
+                          <Profile />
+                      }
+                    />
+                    <Route
+                      path="/information"
+                      element={
+                          {/* <Information /> */}
+                      }
+                    />
+                  </Routes>
+                </Fragment>
               </PrivateRoute>
             }
           />
