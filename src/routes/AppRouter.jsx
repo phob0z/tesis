@@ -12,9 +12,9 @@ import ResetPassword from "../pages/auth/ResetPassword";
 import Menu from "../components/menu/Menu";
 import Profile from "../pages/profile/Profile";
 
-import Background from "../components/templates/Background";
-import Spinner from "../components/atoms/Spinner";
-import Modal from "../components/atoms/Modal";
+import Background from "../components/background/Background";
+import Spinner from "../components/spinner/Spinner";
+import Modal from "../components/modal/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
 
 

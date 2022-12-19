@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
 
-import MainContainer from "../../components/templates/container/MainContainer";
-import SubContainer from "../../components/templates/container/SubContainer";
+import MainContainer from "../../components/container/MainContainer";
+import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/atoms/Card";
 
 function ProfileSecretary() {
@@ -21,22 +21,31 @@ function ProfileSecretary() {
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
   const [errorDirection, setErrorDirection] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  // const [error, setError] = useState({label: false, error: false});
+  const [errorPassword, setErrorPassword] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    setError(
-      errorName ||
-        errorLastName ||
-        errorIdentification ||
-        errorBirthdate ||
-        errorEmail ||
-        errorHomePhone ||
-        errorPersonalPhone ||
-        errorDirection
-    );
-    console.log(error);
+    errorName.error
+      ? setError(errorName)
+      : errorLastName.error
+      ? setError(errorLastName)
+      : errorIdentification.error
+      ? setError(errorIdentification)
+      : errorBirthdate.error
+      ? setError(errorBirthdate)
+      : errorEmail.error
+      ? setError(errorEmail)
+      : errorHomePhone.error
+      ? setError(errorHomePhone)
+      : errorPersonalPhone.error
+      ? setError(errorPersonalPhone)
+      : errorDirection.error
+      ? setError(errorDirection)
+      : setError(false);
+
+    errorPassword.error
+      ? setErrorPassword(errorPassword)
+      : setErrorPassword(false);
   }, [
     errorName,
     errorLastName,
@@ -46,23 +55,48 @@ function ProfileSecretary() {
     errorHomePhone,
     errorPersonalPhone,
     errorDirection,
+    errorPassword,
   ]);
 
   const changePassword = () => {
-    if (!passwordError && newPassword && newPassword === confirmation) {
-      console.log("Change password");
-    } else {
-      console.log(
-        "MODAL con error del problema del password (vacio/error/no son iguales"
-      );
+    if (errorPassword.error || !newPassword || newPassword !== confirmation) {
+      setModal({
+        title: "Error en CAMBIAR CONTRASEÑA",
+        message: errorPassword
+          ? errorPassword.error
+          : !newPassword
+          ? "La contraseña es vacía"
+          : "Las contraseñas no coinciden",
+      });
+      setHasError(true);
+      return;
     }
+    setIsLoading(true);
+
+    try {
+      // const response = await axios.post(
+      //   `${process.env.REACT_APP_BACK_URL}/login`,
+      //   // "http://localhost:8000/api/login",
+      //   { method: "POST" },
+      //   { user },
+      //   { headers: { accept: "application/json" } }
+      // );
+      // const { access_token, token_type, user, avatar } = response.data.data;
+      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
+    } catch (error) {
+      setIsLoading(false);
+      setModal({ title: "ERROR", message: error.response.data.message });
+      setHasError(true);
+    }
+    setIsLoading(false);
+    console.log("TODO CORRECTO, Cambiar password");
   };
 
   const saveProfile = (event) => {
     event.preventDefault();
-    if (error.error) {
+    if (error) {
       setModal({
-        title: `Error en ${error.label}`,
+        title: "Error en el campo " + error.label.toUpperCase(),
         message: error.error,
       });
       setHasError(true);
@@ -190,7 +224,7 @@ function ProfileSecretary() {
             onChange={(event) => {
               setNewPassword(event.target.value);
             }}
-            setError={setPasswordError}
+            setError={setErrorPassword}
           />
           <Card
             type="password"
@@ -201,7 +235,7 @@ function ProfileSecretary() {
             onChange={(event) => {
               setConfirmation(event.target.value);
             }}
-            setError={setPasswordError}
+            setError={setErrorPassword}
           />
         </SubContainer>
       </MainContainer>

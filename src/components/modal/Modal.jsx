@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import classes from "./Modal.module.css";
 import CloseIcon from "../icons/CloseIcon";
-import Backdrop from "./Backdrop";
+import Backdrop from "../atoms/Backdrop";
 
 const Modal = (props) => {
   return (

@@ -99,7 +99,9 @@ function Card(props) {
   }, [value, inputTouched]);
 
   useEffect(() => {
-    props.setError(!!error);
+    // console.log("Error en " + props.label + ": " + !!error);
+    // props.setError(!!error);
+    props.setError({label: props.label, error: error});
     // eslint-disable-next-line
   }, [error]);
 

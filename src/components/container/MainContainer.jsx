@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Button from "../../atoms/Button";
+import Button from "../atoms/Button";
 import classes from "./MainContainer.module.css";
 
 function MainContainer(props) {

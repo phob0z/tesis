@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./Spinner.module.css";
-import Backdrop from "./Backdrop";
+import Backdrop from "../atoms/Backdrop";
 
 const Spinner = (props) => {
   return (

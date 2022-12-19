@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../atoms/Button";
+import Button from "../atoms/Button";
 import classes from "./SubContainer.module.css";
 
 function SubContainer(props) {

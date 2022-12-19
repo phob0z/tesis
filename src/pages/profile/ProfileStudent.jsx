@@ -1,8 +1,8 @@
 import React, { Fragment, useContext } from "react";
 import Card from "../../components/atoms/Card";
 import AuthContext from "../../contexts/auth/AuthContext";
-import MainContainer from "../../components/templates/container/MainContainer";
-import SubContainer from "../../components/templates/container/SubContainer";
+import MainContainer from "../../components/container/MainContainer";
+import SubContainer from "../../components/container/SubContainer";
 import Button from "../../components/atoms/Button"
 
 function ProfileStudent() {
