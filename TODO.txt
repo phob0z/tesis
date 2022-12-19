@@ -16,6 +16,8 @@ hacer un logout con la cédula y el password (porque no tengo token)
 
 Reportes: API con un array con la información.
 
+HACER EL CAMPO DATE
+
 Preguntarle a la inge:
 - Si solo cedula o tal vez tambien pasaporte
 - Si NOMBRES o nombre_1 y nombre_2, igual para apellidos
