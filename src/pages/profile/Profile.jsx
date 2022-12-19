@@ -7,7 +7,7 @@ import ProfileStudent from "./ProfileStudent";
 
 function Profile() {
   const { user } = useContext(AuthContext);
-  const [profileTemplate, setProfileTemplate] = useState(<ProfileStudent />);
+  const [profileTemplate, setProfileTemplate] = useState();
   useEffect(() => {
     if (user.role === "secretary") setProfileTemplate(<ProfileSecretary />);
     else if (user.role === "teacher") setProfileTemplate(<ProfileTeacher />);

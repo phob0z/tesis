@@ -90,8 +90,8 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   maxLength: PropTypes.string,
   showRevealPassword: PropTypes.bool,
-  theme: PropTypes.string,
   disabled: PropTypes.bool,
+  theme: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -102,8 +102,8 @@ Input.defaultProps = {
   onBlur: () => "",
   maxLength: "10",
   showRevealPassword: false,
-  theme: "red",
   disabled: false,
+  theme: "red",
 };
 
 export default Input;

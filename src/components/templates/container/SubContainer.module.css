@@ -9,7 +9,12 @@
   font-style: normal;
   font-size: 1.4rem;
   color: #2d2d2d;
-  text-shadow: 0 0 #000;
+  text-shadow: -0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
   padding-left: 1rem;
   border-radius: 0.625rem;
+}
+
+.button {
+  text-align: center;
+  transform: scale(0.7) translate(0, -0.6rem);
 }

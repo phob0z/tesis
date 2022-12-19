@@ -43,7 +43,7 @@ FRONTEND debe chequear mandar ese pedido de API cada inicio de aplicacion
 
     llamada SQL con filtros filtro[0], filtro[1], filtro[2]
 
-validacion correo:
+validación correo:
 
   useEffect(() => {
     if (!correo.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
@@ -52,7 +52,7 @@ validacion correo:
     else setCorreoError("");
   }, [correo]);
 
-validacion identificacion
+validación identificacion
 
   useEffect(() => {
     // if (!identificacion.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
@@ -71,7 +71,7 @@ validacion identificacion
     else setidentificacionError("");
   }, [identificacion]);
 
-validacion cedula:
+validación cedula:
 
   useEffect(() => {
     if (cedula.trim().length !== 10)
@@ -81,3 +81,25 @@ validacion cedula:
     else if (cedula.trim() === "") setCedulaError("Debe ingresar una cédula");
     else setCedulaError("");
   }, [cedula]);
+
+validación contraseña
+
+  useEffect(() => {
+    if (password.trim() === "")
+      setPasswordError("Debe ingresar una contraseña");
+    else if (password.length < 8)
+      setPasswordError("La contraseña debe tener al menos 8 caracteres");
+    else if (password.length > 32)
+      setPasswordError("La contraseña debe tener menos de 32 caracteres");
+    else if (!password.match(".*\\d.*"))
+      setPasswordError("La contraseña debe tener al menos un número");
+    else if (!password.match(".*[a-z].*"))
+      setPasswordError("La contraseña debe tener al menos una letra minúscula");
+    else if (!password.match(".*[A-Z].*"))
+      setPasswordError("La contraseña debe tener al menos una letra mayúscula");
+    else if (!password.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/))
+      setPasswordError(
+        "La contraseña debe tener al menos un carácter especial"
+      );
+    else setPasswordError("");
+  }, [password]);

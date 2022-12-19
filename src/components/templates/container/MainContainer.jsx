@@ -7,9 +7,13 @@ function MainContainer(props) {
     <Fragment>
       <div className={classes.mainContainer}> {props.children} </div>
       <div className={classes.containerTitle}> {props.title} </div>
-      <div className={classes.button}>
-        <Button type="submit" onClick={props.onClick}>{props.buttonText}</Button>
-      </div>
+      {props.buttonText && (
+        <div className={classes.button}>
+          <Button type="submit" onClick={props.onClick}>
+            {props.buttonText}
+          </Button>
+        </div>
+      )}
     </Fragment>
   );
 }

@@ -1,5 +1,5 @@
 .button {
-  width: 24rem;
+  /* width: 24rem; */
   background: #6d1118;
   border-radius: 3.125rem;
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
@@ -12,6 +12,8 @@
   min-height: 2.6rem;
   margin-bottom: 1.25rem;
   transition: 0.2s background-color;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .button:hover {
