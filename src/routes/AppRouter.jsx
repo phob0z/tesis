@@ -16,6 +16,7 @@ import Background from "../components/background/Background";
 import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
+import Home from "../pages/home/Home";
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -56,7 +57,7 @@ const AppRouter = () => {
                     <Route
                       path="/"
                       element={
-                          {/* <Home /> */}
+                          <Home />
                       }
                     />
                     <Route
@@ -68,7 +69,7 @@ const AppRouter = () => {
                     <Route
                       path="/information"
                       element={
-                          {/* <Information /> */}
+                        <Profile />
                       }
                     />
                   </Routes>

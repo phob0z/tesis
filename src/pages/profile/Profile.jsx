@@ -126,7 +126,7 @@ function Profile() {
 
   return (
     <form onSubmit={saveProfile}>
-      <MainContainer title="Perfil" buttonText="Guardar" type="submit">
+      <MainContainer title="Perfil" buttonTitle="Guardar" type="submit">
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
