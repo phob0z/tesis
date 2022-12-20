@@ -9,13 +9,13 @@ function Card(props) {
   const [inputTouched, setInputTouched] = useState(false);
   const [error, setError] = useState(false);
 
-  const valueChangeHandler = (event) => {
-    props.onChange(event);
+  const onChange = (event) => {
+    props.onChange(value);
     setInputTouched(true);
     setValue(event.target.value);
   };
 
-  const valueBlurHandler = () => {
+  const onBlur = () => {
     setInputTouched(true);
   };
 
@@ -113,8 +113,8 @@ function Card(props) {
           value={value}
           label={props.label}
           type={props.type}
-          onChange={valueChangeHandler}
-          onBlur={valueBlurHandler}
+          onChange={onChange}
+          onBlur={onBlur}
           maxLength={props.maxLength}
           theme={props.theme}
           showRevealPassword={props.showRevealPassword}

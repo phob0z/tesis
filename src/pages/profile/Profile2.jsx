@@ -5,78 +5,50 @@ import AuthContext from "../../contexts/auth/AuthContext";
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/atoms/Card";
+import { useCallback } from "react";
 
 function Profile2() {
-  // eslint-disable-next-line
-  const { user, setProfile } = useContext(AuthContext);
-  const [userProfile, setUserProfile] = useState({ user });
+  const [userProfile, setUserProfile] = useState({email: "este@no.com"});
 
-  useEffect(() => {
-    console.log(`Antes: ${JSON.stringify(userProfile)}`);
-    async function loadInfo() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            name: "Leonel",
-            last_name: "Molina",
-            identification: "1758963050",
-            birthdate: "18-06-1988",
-            email: "leonel@gmail.com",
-            home_phone: "123456789",
-            personal_phone: "1234567890",
-            address: "Quito",
-            role: user.role,
-            avatar: user.avatar,
-          });
-        }, 500);
+  const fetchProfile = useCallback(async () => {
+    try {
+      const response = await fetch("https://swapi.dev/api/people/");
+      const data = await response.json();
+      // const transformedPeople = data.results.map((peopleData) => {
+      //   return {
+      //     email: peopleData.name,
+      //   };
+      // });
+      const transformedPeople = data.results[0].name;
+      setUserProfile({
+        ...userProfile,
+        email: `${transformedPeople}@hotmail.com`,
       });
+    } catch (error) {
+      console.log("ERROR");
     }
-    loadInfo().then((data) => console.log(data));
   }, []);
 
-  // useEffect(() => {
-  // if (!user.identification) {
-  //   setIsLoading(true);
-  //   try {
-  // console.log("Ir al servidor");
-  // loadInfo().then((profile) => {
-  //   console.log(profile);
-  //   setProfile(profile);
-  // });
-  //     // user = newUser;
-  //     // const token = localStorage.getItem("token");
-  //     //   const response = await axios.post(
-  //     //     `${process.env.REACT_APP_BACK_URL}/profile/`,
-  //     //     // "http://localhost:8000/api/profile",
-  //     //     { token },
-  //     //     { headers: { accept: "application/json" } }
-  //     //   );
-  //     //   const { access_token, token_type, user } = response.data.data;
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     setModal({ title: "ERROR", message: error.response.data.message });
-  //     setHasError(true);
-  //   }
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
-  //   setIsLoading(false);
-  // } else {
-  //   console.log("Ir al localStorage");
-  //   setProfile(JSON.parse(localStorage.getItem("user")));
-  // }
-  // }, []);
+  console.log(userProfile.email);
 
   return (
     <MainContainer title="Perfil">
       <SubContainer subTitle="INFO PERSONAL">
-        <Card
-          label="Email"
-          value={userProfile.email}
-          maxLength="35"
-          onChange={(event) => {
-            user.name = event.target.value;
-          }}
-          validation="email"
-        />
+        {
+          <Card
+            label="Email"
+            value={userProfile.email}
+            maxLength="35"
+            onChange={(value) => {
+              setUserProfile({ ...userProfile, email: value });
+            }}
+            validation="email"
+          />
+        }
       </SubContainer>
     </MainContainer>
   );
