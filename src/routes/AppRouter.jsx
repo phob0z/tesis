@@ -9,6 +9,7 @@ import AuthProvider from "../contexts/auth/AuthProvider";
 import Login from "../pages/auth/Login";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import ResetPassword from "../pages/auth/ResetPassword";
+// import Menu from "../components/menu/Menu";
 import Menu2 from "../components/menu/Menu2";
 // import Profile from "../pages/profile/Profile";
 import Profile2 from "../pages/profile/Profile2";
@@ -55,6 +56,7 @@ const AppRouter = () => {
             element={
               <PrivateRoute>
                 <Fragment>
+                  {/* <Menu /> */}
                   <Menu2 />
                   <Routes>
                     <Route

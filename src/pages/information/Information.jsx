@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from "react";
+// import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 
-import Card from "../../components/atoms/Card";
+// import Card from "../../components/atoms/Card";
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import AlertContext from "../../contexts/alert/AlertContext";
+// import AlertContext from "../../contexts/alert/AlertContext";
 
 function Information() {
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  // const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   useEffect(() => {
     console.log("Load for the first time");

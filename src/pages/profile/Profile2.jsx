@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import AuthContext from "../../contexts/auth/AuthContext";
 
@@ -7,26 +7,32 @@ import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/atoms/Card";
 
 function Profile2() {
+  // eslint-disable-next-line
   const { user, setProfile } = useContext(AuthContext);
+  const [userProfile, setUserProfile] = useState({ user });
 
-  async function loadInfo() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "1758963050",
-          birthdate: "18-06-1988",
-          email: "leonel@gmail.com",
-          home_phone: "123456789",
-          personal_phone: "1234567890",
-          address: "Quito",
-          role: user.role,
-          avatar: user.avatar,
-        });
-      }, 500);
-    });
-  };
+  useEffect(() => {
+    console.log(`Antes: ${JSON.stringify(userProfile)}`);
+    async function loadInfo() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            name: "Leonel",
+            last_name: "Molina",
+            identification: "1758963050",
+            birthdate: "18-06-1988",
+            email: "leonel@gmail.com",
+            home_phone: "123456789",
+            personal_phone: "1234567890",
+            address: "Quito",
+            role: user.role,
+            avatar: user.avatar,
+          });
+        }, 500);
+      });
+    }
+    loadInfo().then((data) => console.log(data));
+  }, []);
 
   // useEffect(() => {
   // if (!user.identification) {
@@ -64,7 +70,7 @@ function Profile2() {
       <SubContainer subTitle="INFO PERSONAL">
         <Card
           label="Email"
-          value={user.email}
+          value={userProfile.email}
           maxLength="35"
           onChange={(event) => {
             user.name = event.target.value;

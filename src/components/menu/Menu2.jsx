@@ -1,60 +1,32 @@
-import React, { useContext, useEffect, useState } from "react";
-// import axios from "axios";
+import React, { useContext, useState } from "react";
 
 import AuthContext from "../../contexts/auth/AuthContext";
-import AlertContext from "../../contexts/alert/AlertContext";
 
 import Option from "./Option";
 
 import classes from "./Menu.module.css";
+import Button from "../atoms/Button";
 
 const Menu2 = () => {
-  const { user, logout, setProfile } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { logout } = useContext(AuthContext);
+  // eslint-disable-next-line
+  const [menu, setMenu] = useState({ title: "Perfil", route: "/profile" });
 
-  const menu = useState({ title: "Perfil", route: "/profile" });
-
-  const onProfileHandler = async () => {
-    if (!user.identification) {
-      setIsLoading(true);
-      try {
-        let newUser = {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "1758963050",
-          birthdate: "18-06-1988",
-          email: "leonel@gmail.com",
-          home_phone: "123456789",
-          personal_phone: "1234567890",
-          address: "Quito",
-          role: user.role,
-          avatar: user.avatar,
-        };
-        setProfile(newUser);
-      } catch (error) {
-        setIsLoading(false);
-        setModal({ title: "ERROR", message: error.response.data.message });
-        setHasError(true);
-      }
-
-      setIsLoading(false);
-    } else {
-      setProfile(JSON.parse(localStorage.getItem("user")));
-    }
+  const onLogout = async () => {
+    logout();
   };
 
   return (
     <div className={classes.menu}>
       <div className={classes.options}>
-        {menu.map((option) => (
-          <Option
-            route={option.route}
-            key={option.title}
-            onClick={onProfileHandler}
-          >
-            {option.title}
-          </Option>
-        ))}
+        <Option route={menu.route} key={menu.title} onClick={() => {}}>
+          {menu.title}
+        </Option>
+        <div className={classes.logoutBox}>
+          <Button type="button" className="exitButton" onClick={onLogout}>
+            Salir
+          </Button>
+        </div>
       </div>
     </div>
   );
