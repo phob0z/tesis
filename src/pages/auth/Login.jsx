@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import AccountIcon from "../../components/icons/AccountIcon";
@@ -84,24 +84,24 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      let user = {
-        name: "Leonel",
-        last_name: "Molina",
-        role: "secretary",
-        avatar: "",
-      };
-      let avatar = "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
-      let token_type = "Bearer";
-      let access_token = "1234567890";
-      user['avatar'] = avatar;
-        // const response = await axios.post(
-        //   `${process.env.REACT_APP_BACK_URL}/login`,
-        //   // "http://localhost:8000/api/login",
-        //   { identificacion, password },
-        //   { headers: { accept: "application/json" } }
-        // );
-        // const { access_token, token_type, user, avatar } = response.data.data;
-        // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
+      // let user = {
+      //   name: "Leonel",
+      //   last_name: "Molina",
+      //   role: "secretary",
+      //   avatar: "",
+      // };
+      // let avatar = "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
+      // let token_type = "Bearer";
+      // let access_token = "1234567890";
+      // user['avatar'] = avatar;
+        const response = await axios.post(
+          `${process.env.REACT_APP_BACK_URL}/login`,
+          // "http://localhost:8000/api/login",
+          { identificacion, password },
+          { headers: { accept: "application/json" } }
+        );
+        const { access_token, token_type, user, avatar } = response.data.data;
+        console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       login(user, `${token_type} ${access_token}`);
     } catch (error) {
       setIsLoading(false);
