@@ -98,7 +98,7 @@ const Login = () => {
           `${process.env.REACT_APP_BACK_URL}/login`,
           // "http://localhost:8000/api/login",
           { identificacion, password },
-          { headers: { accept: "application/json" } }
+          // { headers: { accept: "application/json" } }
         );
         const { access_token, token_type, user, avatar } = response.data.data;
         console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
