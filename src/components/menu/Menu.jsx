@@ -13,7 +13,7 @@ import SubMenu from "./SubMenu";
 import { useMemo } from "react";
 
 const Menu = () => {
-  const { user, logout, setProfile } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [showSubMenu, setShowSubMenu] = useState(false);
