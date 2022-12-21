@@ -23,28 +23,15 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
-    if (identificacion.trim() === "")
-      setIdentificacionError("Debe ingresar una identificación");
-    else if (identificacion.trim().length < 10)
-      setIdentificacionError(
-        "La identificación debe tener al menos 10 caracteres"
-      );
-    else if (identificacion.trim().length > 20)
-      setIdentificacionError(
-        "La identificación debe tener menos de 20 caracteres"
-      );
-    else if (!identificacion.match(/^\w+$/))
-      setIdentificacionError("Debe ingresar una identificación válida");
-    else setIdentificacionError("");
+    setIdentificacionError("");
   }, [identificacion]);
 
   useEffect(() => {
-    if (password.trim() === "")
-      setPasswordError("Debe ingresar una contraseña");
-    else setPasswordError("");
+    setPasswordError("");
   }, [password]);
 
-  const identificacionShowError = identificacionTouched && !!identificacionError;
+  const identificacionShowError =
+    identificacionTouched && !!identificacionError;
   const passwordShowError = passwordTouched && !!passwordError;
 
   const identificacionChangeHandler = (event) => {
@@ -90,10 +77,11 @@ const Login = () => {
         role: "secretary",
         avatar: "",
       };
-      let avatar = "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
+      let avatar =
+        "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
       let token_type = "Bearer";
       let access_token = "1234567890";
-      user['avatar'] = avatar;
+      user["avatar"] = avatar;
       login(user, `${token_type} ${access_token}`);
     } catch (error) {
       setIsLoading(false);

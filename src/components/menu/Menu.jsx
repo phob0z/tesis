@@ -134,43 +134,6 @@ const Menu = () => {
     setIsLoading(false);
   };
 
-  const onProfileHandler = async () => {
-    if (!user.identification) {
-      setIsLoading(true);
-      try {
-        let newUser = {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "1758963050",
-          birthdate: "18-06-1988",
-          email: "leonel@gmail.com",
-          home_phone: "123456789",
-          personal_phone: "1234567890",
-          address: "Quito",
-          role: user.role,
-          avatar: user.avatar,
-        };
-        // const token = localStorage.getItem("token");
-        //   const response = await axios.post(
-        //     `${process.env.REACT_APP_BACK_URL}/profile/`,
-        //     // "http://localhost:8000/api/profile",
-        //     { token },
-        //     { headers: { accept: "application/json" } }
-        //   );
-        //   const { access_token, token_type, user } = response.data.data;
-        setProfile(newUser);
-      } catch (error) {
-        setIsLoading(false);
-        setModal({ title: "ERROR", message: error.response.data.message });
-        setHasError(true);
-      }
-
-      setIsLoading(false);
-    } else {
-      setProfile(JSON.parse(localStorage.getItem("user")));
-    }
-  };
-
   return (
     <div className={classes.menu}>
       <div className={classes.options}>
@@ -184,7 +147,6 @@ const Menu = () => {
             onMouseOut={(e) => {
               handleMenu(e);
             }}
-            onClick={onProfileHandler}
           >
             {option.title}
           </Option>

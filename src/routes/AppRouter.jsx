@@ -6,14 +6,13 @@ import PrivateRoute from "./PrivateRoute";
 
 import AuthProvider from "../contexts/auth/AuthProvider";
 
-import Login from "../pages/auth/Login";
-// import Login2 from "../pages/auth/Login2";
+// import Login from "../pages/auth/Login";
+import Login from "../pages/auth/Login2";
+import Menu from "../components/menu/Menu";
+import Profile from "../pages/profile/Profile";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import ResetPassword from "../pages/auth/ResetPassword";
-import Menu from "../components/menu/Menu";
-// import Menu2 from "../components/menu/Menu2";
-import Profile from "../pages/profile/Profile";
-// import Profile2 from "../pages/profile/Profile2";
+
 import Home from "../pages/home/Home";
 import Information from "../pages/information/Information";
 
@@ -46,7 +45,6 @@ const AppRouter = () => {
               <PublicRoute>
                 <Routes>
                   <Route path="/*" element={<Login />} />
-                  {/* <Route path="/*" element={<Login2 />} /> */}
                   <Route path="/forgotPassword" element={<ForgotPassword />} />
                   <Route path="/resetPassword" element={<ResetPassword />} />
                 </Routes>
@@ -59,7 +57,6 @@ const AppRouter = () => {
               <PrivateRoute>
                 <Fragment>
                   <Menu />
-                  {/* <Menu2 /> */}
                   <Routes>
                     <Route
                       path="/"
@@ -71,7 +68,6 @@ const AppRouter = () => {
                       path="/profile"
                       element={
                           <Profile />
-                          // <Profile2 />
                       }
                     />
                     <Route

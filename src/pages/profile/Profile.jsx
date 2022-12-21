@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -11,6 +11,7 @@ function Profile() {
   const { user, setProfile } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
+  const [userProfile, setUserProfile] = useState({ user });
   const [newPassword, setNewPassword] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [errorName, setErrorName] = useState(false);
@@ -23,6 +24,38 @@ function Profile() {
   const [errorDirection, setErrorDirection] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [error, setError] = useState(false);
+
+  const fetchProfile = useCallback(async () => {
+    try {
+      // const response = await axios.post(
+      //   `${process.env.REACT_APP_BACK_URL}/profile/`,
+      //   { method: "GET" },
+      //   { user },
+      //   { headers: { accept: "application/json" } }
+      // );
+      // const { access_token, token_type, user, avatar } = response.data.data;
+      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
+      const response = await fetch("https://swapi.dev/api/people/");
+      const data = await response.json();
+      const profile = {
+        name: "Leonel",
+        last_name: "Molina",
+        identification: "1758963050",
+        birthdate: "18-06-1988",
+        email: "leonel@gmail.com",
+        home_phone: "123456789",
+        personal_phone: "1234567890",
+        address: "Quito",
+      };
+      setUserProfile({ ...user, ...profile });
+    } catch (error) {
+      console.log("ERROR");
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   useEffect(() => {
     errorName.error
@@ -75,8 +108,7 @@ function Profile() {
 
     try {
       // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/login`,
-      //   // "http://localhost:8000/api/login",
+      //   `${process.env.REACT_APP_BACK_URL}/change-password/`,
       //   { method: "POST" },
       //   { user },
       //   { headers: { accept: "application/json" } }
@@ -106,8 +138,7 @@ function Profile() {
 
     try {
       // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/login`,
-      //   // "http://localhost:8000/api/login",
+      //   `${process.env.REACT_APP_BACK_URL}/profile/`,
       //   { method: "POST" },
       //   { user },
       //   { headers: { accept: "application/json" } }
@@ -130,10 +161,10 @@ function Profile() {
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={user.name}
+            value={userProfile.name}
             maxLength="35"
             onChange={(event) => {
-              user.name = event.target.value;
+              setUserProfile({ ...userProfile, name: event.target.value });
             }}
             setError={setErrorName}
             validation="text"
@@ -141,10 +172,10 @@ function Profile() {
           />
           <Card
             label="Apellidos"
-            value={user.last_name}
+            value={userProfile.last_name}
             maxLength="35"
             onChange={(event) => {
-              user.last_name = event.target.value;
+              setUserProfile({ ...userProfile, last_name: event.target.value });
             }}
             setError={setErrorLastName}
             validation="text"
@@ -152,10 +183,13 @@ function Profile() {
           />
           <Card
             label="Identificación"
-            value={user.identification}
+            value={userProfile.identification}
             maxLength="20"
             onChange={(event) => {
-              user.identification = event.target.value;
+              setUserProfile({
+                ...userProfile,
+                identification: event.target.value,
+              });
             }}
             setError={setErrorIdentification}
             validation="identification"
@@ -163,10 +197,10 @@ function Profile() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={user.birthdate}
+            value={userProfile.birthdate}
             maxLength="20"
             onChange={(event) => {
-              user.birthdate = event.target.value;
+              setUserProfile({ ...userProfile, birthdate: event.target.value });
             }}
             setError={setErrorBirthdate}
             validation="date"
@@ -176,10 +210,10 @@ function Profile() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={user.email}
+            value={userProfile.email}
             maxLength="20"
             onChange={(event) => {
-              user.email = event.target.value;
+              setUserProfile({ ...userProfile, email: event.target.value });
             }}
             setError={setErrorEmail}
             validation="email"
@@ -187,10 +221,13 @@ function Profile() {
           />
           <Card
             label="Teléfono convencional"
-            value={user.home_phone}
+            value={userProfile.home_phone}
             maxLength="9"
             onChange={(event) => {
-              user.home_phone = event.target.value;
+              setUserProfile({
+                ...userProfile,
+                home_phone: event.target.value,
+              });
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
@@ -198,10 +235,13 @@ function Profile() {
           />
           <Card
             label="Teléfono celular"
-            value={user.personal_phone}
+            value={userProfile.personal_phone}
             maxLength="10"
             onChange={(event) => {
-              user.personal_phone = event.target.value;
+              setUserProfile({
+                ...userProfile,
+                personal_phone: event.target.value,
+              });
             }}
             setError={setErrorPersonalPhone}
             validation="personalPhone"
@@ -209,10 +249,10 @@ function Profile() {
           />
           <Card
             label="Dirección"
-            value={user.address}
+            value={userProfile.address}
             maxLength="50"
             onChange={(event) => {
-              user.address = event.target.value;
+              setUserProfile({ ...userProfile, address: event.target.value });
             }}
             setError={setErrorDirection}
             disabled={user.role !== "secretary"}

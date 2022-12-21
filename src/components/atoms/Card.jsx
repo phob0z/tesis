@@ -5,15 +5,8 @@ import classes from "./Card.module.css";
 import Input from "./Input";
 
 function Card(props) {
-  const [value, setValue] = useState(props.value);
   const [inputTouched, setInputTouched] = useState(false);
   const [error, setError] = useState(false);
-
-  const onChange = (event) => {
-    props.onChange(value);
-    setInputTouched(true);
-    setValue(event.target.value);
-  };
 
   const onBlur = () => {
     setInputTouched(true);
@@ -23,84 +16,82 @@ function Card(props) {
     setError(false);
     switch (props.validation) {
       case "text":
-        if (!value) setError("El campo no puede estar vacío");
-        else if (!value.match(/^[a-zA-Z\s]+$/))
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (!props.value.match(/^[a-zA-Z\s]+$/))
           setError("Solo puede contener letras o espacios");
         break;
       case "identification":
-        if (!value) setError("El campo no puede estar vacío");
-        else if (value.trim().length < 10)
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (props.value.trim().length < 10)
           setError("Debe tener al menos 10 caracteres");
-        else if (value.trim().length > 20)
+        else if (props.value.trim().length > 20)
           setError("Debe tener menos de 20 caracteres");
-        else if (!value.match(/^\w+$/))
+        else if (!props.value.match(/^\w+$/))
           setError("Solo puede contener letras o números");
         break;
       case "date":
-        if (!value) setError("El campo no puede estar vacío");
+        if (!props.value) setError("El campo no puede estar vacío");
         break;
       case "email":
-        if (!value) setError("El campo no puede estar vacío");
-        else if (!value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (!props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
           setError("Debe ingresar un correo válido");
         break;
       case "homePhone":
-        if (!value) setError("El campo no puede estar vacío");
-        else if (!value.match(/^[0-9]+$/))
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (!props.value.match(/^[0-9]+$/))
           setError("Solo puede contener números");
-        else if (value.trim().length !== 9) setError("Debe tener 9 dígitos");
+        else if (props.value.trim().length !== 9) setError("Debe tener 9 dígitos");
         break;
       case "personalPhone":
-        if (!value) setError("El campo no puede estar vacío");
-        else if (!value.match(/^[0-9]+$/))
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (!props.value.match(/^[0-9]+$/))
           setError("Solo puede contener números");
-        else if (value.trim().length !== 10) setError("Debe tener 10 dígitos");
+        else if (props.value.trim().length !== 10) setError("Debe tener 10 dígitos");
         break;
       case "password":
-        if (!value) setError("El campo no puede estar vacío");
-        else if (value.length < 8)
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (props.value.length < 8)
           setError("La contraseña debe tener al menos 8 caracteres");
-        else if (value.length > 32)
+        else if (props.value.length > 32)
           setError("La contraseña debe tener menos de 32 caracteres");
-        else if (!value.match(".*\\d.*"))
+        else if (!props.value.match(".*\\d.*"))
           setError("La contraseña debe tener al menos un número");
-        else if (!value.match(".*[a-z].*"))
+        else if (!props.value.match(".*[a-z].*"))
           setError("La contraseña debe tener al menos una letra minúscula");
-        else if (!value.match(".*[A-Z].*"))
+        else if (!props.value.match(".*[A-Z].*"))
           setError("La contraseña debe tener al menos una letra mayúscula");
         else if (
-          !value.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/)
+          !props.value.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/)
         )
           setError("La contraseña debe tener al menos un carácter especial");
         break;
       case "changePassword":
-        if (value) {
-          if (value.length < 8)
+        if (props.value) {
+          if (props.value.length < 8)
             setError("La contraseña debe tener al menos 8 caracteres");
-          else if (value.length > 32)
+          else if (props.value.length > 32)
             setError("La contraseña debe tener menos de 32 caracteres");
-          else if (!value.match(".*\\d.*"))
+          else if (!props.value.match(".*\\d.*"))
             setError("La contraseña debe tener al menos un número");
-          else if (!value.match(".*[a-z].*"))
+          else if (!props.value.match(".*[a-z].*"))
             setError("La contraseña debe tener al menos una letra minúscula");
-          else if (!value.match(".*[A-Z].*"))
+          else if (!props.value.match(".*[A-Z].*"))
             setError("La contraseña debe tener al menos una letra mayúscula");
           else if (
-            !value.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/)
+            !props.value.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/)
           )
             setError("La contraseña debe tener al menos un carácter especial");
         }
         break;
       default:
-        if (!value) setError("El campo no puede estar vacío");
+        if (!props.value) setError("El campo no puede estar vacío");
         break;
     }
     // eslint-disable-next-line
-  }, [value, inputTouched]);
+  }, [props.value, inputTouched]);
 
   useEffect(() => {
-    // console.log("Error en " + props.label + ": " + !!error);
-    // props.setError(!!error);
     props.setError({label: props.label, error: error});
     // eslint-disable-next-line
   }, [error]);
@@ -110,10 +101,10 @@ function Card(props) {
       <div className={classes.label}>{props.label}</div>
       <div className={classes.inputBox}>
         <Input
-          value={value}
+          value={props.value}
           label={props.label}
           type={props.type}
-          onChange={onChange}
+          onChange={props.onChange}
           onBlur={onBlur}
           maxLength={props.maxLength}
           theme={props.theme}
