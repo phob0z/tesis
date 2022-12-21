@@ -26,6 +26,7 @@ function Profile() {
   const [error, setError] = useState(false);
 
   const fetchProfile = useCallback(async () => {
+    setIsLoading(true);
     try {
       // const response = await axios.post(
       //   `${process.env.REACT_APP_BACK_URL}/profile/`,
@@ -49,8 +50,11 @@ function Profile() {
       };
       setUserProfile({ ...user, ...profile });
     } catch (error) {
-      console.log("ERROR");
+      setIsLoading(false);
+      setModal({ title: "ERROR", message: error });
+      setHasError(true);
     }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
