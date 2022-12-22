@@ -60,6 +60,7 @@ const Input = (props) => {
             onBlur={onBlur}
             maxLength={props.maxLength}
             disabled={props.disabled}
+            className={props.type === "date"? classes.inputDate: ""}
           />
           {props.theme === "red" ? (
             <label htmlFor={props.label}>{props.label}</label>

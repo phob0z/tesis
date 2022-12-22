@@ -37,12 +37,13 @@ function Profile() {
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
+      // eslint-disable-next-line
       const data = await response.json();
       const profile = {
         name: "Leonel",
         last_name: "Molina",
         identification: "1758963050",
-        birthdate: "18-06-1988",
+        birthdate: "1988-06-18",
         email: "leonel@gmail.com",
         home_phone: "123456789",
         personal_phone: "1234567890",
@@ -55,7 +56,7 @@ function Profile() {
       setHasError(true);
     }
     setIsLoading(false);
-  }, []);
+  }, [setHasError, setIsLoading, setModal, user]);
 
   useEffect(() => {
     fetchProfile();
@@ -203,6 +204,7 @@ function Profile() {
             label="Fecha de nacimiento"
             value={userProfile.birthdate}
             maxLength="20"
+            type="date"
             onChange={(event) => {
               setUserProfile({ ...userProfile, birthdate: event.target.value });
             }}
