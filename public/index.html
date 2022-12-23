@@ -56,8 +56,15 @@
         border-radius: 0.625rem;
       }
 
+      .react-datepicker__month-container {
+        width: 17rem;
+      }
+      .react-datepicker__header.react-datepicker__header--custom > div:first-child {
+        justify-content: space-evenly !important;
+      }
+
       div.react-datepicker__day-name {
-        color: #ffffff !important;
+        color: #d6d6d6 !important;
         font-weight: 900;
       }
 
@@ -66,8 +73,13 @@
         border-bottom-color: #393939 !important;
       }
 
+      div.react-datepicker__day:hover {
+        background-color: #d6d6d6;
+      }
+
       div.react-datepicker__day--selected {
         background-color: #6d1118;
+        color: #d6d6d6;
       }
 
       div.react-datepicker__day--selected:hover {
@@ -81,7 +93,6 @@
       div.react-datepicker__day--keyboard-selected:hover {
         background-color: #6d1118;
       }
-      
     </style>
     <title>Sistema de gestión de notas Miguel de Santiago</title>
   </head>

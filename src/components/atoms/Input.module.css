@@ -249,10 +249,46 @@
   max-width: 2rem;
   min-height: 2rem;
   max-height: 2rem;
-  color: rgba(160, 27, 37, 0.4);
+  color: #a01b2566;
   cursor: pointer;
 }
 
 .datePicker:hover {
   color: rgba(160, 27, 37, 0.8);
+}
+
+.navigationArrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  cursor: pointer;
+  color: #d6d6d6;
+  transition: 0.2s transform;
+}
+
+.navigationArrows:hover {
+  color: #000000;
+}
+
+.navigationArrows ~ select {
+  /* color: black; */
+  /* color: #888888; */
+  /* color: #d6d6d6; */
+  /* background: #6d1118; */
+  background: #cebabc;
+  border-radius: 0.3rem;
+  border: 0;
+  font-size: 1rem;
+  font-family: "Open Sans";
+  font-weight: 900;
+  outline: 0;
+}
+
+.navigationArrows ~ select option {
+  color: #2d2d2d;
+  background: #cebabc;
+  font-size: 0.9rem;
+  font-family: "Open Sans";
+  font-weight: 900;
 }

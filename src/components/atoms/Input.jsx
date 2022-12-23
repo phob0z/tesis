@@ -140,15 +140,16 @@ const Input = (props) => {
                       justifyContent: "center",
                     }}
                   >
-                    <button
+                    <span
                       onClick={(event) => {
                         event.preventDefault();
                         decreaseMonth();
                       }}
-                      disabled={prevMonthButtonDisabled}
+                      className={`material-symbols-outlined ${classes.navigationArrows}`}
+                      disabled={nextMonthButtonDisabled}
                     >
-                      {"<"}
-                    </button>
+                      navigate_before
+                    </span>
                     <select
                       value={date.getFullYear(date)}
                       onChange={({ target: { value } }) => {
@@ -174,15 +175,16 @@ const Input = (props) => {
                         </option>
                       ))}
                     </select>
-                    <button
+                    <span
                       onClick={(event) => {
                         event.preventDefault();
                         increaseMonth();
                       }}
+                      className={`material-symbols-outlined ${classes.navigationArrows}`}
                       disabled={nextMonthButtonDisabled}
                     >
-                      {">"}
-                    </button>
+                      navigate_next
+                    </span>
                   </div>
                 )}
               />
