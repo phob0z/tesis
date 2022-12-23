@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 import { useState } from "react";
-import DatePicker , { registerLocale } from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 
@@ -123,7 +123,16 @@ const Input = (props) => {
                 className={classes.inputDate}
                 minDate={new Date("1950/01/01")}
                 maxDate={new Date()}
-                renderCustomHeader={({ date, changeYear, changeMonth }) => (
+                fixedHeight
+                renderCustomHeader={({
+                  date,
+                  changeYear,
+                  changeMonth,
+                  decreaseMonth,
+                  increaseMonth,
+                  prevMonthButtonDisabled,
+                  nextMonthButtonDisabled,
+                }) => (
                   <div
                     style={{
                       margin: 10,
@@ -131,9 +140,20 @@ const Input = (props) => {
                       justifyContent: "center",
                     }}
                   >
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault();
+                        decreaseMonth();
+                      }}
+                      disabled={prevMonthButtonDisabled}
+                    >
+                      {"<"}
+                    </button>
                     <select
-                      value={years[date.getYear(date)]}
-                      onChange={({ target: { value } }) => changeYear(value)}
+                      value={date.getFullYear(date)}
+                      onChange={({ target: { value } }) => {
+                        changeYear(value);
+                      }}
                     >
                       {years.map((option) => (
                         <option key={option} value={option}>
@@ -154,6 +174,15 @@ const Input = (props) => {
                         </option>
                       ))}
                     </select>
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault();
+                        increaseMonth();
+                      }}
+                      disabled={nextMonthButtonDisabled}
+                    >
+                      {">"}
+                    </button>
                   </div>
                 )}
               />
