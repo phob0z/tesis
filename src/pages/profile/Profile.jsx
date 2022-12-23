@@ -12,8 +12,8 @@ function Profile() {
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [userProfile, setUserProfile] = useState({ user });
-  const [newPassword, setNewPassword] = useState(false);
-  const [confirmation, setConfirmation] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmation, setConfirmation] = useState("");
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -36,8 +36,8 @@ function Profile() {
       // );
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      // const response = await fetch("https://swapi.dev/api/people/");
-      // const data = await response.json();
+      const response = await fetch("https://swapi.dev/api/people/");
+      const data = await response.json();
       const profile = {
         name: "Leonel",
         last_name: "Molina",
@@ -65,20 +65,20 @@ function Profile() {
     errorName.error
       ? setError(errorName)
       : errorLastName.error
-      ? setError(errorLastName)
-      : errorIdentification.error
-      ? setError(errorIdentification)
-      : errorBirthdate.error
-      ? setError(errorBirthdate)
-      : errorEmail.error
-      ? setError(errorEmail)
-      : errorHomePhone.error
-      ? setError(errorHomePhone)
-      : errorPersonalPhone.error
-      ? setError(errorPersonalPhone)
-      : errorDirection.error
-      ? setError(errorDirection)
-      : setError(false);
+        ? setError(errorLastName)
+        : errorIdentification.error
+          ? setError(errorIdentification)
+          : errorBirthdate.error
+            ? setError(errorBirthdate)
+            : errorEmail.error
+              ? setError(errorEmail)
+              : errorHomePhone.error
+                ? setError(errorHomePhone)
+                : errorPersonalPhone.error
+                  ? setError(errorPersonalPhone)
+                  : errorDirection.error
+                    ? setError(errorDirection)
+                    : setError(false);
 
     errorPassword.error
       ? setErrorPassword(errorPassword)
@@ -102,8 +102,8 @@ function Profile() {
         message: errorPassword
           ? errorPassword.error
           : !newPassword
-          ? "La contraseña es vacía"
-          : "Las contraseñas no coinciden",
+            ? "La contraseña es vacía"
+            : "Las contraseñas no coinciden",
       });
       setHasError(true);
       return;
@@ -269,26 +269,28 @@ function Profile() {
           subTitle="CAMBIAR CONTRASEÑA"
         >
           <Card
-            type="password"
-            showRevealPassword
             label="Nueva contraseña"
+            value={newPassword}
             maxLength="50"
             validation="changePassword"
             onChange={(event) => {
               setNewPassword(event.target.value);
             }}
             setError={setErrorPassword}
-          />
-          <Card
             type="password"
             showRevealPassword
+          />
+          <Card
             label="Confirmar contraseña"
+            value={confirmation}
             maxLength="50"
             validation="changePassword"
             onChange={(event) => {
               setConfirmation(event.target.value);
             }}
             setError={setErrorPassword}
+            type="password"
+            showRevealPassword
           />
         </SubContainer>
       </MainContainer>
