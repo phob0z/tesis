@@ -14,10 +14,10 @@ const Input = (props) => {
   const ref = useRef();
 
   const thisYear = new Date().getFullYear();
-  const max = thisYear - 40;
+  const min = thisYear - 40;
 
   var years = [];
-  for (var year = thisYear; year >= max; year--) {
+  for (var year = min; year <= thisYear; year++) {
     years.push(year);
   }
 
