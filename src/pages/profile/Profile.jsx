@@ -36,9 +36,8 @@ function Profile() {
       // );
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      // eslint-disable-next-line
-      const data = await response.json();
+      // const response = await fetch("https://swapi.dev/api/people/");
+      // const data = await response.json();
       const profile = {
         name: "Leonel",
         last_name: "Molina",

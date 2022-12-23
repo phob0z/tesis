@@ -1,12 +1,48 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 import { useState } from "react";
+import DatePicker , { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import es from "date-fns/locale/es";
 
 const Input = (props) => {
   const [focused, setFocussed] = useState(false);
   const [visibility, setVisibility] = useState(false);
   const [type, setType] = useState(props.type);
+  const [date, setDate] = useState(new Date());
+  const ref = useRef();
+
+  const thisYear = new Date().getFullYear();
+  const max = thisYear - 40;
+
+  var years = [];
+  for (var year = thisYear; year >= max; year--) {
+    years.push(year);
+  }
+
+  const months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+
+  useEffect(() => {
+    if (props.type === "date" && props.value) {
+      setDate(new Date(props.value.replace(/-/g, "/")));
+    }
+  }, [props.value, props.type]);
+
+  registerLocale("es", es);
 
   const onFocus = () => {
     setFocussed(true);
@@ -15,6 +51,10 @@ const Input = (props) => {
   const onBlur = () => {
     setFocussed(false);
     props.onBlur();
+  };
+
+  const openDatePicker = () => {
+    ref.current.input.focus();
   };
 
   const onSetVisibility = () => {
@@ -50,18 +90,95 @@ const Input = (props) => {
             focused ? classes.focused : ""
           }`}
         >
-          <input
-            id={props.label}
-            type={type}
-            placeholder={`${focused ? "" : props.label}`}
-            value={props.value}
-            onChange={props.onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            maxLength={props.maxLength}
-            disabled={props.disabled}
-            className={props.type === "date"? classes.inputDate: ""}
-          />
+          {props.type === "date" ? (
+            <Fragment>
+              {/* <DatePicker
+                ref={ref}
+                dateFormat="dd/MM/yyyy"
+                selected={date}
+                onChange={(date) => setDate(date)}
+                locale="es"
+                className={classes.inputDate}
+                minDate={new Date("1950", "06", "06")}
+                maxDate={new Date()}
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+
+              />
+              <div className={classes.datePicker}>
+                <span
+                  className="material-symbols-outlined"
+                  onClick={openDatePicker}
+                >
+                  calendar_month
+                </span>
+              </div> */}
+              <DatePicker
+                ref={ref}
+                dateFormat="dd/MM/yyyy"
+                selected={date}
+                onChange={(date) => setDate(date)}
+                locale="es"
+                className={classes.inputDate}
+                minDate={new Date("1950/01/01")}
+                maxDate={new Date()}
+                renderCustomHeader={({ date, changeYear, changeMonth }) => (
+                  <div
+                    style={{
+                      margin: 10,
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <select
+                      value={years[date.getYear(date)]}
+                      onChange={({ target: { value } }) => changeYear(value)}
+                    >
+                      {years.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+
+                    <select
+                      value={months[date.getMonth(date)]}
+                      onChange={({ target: { value } }) =>
+                        changeMonth(months.indexOf(value))
+                      }
+                    >
+                      {months.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+              />
+              <div className={classes.datePicker}>
+                <span
+                  className="material-symbols-outlined"
+                  onClick={openDatePicker}
+                >
+                  calendar_month
+                </span>
+              </div>
+            </Fragment>
+          ) : (
+            <input
+              id={props.label}
+              type={type}
+              placeholder={`${focused ? "" : props.label}`}
+              value={props.value}
+              onChange={props.onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              maxLength={props.maxLength}
+              disabled={props.disabled}
+            />
+          )}
           {props.theme === "red" ? (
             <label htmlFor={props.label}>{props.label}</label>
           ) : (
