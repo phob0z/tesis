@@ -29,25 +29,36 @@ function Card(props) {
         else if (!props.value.match(/^\w+$/))
           setError("Solo puede contener letras o números");
         break;
+      case "cedula":
+        if (!props.value) setError("Debe ingresar una cédula");
+        else if (props.value.trim().length !== 10)
+          setError("La cédula debe tener 10 dígitos");
+        else if (!/^[0-9]+$/.test(props.value))
+          setError("La cédula solo puede contener números");
+        break;
       case "date":
         if (!props.value) setError("El campo no puede estar vacío");
         break;
       case "email":
         if (!props.value) setError("El campo no puede estar vacío");
-        else if (!props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
+        else if (
+          !props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/)
+        )
           setError("Debe ingresar un correo válido");
         break;
       case "homePhone":
         if (!props.value) setError("El campo no puede estar vacío");
         else if (!props.value.match(/^[0-9]+$/))
           setError("Solo puede contener números");
-        else if (props.value.trim().length !== 9) setError("Debe tener 9 dígitos");
+        else if (props.value.trim().length !== 9)
+          setError("Debe tener 9 dígitos");
         break;
       case "personalPhone":
         if (!props.value) setError("El campo no puede estar vacío");
         else if (!props.value.match(/^[0-9]+$/))
           setError("Solo puede contener números");
-        else if (props.value.trim().length !== 10) setError("Debe tener 10 dígitos");
+        else if (props.value.trim().length !== 10)
+          setError("Debe tener 10 dígitos");
         break;
       case "password":
         if (!props.value) setError("El campo no puede estar vacío");
@@ -62,7 +73,9 @@ function Card(props) {
         else if (!props.value.match(".*[A-Z].*"))
           setError("La contraseña debe tener al menos una letra mayúscula");
         else if (
-          !props.value.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/)
+          !props.value.match(
+            /(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/
+          )
         )
           setError("La contraseña debe tener al menos un carácter especial");
         break;
@@ -79,7 +92,9 @@ function Card(props) {
           else if (!props.value.match(".*[A-Z].*"))
             setError("La contraseña debe tener al menos una letra mayúscula");
           else if (
-            !props.value.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/)
+            !props.value.match(
+              /(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/
+            )
           )
             setError("La contraseña debe tener al menos un carácter especial");
         }
@@ -92,7 +107,7 @@ function Card(props) {
   }, [props.value, inputTouched]);
 
   useEffect(() => {
-    props.setError({label: props.label, error: error});
+    props.setError({ label: props.label, error: error });
     // eslint-disable-next-line
   }, [error]);
 

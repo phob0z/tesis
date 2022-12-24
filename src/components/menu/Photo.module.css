@@ -17,6 +17,12 @@
   transition: 0.3s ease-in-out;
 }
 
+.photoBox:hover {
+  cursor: pointer;
+  height: 10rem;
+  width: 10rem;
+}
+
 .photo {
   display: flex;
   justify-content: center;
@@ -30,10 +36,4 @@
 img {
   max-width: 100%;
   border-radius: 0.625rem;
-}
-
-.photoBox:hover {
-  cursor: pointer;
-  height: 10rem;
-  width: 10rem;
 }
