@@ -234,27 +234,57 @@
   display: none;
 }
 
-.photoBox {
-  display: flex;
-  justify-content: center;
-  background: #6d1118;
-  border-radius: 0.625rem 0 0.625rem 0.625rem;
-  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  width: 100%;
-  transition: 0.3s ease-in-out;
+.inputDate {
+  margin-top: 0.38rem !important;
+  outline: 0;
+  width: 93% !important;
+  cursor: pointer;
 }
 
-.photo {
+.datePicker {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: #2d2d2d;
-  border-radius: 0.625rem;
-  width: 100%;
-  margin: 0.625rem;
+  justify-content: center;
+  min-width: 2rem;
+  max-width: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  color: #a01b2566;
+  cursor: pointer;
 }
 
-img {
-  max-width: 100%;
-  border-radius: 0.625rem;
+.datePicker:hover {
+  color: rgba(160, 27, 37, 0.8);
+}
+
+.navigationArrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  cursor: pointer;
+  color: #d6d6d6;
+  transition: 0.2s transform;
+}
+
+.navigationArrows:hover {
+  color: #000000;
+}
+
+.navigationArrows ~ select {
+  background: #cebabc;
+  border-radius: 0.3rem;
+  border: 0;
+  font-size: 1rem;
+  font-family: "Open Sans";
+  font-weight: 900;
+  outline: 0;
+}
+
+.navigationArrows ~ select option {
+  color: #2d2d2d;
+  background: #cebabc;
+  font-size: 0.9rem;
+  font-family: "Open Sans";
+  font-weight: 900;
 }
