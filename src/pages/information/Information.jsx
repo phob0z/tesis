@@ -1,6 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-
-import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
@@ -139,8 +137,8 @@ function Information() {
             value={information.logo}
             // maxLength="20"
             type="image"
-            onChange={(event) => {
-              setInformation({ ...information, logo: event.target.value });
+            onChange={(image) => {
+              setInformation({ ...information, logo: image });
             }}
             setError={setErrorLogo}
             validation="image"

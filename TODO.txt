@@ -36,3 +36,6 @@ Campo confirmation no tiene validación
 
 Perfil:
 Campo dirección, disminuir tamaño total (hablar con Raúl) o aumentar de alguna forma el tamaño del campo.
+Agregar la opción de cambiar la imagen.
+
+Menu:

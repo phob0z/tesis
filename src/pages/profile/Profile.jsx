@@ -18,6 +18,7 @@ function Profile() {
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
   const [errorBirthdate, setErrorBirthdate] = useState(false);
+  const [errorAvatar, setErrorAvatar] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
@@ -65,20 +66,22 @@ function Profile() {
     errorName.error
       ? setError(errorName)
       : errorLastName.error
-        ? setError(errorLastName)
-        : errorIdentification.error
-          ? setError(errorIdentification)
-          : errorBirthdate.error
-            ? setError(errorBirthdate)
-            : errorEmail.error
-              ? setError(errorEmail)
-              : errorHomePhone.error
-                ? setError(errorHomePhone)
-                : errorPersonalPhone.error
-                  ? setError(errorPersonalPhone)
-                  : errorDirection.error
-                    ? setError(errorDirection)
-                    : setError(false);
+      ? setError(errorLastName)
+      : errorIdentification.error
+      ? setError(errorIdentification)
+      : errorBirthdate.error
+      ? setError(errorBirthdate)
+      : errorAvatar.error
+      ? setError(errorAvatar)
+      : errorEmail.error
+      ? setError(errorEmail)
+      : errorHomePhone.error
+      ? setError(errorHomePhone)
+      : errorPersonalPhone.error
+      ? setError(errorPersonalPhone)
+      : errorDirection.error
+      ? setError(errorDirection)
+      : setError(false);
 
     errorPassword.error
       ? setErrorPassword(errorPassword)
@@ -88,6 +91,7 @@ function Profile() {
     errorLastName,
     errorIdentification,
     errorBirthdate,
+    errorAvatar,
     errorEmail,
     errorHomePhone,
     errorPersonalPhone,
@@ -102,8 +106,8 @@ function Profile() {
         message: errorPassword
           ? errorPassword.error
           : !newPassword
-            ? "La contraseña es vacía"
-            : "Las contraseñas no coinciden",
+          ? "La contraseña es vacía"
+          : "Las contraseñas no coinciden",
       });
       setHasError(true);
       return;
@@ -210,6 +214,17 @@ function Profile() {
             setError={setErrorBirthdate}
             validation="date"
             disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Imagen de perfil"
+            value={user.avatar}
+            type="image"
+            onChange={(image) => {
+              setUserProfile({ ...userProfile, avatar: image });
+            }}
+            setError={setErrorAvatar}
+            validation="image"
+            // disabled={user.role !== "secretary"}
           />
         </SubContainer>
         <SubContainer subTitle="INFO DE CONTACTO">

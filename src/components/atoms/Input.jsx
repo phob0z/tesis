@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 import DatePicker from "./DatePicker";
+import Image from "./Image";
 
 const Input = (props) => {
   const [focused, setFocussed] = useState(false);
@@ -52,6 +53,14 @@ const Input = (props) => {
         >
           {props.type === "date" ? (
             <DatePicker value={props.value} disabled={props.disabled} />
+          ) : props.type === "image" ? (
+            <Image
+              label={props.label}
+              value={props.value}
+              onChange={props.onChange}
+              disabled={props.disabled}
+              // onClick={props.onClick}
+            />
           ) : (
             <input
               id={props.label}
