@@ -14,94 +14,25 @@ el token ya existe (si estoy intentando hacer login yo no tengo user o token), e
 hacer un logout con la cédula y el password (porque no tengo token)
 - Si existe el token o el user, pero el token no existe en la BD, borrar token y user de localStorage
 
-Reportes: API con un array con la información.
-
-HACER EL CAMPO DATE
-
-Preguntarle a la inge:
-- Si solo cedula o tal vez tambien pasaporte
-- Si NOMBRES o nombre_1 y nombre_2, igual para apellidos
-- Si lo que estamos trayendo de el login esta buien o le falta
-
-Validación de los campos en el perfil
-
-Coso de DATE del año de nacimiento
-
-Botón de guardar en Perfil, Raul me manda una respuesta y dependiendo de eso, mostrar un modal.
-(o mensaje pequeño abajo de correcto)
-
--- Menos importante, pero importante --
-Mover las comprobaciones y errores al componente Input
-    Dependiendo del type hacer la validacion correspondiente.
-    Debe tener una función que devuelva al padre el error.
-
+-- RESUMEN de lo e arriba:
 BACKEND debe expirar de LEY el token 24h
 BACKEND un API que reciba la identificacion y el token y devuelva un mensaje diciendo verdadero si corresponden o falso y no corresponden (si no existe el token)
 FRONTEND debe chequear mandar ese pedido de API cada inicio de aplicacion
 
+Reportes: API con un array con la información.
 
-    filtro["8vo","all","all"];
-    calificaciones(token, filtro)
+-- Menos importante, pero importante --
+Mover la lógica de validaciones fuera del Card, en una archivo aparte donde se llame a una función y devuelva
+true si todo es correcto, o el mensaje de error en caso contrario, la funcion debe recibir el tipo de
+validación y la cadena a validar.
+ERROR: La validación del campo nombre no acepta acentos.
 
-    llamada SQL con filtros filtro[0], filtro[1], filtro[2]
+filtro["8vo","all","all"];
+calificaciones(token, filtro)
+llamada SQL con filtros filtro[0], filtro[1], filtro[2]
 
-validación correo:
+resetPassword:
+Campo confirmation no tiene validación
 
-  useEffect(() => {
-    if (!correo.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
-      setCorreoError("Debe ingresar un correo válido");
-    else if (correo.trim() === "") setCorreoError("Debe ingresar un correo");
-    else setCorreoError("");
-  }, [correo]);
-
-validación identificacion
-
-  useEffect(() => {
-    // if (!identificacion.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/))
-    if (identificacion.trim() === "")
-      setidentificacionError("Debe ingresar una identificación");
-    else if (identificacion.trim().length < 10)
-      setidentificacionError(
-        "La identificación debe tener al menos 10 caracteres"
-      );
-    else if (identificacion.trim().length > 20)
-      setidentificacionError(
-        "La identificación debe tener menos de 20 caracteres"
-      );
-    else if (!identificacion.match(/^\w+$/))
-      setidentificacionError("Debe ingresar una identificación válida");
-    else setidentificacionError("");
-  }, [identificacion]);
-
-validación cedula:
-
-  useEffect(() => {
-    if (cedula.trim().length !== 10)
-      setCedulaError("La cédula debe tener 10 dígitos");
-    else if (!/^[0-9]+$/.test(cedula))
-      setCedulaError("La cédula solo puede contener números");
-    else if (cedula.trim() === "") setCedulaError("Debe ingresar una cédula");
-    else setCedulaError("");
-  }, [cedula]);
-
-validación contraseña
-
-  useEffect(() => {
-    if (password.trim() === "")
-      setPasswordError("Debe ingresar una contraseña");
-    else if (password.length < 8)
-      setPasswordError("La contraseña debe tener al menos 8 caracteres");
-    else if (password.length > 32)
-      setPasswordError("La contraseña debe tener menos de 32 caracteres");
-    else if (!password.match(".*\\d.*"))
-      setPasswordError("La contraseña debe tener al menos un número");
-    else if (!password.match(".*[a-z].*"))
-      setPasswordError("La contraseña debe tener al menos una letra minúscula");
-    else if (!password.match(".*[A-Z].*"))
-      setPasswordError("La contraseña debe tener al menos una letra mayúscula");
-    else if (!password.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/))
-      setPasswordError(
-        "La contraseña debe tener al menos un carácter especial"
-      );
-    else setPasswordError("");
-  }, [password]);
+Perfil:
+Campo dirección, disminuir tamaño total (hablar con Raúl) o aumentar de alguna forma el tamaño del campo.
