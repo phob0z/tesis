@@ -34,8 +34,9 @@ llamada SQL con filtros filtro[0], filtro[1], filtro[2]
 resetPassword:
 Campo confirmation no tiene validación
 
-Perfil:
+Profile:
 Campo dirección, disminuir tamaño total (hablar con Raúl) o aumentar de alguna forma el tamaño del campo.
-Agregar la opción de cambiar la imagen.
+La lógica de guardar/cargar instantaneamente esta un poco rara.
 
-Menu:
+
+

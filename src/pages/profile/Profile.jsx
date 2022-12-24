@@ -160,7 +160,8 @@ function Profile() {
     }
     setIsLoading(false);
     console.log("TODO CORRECTO, guardar");
-    setProfile(user);
+    setProfile({ ...userProfile});
+    // setProfile(user);
   };
 
   return (

@@ -3,7 +3,11 @@
   align-items: center;
   justify-content: center;
   min-height: 4rem;
-  min-width: 1rem;
+  min-width: min-content;
+  text-align: center;
+  max-width: 20rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
 }
 
 .option {
@@ -14,8 +18,7 @@
   text-shadow: 0.08rem 0.08rem #000, -0.08rem -0.08rem #000,
     0.08rem -0.08rem #000, -0.08rem 0.08rem #000;
   transition: 0.1s ease-in-out;
-  margin-left: 20px;
-  margin-right: 20px;
+
 }
 
 .option:hover {

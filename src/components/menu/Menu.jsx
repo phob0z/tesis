@@ -34,7 +34,7 @@ const Menu = () => {
         route: "#",
       },
       {
-        title: "Materias",
+        title: "Gestión",
         subMenu: [
           { title: "Materia1", route: "/materia1" },
           { title: "Materia2", route: "/materia2" },
