@@ -29,6 +29,54 @@ const Input = (props) => {
   else if (props.theme === "blue") theme = classes.blue;
   else theme = classes.simple;
 
+  var input;
+
+  switch (props.type) {
+    case "date":
+      input = <DatePicker value={props.value} disabled={props.disabled} />;
+      break;
+    case "image":
+      input = (
+        <Image
+          label={props.label}
+          value={props.value}
+          onChange={props.onChange}
+          disabled={props.disabled}
+        />
+      );
+      break;
+    case "textBig":
+      input = (
+        <textarea
+          id={props.label}
+          // type={type}
+          placeholder={`${focused ? "" : props.label}`}
+          value={props.value}
+          onChange={props.onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          maxLength={props.maxLength}
+          disabled={props.disabled}
+        />
+      );
+      break;
+    default:
+      input = (
+        <input
+          id={props.label}
+          type={type}
+          placeholder={`${focused ? "" : props.label}`}
+          value={props.value}
+          onChange={props.onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          maxLength={props.maxLength}
+          disabled={props.disabled}
+        />
+      );
+      break;
+  }
+
   return (
     <Fragment>
       <div
@@ -51,29 +99,7 @@ const Input = (props) => {
             focused ? classes.focused : ""
           }`}
         >
-          {props.type === "date" ? (
-            <DatePicker value={props.value} disabled={props.disabled} />
-          ) : props.type === "image" ? (
-            <Image
-              label={props.label}
-              value={props.value}
-              onChange={props.onChange}
-              disabled={props.disabled}
-              // onClick={props.onClick}
-            />
-          ) : (
-            <input
-              id={props.label}
-              type={type}
-              placeholder={`${focused ? "" : props.label}`}
-              value={props.value}
-              onChange={props.onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              maxLength={props.maxLength}
-              disabled={props.disabled}
-            />
-          )}
+          {input}
           {props.theme === "red" ? (
             <label htmlFor={props.label}>{props.label}</label>
           ) : (

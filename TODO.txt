@@ -31,11 +31,14 @@ filtro["8vo","all","all"];
 calificaciones(token, filtro)
 llamada SQL con filtros filtro[0], filtro[1], filtro[2]
 
+En todos:
+Revisar el tamaño maximo (de caracteres) de todos los campos de la app.
+
 resetPassword:
 Campo confirmation no tiene validación
 
 Profile:
-Campo dirección, disminuir tamaño total (hablar con Raúl) o aumentar de alguna forma el tamaño del campo.
+Campo dirección hablar con Raúl del tamaño maximo.
 La lógica de guardar/cargar instantaneamente esta un poco rara.
 
 

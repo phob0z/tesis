@@ -160,7 +160,7 @@ function Profile() {
     }
     setIsLoading(false);
     console.log("TODO CORRECTO, guardar");
-    setProfile({ ...userProfile});
+    setProfile({ ...userProfile });
     // setProfile(user);
   };
 
@@ -269,6 +269,7 @@ function Profile() {
             disabled={user.role !== "secretary"}
           />
           <Card
+            type="textBig"
             label="Dirección"
             value={userProfile.address}
             maxLength="50"

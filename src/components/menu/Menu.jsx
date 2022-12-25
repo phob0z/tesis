@@ -26,10 +26,8 @@ const Menu = () => {
       {
         title: "Usuarios",
         subMenu: [
-          { title: "Usuarios1", route: "/usuarios1" },
-          { title: "Usuarios2", route: "/usuarios2" },
-          { title: "Usuarios3", route: "/usuarios3" },
-          { title: "Usuarios4", route: "/usuarios4" },
+          { title: "Estudiantes", route: "/students" },
+          { title: "Profesores", route: "/teachers" },
         ],
         route: "#",
       },
