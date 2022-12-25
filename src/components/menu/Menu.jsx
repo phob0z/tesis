@@ -24,7 +24,7 @@ const Menu = () => {
       { title: "Perfil", route: "/profile" },
       { title: "Información", route: "/information" },
       {
-        title: "Usuarios",
+        title: "Gestión de Usuarios",
         subMenu: [
           { title: "Estudiantes", route: "/students" },
           { title: "Profesores", route: "/teachers" },
@@ -32,10 +32,13 @@ const Menu = () => {
         route: "#",
       },
       {
-        title: "Gestión",
+        title: "Gestión Escolar",
         subMenu: [
-          { title: "Materia1", route: "/materia1" },
-          { title: "Materia2", route: "/materia2" },
+          { title: "Periodos", route: "/years" },
+          { title: "Especialidades", route: "/specialties" },
+          { title: "Cursos", route: "/courses" },
+          { title: "Paralelos", route: "/parallels" },
+          { title: "Asignaturas", route: "/subjects" },
         ],
         route: "#",
       },

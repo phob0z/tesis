@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "../atoms/Button";
-import classes from "./SubContainer.module.css";
+import classes from "./LongSubContainer.module.css";
 
-function SubContainer(props) {
+function LongSubContainer(props) {
   return (
     <div className={classes.subContainer}>
       {props.subTitle && <div className={classes.subTitle}>{props.subTitle}</div>}
@@ -16,4 +16,4 @@ function SubContainer(props) {
   );
 }
 
-export default SubContainer;
+export default LongSubContainer;

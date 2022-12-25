@@ -20,6 +20,7 @@ import Background from "../components/background/Background";
 import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
+import Students from "../pages/students/Students";
 
 
 const AppRouter = () => {
@@ -74,6 +75,12 @@ const AppRouter = () => {
                       path="/information"
                       element={
                         <Information />
+                      }
+                    />
+                    <Route
+                      path="/students"
+                      element={
+                        <Students />
                       }
                     />
                   </Routes>

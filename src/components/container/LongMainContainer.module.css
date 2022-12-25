@@ -1,0 +1,65 @@
+.mainContainer {
+  position: absolute;
+  top: 25%;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%);
+  background: #000000bb;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  max-width: 88%;
+  flex-grow: 1;
+  display: grid;
+  /* grid-template-columns:repeat(auto-fit, 21rem); */
+  grid-template-rows: repeat(auto-fit, minmax(5rem, fit-content));
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1.6rem transparent solid;
+  border-top: 2rem transparent solid;
+  border-radius: 1.25rem; -moz-border-radius: 1.25rem; -webkit-border-radius: 1.25rem;
+  grid-gap: 0.5rem;
+}
+
+.containerTitle {
+  position: absolute;
+  background: #6d1119;
+  border-radius: 0.625rem;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 0.4rem;
+  padding-right: 6rem;
+  padding-left: 6rem;
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.4rem;
+  color: #d2a647;
+  text-shadow: -0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+}
+
+.button {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
 import Button from "../atoms/Button";
-import classes from "./MainContainer.module.css";
+import classes from "./LongMainContainer.module.css";
 
-function MainContainer(props) {
+function LongMainContainer(props) {
+  var flow = props.gridFlow? "": classes.gridFlowCol;
   return (
     <Fragment>
-      <div className={classes.mainContainer}> {props.children} </div>
+      <div className={`${classes.mainContainer} ${flow}`}> {props.children} </div>
       {props.title && <div className={classes.containerTitle}> {props.title} </div>}
       {props.buttonTitle && (
         <div className={classes.button}>
-          <Button type="submit" onClick={props.onClick}>
+          <Button onClick={props.onClick}>
             {props.buttonTitle}
           </Button>
         </div>
@@ -18,4 +19,4 @@ function MainContainer(props) {
   );
 }
 
-export default MainContainer;
+export default LongMainContainer;
