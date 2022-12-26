@@ -125,6 +125,7 @@ function Card(props) {
           theme={props.theme}
           showRevealPassword={props.showRevealPassword}
           disabled={props.disabled}
+          alt={props.alt}
         />
       </div>
       {error && (

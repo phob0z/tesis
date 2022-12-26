@@ -42,6 +42,7 @@ const Input = (props) => {
           value={props.value}
           onChange={props.onChange}
           disabled={props.disabled}
+          alt={props.alt}
         />
       );
       break;

@@ -15,6 +15,7 @@ function Profile() {
   const [userProfile, setUserProfile] = useState({ user });
   const [newPassword, setNewPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
+  const [avatarFile, setAvatarFile] = useState();
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -142,44 +143,42 @@ function Profile() {
     setIsLoading(true);
 
     try {
-      // const formData = new FormData();
-      // formData.append("filename", userProfile.avatar);
-      // formData.append("destination", "image");
-      // formData.append("create_thumbnail", true);
+      var formData = new FormData();
+      formData.append("image", avatarFile);
 
-      // var response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
-      //   {
-      //     formData,
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //       Accept: "application/json",
-      //       Authorization: token,
-      //     },
-      //   }
-      // );
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/profile`,
-        {
-          name: userProfile.name,
-          last_name: userProfile.last_name,
-          personal_phone: userProfile.personal_phone,
-          home_phone: userProfile.home_phone,
-          address: userProfile.address,
-          email: userProfile.email,
-          identification: userProfile.identification,
-          birthdate: userProfile.birthdate,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: token,
+      const response = await axios
+        .post(
+          `${process.env.REACT_APP_BACK_URL}/profile`,
+          {
+            name: userProfile.name,
+            last_name: userProfile.last_name,
+            personal_phone: userProfile.personal_phone,
+            home_phone: userProfile.home_phone,
+            address: userProfile.address,
+            email: userProfile.email,
+            identification: userProfile.identification,
+            birthdate: userProfile.birthdate,
           },
-        }
-      );
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: token,
+            },
+          }
+        )
+        .then(
+          await axios.post(
+            `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: token,
+              },
+            }
+          )
+        );
       setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
@@ -248,10 +247,12 @@ function Profile() {
             value={user.avatar}
             type="image"
             onChange={(image) => {
-              setUserProfile({ ...userProfile, avatar: image });
+              setUserProfile({ ...userProfile, avatar: image.base64 });
+              setAvatarFile(image.file);
             }}
             setError={setErrorAvatar}
             validation="image"
+            alt={`Imagen de ${user.name} ${user.last_name}`}
             // disabled={user.role !== "secretary"}
           />
         </SubContainer>

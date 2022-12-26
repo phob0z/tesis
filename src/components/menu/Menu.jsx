@@ -173,7 +173,7 @@ const Menu = () => {
           </Button>
         </div>
       </div>
-      <Photo src={user.avatar} alt={`Imagen de ${user.name_1}`} />
+      <Photo src={user.avatar} alt={`Imagen de ${user.name} ${user.last_name}`} />
     </div>
   );
 };
