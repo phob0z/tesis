@@ -7,10 +7,8 @@
   background: #000000bb;
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   max-width: 88%;
-  flex-grow: 1;
   display: grid;
-  /* grid-template-columns:repeat(auto-fit, 21rem); */
-  grid-template-rows: repeat(auto-fit, minmax(5rem, fit-content));
+  grid-template-rows: repeat(auto-fit, 2.5rem);
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;

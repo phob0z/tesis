@@ -3,14 +3,13 @@ import Button from "../atoms/Button";
 import classes from "./LongMainContainer.module.css";
 
 function LongMainContainer(props) {
-  var flow = props.gridFlow? "": classes.gridFlowCol;
   return (
     <Fragment>
-      <div className={`${classes.mainContainer} ${flow}`}> {props.children} </div>
+      <div className={classes.mainContainer}> {props.children} </div>
       {props.title && <div className={classes.containerTitle}> {props.title} </div>}
       {props.buttonTitle && (
         <div className={classes.button}>
-          <Button onClick={props.onClick}>
+          <Button type="submit" onClick={props.onClick}>
             {props.buttonTitle}
           </Button>
         </div>

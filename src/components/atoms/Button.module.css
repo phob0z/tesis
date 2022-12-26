@@ -54,3 +54,27 @@
   box-shadow: -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.25);
 }
 
+.editButton {
+  background: #6d1118;
+  border-radius: 0.625rem;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border: 0;
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 0.9rem;
+  color: #f3f3f3;
+  height: fit-content;
+  transition: 0.2s background-color;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.editButton:hover {
+  background-color: #A01B25;
+  cursor: pointer;
+}
+
+.editButton:active {
+  transform: translate(-0.1rem, 0.1rem);
+  box-shadow: -0.15rem 0.15rem 0.25rem rgba(0, 0, 0, 0.25);
+}

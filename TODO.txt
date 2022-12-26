@@ -44,3 +44,4 @@ La lógica de guardar/cargar instantaneamente esta un poco rara.
 En las rutas:
 Hacer chequeo del role para el ruteo... que student no pueda acceder a /students, /teachers, etc.
 
+Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes y pasarlas por className

@@ -1,0 +1,5 @@
+.student {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    height: fit-content;
+}

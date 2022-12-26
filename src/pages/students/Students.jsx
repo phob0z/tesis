@@ -3,13 +3,14 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import LongMainContainer from "../../components/container/LongMainContainer";
 import LongSubContainer from "../../components/container/LongSubContainer";
+import StudentCard from "./StudentCard";
 
 // import Card from "../../components/atoms/Card";
 
 function Students() {
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
-  const [students, setStudents] = useState({});
+  const [students, setStudents] = useState([]);
 
   const fetchStudents = useCallback(async () => {
     setIsLoading(true);
@@ -24,16 +25,16 @@ function Students() {
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
       const data = await response.json();
-      const students = {
-        "1758963050": {
+      const students = [
+        {
           name: "Leonel",
           last_name: "Molina",
           identification: "1758963050",
           course: "Curso",
           parallel: "Paralelo",
-          specialty: "Especialdiad",
+          specialty: "Especialidad",
         },
-        "1111111111": {
+        {
           name: "asdasd",
           last_name: "qweqwe",
           identification: "1111111111",
@@ -41,7 +42,7 @@ function Students() {
           parallel: "Paralelo2",
           specialty: "Especialidad2",
         },
-        "2222222222": {
+        {
           name: "ASDASD",
           last_name: "QWEQWE",
           identification: "2222222222",
@@ -49,8 +50,72 @@ function Students() {
           parallel: "Paralelo3",
           specialty: "Especialidad3",
         },
-      };
-      setStudents({ ...students });
+        {
+          name: "Leonel",
+          last_name: "Molina",
+          identification: "3333333333",
+          course: "Curso",
+          parallel: "Paralelo",
+          specialty: "Especialidad",
+        },
+        {
+          name: "asdasd",
+          last_name: "qweqwe",
+          identification: "4444444444",
+          course: "Curso2",
+          parallel: "Paralelo2",
+          specialty: "Especialidad2",
+        },
+        {
+          name: "ASDASD",
+          last_name: "QWEQWE",
+          identification: "5555555555",
+          course: "Curso3",
+          parallel: "Paralelo3",
+          specialty: "Especialidad3",
+        },
+        {
+          name: "Leonel",
+          last_name: "Molina",
+          identification: "6666666666",
+          course: "Curso",
+          parallel: "Paralelo",
+          specialty: "Especialidad",
+        },
+        {
+          name: "asdasd",
+          last_name: "qweqwe",
+          identification: "7777777777",
+          course: "Curso2",
+          parallel: "Paralelo2",
+          specialty: "Especialidad2",
+        },
+        {
+          name: "ASDASD",
+          last_name: "QWEQWE",
+          identification: "88888888888",
+          course: "Curso3",
+          parallel: "Paralelo3",
+          specialty: "Especialidad3",
+        },
+        {
+          name: "ASDASD1",
+          last_name: "QWEQWE1",
+          identification: "99999999999",
+          course: "Curso3",
+          parallel: "Paralelo3",
+          specialty: "Especialidad3",
+        },
+        {
+          name: "ASDASD2",
+          last_name: "QWEQWE2",
+          identification: "00000000000",
+          course: "Curso3",
+          parallel: "Paralelo3",
+          specialty: "Especialidad3",
+        },
+      ];
+      setStudents([...students]);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
@@ -68,50 +133,28 @@ function Students() {
   };
 
   return (
-      <LongMainContainer title="Estudiantes" buttonTitle="Guardar">
+    <LongMainContainer title="Estudiantes" buttonTitle="Guardar">
+      {students.length === 0 ? (
         <LongSubContainer>
-        ASD
+          No se encontraron estudiantes con esos parámetros.
         </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-        <LongSubContainer>
-        ASD
-        </LongSubContainer>
-      </LongMainContainer>
+      ) : (
+        students.map((student) => {
+          return (
+            <LongSubContainer key={student.identification}>
+              <StudentCard
+                name={student.name}
+                last_name={student.last_name}
+                identification={student.identification}
+                course={student.course}
+                parallel={student.parallel}
+                specialty={student.specialty}
+              />
+            </LongSubContainer>
+          );
+        })
+      )}
+    </LongMainContainer>
   );
 }
 
