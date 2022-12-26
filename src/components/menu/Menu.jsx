@@ -122,7 +122,13 @@ const Menu = () => {
       await axios.post(
         `${process.env.REACT_APP_BACK_URL}/logout`,
         {},
-        { headers: { accept: "application/json", authorization: token } }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
       );
       logout();
     } catch (error) {

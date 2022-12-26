@@ -83,12 +83,16 @@ const Login = () => {
     }
 
     setIsLoading(true);
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/login`,
         { identification, password },
-        { headers: { accept: "application/json" } }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
       );
       const { access_token, token_type, user, avatar } = response.data.data;
       user["avatar"] = avatar;

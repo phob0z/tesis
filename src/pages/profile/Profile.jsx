@@ -9,7 +9,7 @@ import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/atoms/Card";
 
 function Profile() {
-  const { user, setProfile } = useContext(AuthContext);
+  const { user, token, setProfile } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [userProfile, setUserProfile] = useState({ user });
@@ -28,37 +28,27 @@ function Profile() {
   const [error, setError] = useState(false);
 
   const fetchProfile = useCallback(async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BACK_URL}/profile`,
-        // { method: "GET" },
-        { user },
-        { headers: { accept: "application/json" } }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
       );
-      const { profile } = response.data.data;
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      // const response = await fetch("https://swapi.dev/api/people/");
-      // const data = await response.json();
-      // const profile = {
-      //   name: "Leonel",
-      //   last_name: "Molina",
-      //   identification: "1758963050",
-      //   birthdate: "1988-06-18",
-      //   email: "leonel@gmail.com",
-      //   home_phone: "123456789",
-      //   personal_phone: "1234567890",
-      //   address: "Quito",
-      // };
-      setUserProfile({ ...user, ...profile });
+      const { user, avatar } = response.data.data;
+      setUserProfile({ ...user, avatar: avatar });
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
     setIsLoading(false);
-  }, [setHasError, setIsLoading, setModal, user]);
+  }, [setHasError, setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchProfile();
@@ -101,7 +91,7 @@ function Profile() {
     errorPassword,
   ]);
 
-  const changePassword = () => {
+  const changePassword = async () => {
     if (errorPassword.error || !newPassword || newPassword !== confirmation) {
       setModal({
         title: "Error en CAMBIAR CONTRASEÑA",
@@ -117,24 +107,29 @@ function Profile() {
     setIsLoading(true);
 
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/change-password/`,
-      //   { method: "POST" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/update-password`,
+        { password: newPassword, password_confirmation: confirmation },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setIsLoading(false);
+      setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
-    setIsLoading(false);
-    console.log("TODO CORRECTO, Cambiar password");
+    setHasError(true);
+    setNewPassword("");
+    setConfirmation("");
   };
 
-  const saveProfile = (event) => {
+  const saveProfile = async (event) => {
     event.preventDefault();
     if (error) {
       setModal({
@@ -147,23 +142,53 @@ function Profile() {
     setIsLoading(true);
 
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/profile/`,
-      //   { method: "POST" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
+      // const formData = new FormData();
+      // formData.append("filename", userProfile.avatar);
+      // formData.append("destination", "image");
+      // formData.append("create_thumbnail", true);
+
+      // var response = await axios.post(
+      //   `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+      //   {
+      //     formData,
+      //   },
+      //   {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //       Accept: "application/json",
+      //       Authorization: token,
+      //     },
+      //   }
       // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/profile`,
+        {
+          name: userProfile.name,
+          last_name: userProfile.last_name,
+          personal_phone: userProfile.personal_phone,
+          home_phone: userProfile.home_phone,
+          address: userProfile.address,
+          email: userProfile.email,
+          identification: userProfile.identification,
+          birthdate: userProfile.birthdate,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setIsLoading(false);
+      setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
-    setIsLoading(false);
-    console.log("TODO CORRECTO, guardar");
+    setHasError(true);
     setProfile({ ...userProfile });
-    // setProfile(user);
+    user.avatar = userProfile.avatar;
   };
 
   return (
