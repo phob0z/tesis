@@ -97,13 +97,12 @@ const Login = () => {
       const { access_token, token_type, user, avatar } = response.data.data;
       user["avatar"] = avatar;
       login(user, `${token_type} ${access_token}`);
+      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
-
-    setIsLoading(false);
   };
 
   return (
