@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import AccountIcon from "../../components/icons/AccountIcon";
@@ -15,60 +15,55 @@ function ForgotPassword() {
 
   const navigate = useNavigate();
 
-  const [identificacion, setidentificacion] = useState("");
-  const [identificacionTouched, setidentificacionTouched] = useState(false);
-  const [identificacionError, setidentificacionError] = useState("");
+  const [identification, setidentification] = useState("");
+  const [identificationTouched, setidentificationTouched] = useState(false);
+  const [identificationError, setidentificationError] = useState("");
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    if (identificacion.trim() === "")
-      setidentificacionError("Debe ingresar una identificación");
-    else if (identificacion.trim().length < 10)
-      setidentificacionError(
+    if (identification.trim() === "")
+      setidentificationError("Debe ingresar una identificación");
+    else if (identification.trim().length < 10)
+      setidentificationError(
         "La identificación debe tener al menos 10 caracteres"
       );
-    else if (identificacion.trim().length > 20)
-      setidentificacionError(
+    else if (identification.trim().length > 20)
+      setidentificationError(
         "La identificación debe tener menos de 20 caracteres"
       );
-    else if (!identificacion.match(/^\w+$/))
-      setidentificacionError("Debe ingresar una identificación válida");
-    else setidentificacionError("");
-  }, [identificacion]);
+    else if (!identification.match(/^\w+$/))
+      setidentificationError("Debe ingresar una identificación válida");
+    else setidentificationError("");
+  }, [identification]);
 
-  const identificacionShowError =
-    identificacionTouched && !!identificacionError;
+  const identificationShowError =
+    identificationTouched && !!identificationError;
 
-  const identificacionChangeHandler = (event) => {
-    setidentificacionTouched(true);
-    setidentificacion(event.target.value);
+  const identificationChangeHandler = (event) => {
+    setidentificationTouched(true);
+    setidentification(event.target.value);
   };
 
-  const identificacionBlurHandler = () => {
-    setidentificacionTouched(true);
+  const identificationBlurHandler = () => {
+    setidentificationTouched(true);
   };
 
-  const onForgotPassword = (event) => {
+  const onForgotPassword = async (event) => {
     event.preventDefault();
-    setidentificacionTouched(true);
+    setidentificationTouched(true);
 
-    if (identificacionError) {
-      setModal({ title: "ERROR", message: identificacionError });
+    if (identificationError) {
+      setModal({ title: "ERROR", message: identificationError });
       setHasError(true);
       return;
     }
 
     setIsLoading(true);
 
-    /*
-      AQUÍ, LÓGICA PARA RECUPERAR LA CONTRASEÑA!!!
-      - Con async await.
-      - Si no hay errores cambiar hacer: setSent(true)
-
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/forgotPassword",
-        { correo },
+        `${process.env.REACT_APP_BACK_URL}/forgot-password`,
+        { identification },
         { headers: { accept: "application/json" } }
       );
       // navigate("/");
@@ -76,11 +71,10 @@ function ForgotPassword() {
       console.log("Error: ", error.response.data.message);
     }
 
-    */
-    setSent(true);
+    setIsLoading(false);
+    // setSent(true);
   };
 
-  setIsLoading(false);
 
   const onVolver = () => {
     navigate("/login");
@@ -98,17 +92,17 @@ function ForgotPassword() {
             Ingrese su identificación para recuperar la contraseña
           </span>
           <Input
-            value={identificacion}
+            value={identification}
             label={"Identificación"}
-            onChange={identificacionChangeHandler}
-            onBlur={identificacionBlurHandler}
+            onChange={identificationChangeHandler}
+            onBlur={identificationBlurHandler}
             maxLength="20"
             color="red"
           >
             <AccountIcon color="white" />
           </Input>
-          {identificacionShowError && (
-            <label className={classes.error}>{identificacionError}</label>
+          {identificationShowError && (
+            <label className={classes.error}>{identificationError}</label>
           )}
           <span className={classes.boxFooter}>&nbsp;</span>
         </div>

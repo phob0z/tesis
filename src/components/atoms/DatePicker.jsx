@@ -53,7 +53,7 @@ function DatePicker(props) {
         onChange={(date) => setDate(date)}
         locale="es"
         className={classes.inputDate}
-        minDate={new Date("1950/01/01")}
+        minDate={new Date("1980/01/01")}
         maxDate={new Date()}
         fixedHeight
         disabled={props.disabled}

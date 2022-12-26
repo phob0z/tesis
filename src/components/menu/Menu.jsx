@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -13,7 +13,7 @@ import SubMenu from "./SubMenu";
 import { useMemo } from "react";
 
 const Menu = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, token, logout } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [showSubMenu, setShowSubMenu] = useState(false);
@@ -119,11 +119,11 @@ const Menu = () => {
   const onLogout = async () => {
     setIsLoading(true);
     try {
-      // await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/logout/`,
-      //   {},
-      //   { headers: { accept: "application/json", authorization: token } }
-      // );
+      await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/logout`,
+        {},
+        { headers: { accept: "application/json", authorization: token } }
+      );
       logout();
     } catch (error) {
       setIsLoading(false);

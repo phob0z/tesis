@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -27,32 +28,33 @@ function Profile() {
   const [error, setError] = useState(false);
 
   const fetchProfile = useCallback(async () => {
-    setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/profile/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/profile`,
+        // { method: "GET" },
+        { user },
+        { headers: { accept: "application/json" } }
+      );
+      const { profile } = response.data.data;
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data = await response.json();
-      const profile = {
-        name: "Leonel",
-        last_name: "Molina",
-        identification: "1758963050",
-        birthdate: "1988-06-18",
-        email: "leonel@gmail.com",
-        home_phone: "123456789",
-        personal_phone: "1234567890",
-        address: "Quito",
-      };
+      // const response = await fetch("https://swapi.dev/api/people/");
+      // const data = await response.json();
+      // const profile = {
+      //   name: "Leonel",
+      //   last_name: "Molina",
+      //   identification: "1758963050",
+      //   birthdate: "1988-06-18",
+      //   email: "leonel@gmail.com",
+      //   home_phone: "123456789",
+      //   personal_phone: "1234567890",
+      //   address: "Quito",
+      // };
       setUserProfile({ ...user, ...profile });
     } catch (error) {
+      console.log(error);
       setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
     setIsLoading(false);

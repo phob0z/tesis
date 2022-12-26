@@ -83,6 +83,7 @@
   font-family: "Open Sans";
   font-weight: 900;
   font-size: 0.8rem;
+  z-index: -1;
 }
 
 .inputContainer.red.focused input {

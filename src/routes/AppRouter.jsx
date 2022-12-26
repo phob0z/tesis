@@ -6,8 +6,8 @@ import PrivateRoute from "./PrivateRoute";
 
 import AuthProvider from "../contexts/auth/AuthProvider";
 
-// import Login from "../pages/auth/Login";
-import Login from "../pages/auth/Login2";
+import Login from "../pages/auth/Login";
+// import Login from "../pages/auth/Login2";
 import Menu from "../components/menu/Menu";
 import Profile from "../pages/profile/Profile";
 import ForgotPassword from "../pages/auth/ForgotPassword";

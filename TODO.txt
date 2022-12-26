@@ -38,10 +38,21 @@ resetPassword:
 Campo confirmation no tiene validación
 
 Profile:
-Campo dirección hablar con Raúl del tamaño maximo.
+Campo dirección hablar con Raúl del tamaño maximo (me dijo la Ing. Ivonne)
 La lógica de guardar/cargar instantaneamente esta un poco rara.
 
 En las rutas:
 Hacer chequeo del role para el ruteo... que student no pueda acceder a /students, /teachers, etc.
 
 Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes y pasarlas por className
+
+ForgotPassword:
+No me llega el correo
+
+Validacion:
+Identificacion mas de 5 menos de 15 - Me dijo la Ing. Ivonne.
+
+Fecha límite para editar campos de notas (Un campo adicional en cada nota para la fecha máxima de edición)
+(Más simple, una fecha para finalización de quimestre y que ahí se bloqueen los campos)
+
+Páginación...

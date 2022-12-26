@@ -22,10 +22,10 @@ function Card(props) {
         break;
       case "identification":
         if (!props.value) setError("El campo no puede estar vacío");
-        else if (props.value.trim().length < 10)
-          setError("Debe tener al menos 10 caracteres");
-        else if (props.value.trim().length > 20)
-          setError("Debe tener menos de 20 caracteres");
+        else if (props.value.trim().length < 5)
+          setError("Debe tener al menos 5 caracteres");
+        else if (props.value.trim().length > 15)
+          setError("Debe tener menos de 15 caracteres");
         else if (!props.value.match(/^\w+$/))
           setError("Solo puede contener letras o números");
         break;

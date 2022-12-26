@@ -15,28 +15,28 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
-  const [identificacion, setIdentificacion] = useState("");
-  const [identificacionTouched, setIdentificacionTouched] = useState(false);
+  const [identification, setIdentificacion] = useState("");
+  const [identificationTouched, setIdentificacionTouched] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const [identificacionError, setIdentificacionError] = useState("");
+  const [identificationError, setIdentificacionError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
-    if (identificacion.trim() === "")
+    if (identification.trim() === "")
       setIdentificacionError("Debe ingresar una identificación");
-    else if (identificacion.trim().length < 10)
+    else if (identification.trim().length < 5)
       setIdentificacionError(
-        "La identificación debe tener al menos 10 caracteres"
+        "La identificación debe tener al menos 5 caracteres"
       );
-    else if (identificacion.trim().length > 20)
+    else if (identification.trim().length > 15)
       setIdentificacionError(
-        "La identificación debe tener menos de 20 caracteres"
+        "La identificación debe tener menos de 15 caracteres"
       );
-    else if (!identificacion.match(/^\w+$/))
+    else if (!identification.match(/^\w+$/))
       setIdentificacionError("Debe ingresar una identificación válida");
     else setIdentificacionError("");
-  }, [identificacion]);
+  }, [identification]);
 
   useEffect(() => {
     if (password.trim() === "")
@@ -44,16 +44,16 @@ const Login = () => {
     else setPasswordError("");
   }, [password]);
 
-  const identificacionShowError =
-    identificacionTouched && !!identificacionError;
+  const identificationShowError =
+    identificationTouched && !!identificationError;
   const passwordShowError = passwordTouched && !!passwordError;
 
-  const identificacionChangeHandler = (event) => {
+  const identificationChangeHandler = (event) => {
     setIdentificacionTouched(true);
     setIdentificacion(event.target.value);
   };
 
-  const identificacionBlurHandler = () => {
+  const identificationBlurHandler = () => {
     setIdentificacionTouched(true);
   };
 
@@ -71,11 +71,11 @@ const Login = () => {
     setIdentificacionTouched(true);
     setPasswordTouched(true);
 
-    if (identificacionError || passwordError) {
+    if (identificationError || passwordError) {
       setModal({
         title: "ERROR",
-        message: identificacionError
-          ? identificacionError + "\n" + passwordError
+        message: identificationError
+          ? identificationError + "\n" + passwordError
           : passwordError,
       });
       setHasError(true);
@@ -85,33 +85,13 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // let user = {
-      //   name: "Leonel",
-      //   last_name: "Molina",
-      //   role: "secretary",
-      //   avatar: "",
-      // };
-      // let avatar = "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
-      // let token_type = "Bearer";
-      // let access_token = "1234567890";
-      // user['avatar'] = avatar;
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/login/`,
-        // "http://localhost:8000/api/login",
-        { identificacion, password },
+        `${process.env.REACT_APP_BACK_URL}/login`,
+        { identification, password },
         { headers: { accept: "application/json" } }
       );
       const { access_token, token_type, user, avatar } = response.data.data;
-      console.log(
-        "USER: " +
-          user +
-          "AT: " +
-          access_token +
-          "TT: " +
-          token_type +
-          "Avatar: " +
-          avatar
-      );
+      user["avatar"] = avatar;
       login(user, `${token_type} ${access_token}`);
     } catch (error) {
       setIsLoading(false);
@@ -131,16 +111,16 @@ const Login = () => {
         <div className={classes.box}>
           <span className={classes.boxTitle}>Ingrese para continuar</span>
           <Input
-            value={identificacion}
+            value={identification}
             label={"Identificación"}
-            onChange={identificacionChangeHandler}
-            onBlur={identificacionBlurHandler}
+            onChange={identificationChangeHandler}
+            onBlur={identificationBlurHandler}
             maxLength="20"
           >
             <AccountIcon />
           </Input>
-          {identificacionShowError && (
-            <label className={classes.error}>{identificacionError}</label>
+          {identificationShowError && (
+            <label className={classes.error}>{identificationError}</label>
           )}
           <Input
             value={password}
