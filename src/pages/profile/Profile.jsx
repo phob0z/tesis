@@ -255,7 +255,7 @@ function Profile() {
             setError={setErrorAvatar}
             validation="image"
             alt={`Imagen de ${user.name} ${user.last_name}`}
-            // disabled={user.role !== "secretary"}
+            disabled={user.role !== "secretary"}
           />
         </SubContainer>
         <SubContainer subTitle="INFO DE CONTACTO">

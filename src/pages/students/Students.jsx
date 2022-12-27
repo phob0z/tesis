@@ -1,4 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import AlertContext from "../../contexts/alert/AlertContext";
 
 import LongMainContainer from "../../components/container/LongMainContainer";
@@ -6,9 +8,53 @@ import LongSubContainer from "../../components/container/LongSubContainer";
 import StudentCard from "./StudentCard";
 
 function Students() {
+  const navigate = useNavigate();
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [students, setStudents] = useState([]);
+  const [filters, setFilters] = useState([]);
+
+  const [identification, setIdentification] = useState("");
+  const [search, setSearch] = useState({
+    identification: "",
+    course: "",
+    parallel: "",
+    specialty: "",
+    year: "2022",
+  });
+
+  const fetchFilters = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      // const response = await axios.post(
+      //   `${process.env.REACT_APP_BACK_URL}/Students/`,
+      //   { method: "GET" },
+      //   { user },
+      //   { headers: { accept: "application/json" } }
+      // );
+      // const { access_token, token_type, user, avatar } = response.data.data;
+      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
+      const response = await fetch("https://swapi.dev/api/people/");
+      // eslint-disable-next-line
+      const data = await response.json();
+      const filters = [
+        { filter: "course", label: "Curso", options: ["8vo", "9no", "10mo"] },
+        { filter: "parallel", label: "Paralelo", options: ["A", "B", "C"] },
+        {
+          filter: "specialty",
+          label: "Especialidad",
+          options: ["asd", "qwe", "zxc1ASDASDASD"],
+        },
+        { filter: "year", label: "Periodo", options: ["2022", "2023", "2024"] },
+      ];
+      setFilters([...filters]);
+    } catch (error) {
+      setIsLoading(false);
+      setModal({ title: "ERROR", message: error });
+      setHasError(true);
+    }
+    setIsLoading(false);
+  }, [setHasError, setIsLoading, setModal]);
 
   const fetchStudents = useCallback(async () => {
     setIsLoading(true);
@@ -22,6 +68,7 @@ function Students() {
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
+      // eslint-disable-next-line
       const data = await response.json();
       const students = [
         {
@@ -211,15 +258,44 @@ function Students() {
   }, [setHasError, setIsLoading, setModal]);
 
   useEffect(() => {
+    fetchFilters();
     fetchStudents();
-  }, [fetchStudents]);
+  }, [fetchFilters, fetchStudents]);
+
+  useEffect(() => {
+    onChange();
+    // eslint-disable-next-line
+  }, [search]);
 
   const newStudent = (event) => {
-    console.log("Cambiar ruta /newStudent");
+    navigate("newStudent");
+  };
+
+  const onSearch = () => {
+    setSearch((prevState) => {
+      return { ...prevState, identification: identification };
+    });
+  };
+
+  const onChange = () => {
+    console.log("Hacer el pedido al back con los filtros");
+    fetchStudents();
   };
 
   return (
-    <LongMainContainer title="Estudiantes" buttonTitle="Nuevo" onClick={()=>{console.log("Ir a Nuevo");}}>
+    <LongMainContainer
+      title="Estudiantes"
+      buttonTitle="Nuevo"
+      onClick={newStudent}
+      onSearch={onSearch}
+      showSearchInput
+      filters={filters}
+      onChange={onChange}
+      identification={identification}
+      onIdentificationChange={(event) => {
+        setIdentification(event.target.value);
+      }}
+    >
       {students.length === 0 ? (
         <LongSubContainer>
           No se encontraron estudiantes con esos parámetros.

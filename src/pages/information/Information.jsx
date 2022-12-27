@@ -27,6 +27,7 @@ function Information() {
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
+      // eslint-disable-next-line
       const data = await response.json();
       const Information = {
         name: "Miguel de Santiago",
@@ -92,7 +93,7 @@ function Information() {
 
   return (
     <form onSubmit={saveInformation}>
-      <MainContainer title="Perfil" buttonTitle="Guardar" type="submit">
+      <MainContainer title="Información" buttonTitle="Guardar" type="submit">
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombre de la intitución"

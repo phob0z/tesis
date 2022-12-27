@@ -61,6 +61,34 @@ const Input = (props) => {
         />
       );
       break;
+    case "select":
+      input = (
+        <select
+          onChange={props.onChange}
+          className={classes.filter}
+          id={props.label}
+          defaultValue=""
+        >
+          <option className={classes.option} value="" disabled>
+            {props.label}
+          </option>
+          {props.filter !== "year" ? (
+            <option className={classes.option} value="">
+              Todos
+            </option>
+          ) : (
+            ""
+          )}
+          {props.options.map((option) => {
+            return (
+              <option className={classes.option} key={option} value={option}>
+                {option}
+              </option>
+            );
+          })}
+        </select>
+      );
+      break;
     default:
       input = (
         <input

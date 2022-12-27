@@ -9,15 +9,15 @@ import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/atoms/Card";
 
-function StudentDetail() {
+function EditStudent() {
   const params = useParams();
 
-  const { user, token} = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
   const [userProfile, setUserProfile] = useState({ user });
 
-  const fetchProfile = useCallback(async () => {
+  const fetchFullStudent = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -31,7 +31,11 @@ function StudentDetail() {
         }
       );
       const { user, avatar } = response.data.data;
-      setUserProfile({ ...user, avatar: avatar, identification: params.identification });
+      setUserProfile({
+        ...user,
+        avatar: avatar,
+        identification: params.identification,
+      });
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -41,8 +45,8 @@ function StudentDetail() {
   }, [setHasError, setIsLoading, setModal, token]);
 
   useEffect(() => {
-    fetchProfile();
-  }, [fetchProfile]);
+    fetchFullStudent();
+  }, [fetchFullStudent]);
 
   return (
     <MainContainer title="Estudiante" buttonTitle="Guardar" type="submit">
@@ -65,4 +69,4 @@ function StudentDetail() {
   );
 }
 
-export default StudentDetail;
+export default EditStudent;

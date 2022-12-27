@@ -1,239 +1,3 @@
-/* RED */
-
-.container.red {
-  display: flex;
-  border-radius: 0.625rem;
-  border: 0.0625rem transparent solid;
-  margin: 0.625rem 0 0.625rem 0;
-  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  width: 100%;
-  height: 2.6rem;
-  background: #a01b2526;
-}
-
-.container.red:hover {
-  border: 0.0625rem #a01b25 solid;
-}
-
-.container.red.focused {
-  border: 0.0625rem #a01b25 solid;
-}
-
-.imageBox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #a01b25;
-  border-radius: 0.625rem 0 0 0.625rem;
-  min-width: 2.6rem;
-  margin-top: -0.08rem;
-  margin-left: -0.08rem;
-  margin-bottom: -0.08rem;
-}
-
-.imageBoxIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f3f3f3;
-  cursor: default;
-}
-
-.revealPassword.red {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2.6rem;
-  max-width: 2.6rem;
-  min-height: 2.6rem;
-  max-height: 2.6rem;
-  color: rgba(160, 27, 37, 0.4);
-}
-
-.revealPassword.red:hover {
-  cursor: pointer;
-  color: rgba(160, 27, 37, 0.8);
-}
-
-.inputContainer.red {
-  display: flex;
-  flex-direction: column;
-  border-radius: 0 0.625rem 0.625rem 0;
-  width: 100%;
-}
-
-.inputContainer.red input {
-  border: 0;
-  min-height: 100%;
-  background-color: transparent;
-  margin-top: -0.1rem;
-  padding-left: 1rem;
-  transition: 0.1s padding ease-in-out;
-  font-family: "Open Sans";
-  font-size: 0.8rem;
-  color: #000000bb;
-  font-weight: 900;
-}
-
-.inputContainer.red input + label {
-  margin-top: -3.2rem;
-  margin-left: 0.92rem;
-  opacity: 0;
-  transition: 0.1s all ease-in-out;
-  font-family: "Open Sans";
-  font-weight: 900;
-  font-size: 0.8rem;
-}
-
-.inputContainer.red.focused input {
-  padding-top: 0.5rem;
-  outline: 0;
-}
-
-.inputContainer.red.focused input + label {
-  padding-top: 0.3rem;
-  opacity: 1;
-  color: #6d1118;
-}
-
-/* BLUE */
-
-.container.blue {
-  display: flex;
-  border-radius: 0.625rem;
-  border: 0.0625rem transparent solid;
-  margin: 0.625rem 0 0.625rem 0;
-  height: 2rem;
-  background: #208ccd26;
-  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  width: 100%;
-}
-
-.container.blue:hover {
-  border: 0.0625rem #208ccd solid;
-}
-
-.container.blue.focused {
-  border: 0.0625rem #208ccd solid;
-}
-
-.revealPassword.blue {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  max-width: 2rem;
-  min-height: 2rem;
-  max-height: 2rem;
-  color: rgba(32, 140, 205, 0.4);
-}
-
-.revealPassword.blue:hover {
-  cursor: pointer;
-  color: rgba(32, 140, 205, 0.8);
-}
-
-.inputContainer.blue {
-  display: flex;
-  flex-direction: column;
-  border-radius: 0 0.625rem 0.625rem 0;
-  width: 100%;
-  font-weight: 900;
-}
-
-.inputContainer.blue input {
-  border: 0;
-  min-height: 100%;
-  background-color: transparent;
-  margin-top: -0.1rem;
-  padding-left: 1rem;
-  font-family: "Open Sans";
-  font-weight: 900;
-  font-size: 0.8rem;
-  color: #000000bb;
-  font-weight: 900;
-}
-
-.inputContainer.blue input + label {
-  display: none;
-}
-
-.inputContainer.blue.focused input {
-  outline: 0;
-}
-
-.inputContainer.blue.focused input + label {
-  display: none;
-}
-
-/* SIMPLE */
-
-.container.simple {
-  display: flex;
-  border-radius: 0.625rem;
-  border: 0.0625rem transparent solid;
-  margin: 0.625rem 0 0.625rem 0;
-  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  width: 100%;
-  /* height: 2.6rem; */
-  height: 2rem;
-  background: rgba(160, 27, 37, 0.15);
-}
-
-.container.simple:hover {
-  border: 0.0625rem #a01b25 solid;
-}
-
-.container.simple.focused {
-  border: 0.0625rem #a01b25 solid;
-}
-
-.revealPassword.simple {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  max-width: 2rem;
-  min-height: 2rem;
-  max-height: 2rem;
-  color: rgba(160, 27, 37, 0.4);
-}
-
-.revealPassword.simple:hover {
-  cursor: pointer;
-  color: rgba(160, 27, 37, 0.8);
-}
-
-.inputContainer.simple {
-  display: flex;
-  width: 100%;
-}
-
-.inputContainer.simple input {
-  border: 0;
-  min-height: 100%;
-  background-color: transparent;
-  margin-top: -0.1rem;
-  padding-left: 1rem;
-  font-family: "Open Sans";
-  font-weight: 900;
-  font-size: 0.8rem;
-  color: #000000bb;
-  width: 100%;
-}
-
-.inputContainer.simple input + label {
-  display: none;
-}
-
-.inputContainer.simple.focused input {
-  outline: 0;
-}
-
-.inputContainer.simple.focused input + label {
-  display: none;
-}
-
 .inputDate {
   margin-top: 0.38rem !important;
   outline: 0;
@@ -249,12 +13,12 @@
   max-width: 2rem;
   min-height: 2rem;
   max-height: 2rem;
-  color: #a01b2566;
+  color: #b47378;
   cursor: pointer;
 }
 
 .datePicker:hover {
-  color: rgba(160, 27, 37, 0.8);
+  color: #a01b25;
 }
 
 .navigationArrows {
@@ -272,7 +36,7 @@
 }
 
 .navigationArrows ~ select {
-  background: #cebabc;
+  background: #c1adaf;
   border-radius: 0.3rem;
   border: 0;
   font-size: 1rem;
@@ -283,7 +47,7 @@
 
 .navigationArrows ~ select option {
   color: #2d2d2d;
-  background: #cebabc;
+  background: #c1adaf;
   font-size: 0.9rem;
   font-family: "Open Sans";
   font-weight: 900;

@@ -56,3 +56,14 @@ Fecha límite para editar campos de notas (Un campo adicional en cada nota para 
 (Más simple, una fecha para finalización de quimestre y que ahí se bloqueen los campos)
 
 Páginación...
+
+Icons:
+Light: b47378
+Hover: a73941
+
+"Blanco": f3f3f3
+Rojo: a01b25
+
+Input fondo: c1adaf
+
+Letras "negro": 414141

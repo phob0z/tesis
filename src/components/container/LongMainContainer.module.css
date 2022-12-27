@@ -14,7 +14,9 @@
   overflow-x: hidden;
   border: 1.6rem transparent solid;
   border-top: 2rem transparent solid;
-  border-radius: 1.25rem; -moz-border-radius: 1.25rem; -webkit-border-radius: 1.25rem;
+  border-radius: 1.25rem;
+  -moz-border-radius: 1.25rem;
+  -webkit-border-radius: 1.25rem;
   grid-gap: 0.5rem;
 }
 
@@ -27,8 +29,9 @@
   transform: translate(-50%, -50%);
   text-align: center;
   padding: 0.4rem;
-  padding-right: 6rem;
-  padding-left: 6rem;
+  /* padding-right: 3rem;
+  padding-left: 3rem; */
+  width: 12rem;
   font-family: "Carter One";
   font-style: normal;
   font-size: 1.4rem;
@@ -60,4 +63,34 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.searchInput {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 25%;
+  left: 8%;
+  transform: translateY(-50%);
+  width: 11rem;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 25%;
+  right: 8%;
+  transform: translateY(-50%);
+}
+
+.filter {
+  margin-left: 0.5rem;
+}
+
+.label {
+  position: absolute;
+  top: -1.5rem;
+  z-index: -1;
+  cursor: default;
 }

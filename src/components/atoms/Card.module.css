@@ -20,7 +20,7 @@
   font-weight: 400;
   font-size: 1.1rem;
   align-items: center;
-  color: #000000bb;
+  color: #414141;
   margin-bottom: -0.4rem;
   padding-left: 0.3rem;
   text-shadow: -0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
@@ -29,14 +29,8 @@
 .inputBox {
   display: flex;
   align-items: center;
+  margin: 0.625rem 0 0.625rem 0;
 }
-
-/* .error {
-  display: flex;
-  align-items: center;
-  align-self: center;
-  color: red;
-} */
 
 .error {
   margin-top: -0.5rem;

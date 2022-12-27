@@ -25,7 +25,7 @@
 }
 
 .box {
-  background: rgba(108, 108, 108, 0.15);
+  background: #c6c6c6;
   padding: 0.6rem 2.5rem 0.6rem 2.5rem;
   width: 23rem;
   border-radius: 1.875rem;
@@ -42,7 +42,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 0.85rem;
-  color: #2d2d2d;
+  color: #414141;
 }
 
 .boxFooter {
@@ -51,7 +51,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 0.7rem;
-  color: #2d2d2d;
+  color: #414141;
   text-decoration: none;
 }
 
