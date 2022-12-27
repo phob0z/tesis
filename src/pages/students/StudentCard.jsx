@@ -1,17 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/atoms/Button";
 import classes from "./StudentCard.module.css";
 
 function StudentCard(props) {
+  const navigate = useNavigate();
+
+  const onEditHandler = () => {
+    navigate(props.identification);
+  }
   return (
     <div className={classes.student}>
       <div className={classes.name}>
-        {props.name} {props.last_name}
+        {props.name.split(" ")[0]} {props.last_name.split(" ")[0]}
       </div>
-      <div className={classes.course}>{props.course}</div>
-      <div className={classes.parallel}>{props.parallel}</div>
-      <div className={classes.specialty}>{props.specialty}</div>
-      <Button className="editButton">Editar</Button>
+      <div>{props.identification}</div>
+      <div>{props.course}</div>
+      <div>{props.parallel}</div>
+      <div>{props.specialty}</div>
+      <div>
+        <Button className="editButton" onClick={onEditHandler}>Editar</Button>
+      </div>
     </div>
   );
 }
