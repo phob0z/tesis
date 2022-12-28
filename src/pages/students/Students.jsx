@@ -278,7 +278,7 @@ function Students() {
   };
 
   const onChange = () => {
-    console.log("Hacer el pedido al back con los filtros");
+    console.log("Hacer el pedido al back con los nuevos parametros");
     fetchStudents();
   };
 

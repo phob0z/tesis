@@ -27,9 +27,10 @@
   transform: translate(-50%, -50%);
   text-align: center;
   padding: 0.4rem;
-  /* padding-right: 6rem; */
-  /* padding-left: 6rem; */
-  width: 12rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  min-width: 12rem;
+  max-width: fit-content;
   font-family: "Carter One";
   font-style: normal;
   font-size: 1.4rem;
