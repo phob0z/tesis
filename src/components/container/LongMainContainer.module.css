@@ -9,7 +9,8 @@
   max-width: 88%;
   display: grid;
   grid-template-rows: repeat(auto-fit, 2.5rem);
-  width: 100%;
+  /* width: 100%; */
+  width: max-content;
   overflow-y: auto;
   overflow-x: hidden;
   border: 1.6rem transparent solid;
@@ -17,14 +18,14 @@
   border-radius: 1.25rem;
   -moz-border-radius: 1.25rem;
   -webkit-border-radius: 1.25rem;
-  grid-gap: 0.5rem;
+  row-gap: 0.5rem;
 }
 
 .containerTitle {
   position: absolute;
   background: #6d1119;
   border-radius: 0.625rem;
-  top: 25%;
+  top: 19%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -70,22 +71,22 @@
   align-items: center;
   position: absolute;
   top: 25%;
-  left: 8%;
-  transform: translateY(-50%);
-  width: 11rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 11rem; */
 }
 
-.filters {
+/* .filters {
   display: flex;
   align-items: center;
   position: absolute;
   top: 25%;
   right: 8%;
   transform: translateY(-50%);
-}
+} */
 
 .filter {
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .label {

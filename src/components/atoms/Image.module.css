@@ -1,3 +1,7 @@
+.imageInput {
+  width: 100%;
+}
+
 .imageBox {
   display: flex;
   justify-content: center;

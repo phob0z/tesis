@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./Image.module.css";
@@ -21,21 +21,13 @@ function Image(props) {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = function (event) {
         setImage(event.target.result);
-        props.onChange({base64: event.target.result, file: file});
+        props.onChange({ base64: event.target.result, file: file });
       };
-
-      // const file = URL.createObjectURL(event.target.files[0]);
-      // let reader = new FileReader();
-      // reader.readAsDataURL(event.target.files[0]);
-      // reader.onload = function (event) {
-      //   setImage(event.target.result);
-      //   props.onChange({avatar: event.target.result, file: file});
-      // };
     }
   };
 
   return (
-    <div>
+    <div className={classes.imageInput}>
       <label htmlFor={props.label}>Seleccionar</label>
       <input
         ref={chooseImage}

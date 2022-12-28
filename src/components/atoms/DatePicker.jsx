@@ -66,13 +66,7 @@ function DatePicker(props) {
           prevMonthButtonDisabled,
           nextMonthButtonDisabled,
         }) => (
-          <div
-            style={{
-              margin: 10,
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+          <div className={classes.navigation}>
             <span
               onClick={(event) => {
                 event.preventDefault();

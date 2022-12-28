@@ -21,6 +21,11 @@
   color: #a01b25;
 }
 
+.navigation {
+  margin: 10px;
+  display: flex;
+}
+
 .navigationArrows {
   display: flex;
   align-items: center;

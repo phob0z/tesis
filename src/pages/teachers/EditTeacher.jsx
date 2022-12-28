@@ -50,7 +50,7 @@ function EditStudent() {
   }, [fetchFullStudent]);
 
   return (
-    <MainContainer title="Estudiante" buttonTitle="Guardar" type="submit">
+    <MainContainer title="Profesor" buttonTitle="Guardar" type="submit">
       <SubContainer subTitle="INFO PERSONAL">
         <Card
           label="Identificación"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./Card.module.css";
-import Input from "./Input";
+import Input from "../atoms/Input";
 
 function Card(props) {
   const [inputTouched, setInputTouched] = useState(false);

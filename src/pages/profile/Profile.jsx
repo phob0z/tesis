@@ -6,7 +6,7 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/atoms/Card";
+import Card from "../../components/Cards/Card";
 
 function Profile() {
   const { user, token, setProfile } = useContext(AuthContext);

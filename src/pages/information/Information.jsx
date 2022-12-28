@@ -3,7 +3,7 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/atoms/Card";
+import Card from "../../components/Cards/Card";
 
 function Information() {
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);

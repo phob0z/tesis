@@ -7,7 +7,6 @@ import PrivateRoute from "./PrivateRoute";
 import AuthProvider from "../contexts/auth/AuthProvider";
 
 import Login from "../pages/auth/Login";
-// import Login from "../pages/auth/Login2";
 import Menu from "../components/menu/Menu";
 import Profile from "../pages/profile/Profile";
 import ForgotPassword from "../pages/auth/ForgotPassword";
@@ -23,6 +22,9 @@ import AlertContext from "../contexts/alert/AlertContext";
 import Students from "../pages/students/Students";
 import EditStudent from "../pages/students/EditStudent";
 import NewStudent from "../pages/students/NewStudent";
+import Teachers from "../pages/teachers/Teachers";
+import EditTeacher from "../pages/teachers/EditTeacher";
+import NewTeacher from "../pages/teachers/NewTeacher";
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -67,6 +69,11 @@ const AppRouter = () => {
                       <Route path="" element={<Students />} />
                       <Route path="newStudent" element={<NewStudent />} />
                       <Route path=":identification" element={<EditStudent />} />
+                    </Route>
+                    <Route path="/teachers">
+                      <Route path="" element={<Teachers />} />
+                      <Route path="newTeacher" element={<NewTeacher />} />
+                      <Route path=":identification" element={<EditTeacher />} />
                     </Route>
                   </Routes>
                 </Fragment>

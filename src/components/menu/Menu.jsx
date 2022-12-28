@@ -34,7 +34,7 @@ const Menu = () => {
       {
         title: "Gestión Escolar",
         subMenu: [
-          { title: "Periodos", route: "/years" },
+          { title: "Periodos", route: "/academicYears" },
           { title: "Especialidades", route: "/specialties" },
           { title: "Cursos", route: "/courses" },
           { title: "Paralelos", route: "/parallels" },
@@ -86,13 +86,13 @@ const Menu = () => {
   }, [user, menuSecretary, menuTeacher, menuStudent]);
 
   var subMenuTimer;
-  const fadeSubmenu = 1000;
+  const timeToFade = 1000;
 
   const handleMenu = (e) => {
     if (e.type === "mouseout") {
       subMenuTimer = setTimeout(() => {
         setShowSubMenu(false);
-      }, fadeSubmenu);
+      }, timeToFade);
     }
     if (e.type === "mouseover") {
       clearTimeout(subMenuTimer);
@@ -108,7 +108,7 @@ const Menu = () => {
     if (e.type === "mouseout") {
       subMenuTimer = setTimeout(() => {
         setShowSubMenu(false);
-      }, fadeSubmenu);
+      }, timeToFade);
     }
     if (e.type === "mouseover") {
       clearTimeout(subMenuTimer);
