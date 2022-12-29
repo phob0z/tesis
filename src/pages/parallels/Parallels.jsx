@@ -7,17 +7,17 @@ import LongMainContainer from "../../components/container/LongMainContainer";
 import LongSubContainer from "../../components/container/LongSubContainer";
 import OnOffCard from "../../components/Cards/OnOffCard";
 
-function Courses() {
+function Parallels() {
   const navigate = useNavigate();
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
-  const [courses, setCourses] = useState([]);
+  const [parallels, setParallels] = useState([]);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
       // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Courses/`,
+      //   `${process.env.REACT_APP_BACK_URL}/Parallels/`,
       //   { method: "GET" },
       //   { user },
       //   { headers: { accept: "application/json" } }
@@ -29,31 +29,31 @@ function Courses() {
       const data = [
         {
           id: "1",
-          name: "8vo",
+          name: "A",
           active: true,
         },
         {
           id: "2",
-          name: "9no",
+          name: "B",
           active: true,
         },
         {
           id: "3",
-          name: "10mo",
+          name: "C",
           active: true,
         },
         {
           id: "4",
-          name: "1ero",
+          name: "A1",
           active: false,
         },
         {
           id: "5",
-          name: "3ero",
+          name: "D4",
           active: true,
         },
       ];
-      setCourses([...data]);
+      setParallels([...data]);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
@@ -68,16 +68,16 @@ function Courses() {
 
   return (
     <LongMainContainer
-      title="Cursos"
+      title="Paralelos"
       buttonTitle="Nuevo"
       onClick={() => {
-        navigate("newCourse");
+        navigate("newParallel");
       }}
     >
-      {courses.length === 0 ? (
-        <LongSubContainer>No se encontraron cursos.</LongSubContainer>
+      {parallels.length === 0 ? (
+        <LongSubContainer>No se encontraron paralelos.</LongSubContainer>
       ) : (
-        courses.map((course) => {
+        parallels.map((course) => {
           return (
             <LongSubContainer key={course.id}>
               <OnOffCard
@@ -93,4 +93,4 @@ function Courses() {
   );
 }
 
-export default Courses;
+export default Parallels;

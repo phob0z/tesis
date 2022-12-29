@@ -10,14 +10,14 @@ import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/Cards/Card";
 import OnOffInput from "../../components/atoms/OnOffInput";
 
-function EditCourse() {
+function EditParallel() {
   const navigate = useNavigate();
   const params = useParams();
 
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
-  const [course, setCourse] = useState({});
+  const [parallel, setParallel] = useState({});
 
   const [error, setError] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -35,7 +35,7 @@ function EditCourse() {
         identification: params.identification,
         state: true,
       };
-      setCourse(data);
+      setParallel(data);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -65,7 +65,7 @@ function EditCourse() {
         message: "Cambiar este modal por el del mensaje correcto",
       });
       setHasError(true);
-      navigate("/courses");
+      navigate("/parallels");
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -79,18 +79,18 @@ function EditCourse() {
 
   return (
     <MainContainer
-      title="Curso"
+      title="Paralelo"
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}
     >
       <SubContainer>
         <Card
-          label="Curso"
-          value={course.identification}
+          label="Paralelo"
+          value={parallel.identification}
           maxLength="10"
           onChange={(event) => {
-            setCourse((prevState) => {
+            setParallel((prevState) => {
               return { ...prevState, identification: event.target.value };
             });
           }}
@@ -100,9 +100,9 @@ function EditCourse() {
         />
         <Card label="Estado">
           <OnOffInput
-            value={course.state}
+            value={parallel.state}
             onChange={(state) => {
-              setCourse((prevState) => {
+              setParallel((prevState) => {
                 return { ...prevState, state: state };
               });
             }}
@@ -113,4 +113,4 @@ function EditCourse() {
   );
 }
 
-export default EditCourse;
+export default EditParallel;

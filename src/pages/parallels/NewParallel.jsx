@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -8,16 +8,14 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/Cards/Card";
-import OnOffInput from "../../components/atoms/OnOffInput";
 
-function EditCourse() {
+function NewParallel() {
   const navigate = useNavigate();
-  const params = useParams();
 
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
-  const [course, setCourse] = useState({});
+  const [parallel, setParallel] = useState({});
 
   const [error, setError] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -25,24 +23,6 @@ function EditCourse() {
   useEffect(() => {
     errorIdentification.error ? setError(errorIdentification) : setError(false);
   }, [errorIdentification]);
-
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = {
-        identification: params.identification,
-        state: true,
-      };
-      setCourse(data);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
-    }
-  }, [setHasError, setIsLoading, setModal, token]);
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -65,7 +45,7 @@ function EditCourse() {
         message: "Cambiar este modal por el del mensaje correcto",
       });
       setHasError(true);
-      navigate("/courses");
+      navigate("/parallels");
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -73,24 +53,20 @@ function EditCourse() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
   return (
     <MainContainer
-      title="Curso"
+      title="Nuevo paralelo"
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}
     >
       <SubContainer>
         <Card
-          label="Curso"
-          value={course.identification}
+          label="Paralelo"
+          value={parallel.identification}
           maxLength="10"
           onChange={(event) => {
-            setCourse((prevState) => {
+            setParallel((prevState) => {
               return { ...prevState, identification: event.target.value };
             });
           }}
@@ -98,19 +74,9 @@ function EditCourse() {
           validation="identification"
           disabled={user.role !== "secretary"}
         />
-        <Card label="Estado">
-          <OnOffInput
-            value={course.state}
-            onChange={(state) => {
-              setCourse((prevState) => {
-                return { ...prevState, state: state };
-              });
-            }}
-          />
-        </Card>
       </SubContainer>
     </MainContainer>
   );
 }
 
-export default EditCourse;
+export default NewParallel;

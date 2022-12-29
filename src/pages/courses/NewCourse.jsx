@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// eslint-disable-next-line
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -38,7 +37,6 @@ function NewCourse() {
     setIsLoading(true);
     try {
       const response = await fetch("https://swapi.dev/api/people/");
-      // eslint-disable-next-line
       const data1 = await response.json();
       setIsLoading(false);
       // setModal({ title: "CORRECTO", message: response.data.message });
@@ -53,7 +51,6 @@ function NewCourse() {
       setModal({ title: "ERROR", message: error.response.data.message });
       setHasError(true);
     }
-    // eslint-disable-next-line
   };
 
   return (

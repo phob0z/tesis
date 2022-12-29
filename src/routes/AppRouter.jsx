@@ -32,9 +32,9 @@ import Courses from "../pages/courses/Courses";
 import NewCourse from "../pages/courses/NewCourse";
 import EditCourse from "../pages/courses/EditCourse";
 
-// import Parallels from "../pages/parallels/Parallels";
-// import NewParallel from "../pages/parallels/NewParallel";
-// import EdirParallel from "../pages/parallels/EditParallel";
+import Parallels from "../pages/parallels/Parallels";
+import NewParallel from "../pages/parallels/NewParallel";
+import EdirParallel from "../pages/parallels/EditParallel";
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -90,11 +90,11 @@ const AppRouter = () => {
                       <Route path="newCourse" element={<NewCourse />} />
                       <Route path=":identification" element={<EditCourse />} />
                     </Route>
-                    {/* <Route path="/parallels">
+                    <Route path="/parallels">
                       <Route path="" element={<Parallels />} />
                       <Route path="newParallel" element={<NewParallel />} />
                       <Route path=":identification" element={<EdirParallel />} />
-                    </Route> */}
+                    </Route>
                   </Routes>
                 </Fragment>
               </PrivateRoute>
