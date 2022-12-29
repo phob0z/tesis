@@ -34,7 +34,11 @@ import EditCourse from "../pages/courses/EditCourse";
 
 import Parallels from "../pages/parallels/Parallels";
 import NewParallel from "../pages/parallels/NewParallel";
-import EdirParallel from "../pages/parallels/EditParallel";
+import EditParallel from "../pages/parallels/EditParallel";
+
+import Subjects from "../pages/subjects/Subjects";
+import NewSubject from "../pages/subjects/NewSubject";
+import EditSubject from "../pages/subjects/EditSubject";
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -93,7 +97,12 @@ const AppRouter = () => {
                     <Route path="/parallels">
                       <Route path="" element={<Parallels />} />
                       <Route path="newParallel" element={<NewParallel />} />
-                      <Route path=":identification" element={<EdirParallel />} />
+                      <Route path=":identification" element={<EditParallel />} />
+                    </Route>
+                    <Route path="/subjects">
+                      <Route path="" element={<Subjects />} />
+                      <Route path="newParallel" element={<NewSubject />} />
+                      <Route path=":identification" element={<EditSubject />} />
                     </Route>
                   </Routes>
                 </Fragment>
