@@ -56,7 +56,7 @@ function LongMainContainer(props) {
         </div>
       )}
       {props.title && (
-        <div className={classes.containerTitle}> {props.title} </div>
+        <div className={`${classes.containerTitle} ${props.onSearch? "": classes.space}`}> {props.title} </div>
       )}
 
       {props.buttonTitle && (

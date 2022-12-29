@@ -7,14 +7,16 @@
   background: #000000bb;
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   max-width: 88%;
-  flex-grow: 1;
   display: grid;
-  grid-template-columns:repeat(auto-fit, 21rem);
+  grid-template-columns: repeat(auto-fit, 21rem);
+  width: max-content;
   overflow-y: auto;
   overflow-x: hidden;
   border: 1.6rem transparent solid;
   border-top: 2rem transparent solid;
-  border-radius: 1.25rem; -moz-border-radius: 1.25rem; -webkit-border-radius: 1.25rem;
+  border-radius: 1.25rem;
+  -moz-border-radius: 1.25rem;
+  -webkit-border-radius: 1.25rem;
   row-gap: 0.5rem;
 }
 
@@ -27,10 +29,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   padding: 0.4rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
   min-width: 12rem;
-  max-width: fit-content;
   font-family: "Carter One";
   font-style: normal;
   font-size: 1.4rem;

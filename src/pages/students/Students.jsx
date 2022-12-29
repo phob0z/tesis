@@ -77,6 +77,7 @@ function Students() {
           identification: "1758963050",
           course: "8vo",
           parallel: "A",
+          state: true,
           specialty: "Especialidad",
         },
         {
@@ -85,6 +86,7 @@ function Students() {
           identification: "1111111111",
           course: "9no",
           parallel: "B",
+          state: true,
           specialty: "Especialidad2",
         },
         {
@@ -93,6 +95,7 @@ function Students() {
           identification: "2222222222",
           course: "1ero",
           parallel: "A2",
+          state: false,
           specialty: "Especialidad3",
         },
         {
@@ -101,6 +104,7 @@ function Students() {
           identification: "3333333333",
           course: "2do",
           parallel: "B1",
+          state: true,
           specialty: "Especialidad",
         },
         {
@@ -109,6 +113,7 @@ function Students() {
           identification: "4444444444",
           course: "3ero",
           parallel: "C",
+          state: false,
           specialty: "Especialidad2",
         },
         {
@@ -117,6 +122,7 @@ function Students() {
           identification: "5555555555",
           course: "2do",
           parallel: "F",
+          state: false,
           specialty: "Especialidad3",
         },
         {
@@ -125,6 +131,7 @@ function Students() {
           identification: "6666666666",
           course: "10mo",
           parallel: "A5",
+          state: false,
           specialty: "Especialidad",
         },
         {
@@ -133,6 +140,7 @@ function Students() {
           identification: "7777777777",
           course: "5to",
           parallel: "A",
+          state: true,
           specialty: "Especialidad2",
         },
         {
@@ -141,6 +149,7 @@ function Students() {
           identification: "8888888888",
           course: "6to",
           parallel: "D",
+          state: false,
           specialty: "Especialidad3",
         },
         {
@@ -149,6 +158,7 @@ function Students() {
           identification: "9999999999",
           course: "6to",
           parallel: "E",
+          state: true,
           specialty: "Especialidad3",
         },
         {
@@ -157,6 +167,7 @@ function Students() {
           identification: "0000000000",
           course: "5to",
           parallel: "D",
+          state: true,
           specialty: "Especialidad3",
         },
         {
@@ -165,6 +176,7 @@ function Students() {
           identification: "2758963050",
           course: "8vo",
           parallel: "A",
+          state: false,
           specialty: "Especialidad",
         },
         {
@@ -173,6 +185,7 @@ function Students() {
           identification: "2111111111",
           course: "9no",
           parallel: "B",
+          state: true,
           specialty: "Especialidad2",
         },
         {
@@ -181,6 +194,7 @@ function Students() {
           identification: "3222222222",
           course: "1ero",
           parallel: "A2",
+          state: true,
           specialty: "Especialidad3",
         },
         {
@@ -189,6 +203,7 @@ function Students() {
           identification: "2333333333",
           course: "2do",
           parallel: "B1",
+          state: true,
           specialty: "Especialidad",
         },
         {
@@ -197,6 +212,7 @@ function Students() {
           identification: "2444444444",
           course: "3ero",
           parallel: "C",
+          state: false,
           specialty: "Especialidad2",
         },
         {
@@ -205,6 +221,7 @@ function Students() {
           identification: "2555555555",
           course: "2do",
           parallel: "F",
+          state: false,
           specialty: "Especialidad3",
         },
         {
@@ -213,6 +230,7 @@ function Students() {
           identification: "2666666666",
           course: "10mo",
           parallel: "A5",
+          state: true,
           specialty: "Especialidad",
         },
         {
@@ -221,6 +239,7 @@ function Students() {
           identification: "2777777777",
           course: "5to",
           parallel: "A",
+          state: true,
           specialty: "Especialidad2",
         },
         {
@@ -229,6 +248,7 @@ function Students() {
           identification: "2888888888",
           course: "6to",
           parallel: "D",
+          state: true,
           specialty: "Especialidad3",
         },
         {
@@ -237,6 +257,7 @@ function Students() {
           identification: "2999999999",
           course: "6to",
           parallel: "E",
+          state: true,
           specialty: "Especialidad3",
         },
         {
@@ -245,6 +266,7 @@ function Students() {
           identification: "2000000000",
           course: "5to",
           parallel: "D",
+          state: false,
           specialty: "Especialidad3",
         },
       ];
@@ -311,6 +333,7 @@ function Students() {
                 course={student.course}
                 parallel={student.parallel}
                 specialty={student.specialty}
+                state={student.state}
               />
             </LongSubContainer>
           );

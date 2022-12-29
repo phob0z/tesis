@@ -1,7 +1,7 @@
 .student {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 3fr 1.5fr 1fr 1fr 4fr 1fr;
+  grid-template-columns: 3fr 1.5fr 1fr 1fr 4fr 1fr 1fr;
   height: fit-content;
   padding-left: 1rem;
   font-family: "Open Sans";
@@ -13,4 +13,14 @@
 
 .student div {
   align-self: center;
+}
+
+.onIcon {
+  padding-top: 0.3rem;
+  color: green;
+}
+
+.offIcon {
+  padding-top: 0.3rem;
+  color: #a01b25;
 }

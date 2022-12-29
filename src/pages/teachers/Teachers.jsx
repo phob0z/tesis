@@ -37,111 +37,133 @@ function Teachers() {
           name: "Leonel",
           last_name: "Molina",
           identification: "1758963050",
+          state: true,
         },
         {
           name: "asdasd",
           last_name: "qweqwe",
           identification: "1111111111",
+          state: false,
         },
         {
           name: "ASDASD",
           last_name: "QWEQWE",
           identification: "2222222222",
+          state: false,
         },
         {
           name: "Leonel",
           last_name: "Molina",
           identification: "3333333333",
+          state: true,
         },
         {
           name: "asdasd",
           last_name: "qweqwe",
           identification: "4444444444",
+          state: true,
         },
         {
           name: "ASDASD",
           last_name: "QWEQWE",
           identification: "5555555555",
+          state: false,
         },
         {
           name: "Leonel",
           last_name: "Molina",
           identification: "6666666666",
+          state: true,
         },
         {
           name: "asdasd",
           last_name: "qweqwe",
           identification: "7777777777",
+          state: false,
         },
         {
           name: "ASDASD",
           last_name: "QWEQWE",
           identification: "8888888888",
+          state: true,
         },
         {
           name: "ASDASD1",
           last_name: "QWEQWE1",
           identification: "9999999999",
+          state: true,
         },
         {
           name: "ASDASD2",
           last_name: "QWEQWE2",
           identification: "0000000000",
+          state: false,
         },
         {
           name: "Leonel",
           last_name: "Molina",
           identification: "2758963050",
+          state: true,
         },
         {
           name: "asdasd",
           last_name: "qweqwe",
           identification: "2111111111",
+          state: true,
         },
         {
           name: "ASDASD",
           last_name: "QWEQWE",
           identification: "3222222222",
+          state: true,
         },
         {
           name: "Leonel",
           last_name: "Molina",
           identification: "2333333333",
+          state: true,
         },
         {
           name: "asdasd",
           last_name: "qweqwe",
           identification: "2444444444",
+          state: true,
         },
         {
           name: "ASDASD",
           last_name: "QWEQWE",
           identification: "2555555555",
+          state: true,
         },
         {
           name: "Leonel",
           last_name: "Molina",
           identification: "2666666666",
+          state: true,
         },
         {
           name: "asdasd",
           last_name: "qweqwe",
           identification: "2777777777",
+          state: true,
         },
         {
           name: "ASDASD",
           last_name: "QWEQWE",
           identification: "2888888888",
+          state: true,
         },
         {
           name: "ASDASD1",
           last_name: "QWEQWE1",
           identification: "2999999999",
+          state: true,
         },
         {
           name: "ASDASD2",
           last_name: "QWEQWE2",
           identification: "2000000000",
+          state: true,
         },
       ];
       setTeachers([...data]);
@@ -198,6 +220,7 @@ function Teachers() {
                 name={teacher.name}
                 last_name={teacher.last_name}
                 identification={teacher.identification}
+                state={teacher.state}
               />
             </LongSubContainer>
           );
