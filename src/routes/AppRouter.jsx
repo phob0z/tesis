@@ -40,6 +40,12 @@ import Subjects from "../pages/subjects/Subjects";
 import NewSubject from "../pages/subjects/NewSubject";
 import EditSubject from "../pages/subjects/EditSubject";
 
+import Specialties from "../pages/specialties/Specialties";
+import NewSpecialty from "../pages/specialties/NewSpecialty";
+import EditSpecialty from "../pages/specialties/EditSpecialty";
+
+
+
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
   const closeModal = () => {
@@ -101,8 +107,13 @@ const AppRouter = () => {
                     </Route>
                     <Route path="/subjects">
                       <Route path="" element={<Subjects />} />
-                      <Route path="newParallel" element={<NewSubject />} />
+                      <Route path="newSubject" element={<NewSubject />} />
                       <Route path=":identification" element={<EditSubject />} />
+                    </Route>
+                    <Route path="/specialties">
+                      <Route path="" element={<Specialties />} />
+                      <Route path="newSpecialty" element={<NewSpecialty />} />
+                      <Route path=":identification" element={<EditSpecialty />} />
                     </Route>
                   </Routes>
                 </Fragment>

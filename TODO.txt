@@ -31,6 +31,8 @@ filtro["8vo","all","all"];
 calificaciones(token, filtro)
 llamada SQL con filtros filtro[0], filtro[1], filtro[2]
 
+Boton atrás
+
 En Modal:
 hasError no tiene mucho sentido, si Modal tiene info, mostarla, al darle a la X que haga Modal=false
 
