@@ -44,6 +44,10 @@ import Specialties from "../pages/specialties/Specialties";
 import NewSpecialty from "../pages/specialties/NewSpecialty";
 import EditSpecialty from "../pages/specialties/EditSpecialty";
 
+import AcademicYears from "../pages/academicYears/AcademicYears";
+import NewAcademicYear from "../pages/academicYears/NewAcademicYear";
+import EditAcademicYear from "../pages/academicYears/EditAcademicYear";
+
 
 
 const AppRouter = () => {
@@ -114,6 +118,11 @@ const AppRouter = () => {
                       <Route path="" element={<Specialties />} />
                       <Route path="newSpecialty" element={<NewSpecialty />} />
                       <Route path=":identification" element={<EditSpecialty />} />
+                    </Route>
+                    <Route path="/academicYears">
+                      <Route path="" element={<AcademicYears />} />
+                      <Route path="newAcademicYear" element={<NewAcademicYear />} />
+                      <Route path=":identification" element={<EditAcademicYear />} />
                     </Route>
                   </Routes>
                 </Fragment>
