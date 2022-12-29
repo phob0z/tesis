@@ -42,7 +42,10 @@ function NewCourse() {
       const data1 = await response.json();
       setIsLoading(false);
       // setModal({ title: "CORRECTO", message: response.data.message });
-      setModal({ title: "CORRECTO", message: "Cambiar este modal por el del mensaje correcto" });
+      setModal({
+        title: "CORRECTO",
+        message: "Cambiar este modal por el del mensaje correcto",
+      });
       setHasError(true);
       navigate("/courses");
     } catch (error) {
@@ -54,12 +57,17 @@ function NewCourse() {
   };
 
   return (
-    <MainContainer title="Nuevo curso" buttonTitle="Guardar" type="submit" onClick={saveData}>
+    <MainContainer
+      title="Nuevo curso"
+      buttonTitle="Guardar"
+      type="submit"
+      onClick={saveData}
+    >
       <SubContainer>
-      <Card
-          label="Identificación"
+        <Card
+          label="Curso"
           value={course.identification}
-          maxLength="20"
+          maxLength="10"
           onChange={(event) => {
             setCourse((prevState) => {
               return { ...prevState, identification: event.target.value };

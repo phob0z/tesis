@@ -18,9 +18,11 @@
 }
 
 .active {
+  padding-top: 0.3rem;
   color: green;
 }
 
 .inactive {
-  color: red;
+  padding-top: 0.3rem;
+  color: #a01b25;
 }

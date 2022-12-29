@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./Card.module.css";
@@ -114,24 +114,30 @@ function Card(props) {
   return (
     <div className={classes.cardContainer}>
       <div className={classes.label}>{props.label}</div>
-      <div className={classes.inputBox}>
-        <Input
-          value={props.value}
-          label={props.label}
-          type={props.type}
-          onChange={props.onChange}
-          onBlur={onBlur}
-          maxLength={props.maxLength}
-          theme={props.theme}
-          showRevealPassword={props.showRevealPassword}
-          disabled={props.disabled}
-          alt={props.alt}
-        />
-      </div>
-      {error && (
-        <div onChange={props.cardError} className={classes.error}>
-          {error}
-        </div>
+      {props.children ? (
+        props.children
+      ) : (
+        <Fragment>
+          <div className={classes.inputBox}>
+            <Input
+              value={props.value}
+              label={props.label}
+              type={props.type}
+              onChange={props.onChange}
+              onBlur={onBlur}
+              maxLength={props.maxLength}
+              theme={props.theme}
+              showRevealPassword={props.showRevealPassword}
+              disabled={props.disabled}
+              alt={props.alt}
+            />
+          </div>
+          {error && (
+            <div onChange={props.cardError} className={classes.error}>
+              {error}
+            </div>
+          )}
+        </Fragment>
       )}
     </div>
   );
