@@ -34,11 +34,11 @@ const Menu = () => {
       {
         title: "Gestión Escolar",
         subMenu: [
-          { title: "Periodos", route: "/academicYears" },
-          { title: "Especialidades", route: "/specialties" },
           { title: "Cursos", route: "/courses" },
           { title: "Paralelos", route: "/parallels" },
           { title: "Asignaturas", route: "/subjects" },
+          { title: "Especialidades", route: "/specialties" },
+          { title: "Periodos", route: "/academicYears" },
         ],
         route: "#",
       },

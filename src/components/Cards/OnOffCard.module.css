@@ -1,16 +1,26 @@
-.student {
+.data {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 3fr 1.5fr 1fr 1fr 4fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr;
   height: fit-content;
   padding-left: 1rem;
   font-family: "Open Sans";
   font-size: 0.9rem;
   color: #414141;
   font-weight: 900;
+  width: fit-content;
+  text-align: center;
   cursor: default;
 }
 
-.student div {
+.data div {
   align-self: center;
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
 }

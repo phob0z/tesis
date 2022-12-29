@@ -19,12 +19,18 @@ import Background from "../components/background/Background";
 import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
 import AlertContext from "../contexts/alert/AlertContext";
+
 import Students from "../pages/students/Students";
-import EditStudent from "../pages/students/EditStudent";
 import NewStudent from "../pages/students/NewStudent";
+import EditStudent from "../pages/students/EditStudent";
+
 import Teachers from "../pages/teachers/Teachers";
-import EditTeacher from "../pages/teachers/EditTeacher";
 import NewTeacher from "../pages/teachers/NewTeacher";
+import EditTeacher from "../pages/teachers/EditTeacher";
+
+import Courses from "../pages/courses/Courses";
+import NewCourse from "../pages/courses/NewCourse";
+import EditCourse from "../pages/courses/EditCourse";
 
 const AppRouter = () => {
   const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
@@ -74,6 +80,11 @@ const AppRouter = () => {
                       <Route path="" element={<Teachers />} />
                       <Route path="newTeacher" element={<NewTeacher />} />
                       <Route path=":identification" element={<EditTeacher />} />
+                    </Route>
+                    <Route path="/courses">
+                      <Route path="" element={<Courses />} />
+                      <Route path="newCourse" element={<NewCourse />} />
+                      <Route path=":identification" element={<EditCourse />} />
                     </Route>
                   </Routes>
                 </Fragment>

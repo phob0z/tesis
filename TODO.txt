@@ -31,8 +31,14 @@ filtro["8vo","all","all"];
 calificaciones(token, filtro)
 llamada SQL con filtros filtro[0], filtro[1], filtro[2]
 
+En Modal:
+hasError no tiene mucho sentido, si Modal tiene info, mostarla, al darle a la X que haga Modal=false
+
 En todos:
 Revisar el tamaño maximo (de caracteres) de todos los campos de la app.
+
+Filtros:
+Yo filtro o filtra el Backend?
 
 resetPassword:
 Campo confirmation no tiene validación

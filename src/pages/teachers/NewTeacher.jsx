@@ -9,7 +9,7 @@ import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/Cards/Card";
 
-function EditStudent() {
+function NewTeacher() {
   const params = useParams();
 
   const { user, token } = useContext(AuthContext);
@@ -70,4 +70,4 @@ function EditStudent() {
   );
 }
 
-export default EditStudent;
+export default NewTeacher;

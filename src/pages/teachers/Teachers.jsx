@@ -11,15 +11,14 @@ function Teachers() {
   const navigate = useNavigate();
   const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
 
-  const [teachers, setTeachers] = useState([]);
-  const [filters, setFilters] = useState([]);
+  const [data, setTeachers] = useState([]);
 
   const [identification, setIdentification] = useState("");
   const [search, setSearch] = useState({
     identification: "",
   });
 
-  const fetchTeachers = useCallback(async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
       // const response = await axios.post(
@@ -32,8 +31,8 @@ function Teachers() {
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
       // eslint-disable-next-line
-      const data = await response.json();
-      const teachers = [
+      const data1 = await response.json();
+      const data = [
         {
           name: "Leonel",
           last_name: "Molina",
@@ -145,7 +144,7 @@ function Teachers() {
           identification: "2000000000",
         },
       ];
-      setTeachers([...teachers]);
+      setTeachers([...data]);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
@@ -155,17 +154,13 @@ function Teachers() {
   }, [setHasError, setIsLoading, setModal]);
 
   useEffect(() => {
-    fetchTeachers();
-  }, [fetchTeachers]);
+    fetchData();
+  }, [fetchData]);
 
   useEffect(() => {
     onChange();
     // eslint-disable-next-line
   }, [search]);
-
-  const newTeacher = (event) => {
-    navigate("newTeacher");
-  };
 
   const onSearch = () => {
     setSearch((prevState) => {
@@ -175,14 +170,14 @@ function Teachers() {
 
   const onChange = () => {
     console.log("Hacer el pedido al back con los filtros");
-    fetchTeachers();
+    fetchData();
   };
 
   return (
     <LongMainContainer
       title="Profesores"
       buttonTitle="Nuevo"
-      onClick={newTeacher}
+      onClick={() => {navigate("newTeacher")}}
       onSearch={onSearch}
       showSearchInput
       onChange={onChange}
@@ -191,12 +186,12 @@ function Teachers() {
         setIdentification(event.target.value);
       }}
     >
-      {teachers.length === 0 ? (
+      {data.length === 0 ? (
         <LongSubContainer>
           No se encontraron profesores con esos parámetros.
         </LongSubContainer>
       ) : (
-        teachers.map((teacher) => {
+        data.map((teacher) => {
           return (
             <LongSubContainer key={teacher.identification}>
               <TeacherCard

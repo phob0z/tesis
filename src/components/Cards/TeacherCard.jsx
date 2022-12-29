@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/atoms/Button";
+import Button from "../atoms/Button";
 import classes from "./TeacherCard.module.css";
 
 function TeacherCard(props) {

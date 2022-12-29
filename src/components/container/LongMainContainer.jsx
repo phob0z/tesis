@@ -7,52 +7,54 @@ function LongMainContainer(props) {
   const [search, setSearch] = useState(props.search);
 
   useEffect(() => {
-    props.onChange(search);
+    if (props.onChange) props.onChange(search);
     // eslint-disable-next-line
   }, [search]);
 
   return (
     <Fragment>
       <div className={classes.mainContainer}> {props.children} </div>
-      <div className={classes.searchInput}>
-        {props.filters &&
-          props.filters.map((filter) => {
-            return (
-              <div className={classes.filter} key={filter.label}>
-                {/* <label className={classes.label} htmlFor={filter.label}>
+      {props.onSearch && (
+        <div className={classes.searchInput}>
+          {props.filters &&
+            props.filters.map((filter) => {
+              return (
+                <div className={classes.filter} key={filter.label}>
+                  {/* <label className={classes.label} htmlFor={filter.label}>
                   {filter.label}
                 </label> */}
-                <Input
-                  type="select"
-                  label={filter.label}
-                  options={filter.options}
-                  theme="simple"
-                  filter={filter.filter}
-                  onChange={(event) => {
-                    setSearch((prevState) => {
-                      return {
-                        ...prevState,
-                        [filter.filter]: event.target.value,
-                      };
-                    });
-                  }}
-                />
-              </div>
-            );
-          })}
-        <Input
-          theme="simple"
-          label="Identificación"
-          maxLength="10"
-          value={props.identification}
-          onChange={props.onIdentificationChange}
-        />
-        <div style={{ zIndex: "-1" }}>
-          <Button className="searchButton" onClick={props.onSearch}>
-            Buscar
-          </Button>
+                  <Input
+                    type="select"
+                    label={filter.label}
+                    options={filter.options}
+                    theme="simple"
+                    filter={filter.filter}
+                    onChange={(event) => {
+                      setSearch((prevState) => {
+                        return {
+                          ...prevState,
+                          [filter.filter]: event.target.value,
+                        };
+                      });
+                    }}
+                  />
+                </div>
+              );
+            })}
+          <Input
+            theme="simple"
+            label="Identificación"
+            maxLength="10"
+            value={props.identification}
+            onChange={props.onIdentificationChange}
+          />
+          <div style={{ zIndex: "-1" }}>
+            <Button className="searchButton" onClick={props.onSearch}>
+              Buscar
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
       {props.title && (
         <div className={classes.containerTitle}> {props.title} </div>
       )}

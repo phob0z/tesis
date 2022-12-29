@@ -36,8 +36,8 @@ function Students() {
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
       // eslint-disable-next-line
-      const data = await response.json();
-      const filters = [
+      const data1 = await response.json();
+      const data = [
         { filter: "course", label: "Curso", options: ["8vo", "9no", "10mo"] },
         { filter: "parallel", label: "Paralelo", options: ["A", "B", "C"] },
         {
@@ -47,7 +47,7 @@ function Students() {
         },
         { filter: "year", label: "Periodo", options: ["2022", "2023", "2024"] },
       ];
-      setFilters([...filters]);
+      setFilters([...data]);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
@@ -56,7 +56,7 @@ function Students() {
     setIsLoading(false);
   }, [setHasError, setIsLoading, setModal]);
 
-  const fetchStudents = useCallback(async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
       // const response = await axios.post(
@@ -69,8 +69,8 @@ function Students() {
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
       // eslint-disable-next-line
-      const data = await response.json();
-      const students = [
+      const data1 = await response.json();
+      const data = [
         {
           name: "Leonel",
           last_name: "Molina",
@@ -248,7 +248,7 @@ function Students() {
           specialty: "Especialidad3",
         },
       ];
-      setStudents([...students]);
+      setStudents([...data]);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
@@ -259,8 +259,8 @@ function Students() {
 
   useEffect(() => {
     fetchFilters();
-    fetchStudents();
-  }, [fetchFilters, fetchStudents]);
+    fetchData();
+  }, [fetchFilters, fetchData]);
 
   useEffect(() => {
     onChange();
@@ -279,7 +279,7 @@ function Students() {
 
   const onChange = () => {
     console.log("Hacer el pedido al back con los nuevos parametros");
-    fetchStudents();
+    fetchData();
   };
 
   return (
