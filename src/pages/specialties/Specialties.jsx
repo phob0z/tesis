@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import AlertContext from "../../contexts/alert/AlertContext";
 
-import LongMainContainer from "../../components/container/LongMainContainer";
-import LongSubContainer from "../../components/container/LongSubContainer";
+import LongMainContainer from "../../components/containers/LongMainContainer";
+import LongSubContainer from "../../components/containers/LongSubContainer";
 import OnOffCard from "../../components/cards/OnOffCard";
 
 function Specialties() {

@@ -4,13 +4,13 @@ import Input from "../atoms/Input";
 import classes from "./LongMainContainer.module.css";
 
 function LongMainContainer(props) {
-  console.log(props.search);
-  const [search, setSearch] = useState(props.search);
+  // console.log(props.search);
+  // const [search, setSearch] = useState(props.search);
 
-  useEffect(() => {
-    if (props.onChange) props.onChange(search);
+  // useEffect(() => {
+  //   if (props.onChange) props.onChange(search);
     // eslint-disable-next-line
-  }, [search]);
+  // }, [search]);
 
   return (
     <Fragment>
@@ -31,12 +31,7 @@ function LongMainContainer(props) {
                     theme="simple"
                     filter={filter.filter}
                     onChange={(event) => {
-                      setSearch((prevState) => {
-                        return {
-                          ...prevState,
-                          [filter.filter]: event.target.value,
-                        };
-                      });
+                      props.onChange({ [filter.filter]: event.target.value });
                     }}
                   />
                 </div>
@@ -57,7 +52,14 @@ function LongMainContainer(props) {
         </div>
       )}
       {props.title && (
-        <div className={`${classes.containerTitle} ${props.onSearch? "": classes.space}`}> {props.title} </div>
+        <div
+          className={`${classes.containerTitle} ${
+            props.onSearch ? "" : classes.space
+          }`}
+        >
+          {" "}
+          {props.title}{" "}
+        </div>
       )}
 
       {props.buttonTitle && (

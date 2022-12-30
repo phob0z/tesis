@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import AlertContext from "../../contexts/alert/AlertContext";
 
-import LongMainContainer from "../../components/container/LongMainContainer";
-import LongSubContainer from "../../components/container/LongSubContainer";
+import LongMainContainer from "../../components/containers/LongMainContainer";
+import LongSubContainer from "../../components/containers/LongSubContainer";
 import StudentCard from "../../components/cards/StudentCard";
 
 function Students() {
@@ -37,7 +37,11 @@ function Students() {
       const response = await fetch("https://swapi.dev/api/people/");
       const data1 = await response.json();
       const data = [
-        { filter: "course", label: "Curso", options: ["1ero", "8vo", "9no", "10mo"] },
+        {
+          filter: "course",
+          label: "Curso",
+          options: ["1ero", "8vo", "9no", "10mo"],
+        },
         { filter: "parallel", label: "Paralelo", options: ["A", "B", "C"] },
         {
           filter: "specialty",
@@ -295,18 +299,24 @@ function Students() {
   const onChange = () => {
     console.log(search);
     console.log("Hacer el pedido al back con los nuevos parametros");
-    fetchData();
+    // fetchData();
   };
 
   return (
     <LongMainContainer
       title="Estudiantes"
       buttonTitle="Nuevo"
-      onClick={() => {navigate("newStudent")}}
+      onClick={() => {
+        navigate("newStudent");
+      }}
       onSearch={onSearch}
       showSearchInput
       filters={filters}
-      onChange={onChange}
+      onChange={(value) => {
+        setSearch((prevState) => {
+          return { ...prevState, ...value };
+        });
+      }}
       identification={identification}
       onIdentificationChange={(event) => {
         setIdentification(event.target.value);

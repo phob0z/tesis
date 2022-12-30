@@ -5,9 +5,9 @@ import axios from "axios";
 import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
 
-import MainContainer from "../../components/container/MainContainer";
+import MainContainer from "../../components/containers/MainContainer";
+import LongSubContainer from "../../components/containers/LongSubContainer";
 import GradeCard from "../../components/cards/GradeCard";
-import LongSubContainer from "../../components/container/LongSubContainer";
 
 function EditGrades() {
   const params = useParams();

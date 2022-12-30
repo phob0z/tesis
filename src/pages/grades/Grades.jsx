@@ -2,8 +2,8 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 
 import AlertContext from "../../contexts/alert/AlertContext";
 
-import LongMainContainer from "../../components/container/LongMainContainer";
-import LongSubContainer from "../../components/container/LongSubContainer";
+import LongMainContainer from "../../components/containers/LongMainContainer";
+import LongSubContainer from "../../components/containers/LongSubContainer";
 import GradeCard from "../../components/cards/GradeCard";
 
 function Grades() {

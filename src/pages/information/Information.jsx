@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import AlertContext from "../../contexts/alert/AlertContext";
 
-import MainContainer from "../../components/container/MainContainer";
-import SubContainer from "../../components/container/SubContainer";
+import MainContainer from "../../components/containers/MainContainer";
+import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 
 function Information() {

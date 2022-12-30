@@ -1,6 +1,6 @@
 import React from "react";
-import MainContainer from "../../components/container/MainContainer";
-import SubContainer from "../../components/container/SubContainer";
+import MainContainer from "../../components/containers/MainContainer";
+import SubContainer from "../../components/containers/SubContainer";
 
 function Home() {
   return (
