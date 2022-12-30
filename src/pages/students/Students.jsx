@@ -298,8 +298,8 @@ function Students() {
 
   const onChange = () => {
     console.log(search);
-    console.log("Hacer el pedido al back con los nuevos parametros");
-    // fetchData();
+    console.log("Haciendo el pedido al back con los nuevos parametros");
+    fetchData();
   };
 
   return (
