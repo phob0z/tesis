@@ -1,19 +1,15 @@
-Internationalize
-(https://blog.shahednasser.com/how-to-internationalize-a-react-app/)
+Error con los filtros...
 
 Reportes: API con un array con la información.
 
--- Menos importante, pero importante --
-Mover la lógica de validaciones fuera del Card, en una archivo aparte donde se llame a una función y devuelva
-true si todo es correcto, o el mensaje de error en caso contrario, la funcion debe recibir el tipo de
-validación y la cadena a validar.
+EmailSent
+ResetPassword
 
-Home!
-EmailSent!!
-ResetPassword!!!
-
-Profile:
-Error: Se tiene que cambiar la imagen para que permita guardar
+Home
+EditStudent
+NewStudent
+EditTeacher
+NewTeacher
 
 En las rutas:
 Hacer chequeo del role para el ruteo... que student no pueda acceder a /students, /teachers, etc.
@@ -25,10 +21,14 @@ Fecha límite para editar campos de notas (Un campo adicional en cada nota para 
 
 Páginación...
 
-Error con los filtros.
-
-En resetPassword creo... Se muestra un modal... why?
-
 RAÚL!!!
 Filtra el Backend
 No me llega el correo (RAUUUULLL ARREGLA QUE SOLO MANDA A MAILTRAP)
+
+-- Menos importante, pero importante --
+Mover la lógica de validaciones fuera del Card, en una archivo aparte donde se llame a una función y devuelva
+true si todo es correcto, o el mensaje de error en caso contrario, la funcion debe recibir el tipo de
+validación y la cadena a validar.
+
+Internationalize
+(https://blog.shahednasser.com/how-to-internationalize-a-react-app/)

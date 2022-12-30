@@ -4,7 +4,7 @@ import AlertContext from "./AlertContext";
 const AlertProvider = ({ children }) => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [modal, setModal] = useState({ title: "ERROR", message: "MESSAGE" });
+  const [modal, setModal] = useState(false);
 
   return (
     <AlertContext.Provider

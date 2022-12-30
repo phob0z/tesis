@@ -16,11 +16,11 @@ function Profile() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [avatarFile, setAvatarFile] = useState();
+  const [avatarChanged, setAvatarChanged] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
   const [errorBirthdate, setErrorBirthdate] = useState(false);
-  const [errorAvatar, setErrorAvatar] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
@@ -63,8 +63,6 @@ function Profile() {
       ? setError(errorIdentification)
       : errorBirthdate.error
       ? setError(errorBirthdate)
-      : errorAvatar.error
-      ? setError(errorAvatar)
       : errorEmail.error
       ? setError(errorEmail)
       : errorHomePhone.error
@@ -83,7 +81,6 @@ function Profile() {
     errorLastName,
     errorIdentification,
     errorBirthdate,
-    errorAvatar,
     errorEmail,
     errorHomePhone,
     errorPersonalPhone,
@@ -139,32 +136,32 @@ function Profile() {
     setIsLoading(true);
 
     try {
-      var formData = new FormData();
-      formData.append("image", avatarFile);
-
-      const response = await axios
-        .post(
-          `${process.env.REACT_APP_BACK_URL}/profile`,
-          {
-            name: userProfile.name,
-            last_name: userProfile.last_name,
-            personal_phone: userProfile.personal_phone,
-            home_phone: userProfile.home_phone,
-            address: userProfile.address,
-            email: userProfile.email,
-            identification: userProfile.identification,
-            birthdate: userProfile.birthdate,
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/profile`,
+        {
+          name: userProfile.name,
+          last_name: userProfile.last_name,
+          personal_phone: userProfile.personal_phone,
+          home_phone: userProfile.home_phone,
+          address: userProfile.address,
+          email: userProfile.email,
+          identification: userProfile.identification,
+          birthdate: userProfile.birthdate,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              Authorization: token,
-            },
-          }
-        )
-        .then(
-          await axios.post(
+        }
+      );
+
+      var formData = new FormData();
+      if (avatarChanged) {
+        formData.append("image", avatarFile);
+        try {
+          const response = await axios.post(
             `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
             formData,
             {
@@ -173,8 +170,12 @@ function Profile() {
                 Authorization: token,
               },
             }
-          )
-        );
+          );
+        } catch {
+          setIsLoading(false);
+          setModal({ title: "ERROR", message: error.response.data.message });
+        }
+      }
       setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
       setProfile({ ...userProfile });
@@ -242,10 +243,10 @@ function Profile() {
             value={user.avatar}
             type="image"
             onChange={(image) => {
+              setAvatarChanged(true);
               setUserProfile({ ...userProfile, avatar: image.base64 });
               setAvatarFile(image.file);
             }}
-            setError={setErrorAvatar}
             validation="image"
             alt={`Imagen de ${user.name} ${user.last_name}`}
             // disabled={user.role !== "secretary"}

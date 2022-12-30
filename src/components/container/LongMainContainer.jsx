@@ -4,6 +4,7 @@ import Input from "../atoms/Input";
 import classes from "./LongMainContainer.module.css";
 
 function LongMainContainer(props) {
+  console.log(props.search);
   const [search, setSearch] = useState(props.search);
 
   useEffect(() => {
