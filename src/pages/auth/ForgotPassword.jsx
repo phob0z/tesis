@@ -11,7 +11,7 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import classes from "./Auth.module.css";
 
 function ForgotPassword() {
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const navigate = useNavigate();
 
@@ -54,7 +54,6 @@ function ForgotPassword() {
 
     if (identificationError) {
       setModal({ title: "ERROR", message: identificationError });
-      setHasError(true);
       return;
     }
 
@@ -66,15 +65,12 @@ function ForgotPassword() {
         { identification },
         { headers: { accept: "application/json" } }
       );
-      // navigate("/");
     } catch (error) {
       console.log("Error: ", error.response.data.message);
     }
-
     setIsLoading(false);
     // setSent(true);
   };
-
 
   const onVolver = () => {
     navigate("/login");

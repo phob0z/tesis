@@ -4,7 +4,7 @@
   position: absolute;
   top: 1.5rem;
   right: 50%;
-  transform: translateX(calc(50% - 2.312rem));
+  transform: translateX(50%);
 }
 
 .options {

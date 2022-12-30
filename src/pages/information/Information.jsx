@@ -3,10 +3,10 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/Cards/Card";
+import Card from "../../components/cards/Card";
 
 function Information() {
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [information, setInformation] = useState({});
   const [errorName, setErrorName] = useState(false);
@@ -27,7 +27,6 @@ function Information() {
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
-      // eslint-disable-next-line
       const data = await response.json();
       const Information = {
         name: "Miguel de Santiago",
@@ -39,10 +38,9 @@ function Information() {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
-      setHasError(true);
     }
     setIsLoading(false);
-  }, [setHasError, setIsLoading, setModal]);
+  }, [setIsLoading, setModal]);
 
   useEffect(() => {
     fetchInformation();
@@ -67,7 +65,6 @@ function Information() {
         title: "Error en el campo " + error.label.toUpperCase(),
         message: error.error,
       });
-      setHasError(true);
       return;
     }
     setIsLoading(true);
@@ -84,7 +81,6 @@ function Information() {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
     setIsLoading(false);
     console.log("TODO CORRECTO, guardar");
@@ -98,7 +94,7 @@ function Information() {
           <Card
             label="Nombre de la intitución"
             value={information.name}
-            maxLength="30"
+            maxLength="40"
             onChange={(event) => {
               setInformation({ ...information, name: event.target.value });
             }}
@@ -120,7 +116,7 @@ function Information() {
           <Card
             label="Secretario/a"
             value={information.secretary}
-            maxLength="20"
+            maxLength="35"
             onChange={(event) => {
               setInformation({
                 ...information,

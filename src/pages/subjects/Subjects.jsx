@@ -5,11 +5,11 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import LongMainContainer from "../../components/container/LongMainContainer";
 import LongSubContainer from "../../components/container/LongSubContainer";
-import OnOffCard from "../../components/Cards/OnOffCard";
+import OnOffCard from "../../components/cards/OnOffCard";
 
 function Subjects() {
   const navigate = useNavigate();
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [subjects, setSubjects] = useState([]);
 
@@ -35,7 +35,7 @@ function Subjects() {
         {
           id: "2",
           name: "Deporte",
-          active: true,
+          active: false,
         },
         {
           id: "3",
@@ -47,10 +47,9 @@ function Subjects() {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
-      setHasError(true);
     }
     setIsLoading(false);
-  }, [setHasError, setIsLoading, setModal]);
+  }, [setIsLoading, setModal]);
 
   useEffect(() => {
     fetchData();

@@ -7,7 +7,7 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/Cards/Card";
+import Card from "../../components/cards/Card";
 import OnOffInput from "../../components/atoms/OnOffInput";
 
 function EditParallel() {
@@ -15,7 +15,7 @@ function EditParallel() {
   const params = useParams();
 
   const { user, token } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [parallel, setParallel] = useState({});
 
@@ -40,9 +40,8 @@ function EditParallel() {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
-  }, [setHasError, setIsLoading, setModal, token]);
+  }, [params.identification, setIsLoading, setModal]);
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -51,7 +50,6 @@ function EditParallel() {
         title: "Error en el campo " + error.label.toUpperCase(),
         message: error.error,
       });
-      setHasError(true);
       return;
     }
     setIsLoading(true);
@@ -64,12 +62,10 @@ function EditParallel() {
         title: "CORRECTO",
         message: "Cambiar este modal por el del mensaje correcto",
       });
-      setHasError(true);
       navigate("/parallels");
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
   };
 
@@ -88,14 +84,14 @@ function EditParallel() {
         <Card
           label="Paralelo"
           value={parallel.identification}
-          maxLength="10"
+          maxLength="5"
           onChange={(event) => {
             setParallel((prevState) => {
               return { ...prevState, identification: event.target.value };
             });
           }}
           setError={setErrorIdentification}
-          validation="identification"
+          validation="code"
           disabled={user.role !== "secretary"}
         />
         <Card label="Estado">

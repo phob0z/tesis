@@ -16,15 +16,15 @@ function Photo(props) {
 }
 
 Photo.propTypes = {
-    src: PropTypes.string,
-    alt: PropTypes.string,
-    onClick: PropTypes.func,
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 Photo.defaultProps = {
-    src: "https://www.hallmarktour.com/img/profile-img.jpg",
-    alt: "Usuario",
-    onClick: () => {},
+  src: "https://www.hallmarktour.com/img/profile-img.jpg",
+  alt: "Usuario",
+  onClick: () => {},
 };
 
 export default Photo;

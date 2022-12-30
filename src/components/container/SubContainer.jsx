@@ -5,7 +5,9 @@ import classes from "./SubContainer.module.css";
 function SubContainer(props) {
   return (
     <div className={classes.subContainer}>
-      {props.subTitle && <div className={classes.subTitle}>{props.subTitle}</div>}
+      {props.subTitle && (
+        <div className={classes.subTitle}>{props.subTitle}</div>
+      )}
       {props.children}
       {props.buttonTitle && (
         <div className={classes.button}>

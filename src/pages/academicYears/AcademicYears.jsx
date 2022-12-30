@@ -5,11 +5,11 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import LongMainContainer from "../../components/container/LongMainContainer";
 import LongSubContainer from "../../components/container/LongSubContainer";
-import OnOffCard from "../../components/Cards/OnOffCard";
+import OnOffCard from "../../components/cards/OnOffCard";
 
 function AcademicYears() {
   const navigate = useNavigate();
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [academicYears, setAcademicYears] = useState([]);
 
@@ -47,10 +47,9 @@ function AcademicYears() {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
-      setHasError(true);
     }
     setIsLoading(false);
-  }, [setHasError, setIsLoading, setModal]);
+  }, [setIsLoading, setModal]);
 
   useEffect(() => {
     fetchData();
@@ -65,7 +64,9 @@ function AcademicYears() {
       }}
     >
       {academicYears.length === 0 ? (
-        <LongSubContainer>No se encontraron preriodos académicos.</LongSubContainer>
+        <LongSubContainer>
+          No se encontraron preriodos académicos.
+        </LongSubContainer>
       ) : (
         academicYears.map((course) => {
           return (

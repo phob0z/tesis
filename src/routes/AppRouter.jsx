@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import PublicRoute from "./PublicRoute";
@@ -18,7 +18,6 @@ import Information from "../pages/information/Information";
 import Background from "../components/background/Background";
 import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
-import AlertContext from "../contexts/alert/AlertContext";
 
 import Students from "../pages/students/Students";
 import NewStudent from "../pages/students/NewStudent";
@@ -48,23 +47,15 @@ import AcademicYears from "../pages/academicYears/AcademicYears";
 import NewAcademicYear from "../pages/academicYears/NewAcademicYear";
 import EditAcademicYear from "../pages/academicYears/EditAcademicYear";
 
-
+import Grades from "../pages/grades/Grades";
+import EditGrades from "../pages/grades/EditGrades";
 
 const AppRouter = () => {
-  const { isLoading, hasError, modal, setHasError } = useContext(AlertContext);
-  const closeModal = () => {
-    setHasError(false);
-  };
   return (
     <Fragment>
       <Background />
-      <Spinner show={isLoading} />
-      <Modal
-        show={hasError}
-        close={closeModal}
-        title={modal.title}
-        message={modal.message}
-      />
+      <Spinner />
+      <Modal />
       <AuthProvider>
         <Routes>
           <Route
@@ -107,7 +98,10 @@ const AppRouter = () => {
                     <Route path="/parallels">
                       <Route path="" element={<Parallels />} />
                       <Route path="newParallel" element={<NewParallel />} />
-                      <Route path=":identification" element={<EditParallel />} />
+                      <Route
+                        path=":identification"
+                        element={<EditParallel />}
+                      />
                     </Route>
                     <Route path="/subjects">
                       <Route path="" element={<Subjects />} />
@@ -117,12 +111,25 @@ const AppRouter = () => {
                     <Route path="/specialties">
                       <Route path="" element={<Specialties />} />
                       <Route path="newSpecialty" element={<NewSpecialty />} />
-                      <Route path=":identification" element={<EditSpecialty />} />
+                      <Route
+                        path=":identification"
+                        element={<EditSpecialty />}
+                      />
                     </Route>
                     <Route path="/academicYears">
                       <Route path="" element={<AcademicYears />} />
-                      <Route path="newAcademicYear" element={<NewAcademicYear />} />
-                      <Route path=":identification" element={<EditAcademicYear />} />
+                      <Route
+                        path="newAcademicYear"
+                        element={<NewAcademicYear />}
+                      />
+                      <Route
+                        path=":identification"
+                        element={<EditAcademicYear />}
+                      />
+                    </Route>
+                    <Route path="/grades">
+                      <Route path="" element={<Grades />} />
+                      <Route path=":identification" element={<EditGrades />} />
                     </Route>
                   </Routes>
                 </Fragment>

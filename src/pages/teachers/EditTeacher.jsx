@@ -7,13 +7,13 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/Cards/Card";
+import Card from "../../components/cards/Card";
 
 function EditTeacher() {
   const params = useParams();
 
   const { user, token } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [userProfile, setUserProfile] = useState({ user });
 
@@ -40,10 +40,8 @@ function EditTeacher() {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
-    // eslint-disable-next-line
-  }, [setHasError, setIsLoading, setModal, token]);
+  }, [params.identification, setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchFullStudent();

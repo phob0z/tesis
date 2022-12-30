@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -7,17 +6,15 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/Cards/Card";
+import Card from "../../components/cards/Card";
 
 function NewTeacher() {
-  const params = useParams();
-
   const { user, token } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [userProfile, setUserProfile] = useState({ user });
+  const [teacher, setTeacher] = useState({ user });
 
-  const fetchFullStudent = useCallback(async () => {
+  const fetchFullTeacher = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -30,35 +27,29 @@ function NewTeacher() {
           },
         }
       );
-      const { user, avatar } = response.data.data;
-      setUserProfile({
-        ...user,
-        avatar: avatar,
-        identification: params.identification,
-      });
+      const data = response.data.data;
+      setTeacher({ ...data });
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
-    // eslint-disable-next-line
-  }, [setHasError, setIsLoading, setModal, token]);
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
-    fetchFullStudent();
-  }, [fetchFullStudent]);
+    fetchFullTeacher();
+  }, [fetchFullTeacher]);
 
   return (
     <MainContainer title="Nuevo profesor" buttonTitle="Guardar" type="submit">
       <SubContainer subTitle="INFO PERSONAL">
         <Card
           label="Identificación"
-          value={userProfile.identification}
+          value={teacher.identification}
           maxLength="20"
           onChange={(event) => {
-            setUserProfile({
-              ...userProfile,
+            setTeacher({
+              ...teacher,
               identification: event.target.value,
             });
           }}

@@ -162,7 +162,6 @@
   display: flex;
   border-radius: 0.625rem;
   border: 0.0625rem transparent solid;
-  /* margin: 0.625rem 0 0.625rem 0; */
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   width: 100%;
   min-height: 2rem;
@@ -237,12 +236,7 @@
   margin: 0.625rem;
 }
 
-img {
-  max-width: 100%;
-  border-radius: 0.625rem;
-}
-
-textarea {
+.inputContainer textarea {
   font-family: "Open Sans";
   font-weight: 900;
   font-size: 0.8rem;
@@ -259,20 +253,18 @@ textarea {
   height: 2.5rem;
 }
 
-select {
+.inputContainer select {
   font-family: "Open Sans";
   font-weight: 900;
   font-size: 0.8rem;
   color: #414141;
   font-weight: 900;
-  /* height: 2.8rem; */
-  /* height: 100%; */
   background: transparent;
   border: 0;
   outline: 0;
 }
 
-select option {
+.inputContainer select option {
   font: inherit;
   background-color: #c1adaf;
   border: 0;

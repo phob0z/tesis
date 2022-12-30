@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
-import classes from "./StudentCard.module.css";
+import classes from "./GradeCard.module.css";
 
-function StudentCard(props) {
+function GradeCard(props) {
   const navigate = useNavigate();
 
   const onIcon = (
@@ -41,4 +41,4 @@ function StudentCard(props) {
   );
 }
 
-export default StudentCard;
+export default GradeCard;

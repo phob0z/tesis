@@ -13,7 +13,7 @@ import classes from "./Auth.module.css";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [identification, setIdentificacion] = useState("");
   const [identificationTouched, setIdentificacionTouched] = useState(false);
@@ -78,7 +78,6 @@ const Login = () => {
           ? identificationError + "\n" + passwordError
           : passwordError,
       });
-      setHasError(true);
       return;
     }
 
@@ -101,7 +100,6 @@ const Login = () => {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
   };
 

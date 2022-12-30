@@ -19,7 +19,7 @@ function TeacherCard(props) {
 
   const onEditHandler = () => {
     navigate(props.identification);
-  }
+  };
   return (
     <div className={classes.teacher}>
       <div className={classes.name}>
@@ -30,7 +30,9 @@ function TeacherCard(props) {
         {props.state ? onIcon : offIcon}
       </div>
       <div>
-        <Button className="editButton" onClick={onEditHandler}>Editar</Button>
+        <Button className="editButton" onClick={onEditHandler}>
+          Editar
+        </Button>
       </div>
     </div>
   );

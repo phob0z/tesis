@@ -6,11 +6,11 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/Cards/Card";
+import Card from "../../components/cards/Card";
 
 function Profile() {
   const { user, token, setProfile } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [userProfile, setUserProfile] = useState({ user });
   const [newPassword, setNewPassword] = useState("");
@@ -47,9 +47,8 @@ function Profile() {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
-  }, [setHasError, setIsLoading, setModal, token]);
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchProfile();
@@ -102,7 +101,6 @@ function Profile() {
           ? "La contraseña es vacía"
           : "Las contraseñas no coinciden",
       });
-      setHasError(true);
       return;
     }
     setIsLoading(true);
@@ -121,13 +119,11 @@ function Profile() {
       );
       setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
-      setHasError(true);
       setNewPassword("");
       setConfirmation("");
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
   };
 
@@ -138,7 +134,6 @@ function Profile() {
         title: "Error en el campo " + error.label.toUpperCase(),
         message: error.error,
       });
-      setHasError(true);
       return;
     }
     setIsLoading(true);
@@ -182,13 +177,11 @@ function Profile() {
         );
       setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
-      setHasError(true);
       setProfile({ ...userProfile });
       user.avatar = userProfile.avatar;
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
   };
 
@@ -199,7 +192,7 @@ function Profile() {
           <Card
             label="Nombres"
             value={userProfile.name}
-            maxLength="35"
+            maxLength="50"
             onChange={(event) => {
               setUserProfile({ ...userProfile, name: event.target.value });
             }}
@@ -210,7 +203,7 @@ function Profile() {
           <Card
             label="Apellidos"
             value={userProfile.last_name}
-            maxLength="35"
+            maxLength="50"
             onChange={(event) => {
               setUserProfile({ ...userProfile, last_name: event.target.value });
             }}
@@ -221,7 +214,7 @@ function Profile() {
           <Card
             label="Identificación"
             value={userProfile.identification}
-            maxLength="20"
+            maxLength="15"
             onChange={(event) => {
               setUserProfile({
                 ...userProfile,
@@ -235,7 +228,7 @@ function Profile() {
           <Card
             label="Fecha de nacimiento"
             value={userProfile.birthdate}
-            maxLength="20"
+            maxLength="10"
             type="date"
             onChange={(event) => {
               setUserProfile({ ...userProfile, birthdate: event.target.value });
@@ -255,14 +248,14 @@ function Profile() {
             setError={setErrorAvatar}
             validation="image"
             alt={`Imagen de ${user.name} ${user.last_name}`}
-            disabled={user.role !== "secretary"}
+            // disabled={user.role !== "secretary"}
           />
         </SubContainer>
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
             value={userProfile.email}
-            maxLength="20"
+            maxLength="50"
             onChange={(event) => {
               setUserProfile({ ...userProfile, email: event.target.value });
             }}
@@ -302,7 +295,7 @@ function Profile() {
             type="textBig"
             label="Dirección"
             value={userProfile.address}
-            maxLength="50"
+            maxLength="150"
             onChange={(event) => {
               setUserProfile({ ...userProfile, address: event.target.value });
             }}
@@ -318,7 +311,7 @@ function Profile() {
           <Card
             label="Nueva contraseña"
             value={newPassword}
-            maxLength="50"
+            maxLength="30"
             validation="changePassword"
             onChange={(event) => {
               setNewPassword(event.target.value);
@@ -330,7 +323,7 @@ function Profile() {
           <Card
             label="Confirmar contraseña"
             value={confirmation}
-            maxLength="50"
+            maxLength="30"
             validation="changePassword"
             onChange={(event) => {
               setConfirmation(event.target.value);

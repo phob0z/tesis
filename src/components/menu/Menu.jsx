@@ -14,7 +14,7 @@ import { useMemo } from "react";
 
 const Menu = () => {
   const { user, token, logout } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [showSubMenu, setShowSubMenu] = useState(false);
   const [subMenu, setSubMenu] = useState();
@@ -134,7 +134,6 @@ const Menu = () => {
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
     setIsLoading(false);
   };
@@ -173,7 +172,10 @@ const Menu = () => {
           </Button>
         </div>
       </div>
-      <Photo src={user.avatar} alt={`Imagen de ${user.name} ${user.last_name}`} />
+      <Photo
+        src={user.avatar}
+        alt={`Imagen de ${user.name} ${user.last_name}`}
+      />
     </div>
   );
 };

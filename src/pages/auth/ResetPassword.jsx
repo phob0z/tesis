@@ -11,15 +11,15 @@ import classes from "./Auth.module.css";
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const { setHasError, setModal } = useContext(AlertContext);
+  const { setModal } = useContext(AlertContext);
 
   const location = useLocation();
   const queryParameters = new URLSearchParams(location.search);
-  console.log(location);
+  // console.log(location);
   const token = queryParameters.get("token");
   const email = queryParameters.get("email");
-  console.log(token);
-  console.log(email);
+  // console.log(token);
+  // console.log(email);
 
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
@@ -87,7 +87,6 @@ function ResetPassword() {
           ? passwordError + "\n" + confirmationError
           : confirmationError,
       });
-      setHasError(true);
       return;
     }
 
@@ -111,8 +110,6 @@ function ResetPassword() {
       title: "CORRECTO",
       message: "Contraseña actualizada correctamente\nIngrese de nuevo",
     });
-    setHasError(true);
-    //stop
     navigate("/login");
   };
 
@@ -133,7 +130,7 @@ function ResetPassword() {
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
             maxLength="30"
-            showRevealPassword="true"
+            showRevealPassword
             color="red"
           >
             <PasswordKeyIcon color="white" />
@@ -148,7 +145,7 @@ function ResetPassword() {
             onChange={confirmationChangeHandler}
             onBlur={confirmationBlurHandler}
             maxLength="30"
-            showRevealPassword="true"
+            showRevealPassword
             color="red"
           >
             <PasswordKeyIcon color="white" />

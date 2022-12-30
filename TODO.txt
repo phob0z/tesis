@@ -1,77 +1,39 @@
 Internationalize
 (https://blog.shahednasser.com/how-to-internationalize-a-react-app/)
 
-Refresh/reset/expire token
-
--Como front, si ya existe user y token, check token, si todo está bien continuar.
--Como front, si ya existe user y token, check token, si no es correcto hacer logout,
-y borrar user y token e ir a Login.
--Como front, si no existe usuario o token, borrar usuario o token e ir al Login.
--Como front, intentar hacer login, si ya existe token y pueden haber multiples login,
-no hay problema (Que el backend cree un nuevo token cada vez pero con expiración)
--Como front, intentar hacer login, si solo puede haber un token (login) por usuario y
-el token ya existe (si estoy intentando hacer login yo no tengo user o token), entonces
-hacer un logout con la cédula y el password (porque no tengo token)
-- Si existe el token o el user, pero el token no existe en la BD, borrar token y user de localStorage
-
--- RESUMEN de lo e arriba:
-BACKEND debe expirar de LEY el token 24h
-BACKEND un API que reciba la identificacion y el token y devuelva un mensaje diciendo verdadero si corresponden o falso y no corresponden (si no existe el token)
-FRONTEND debe chequear mandar ese pedido de API cada inicio de aplicacion
-
 Reportes: API con un array con la información.
 
 -- Menos importante, pero importante --
 Mover la lógica de validaciones fuera del Card, en una archivo aparte donde se llame a una función y devuelva
 true si todo es correcto, o el mensaje de error en caso contrario, la funcion debe recibir el tipo de
 validación y la cadena a validar.
-ERROR: La validación del campo nombre no acepta acentos.
 
-filtro["8vo","all","all"];
-calificaciones(token, filtro)
-llamada SQL con filtros filtro[0], filtro[1], filtro[2]
+Home!
+EmailSent!!
+ResetPassword!!!
 
 Boton atrás
-
-En Modal:
-hasError no tiene mucho sentido, si Modal tiene info, mostarla, al darle a la X que haga Modal=false
 
 En todos:
 Revisar el tamaño maximo (de caracteres) de todos los campos de la app.
 
-Filtros:
-Yo filtro o filtra el Backend?
-
-resetPassword:
-Campo confirmation no tiene validación
-
 Profile:
-Campo dirección hablar con Raúl del tamaño maximo (me dijo la Ing. Ivonne)
-La lógica de guardar/cargar instantaneamente esta un poco rara.
+Error: Se tiene que cambiar la imagen para que permita guardar
 
 En las rutas:
 Hacer chequeo del role para el ruteo... que student no pueda acceder a /students, /teachers, etc.
 
 Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes y pasarlas por className
 
-ForgotPassword:
-No me llega el correo
-
-Validacion:
-Identificacion mas de 5 menos de 15 - Me dijo la Ing. Ivonne.
-
 Fecha límite para editar campos de notas (Un campo adicional en cada nota para la fecha máxima de edición)
 (Más simple, una fecha para finalización de quimestre y que ahí se bloqueen los campos)
 
 Páginación...
 
-Icons:
-Light: b47378
-Hover: a73941
+Error con los filtros.
 
-"Blanco": f3f3f3
-Rojo: a01b25
+En resetPassword creo... Se muestra un modal... why?
 
-Input fondo: c1adaf
-
-Letras "negro": 414141
+RAÚL!!!
+Filtra el Backend
+No me llega el correo (RAUUUULLL ARREGLA QUE SOLO MANDA A MAILTRAP)

@@ -1,14 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import AlertContext from "../../contexts/alert/AlertContext";
 
 import LongMainContainer from "../../components/container/LongMainContainer";
 import LongSubContainer from "../../components/container/LongSubContainer";
-import StudentCard from "../../components/cards/StudentCard";
+import GradeCard from "../../components/cards/GradeCard";
 
-function Students() {
-  const navigate = useNavigate();
+function Grades() {
   const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [students, setStudents] = useState([]);
@@ -27,7 +25,7 @@ function Students() {
     setIsLoading(true);
     try {
       // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Students/`,
+      //   `${process.env.REACT_APP_BACK_URL}/Gradess/`,
       //   { method: "GET" },
       //   { user },
       //   { headers: { accept: "application/json" } }
@@ -35,9 +33,10 @@ function Students() {
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
+      // eslint-disable-next-line
       const data1 = await response.json();
       const data = [
-        { filter: "course", label: "Curso", options: ["1ero", "8vo", "9no", "10mo"] },
+        { filter: "course", label: "Curso", options: ["8vo", "9no", "10mo"] },
         { filter: "parallel", label: "Paralelo", options: ["A", "B", "C"] },
         {
           filter: "specialty",
@@ -58,7 +57,7 @@ function Students() {
     setIsLoading(true);
     try {
       // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Students/`,
+      //   `${process.env.REACT_APP_BACK_URL}/Gradess/`,
       //   { method: "GET" },
       //   { user },
       //   { headers: { accept: "application/json" } }
@@ -66,7 +65,6 @@ function Students() {
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
-      // eslint-disable-next-line
       const data1 = await response.json();
       const data = [
         {
@@ -293,16 +291,13 @@ function Students() {
   };
 
   const onChange = () => {
-    console.log(search);
     console.log("Hacer el pedido al back con los nuevos parametros");
     fetchData();
   };
 
   return (
     <LongMainContainer
-      title="Estudiantes"
-      buttonTitle="Nuevo"
-      onClick={() => {navigate("newStudent")}}
+      title="Calificaciones"
       onSearch={onSearch}
       showSearchInput
       filters={filters}
@@ -320,7 +315,7 @@ function Students() {
         students.map((student) => {
           return (
             <LongSubContainer key={student.identification}>
-              <StudentCard
+              <GradeCard
                 name={student.name}
                 last_name={student.last_name}
                 identification={student.identification}
@@ -337,4 +332,4 @@ function Students() {
   );
 }
 
-export default Students;
+export default Grades;

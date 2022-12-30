@@ -1,14 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./Spinner.module.css";
 import Backdrop from "../atoms/Backdrop";
+import AlertContext from "../../contexts/alert/AlertContext";
 
-const Spinner = (props) => {
+const Spinner = () => {
+  const { isLoading } = useContext(AlertContext);
   return (
     <Fragment>
-      <Backdrop show={props.show}/>
-      <div className={`${props.show ? classes.show : classes.hide}`}>
+      <Backdrop show={isLoading ? true : false} />
+      <div className={`${isLoading ? classes.show : classes.hide}`}>
         <div className={classes.spinner}></div>
         <div className={classes.spinner2}></div>
       </div>

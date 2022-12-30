@@ -7,13 +7,13 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import MainContainer from "../../components/container/MainContainer";
 import SubContainer from "../../components/container/SubContainer";
-import Card from "../../components/Cards/Card";
+import Card from "../../components/cards/Card";
 
 function NewSubject() {
   const navigate = useNavigate();
 
   const { user, token } = useContext(AuthContext);
-  const { setIsLoading, setHasError, setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [subject, setSubject] = useState({});
 
@@ -31,7 +31,6 @@ function NewSubject() {
         title: "Error en el campo " + error.label.toUpperCase(),
         message: error.error,
       });
-      setHasError(true);
       return;
     }
     setIsLoading(true);
@@ -44,12 +43,10 @@ function NewSubject() {
         title: "CORRECTO",
         message: "Cambiar este modal por el del mensaje correcto",
       });
-      setHasError(true);
       navigate("/subjects");
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
-      setHasError(true);
     }
   };
 
@@ -64,14 +61,14 @@ function NewSubject() {
         <Card
           label="Asignatura"
           value={subject.identification}
-          maxLength="10"
+          maxLength="5"
           onChange={(event) => {
             setSubject((prevState) => {
               return { ...prevState, identification: event.target.value };
             });
           }}
           setError={setErrorIdentification}
-          validation="identification"
+          validation="code"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

@@ -17,7 +17,7 @@ function Card(props) {
     switch (props.validation) {
       case "text":
         if (!props.value) setError("El campo no puede estar vacío");
-        else if (!props.value.match(/^[a-zA-Z\s]+$/))
+        else if (!props.value.match(/^([a-zA-Z\s]|[à-ú]|[À-Ú])+$/))
           setError("Solo puede contener letras o espacios");
         break;
       case "identification":
@@ -26,6 +26,13 @@ function Card(props) {
           setError("Debe tener al menos 5 caracteres");
         else if (props.value.trim().length > 15)
           setError("Debe tener menos de 15 caracteres");
+        else if (!props.value.match(/^\w+$/))
+          setError("Solo puede contener letras o números");
+        break;
+      case "code":
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (props.value.trim().length > 5)
+          setError("Debe tener menos de 5 caracteres");
         else if (!props.value.match(/^\w+$/))
           setError("Solo puede contener letras o números");
         break;

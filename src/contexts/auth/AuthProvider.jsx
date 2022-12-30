@@ -1,11 +1,13 @@
+import axios from "axios";
 import React, { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const authReducer = (state, action) => {
     if (action.type === "LOGIN") {
       return {
-        // ...state,
         logged: true,
         user: action.payload.user,
         token: action.payload.token,
@@ -14,7 +16,6 @@ const AuthProvider = ({ children }) => {
 
     if (action.type === "LOGOUT") {
       return {
-        // ...state,
         logged: false,
         user: null,
         token: null,
@@ -32,24 +33,39 @@ const AuthProvider = ({ children }) => {
   };
 
   const initialization = () => {
-    // Hacer una llamada a un API CheckToken, enviar usuario y el token, si devuelve correcto,
-    // el token está bien si devuelve falso, logged: false, user: null
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
-    // const token = localStorage.getItem("token");
+    if (token) checkToken(token);
     return {
-      // logged: !!user&&!!token,
       logged: !!user,
-      // user: !!user&&!!token? user: null,
       user,
       token,
     };
   };
 
+  const checkToken = async (token) => {
+    try {
+      await axios.get(`${process.env.REACT_APP_BACK_URL}/profile`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: token,
+        },
+      });
+    } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        navigate("/login");
+        window.location.reload(true);
+      }
+    }
+  };
+
   const [authState, dispatch] = useReducer(authReducer, {}, initialization);
 
   const login = async (user, token) => {
-    const action = { type: "LOGIN", payload: {user, token} };
+    const action = { type: "LOGIN", payload: { user, token } };
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
     dispatch(action);
