@@ -70,7 +70,6 @@ function Students() {
       // const { access_token, token_type, user, avatar } = response.data.data;
       // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
-      // eslint-disable-next-line
       const data1 = await response.json();
       const data = [
         {

@@ -11,7 +11,7 @@ function Teachers() {
   const navigate = useNavigate();
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [data, setTeachers] = useState([]);
+  const [teachers, setTeachers] = useState([]);
 
   const [identification, setIdentification] = useState("");
   const [search, setSearch] = useState({
@@ -189,7 +189,8 @@ function Teachers() {
   };
 
   const onChange = () => {
-    console.log("Hacer el pedido al back con los filtros");
+    console.log(search);
+    console.log("Haciendo el pedido al back con los nuevos parametros");
     fetchData();
   };
 
@@ -202,18 +203,17 @@ function Teachers() {
       }}
       onSearch={onSearch}
       showSearchInput
-      onChange={onChange}
       identification={identification}
       onIdentificationChange={(event) => {
         setIdentification(event.target.value);
       }}
     >
-      {data.length === 0 ? (
+      {teachers.length === 0 ? (
         <LongSubContainer>
           No se encontraron profesores con esos parámetros.
         </LongSubContainer>
       ) : (
-        data.map((teacher) => {
+        teachers.map((teacher) => {
           return (
             <LongSubContainer key={teacher.identification}>
               <TeacherCard

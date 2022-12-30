@@ -1,17 +1,9 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import Button from "../atoms/Button";
 import Input from "../atoms/Input";
 import classes from "./LongMainContainer.module.css";
 
 function LongMainContainer(props) {
-  // console.log(props.search);
-  // const [search, setSearch] = useState(props.search);
-
-  // useEffect(() => {
-  //   if (props.onChange) props.onChange(search);
-    // eslint-disable-next-line
-  // }, [search]);
-
   return (
     <Fragment>
       <div className={classes.mainContainer}> {props.children} </div>
@@ -57,8 +49,7 @@ function LongMainContainer(props) {
             props.onSearch ? "" : classes.space
           }`}
         >
-          {" "}
-          {props.title}{" "}
+          {props.title}
         </div>
       )}
 
