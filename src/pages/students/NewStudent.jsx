@@ -1,5 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -10,45 +9,18 @@ import SubContainer from "../../components/container/SubContainer";
 import Card from "../../components/cards/Card";
 
 function NewStudent() {
-  const params = useParams();
-
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [userProfile, setUserProfile] = useState({ user });
 
-  const fetchFullStudent = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/profile`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: token,
-          },
-        }
-      );
-      const { user, avatar } = response.data.data;
-      setUserProfile({
-        ...user,
-        avatar: avatar,
-        identification: params.identification,
-      });
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error.response.data.message });
-    }
-  }, [params.identification, setIsLoading, setModal, token]);
-
-  useEffect(() => {
-    fetchFullStudent();
-  }, [fetchFullStudent]);
-
   return (
-    <MainContainer title="Nuevo estudiante" buttonTitle="Guardar" type="submit">
+    <MainContainer
+      title="Nuevo estudiante"
+      buttonTitle="Guardar"
+      type="submit"
+      backButton
+    >
       <SubContainer subTitle="INFO PERSONAL">
         <Card
           label="Identificación"

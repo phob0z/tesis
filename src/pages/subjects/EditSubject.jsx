@@ -79,6 +79,7 @@ function EditSubject() {
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}
+      backButton
     >
       <SubContainer>
         <Card

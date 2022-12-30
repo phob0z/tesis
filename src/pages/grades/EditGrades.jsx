@@ -101,7 +101,12 @@ function EditGrades() {
   }, [fetchStudent, fetchGrades]);
 
   return (
-    <MainContainer title="Calificaciones" buttonTitle="Guardar" type="submit">
+    <MainContainer
+      title="Calificaciones"
+      buttonTitle="Guardar"
+      type="submit"
+      backButton
+    >
       <LongSubContainer>
         {/* {console.log(student.name)} */}
         {/* <GradeCard

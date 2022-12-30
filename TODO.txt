@@ -12,8 +12,6 @@ Home!
 EmailSent!!
 ResetPassword!!!
 
-Boton atrás
-
 Profile:
 Error: Se tiene que cambiar la imagen para que permita guardar
 

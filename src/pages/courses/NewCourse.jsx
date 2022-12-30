@@ -56,6 +56,7 @@ function NewCourse() {
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}
+      backButton
     >
       <SubContainer>
         <Card
