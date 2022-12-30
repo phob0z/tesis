@@ -30,17 +30,17 @@ function AcademicYears() {
         {
           id: "1",
           name: "2020",
-          active: false,
+          state: false,
         },
         {
           id: "2",
           name: "2021",
-          active: true,
+          state: true,
         },
         {
           id: "3",
           name: "2022",
-          active: true,
+          state: true,
         },
       ];
       setAcademicYears([...data]);
@@ -74,7 +74,7 @@ function AcademicYears() {
               <OnOffCard
                 id={course.id}
                 name={course.name}
-                active={course.active}
+                state={course.state}
               />
             </LongSubContainer>
           );

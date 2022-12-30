@@ -30,27 +30,27 @@ function Courses() {
         {
           id: "1",
           name: "8vo",
-          active: true,
+          state: true,
         },
         {
           id: "2",
           name: "9no",
-          active: true,
+          state: true,
         },
         {
           id: "3",
           name: "10mo",
-          active: true,
+          state: true,
         },
         {
           id: "4",
           name: "1ero",
-          active: false,
+          state: false,
         },
         {
           id: "5",
           name: "3ero",
-          active: true,
+          state: true,
         },
       ];
       setCourses([...data]);
@@ -82,7 +82,7 @@ function Courses() {
               <OnOffCard
                 id={course.id}
                 name={course.name}
-                active={course.active}
+                state={course.state}
               />
             </LongSubContainer>
           );

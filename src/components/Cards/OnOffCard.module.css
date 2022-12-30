@@ -16,13 +16,3 @@
 .data div {
   align-self: center;
 }
-
-.active {
-  padding-top: 0.3rem;
-  color: green;
-}
-
-.inactive {
-  padding-top: 0.3rem;
-  color: #a01b25;
-}

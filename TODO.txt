@@ -14,9 +14,6 @@ ResetPassword!!!
 
 Boton atrás
 
-En todos:
-Revisar el tamaño maximo (de caracteres) de todos los campos de la app.
-
 Profile:
 Error: Se tiene que cambiar la imagen para que permita guardar
 

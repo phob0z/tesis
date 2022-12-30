@@ -30,27 +30,27 @@ function Parallels() {
         {
           id: "1",
           name: "A",
-          active: true,
+          state: true,
         },
         {
           id: "2",
           name: "B",
-          active: true,
+          state: true,
         },
         {
           id: "3",
           name: "C",
-          active: true,
+          state: true,
         },
         {
           id: "4",
           name: "A1",
-          active: false,
+          state: false,
         },
         {
           id: "5",
           name: "D4",
-          active: true,
+          state: true,
         },
       ];
       setParallels([...data]);
@@ -82,7 +82,7 @@ function Parallels() {
               <OnOffCard
                 id={course.id}
                 name={course.name}
-                active={course.active}
+                state={course.state}
               />
             </LongSubContainer>
           );

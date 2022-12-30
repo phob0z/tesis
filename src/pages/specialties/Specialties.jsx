@@ -30,22 +30,22 @@ function Specialties() {
         {
           id: "1",
           name: "Electrónica",
-          active: true,
+          state: true,
         },
         {
           id: "2",
           name: "Informática",
-          active: true,
+          state: true,
         },
         {
           id: "3",
           name: "Madera",
-          active: true,
+          state: true,
         },
         {
           id: "4",
           name: "Eletricidad",
-          active: false,
+          state: false,
         },
       ];
       setSpecialties([...data]);
@@ -77,7 +77,7 @@ function Specialties() {
               <OnOffCard
                 id={course.id}
                 name={course.name}
-                active={course.active}
+                state={course.state}
               />
             </LongSubContainer>
           );

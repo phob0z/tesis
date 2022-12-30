@@ -1,4 +1,4 @@
-.student {
+.grade {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 3fr 1.5fr 1fr 1fr 4fr 1fr 1fr;
@@ -11,16 +11,6 @@
   cursor: default;
 }
 
-.student div {
+.grade div {
   align-self: center;
-}
-
-.onIcon {
-  padding-top: 0.3rem;
-  color: green;
-}
-
-.offIcon {
-  padding-top: 0.3rem;
-  color: #a01b25;
 }

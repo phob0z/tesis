@@ -14,13 +14,3 @@
 .teacher div {
   align-self: center;
 }
-
-.onIcon {
-  padding-top: 0.3rem;
-  color: green;
-}
-
-.offIcon {
-  padding-top: 0.3rem;
-  color: #a01b25;
-}

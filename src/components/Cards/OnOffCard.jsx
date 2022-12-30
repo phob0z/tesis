@@ -1,34 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
+import OnOffIcon from "../icons/OnOffIcon";
 import classes from "./OnOffCard.module.css";
 
 function CourseCard(props) {
   const navigate = useNavigate();
 
-  const onEditHandler = () => {
-    navigate(props.id);
-  };
-
-  const activeIcon = (
-    <span style={{ cursor: "default" }} className="material-symbols-outlined">
-      check_circle
-    </span>
-  );
-  const inActiveIcon = (
-    <span style={{ cursor: "default" }} className="material-symbols-outlined">
-      cancel
-    </span>
-  );
-
   return (
     <div className={classes.data}>
       <div>{props.name}</div>
-      <div className={`${props.active ? classes.active : classes.inactive}`}>
-        {props.active ? activeIcon : inActiveIcon}
-      </div>
+      <OnOffIcon state={props.state} />
       <div>
-        <Button className="editButton" onClick={onEditHandler}>
+        <Button
+          className="editButton"
+          onClick={() => {
+            navigate(props.id);
+          }}
+        >
           Editar
         </Button>
       </div>

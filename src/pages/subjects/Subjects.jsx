@@ -30,17 +30,17 @@ function Subjects() {
         {
           id: "1",
           name: "Matemáticas",
-          active: true,
+          state: true,
         },
         {
           id: "2",
           name: "Deporte",
-          active: false,
+          state: false,
         },
         {
           id: "3",
           name: "Lenguaje",
-          active: true,
+          state: true,
         },
       ];
       setSubjects([...data]);
@@ -72,7 +72,7 @@ function Subjects() {
               <OnOffCard
                 id={course.id}
                 name={course.name}
-                active={course.active}
+                state={course.state}
               />
             </LongSubContainer>
           );

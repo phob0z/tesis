@@ -1,0 +1,17 @@
+.onIcon {
+  padding-top: 0.3rem;
+  color: green;
+}
+
+.offIcon {
+  padding-top: 0.3rem;
+  color: #a01b25;
+}
+
+.onIcon span {
+  cursor: "default";
+}
+
+.offIcon span {
+  cursor: "default";
+}
