@@ -1,10 +1,6 @@
 Error con los filtros...
 
-Reportes: API con un array con la información.
-
-EmailSent
-ResetPassword
-
+Terminar:
 Home
 EditStudent
 NewStudent
@@ -14,21 +10,36 @@ NewTeacher
 En las rutas:
 Hacer chequeo del role para el ruteo... que student no pueda acceder a /students, /teachers, etc.
 
-Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes y pasarlas por className
-
 Fecha límite para editar campos de notas (Un campo adicional en cada nota para la fecha máxima de edición)
 (Más simple, una fecha para finalización de quimestre y que ahí se bloqueen los campos)
 
 Páginación...
 
+Reportes: API con un array con la información.
+
+------------------------------------------------------------
+RAÚL, revisar cuando arregle que no sea solo con Mailtrap ¬¬
+------------------------------------------------------------
+EmailSent
+ResetPassword
+
+
+-------
 RAÚL!!!
+-------
 Filtra el Backend
 No me llega el correo (RAUUUULLL ARREGLA QUE SOLO MANDA A MAILTRAP)
+EmailSent: Creo que no debería devolverme un error si la identificación no existe...
 
+
+---------------------------------------
 -- Menos importante, pero importante --
+---------------------------------------
 Mover la lógica de validaciones fuera del Card, en una archivo aparte donde se llame a una función y devuelva
 true si todo es correcto, o el mensaje de error en caso contrario, la funcion debe recibir el tipo de
 validación y la cadena a validar.
+
+Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes y pasarlas por className
 
 Internationalize
 (https://blog.shahednasser.com/how-to-internationalize-a-react-app/)

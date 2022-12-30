@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 import Input from "../../components/atoms/Input";
 import PasswordKeyIcon from "../../components/icons/PasswordKeyIcon";
@@ -9,61 +9,61 @@ import AlertContext from "../../contexts/alert/AlertContext";
 
 import classes from "./Auth.module.css";
 
-function ResetPassword() {
+function ResetNewPassword() {
   const navigate = useNavigate();
-  const { setModal } = useContext(AlertContext);
+  const { setIsLoading, setModal } = useContext(AlertContext);
 
   const location = useLocation();
   const queryParameters = new URLSearchParams(location.search);
   // console.log(location);
   const token = queryParameters.get("token");
-  const email = queryParameters.get("email");
-  // console.log(token);
-  // console.log(email);
+  const identification = queryParameters.get("identification");
+  console.log(token);
+  console.log(identification);
 
-  const [password, setPassword] = useState("");
-  const [passwordTouched, setPasswordTouched] = useState(false);
-  const [passwordError, setPasswordError] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordTouched, setNewPasswordTouched] = useState(false);
+  const [newPasswordError, setNewPasswordError] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [confirmationTouched, setConfirmationTouched] = useState(false);
   const [confirmationError, setConfirmationError] = useState("");
 
   useEffect(() => {
-    if (password.trim() === "")
-      setPasswordError("Debe ingresar una contraseña");
-    else if (password.length < 8)
-      setPasswordError("La contraseña debe tener al menos 8 caracteres");
-    else if (password.length > 32)
-      setPasswordError("La contraseña debe tener menos de 32 caracteres");
-    else if (!password.match(".*\\d.*"))
-      setPasswordError("La contraseña debe tener al menos un número");
-    else if (!password.match(".*[a-z].*"))
-      setPasswordError("La contraseña debe tener al menos una letra minúscula");
-    else if (!password.match(".*[A-Z].*"))
-      setPasswordError("La contraseña debe tener al menos una letra mayúscula");
-    else if (!password.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/))
-      setPasswordError(
+    if (newPassword.trim() === "")
+      setNewPasswordError("El campo no puede estar vacío");
+    else if (newPassword.length < 8)
+      setNewPasswordError("La contraseña debe tener al menos 8 caracteres");
+    else if (newPassword.length > 32)
+      setNewPasswordError("La contraseña debe tener menos de 32 caracteres");
+    else if (!newPassword.match(".*\\d.*"))
+      setNewPasswordError("La contraseña debe tener al menos un número");
+    else if (!newPassword.match(".*[a-z].*"))
+      setNewPasswordError("La contraseña debe tener al menos una letra minúscula");
+    else if (!newPassword.match(".*[A-Z].*"))
+      setNewPasswordError("La contraseña debe tener al menos una letra mayúscula");
+    else if (!newPassword.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/))
+      setNewPasswordError(
         "La contraseña debe tener al menos un carácter especial"
       );
-    else setPasswordError("");
-  }, [password]);
+    else setNewPasswordError("");
+  }, [newPassword]);
 
   useEffect(() => {
-    if (password !== confirmation)
+    if (newPassword !== confirmation)
       setConfirmationError("Las contraseñas no coinciden");
     else setConfirmationError("");
-  }, [confirmation, password]);
+  }, [confirmation, newPassword]);
 
-  const passwordShowError = passwordTouched && !!passwordError;
+  const newPasswordShowError = newPasswordTouched && !!newPasswordError;
   const confirmationShowError = confirmationTouched && !!confirmationError;
 
-  const passwordChangeHandler = (event) => {
-    setPasswordTouched(true);
-    setPassword(event.target.value);
+  const newPasswordChangeHandler = (event) => {
+    setNewPasswordTouched(true);
+    setNewPassword(event.target.value);
   };
 
-  const passwordBlurHandler = (event) => {
-    setPasswordTouched(true);
+  const newPasswordBlurHandler = () => {
+    setNewPasswordTouched(true);
   };
 
   const confirmationChangeHandler = (event) => {
@@ -71,46 +71,46 @@ function ResetPassword() {
     setConfirmation(event.target.value);
   };
 
-  const confirmationBlurHandler = (event) => {
+  const confirmationBlurHandler = () => {
     setConfirmationTouched(true);
   };
 
-  const onResetPassword = (e) => {
-    e.preventDefault();
-    setPasswordTouched(true);
+  const onResetNewPassword = async(event) => {
+    event.preventDefault();
+    setNewPasswordTouched(true);
     setConfirmationTouched(true);
 
-    if (passwordError || confirmationError) {
+    if (newPasswordError || confirmationError) {
       setModal({
-        title: "ERROR",
-        message: passwordError
-          ? passwordError + "\n" + confirmationError
+        title: "Error en CAMBIAR CONTRASEÑA",
+        message: newPasswordError
+          ? newPasswordError + "\n" + confirmationError
           : confirmationError,
       });
       return;
     }
 
-    /*
-      AQUÍ, LÓGICA DE RESETEAR LA CONTRASEÑA!!!
-      - Con async await.
-      - Si es correcto, modal de confirmación que devuelva al login
+    setIsLoading(true);
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/resetPassword",
-        { token, email, password, confirmation },
-        { headers: { accept: "application/json" } }
+        `${process.env.REACT_APP_BACK_URL}/update-newPassword`,
+        { password: newPassword, password_confirmation: confirmation, identification },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
       );
+      setIsLoading(false);
+      setModal({ title: "CORRECTO", message: response.data.message });
       navigate("/login");
     } catch (error) {
-      console.log("Error: ", error.response.data.message);
+      setIsLoading(false);
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
-    */
-    setModal({
-      title: "CORRECTO",
-      message: "Contraseña actualizada correctamente\nIngrese de nuevo",
-    });
-    navigate("/login");
   };
 
   const onVolver = () => {
@@ -120,35 +120,33 @@ function ResetPassword() {
   return (
     <Fragment>
       <span className={classes.title}>Reestablecer contraseña</span>
-      <form className={classes.login} onSubmit={onResetPassword}>
+      <form className={classes.login} onSubmit={onResetNewPassword}>
         <div className={classes.box}>
           <span className={classes.boxTitle}>Ingrese la contraseña</span>
           <Input
-            value={password}
+            value={newPassword}
             label={"Contraseña"}
-            type="password"
-            onChange={passwordChangeHandler}
-            onBlur={passwordBlurHandler}
+            type="newPassword"
+            onChange={newPasswordChangeHandler}
+            onBlur={newPasswordBlurHandler}
             maxLength="30"
             showRevealPassword
-            color="red"
           >
-            <PasswordKeyIcon color="white" />
+            <PasswordKeyIcon />
           </Input>
-          {passwordShowError && (
-            <label className={classes.error}>{passwordError}</label>
+          {newPasswordShowError && (
+            <label className={classes.error}>{newPasswordError}</label>
           )}
           <Input
             value={confirmation}
             label={"Confirmación de contraseña"}
-            type="password"
+            type="newPassword"
             onChange={confirmationChangeHandler}
             onBlur={confirmationBlurHandler}
             maxLength="30"
             showRevealPassword
-            color="red"
           >
-            <PasswordKeyIcon color="white" />
+            <PasswordKeyIcon />
           </Input>
           {confirmationShowError && (
             <label className={classes.error}>{confirmationError}</label>
@@ -162,4 +160,4 @@ function ResetPassword() {
   );
 }
 
-export default ResetPassword;
+export default ResetNewPassword;

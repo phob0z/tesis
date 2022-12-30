@@ -22,17 +22,13 @@ function ForgotPassword() {
 
   useEffect(() => {
     if (identification.trim() === "")
-      setidentificationError("Debe ingresar una identificación");
-    else if (identification.trim().length < 10)
-      setidentificationError(
-        "La identificación debe tener al menos 10 caracteres"
-      );
-    else if (identification.trim().length > 20)
-      setidentificationError(
-        "La identificación debe tener menos de 20 caracteres"
-      );
+      setidentificationError("El campo no puede estar vacío");
+    else if (identification.trim().length < 5)
+      setidentificationError("Debe tener al menos 5 caracteres");
+    else if (identification.trim().length > 15)
+      setidentificationError("Debe tener menos de 15 caracteres");
     else if (!identification.match(/^\w+$/))
-      setidentificationError("Debe ingresar una identificación válida");
+      setidentificationError("Solo puede contener letras o números");
     else setidentificationError("");
   }, [identification]);
 
@@ -69,7 +65,7 @@ function ForgotPassword() {
       console.log("Error: ", error.response.data.message);
     }
     setIsLoading(false);
-    // setSent(true);
+    setSent(true);
   };
 
   const onVolver = () => {
@@ -92,10 +88,10 @@ function ForgotPassword() {
             label={"Identificación"}
             onChange={identificationChangeHandler}
             onBlur={identificationBlurHandler}
-            maxLength="20"
+            maxLength="15"
             color="red"
           >
-            <AccountIcon color="white" />
+            <AccountIcon />
           </Input>
           {identificationShowError && (
             <label className={classes.error}>{identificationError}</label>
