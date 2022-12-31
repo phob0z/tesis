@@ -8,7 +8,7 @@ function MainContainer(props) {
 
   return (
     <Fragment>
-      <div className={classes.mainContainer}> {props.children} </div>
+      <div className={classes.mainContainer} style={props.style}> {props.children} </div>
       {props.title && (
         <div className={classes.containerTitle}> {props.title} </div>
       )}

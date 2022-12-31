@@ -1,6 +1,5 @@
 Terminar:
 Home
-EditTeacher
 
 Subjects:
 Al crear asignatura agregarle curso y paralelo.
@@ -9,7 +8,6 @@ Agregar buscador por código.
 EditStudent:
 EditTeacher:
 Mostrar las asignaturas en las que están registrados.
-Agregar el botón de activar/desactivar
 
 En las rutas:
 Hacer chequeo del role para el ruteo... que student no pueda acceder a /students, /teachers, etc.

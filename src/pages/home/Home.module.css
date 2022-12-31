@@ -1,0 +1,37 @@
+.title {
+  font-family: "Carter One";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  text-align: center;
+  color: #000000;
+  text-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  padding-bottom: 1rem;
+}
+
+.imageBox {
+  display: flex;
+  justify-content: center;
+  background: #6d1118;
+  border-radius: 0.625rem;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2d2d2d;
+  border-radius: 0.625rem;
+  width: 100%;
+  height: fit-content;
+  max-height: 16rem;
+  overflow-y: hidden;
+  margin: 0.625rem;
+}
+
+.image img {
+  max-width: 100%;
+}

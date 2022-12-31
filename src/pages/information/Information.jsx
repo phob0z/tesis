@@ -4,9 +4,12 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
+import AuthContext from "../../contexts/auth/AuthContext";
 
 function Information() {
   const { setIsLoading, setModal } = useContext(AlertContext);
+  
+  const { user, token } = useContext(AuthContext);
 
   const [information, setInformation] = useState({});
   const [errorName, setErrorName] = useState(false);
@@ -73,7 +76,7 @@ function Information() {
 
   return (
     <form onSubmit={saveData}>
-      <MainContainer title="Información" buttonTitle="Guardar" type="submit">
+      <MainContainer title="Información" buttonTitle="Guardar" type="submit" style={{bottom: "auto"}}>
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombre de la intitución"
