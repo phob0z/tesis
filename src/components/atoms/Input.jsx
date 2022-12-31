@@ -49,8 +49,6 @@ const Input = (props) => {
     case "textBig":
       input = (
         <textarea
-          id={props.label}
-          // type={type}
           placeholder={`${focused ? "" : props.label}`}
           value={props.value}
           onChange={props.onChange}
@@ -66,20 +64,21 @@ const Input = (props) => {
         <select
           onChange={props.onChange}
           className={classes.filter}
-          id={props.label}
-          defaultValue=""
+          value={props.value}
         >
-          <option className={classes.option} value="" disabled>
-            {props.label}
-          </option>
-          {props.filter !== "year" ? (
+          {props.label && (
+            <option className={classes.option} value="" disabled>
+              {props.label}
+            </option>
+          )}
+          {/* {props.filter !== "year" ? (
             <option className={classes.option} value="">
               Todos
             </option>
           ) : (
             ""
-          )}
-          {props.options.map((option) => {
+          )} */}
+          {props.options && props.options.map((option) => {
             return (
               <option className={classes.option} key={option} value={option}>
                 {option}
@@ -92,7 +91,6 @@ const Input = (props) => {
     default:
       input = (
         <input
-          id={props.label}
           type={type}
           placeholder={`${focused ? "" : props.label}`}
           value={props.value}
@@ -166,9 +164,8 @@ Input.defaultProps = {
   type: "text",
   value: "",
   onChange: () => "",
-  label: "default label",
   onBlur: () => "",
-  maxLength: "10",
+  maxLength: "20",
   showRevealPassword: false,
   disabled: false,
   theme: "red",

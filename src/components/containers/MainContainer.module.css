@@ -40,14 +40,13 @@
 
 .buttons {
   display: grid;
-  width: 40%;
+  width: 60%;
   grid-template-columns: 1fr 1fr 1fr;
   position: absolute;
   bottom: 5%;
   left: 50%;
   transform: translate(-50%);
-  justify-content: space-between;  
-  justify-content: center;
+  justify-items: center;
 }
 
 ::-webkit-scrollbar {

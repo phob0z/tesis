@@ -9,26 +9,70 @@ function LongMainContainer(props) {
       <div className={classes.mainContainer}> {props.children} </div>
       {props.onSearch && (
         <div className={classes.searchInput}>
-          {props.filters &&
-            props.filters.map((filter) => {
-              return (
-                <div className={classes.filter} key={filter.label}>
-                  {/* <label className={classes.label} htmlFor={filter.label}>
+          {props.filters && (
+            <Fragment>
+              <div className={classes.filter}>
+                {/* <label className={classes.label} htmlFor={filter.label}>
                   {filter.label}
                 </label> */}
-                  <Input
-                    type="select"
-                    label={filter.label}
-                    options={filter.options}
-                    theme="simple"
-                    filter={filter.filter}
-                    onChange={(event) => {
-                      props.onChange({ [filter.filter]: event.target.value });
-                    }}
-                  />
-                </div>
-              );
-            })}
+                <Input
+                  value={props.search.course}
+                  type="select"
+                  label="Cursos"
+                  options={props.filters.course}
+                  theme="simple"
+                  onChange={(event) => {
+                    props.onChange({ course: event.target.value });
+                  }}
+                />
+              </div>
+              <div className={classes.filter}>
+                {/* <label className={classes.label} htmlFor={filter.label}>
+                  {filter.label}
+                </label> */}
+                <Input
+                  value={props.search.parallel}
+                  type="select"
+                  label="Paralelos"
+                  options={props.filters.parallel}
+                  theme="simple"
+                  onChange={(event) => {
+                    props.onChange({ parallel: event.target.value });
+                  }}
+                />
+              </div>
+              <div className={classes.filter}>
+                {/* <label className={classes.label} htmlFor={filter.label}>
+                  {filter.label}
+                </label> */}
+                <Input
+                  value={props.search.specialty}
+                  type="select"
+                  label="Especialidad"
+                  options={props.filters.specialty}
+                  theme="simple"
+                  onChange={(event) => {
+                    props.onChange({ specialty: event.target.value });
+                  }}
+                />
+              </div>
+              <div className={classes.filter}>
+                {/* <label className={classes.label} htmlFor={filter.label}>
+                  {filter.label}
+                </label> */}
+                <Input
+                  value={props.search.academicYear}
+                  type="select"
+                  label="Periodo"
+                  options={props.filters.academicYear}
+                  theme="simple"
+                  onChange={(event) => {
+                    props.onChange({ academicYear: event.target.value });
+                  }}
+                />
+              </div>
+            </Fragment>
+          )}
           <Input
             theme="simple"
             label="Identificación"

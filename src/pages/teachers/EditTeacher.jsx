@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -10,18 +9,159 @@ import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 
 function EditTeacher() {
-  const params = useParams();
-
+  const [teacher, setTeacher] = useState({
+    name: "",
+    last_name: "",
+    identification: "",
+    birthdate: "",
+    email: "",
+    home_phone: "",
+    personal_phone: "",
+    address: "",
+    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
+  });
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [userProfile, setUserProfile] = useState({ user });
+  const [avatarFile, setAvatarFile] = useState();
+  const [avatarChanged, setAvatarChanged] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [errorLastName, setErrorLastName] = useState(false);
+  const [errorIdentification, setErrorIdentification] = useState(false);
+  const [errorBirthdate, setErrorBirthdate] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorHomePhone, setErrorHomePhone] = useState(false);
+  const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
+  const [errorAddress, setErrorAddress] = useState(false);
+  // const [errorPassword, setErrorPassword] = useState(false);
+  const [error, setError] = useState(false);
 
-  const fetchFullStudent = useCallback(async () => {
+  // const [newPassword, setNewPassword] = useState("");
+  // const [confirmation, setConfirmation] = useState("");
+
+  useEffect(() => {
+    errorName.error
+      ? setError(errorName)
+      : errorLastName.error
+      ? setError(errorLastName)
+      : errorIdentification.error
+      ? setError(errorIdentification)
+      : errorBirthdate.error
+      ? setError(errorBirthdate)
+      : errorEmail.error
+      ? setError(errorEmail)
+      : errorHomePhone.error
+      ? setError(errorHomePhone)
+      : errorPersonalPhone.error
+      ? setError(errorPersonalPhone)
+      : errorAddress.error
+      ? setError(errorAddress)
+      : setError(false);
+
+    // errorPassword.error
+    //   ? setErrorPassword(errorPassword)
+    //   : setErrorPassword(false);
+  }, [
+    errorName,
+    errorLastName,
+    errorIdentification,
+    errorBirthdate,
+    errorEmail,
+    errorHomePhone,
+    errorPersonalPhone,
+    errorAddress,
+    // errorPassword,
+  ]);
+
+  const fetchTeacher = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/profile`,
+      const response = await fetch("https://swapi.dev/api/people/");
+      const data1 = await response.json();
+      const data = {
+        name: "Leonel",
+        last_name: "Molina",
+        identification: "1758963050",
+        birthdate: "1988/06/18",
+        email: "leonel_alfonso@hotmail.com",
+        home_phone: "022454236",
+        personal_phone: "0963680605",
+        address: "Quito",
+        avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
+      };
+      setTeacher(data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setModal({ title: "ERROR", message: error.response.data.message });
+    }
+  }, [setIsLoading, setModal, token]);
+
+  useEffect(() => {
+    fetchTeacher();
+  }, [fetchTeacher]);
+
+  // const changePassword = async () => {
+  //   if (errorPassword.error || !newPassword || newPassword !== confirmation) {
+  //     setModal({
+  //       title: "Error en CAMBIAR CONTRASEÑA",
+  //       message: errorPassword
+  //         ? errorPassword.error
+  //         : !newPassword
+  //         ? "La contraseña es vacía"
+  //         : "Las contraseñas no coinciden",
+  //     });
+  //     return;
+  //   }
+  //   setIsLoading(true);
+
+  //   try {
+  //     const response = await axios.post(
+  //       `${process.env.REACT_APP_BACK_URL}/update-password`,
+  //       { password: newPassword, password_confirmation: confirmation },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Accept: "application/json",
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+  //     setIsLoading(false);
+  //     setModal({ title: "CORRECTO", message: response.data.message });
+  //     setNewPassword("");
+  //     setConfirmation("");
+  //   } catch (error) {
+  //     setIsLoading(false);
+  //     setModal({ title: "ERROR", message: error.response.data.message });
+  //   }
+  // };
+
+  const saveProfile = async (event) => {
+    event.preventDefault();
+    if (error) {
+      setModal({
+        title: "Error en el campo " + error.label.toUpperCase(),
+        message: error.error,
+      });
+      return;
+    }
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/teacher`,
+        {
+          name: teacher.name,
+          last_name: teacher.last_name,
+          identification: teacher.identification,
+          birthdate: teacher.birthdate,
+          email: teacher.email,
+          home_phone: teacher.home_phone,
+          personal_phone: teacher.personal_phone,
+          address: teacher.address,
+          role: "teacher",
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -30,46 +170,190 @@ function EditTeacher() {
           },
         }
       );
-      const { user, avatar } = response.data.data;
-      setUserProfile({
-        ...user,
-        avatar: avatar,
-        identification: params.identification,
-      });
+
+      var formData = new FormData();
+      if (avatarChanged) {
+        formData.append("image", avatarFile);
+        try {
+          const response = await axios.post(
+            `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: token,
+              },
+            }
+          );
+        } catch {
+          setIsLoading(false);
+          setModal({ title: "ERROR", message: error.response.data.message });
+        }
+      }
       setIsLoading(false);
+      setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
-  }, [params.identification, setIsLoading, setModal, token]);
-
-  useEffect(() => {
-    fetchFullStudent();
-  }, [fetchFullStudent]);
+  };
 
   return (
-    <MainContainer
-      title="Profesor"
-      buttonTitle="Guardar"
-      type="submit"
-      backButton
-    >
-      <SubContainer subTitle="INFO PERSONAL">
-        <Card
-          label="Identificación"
-          value={userProfile.identification}
-          maxLength="20"
-          onChange={(event) => {
-            setUserProfile({
-              ...userProfile,
-              identification: event.target.value,
-            });
-          }}
-          validation="identification"
-          disabled={user.role !== "secretary"}
-        />
-      </SubContainer>
-    </MainContainer>
+    <form onSubmit={saveProfile}>
+      <MainContainer
+        title="Editar profesor"
+        buttonTitle="Guardar"
+        type="submit"
+        backButton
+        addSubjectButton
+      >
+        <SubContainer subTitle="INFO PERSONAL">
+          <Card
+            label="Nombres"
+            value={teacher.name}
+            maxLength="50"
+            onChange={(event) => {
+              setTeacher({ ...teacher, name: event.target.value });
+            }}
+            setError={setErrorName}
+            validation="text"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Apellidos"
+            value={teacher.last_name}
+            maxLength="50"
+            onChange={(event) => {
+              setTeacher({ ...teacher, last_name: event.target.value });
+            }}
+            setError={setErrorLastName}
+            validation="text"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Identificación"
+            value={teacher.identification}
+            maxLength="15"
+            onChange={(event) => {
+              setTeacher({
+                ...teacher,
+                identification: event.target.value,
+              });
+            }}
+            setError={setErrorIdentification}
+            validation="identification"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Fecha de nacimiento"
+            value={teacher.birthdate}
+            maxLength="10"
+            type="date"
+            onChange={(event) => {
+              setTeacher({ ...teacher, birthdate: event.target.value });
+            }}
+            setError={setErrorBirthdate}
+            validation="date"
+            disabled={user.role !== "secretary"}
+          />
+        </SubContainer>
+        <SubContainer subTitle="INFO DE CONTACTO">
+          <Card
+            label="Correo"
+            value={teacher.email}
+            maxLength="50"
+            onChange={(event) => {
+              setTeacher({ ...teacher, email: event.target.value });
+            }}
+            setError={setErrorEmail}
+            validation="email"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Teléfono fijo"
+            value={teacher.home_phone}
+            maxLength="9"
+            onChange={(event) => {
+              setTeacher({
+                ...teacher,
+                home_phone: event.target.value,
+              });
+            }}
+            setError={setErrorHomePhone}
+            validation="homePhone"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Teléfono celular"
+            value={teacher.personal_phone}
+            maxLength="10"
+            onChange={(event) => {
+              setTeacher({
+                ...teacher,
+                personal_phone: event.target.value,
+              });
+            }}
+            setError={setErrorPersonalPhone}
+            validation="personalPhone"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            type="textBig"
+            label="Dirección"
+            value={teacher.address}
+            maxLength="150"
+            onChange={(event) => {
+              setTeacher({ ...teacher, address: event.target.value });
+            }}
+            setError={setErrorAddress}
+            disabled={user.role !== "secretary"}
+          />
+        </SubContainer>
+        <SubContainer subTitle="IMAGEN DE PERFIL">
+          <Card
+            value={teacher.avatar}
+            type="image"
+            onChange={(image) => {
+              setAvatarChanged(true);
+              setTeacher({ ...teacher, avatar: image.base64 });
+              setAvatarFile(image.file);
+            }}
+            validation="image"
+            // disabled={user.role !== "secretary"}
+          />
+        </SubContainer>
+        {/* <SubContainer
+          buttonTitle="Cambiar"
+          onClick={changePassword}
+          subTitle="CAMBIAR CONTRASEÑA"
+        >
+          <Card
+            label="Nueva contraseña"
+            value={newPassword}
+            maxLength="30"
+            validation="changePassword"
+            onChange={(event) => {
+              setNewPassword(event.target.value);
+            }}
+            setError={setErrorPassword}
+            type="password"
+            showRevealPassword
+          />
+          <Card
+            label="Confirmar contraseña"
+            value={confirmation}
+            maxLength="30"
+            validation="changePassword"
+            onChange={(event) => {
+              setConfirmation(event.target.value);
+            }}
+            setError={setErrorPassword}
+            type="password"
+            showRevealPassword
+          />
+        </SubContainer> */}
+      </MainContainer>
+    </form>
   );
 }
 

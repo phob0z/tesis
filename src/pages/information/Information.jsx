@@ -128,9 +128,8 @@ function Information() {
             // disabled={user.role !== "secretary"}
           />
         </SubContainer>
-        <SubContainer subTitle="Logo">
+        <SubContainer subTitle="Logo de la institución">
           <Card
-            label="Logo de la institución"
             value={information.logo}
             // maxLength="20"
             type="image"

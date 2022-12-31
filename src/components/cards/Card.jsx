@@ -137,6 +137,7 @@ function Card(props) {
               showRevealPassword={props.showRevealPassword}
               disabled={props.disabled}
               alt={props.alt}
+              options={props.options}
             />
           </div>
           {error && (

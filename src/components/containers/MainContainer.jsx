@@ -17,7 +17,10 @@ function MainContainer(props) {
           {props.backButton && (
             <Button onClick={() => navigate(-1)}>Volver</Button>
           )}
-          <div />
+          {props.addSubjectButton? (
+            <Button onClick={() => navigate("./addSubject")}>Agregar asignatura</Button>
+          ) : <div />}
+          
           <Button type="submit" onClick={props.onClick}>
             {props.buttonTitle}
           </Button>

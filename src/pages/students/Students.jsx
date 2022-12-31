@@ -20,37 +20,21 @@ function Students() {
     course: "",
     parallel: "",
     specialty: "",
-    year: "2022",
+    academicYear: "",
   });
 
   const fetchFilters = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Students/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
       const data1 = await response.json();
-      const data = [
-        {
-          filter: "course",
-          label: "Curso",
-          options: ["1ero", "8vo", "9no", "10mo"],
-        },
-        { filter: "parallel", label: "Paralelo", options: ["A", "B", "C"] },
-        {
-          filter: "specialty",
-          label: "Especialidad",
-          options: ["asd", "qwe", "zxc1ASDASDASD"],
-        },
-        { filter: "year", label: "Periodo", options: ["2022", "2023", "2024"] },
-      ];
-      setFilters([...data]);
+      const data = {
+        course: ["Todos", "1ero", "8vo", "9no", "10mo"],
+        parallel: ["Todos", "A", "B", "C", "D"],
+        specialty: ["Todos", "asd", "qwe", "zxc1ASDASDASD"],
+        academicYear: ["2023", "2022", "2021", "2020"],
+      };
+      setFilters(data);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
@@ -310,6 +294,7 @@ function Students() {
       }}
       onSearch={onSearch}
       showSearchInput
+      search={search}
       filters={filters}
       onChange={(value) => {
         setSearch((prevState) => {

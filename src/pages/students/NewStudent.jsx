@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -33,7 +33,14 @@ function NewStudent() {
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
   const [errorAddress, setErrorAddress] = useState(false);
+  const [errorRepreName, setErrorRepreName] = useState(false);
+  const [errorRepreLastName, setErrorRepreLastName] = useState(false);
+  const [errorRepreIdentification, setErrorRepreIdentification] =
+    useState(false);
+  const [errorReprePersonalPhone, setErrorReprePersonalPhone] = useState(false);
   const [error, setError] = useState(false);
+
+  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     errorName.error
@@ -52,6 +59,14 @@ function NewStudent() {
       ? setError(errorPersonalPhone)
       : errorAddress.error
       ? setError(errorAddress)
+      : errorRepreName.error
+      ? setError(errorRepreName)
+      : errorRepreLastName.error
+      ? setError(errorRepreLastName)
+      : errorRepreIdentification.error
+      ? setError(errorRepreIdentification)
+      : errorReprePersonalPhone.error
+      ? setError(errorReprePersonalPhone)
       : setError(false);
   }, [
     errorName,
@@ -62,7 +77,32 @@ function NewStudent() {
     errorHomePhone,
     errorPersonalPhone,
     errorAddress,
+    errorRepreName,
+    errorRepreLastName,
+    errorRepreIdentification,
+    errorReprePersonalPhone,
   ]);
+
+  const fetchFilters = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("https://swapi.dev/api/people/");
+      const data1 = await response.json();
+      const data = {
+        course: ["1ero", "8vo", "9no", "10mo"],
+        parallel: ["A", "B", "C", "D"],
+      };
+      setFilters(data);
+    } catch (error) {
+      setIsLoading(false);
+      setModal({ title: "ERROR", message: error });
+    }
+    setIsLoading(false);
+  }, [setIsLoading, setModal]);
+
+  useEffect(() => {
+    fetchFilters();
+  }, [fetchFilters]);
 
   const saveProfile = async (event) => {
     event.preventDefault();
@@ -81,12 +121,18 @@ function NewStudent() {
         {
           name: student.name,
           last_name: student.last_name,
-          personal_phone: student.personal_phone,
-          home_phone: student.home_phone,
-          address: student.address,
-          email: student.email,
           identification: student.identification,
           birthdate: student.birthdate,
+          email: student.email,
+          home_phone: student.home_phone,
+          personal_phone: student.personal_phone,
+          address: student.address,
+          representative_name: student.representative_name,
+          representative_last_name: student.representative_last_name,
+          representative_identification: student.representative_identification,
+          representative_phone: student.representative_phone,
+          course: student.course,
+          parallel: student.parallel,
           role: "student",
         },
         {
@@ -133,7 +179,7 @@ function NewStudent() {
         type="submit"
         backButton
       >
-        <SubContainer subTitle="INFO PERSONAL">
+<SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
             value={student.name}
@@ -196,7 +242,7 @@ function NewStudent() {
             disabled={user.role !== "secretary"}
           />
           <Card
-            label="Teléfono convencional"
+            label="Teléfono fijo"
             value={student.home_phone}
             maxLength="9"
             onChange={(event) => {
@@ -235,8 +281,66 @@ function NewStudent() {
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
+        <SubContainer subTitle="DATOS DEL REPRESENTANTE">
+          <Card
+            label="Nombres"
+            value={student.representative_name}
+            maxLength="50"
+            onChange={(event) => {
+              setStudent({
+                ...student,
+                representative_name: event.target.value,
+              });
+            }}
+            setError={setErrorRepreName}
+            validation="text"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Apellidos"
+            value={student.representative_last_name}
+            maxLength="50"
+            onChange={(event) => {
+              setStudent({
+                ...student,
+                representative_last_name: event.target.value,
+              });
+            }}
+            setError={setErrorRepreLastName}
+            validation="text"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Identificación"
+            value={student.representative_identification}
+            maxLength="15"
+            onChange={(event) => {
+              setStudent({
+                ...student,
+                representative_identification: event.target.value,
+              });
+            }}
+            setError={setErrorRepreIdentification}
+            validation="identification"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Teléfono celular"
+            value={student.representative_phone}
+            maxLength="15"
+            onChange={(event) => {
+              setStudent({
+                ...student,
+                representative_phone: event.target.value,
+              });
+            }}
+            setError={setErrorReprePersonalPhone}
+            validation="personalPhone"
+            disabled={user.role !== "secretary"}
+          />
+        </SubContainer>
         <SubContainer subTitle="IMAGEN DE PERFIL">
-        <Card
+          <Card
             value={student.avatar}
             type="image"
             onChange={(image) => {
@@ -246,6 +350,30 @@ function NewStudent() {
             }}
             validation="image"
             // disabled={user.role !== "secretary"}
+          />
+        </SubContainer>
+        <SubContainer subTitle="DATOS DE LA MATRÍCULA">
+          <Card
+            label="Curso"
+            type="select"
+            options={filters.course}
+            theme="simple"
+            value={student.course}
+            onChange={(event) => {
+              setStudent({ ...student, course: event.target.value });
+            }}
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Paralelo"
+            type="select"
+            options={filters.parallel}
+            theme="simple"
+            value={student.parallel}
+            onChange={(event) => {
+              setStudent({ ...student, parallel: event.target.value });
+            }}
+            disabled={user.role !== "secretary"}
           />
         </SubContainer>
       </MainContainer>

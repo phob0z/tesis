@@ -24,7 +24,7 @@ function Profile() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
-  const [errorDirection, setErrorDirection] = useState(false);
+  const [errorAddress, setErrorAddress] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [error, setError] = useState(false);
 
@@ -69,8 +69,8 @@ function Profile() {
       ? setError(errorHomePhone)
       : errorPersonalPhone.error
       ? setError(errorPersonalPhone)
-      : errorDirection.error
-      ? setError(errorDirection)
+      : errorAddress.error
+      ? setError(errorAddress)
       : setError(false);
 
     errorPassword.error
@@ -84,7 +84,7 @@ function Profile() {
     errorEmail,
     errorHomePhone,
     errorPersonalPhone,
-    errorDirection,
+    errorAddress,
     errorPassword,
   ]);
 
@@ -238,19 +238,6 @@ function Profile() {
             validation="date"
             disabled={user.role !== "secretary"}
           />
-          <Card
-            label="Imagen de perfil"
-            value={user.avatar}
-            type="image"
-            onChange={(image) => {
-              setAvatarChanged(true);
-              setUserProfile({ ...userProfile, avatar: image.base64 });
-              setAvatarFile(image.file);
-            }}
-            validation="image"
-            alt={`Imagen de ${user.name} ${user.last_name}`}
-            // disabled={user.role !== "secretary"}
-          />
         </SubContainer>
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
@@ -265,7 +252,7 @@ function Profile() {
             disabled={user.role !== "secretary"}
           />
           <Card
-            label="Teléfono convencional"
+            label="Teléfono fijo"
             value={userProfile.home_phone}
             maxLength="9"
             onChange={(event) => {
@@ -300,8 +287,20 @@ function Profile() {
             onChange={(event) => {
               setUserProfile({ ...userProfile, address: event.target.value });
             }}
-            setError={setErrorDirection}
+            setError={setErrorAddress}
             disabled={user.role !== "secretary"}
+          />
+        </SubContainer>
+        <SubContainer subTitle="IMAGEN DE PERFIL">
+        <Card
+            value={userProfile.avatar}
+            type="image"
+            onChange={(image) => {
+              setAvatarChanged(true);
+              setUserProfile({ ...userProfile, avatar: image.base64 });
+              setAvatarFile(image.file);
+            }}
+            validation="image"
           />
         </SubContainer>
         <SubContainer
