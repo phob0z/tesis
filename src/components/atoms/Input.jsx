@@ -160,7 +160,7 @@ Input.defaultProps = {
   value: "",
   onChange: () => "",
   onBlur: () => "",
-  maxLength: "20",
+  maxLength: "35",
   showRevealPassword: false,
   disabled: false,
   theme: "red",

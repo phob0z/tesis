@@ -12,6 +12,10 @@ function Subjects() {
   const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [subjects, setSubjects] = useState([]);
+  const [identification, setIdentification] = useState("");
+  const [search, setSearch] = useState({
+    identification: "",
+  });
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -55,12 +59,36 @@ function Subjects() {
     fetchData();
   }, [fetchData]);
 
+  useEffect(() => {
+    onChange();
+    // eslint-disable-next-line
+  }, [search]);
+
+  const onSearch = () => {
+    setSearch((prevState) => {
+      return { ...prevState, identification: identification };
+    });
+  };
+
+  const onChange = () => {
+    console.log(search);
+    console.log("Haciendo el pedido al back con los nuevos parametros");
+    fetchData();
+  };
+
   return (
     <LongMainContainer
       title="Asignaturas"
       buttonTitle="Nueva"
+      
+      onSearch={onSearch}
+      showSearchInput
       onClick={() => {
         navigate("newSubject");
+      }}
+      identification={identification}
+      onIdentificationChange={(event) => {
+        setIdentification(event.target.value);
       }}
     >
       {subjects.length === 0 ? (

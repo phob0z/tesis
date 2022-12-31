@@ -13,7 +13,7 @@ function NewStudent() {
     name: "",
     last_name: "",
     identification: "",
-    birthdate: "",
+    birthdate: new Date().toString(),
     email: "",
     home_phone: "",
     personal_phone: "",
@@ -179,11 +179,11 @@ function NewStudent() {
         type="submit"
         backButton
       >
-<SubContainer subTitle="INFO PERSONAL">
+        <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
             value={student.name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, name: event.target.value });
             }}
@@ -194,7 +194,7 @@ function NewStudent() {
           <Card
             label="Apellidos"
             value={student.last_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, last_name: event.target.value });
             }}
@@ -285,7 +285,7 @@ function NewStudent() {
           <Card
             label="Nombres"
             value={student.representative_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({
                 ...student,
@@ -299,7 +299,7 @@ function NewStudent() {
           <Card
             label="Apellidos"
             value={student.representative_last_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({
                 ...student,
@@ -327,7 +327,7 @@ function NewStudent() {
           <Card
             label="Teléfono celular"
             value={student.representative_phone}
-            maxLength="15"
+            maxLength="10"
             onChange={(event) => {
               setStudent({
                 ...student,

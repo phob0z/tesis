@@ -32,8 +32,11 @@ function EditAcademicYear() {
       const response = await fetch("https://swapi.dev/api/people/");
       const data1 = await response.json();
       const data = {
-        identification: params.identification,
+        id: "1",
+        name: "2022",
         state: true,
+        endq1: "2022/06/18",
+        endq2: "2022/12/18",
       };
       setAcademicYear(data);
       setIsLoading(false);
@@ -83,16 +86,44 @@ function EditAcademicYear() {
     >
       <SubContainer>
         <Card
-          label="Periodo"
-          value={academicYear.identification}
-          maxLength="5"
+          label="Nombre"
+          value={academicYear.name}
+          maxLength="10"
           onChange={(event) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, identification: event.target.value };
+              return { ...prevState, name: event.target.value };
             });
           }}
           setError={setErrorIdentification}
-          validation="code"
+          validation="identification"
+          disabled={user.role !== "secretary"}
+        />
+        <Card
+          type="date"
+          label="Fin Q1"
+          value={academicYear.endq1}
+          maxLength="5"
+          onChange={(event) => {
+            setAcademicYear((prevState) => {
+              return { ...prevState, endq1: event.target.value };
+            });
+          }}
+          setError={setErrorIdentification}
+          // validation="code"
+          disabled={user.role !== "secretary"}
+        />
+        <Card
+          type="date"
+          label="Fin Q2"
+          value={academicYear.endq2}
+          maxLength="5"
+          onChange={(event) => {
+            setAcademicYear((prevState) => {
+              return { ...prevState, endq2: event.target.value };
+            });
+          }}
+          setError={setErrorIdentification}
+          // validation="code"
           disabled={user.role !== "secretary"}
         />
         <Card label="Estado">

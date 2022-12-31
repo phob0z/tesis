@@ -37,16 +37,12 @@ function EditStudent() {
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
   const [errorAddress, setErrorAddress] = useState(false);
-  // const [errorPassword, setErrorPassword] = useState(false);
   const [errorRepreName, setErrorRepreName] = useState(false);
   const [errorRepreLastName, setErrorRepreLastName] = useState(false);
   const [errorRepreIdentification, setErrorRepreIdentification] =
     useState(false);
   const [errorReprePersonalPhone, setErrorReprePersonalPhone] = useState(false);
   const [error, setError] = useState(false);
-
-  // const [newPassword, setNewPassword] = useState("");
-  // const [confirmation, setConfirmation] = useState("");
 
   useEffect(() => {
     errorName.error
@@ -74,10 +70,6 @@ function EditStudent() {
       : errorReprePersonalPhone.error
       ? setError(errorReprePersonalPhone)
       : setError(false);
-
-    // errorPassword.error
-    //   ? setErrorPassword(errorPassword)
-    //   : setErrorPassword(false);
   }, [
     errorName,
     errorLastName,
@@ -91,7 +83,6 @@ function EditStudent() {
     errorRepreLastName,
     errorRepreIdentification,
     errorReprePersonalPhone,
-    // errorPassword,
   ]);
 
   const fetchStudent = useCallback(async () => {
@@ -146,42 +137,6 @@ function EditStudent() {
     fetchStudent();
     fetchFilters();
   }, [fetchStudent, fetchFilters]);
-
-  // const changePassword = async () => {
-  //   if (errorPassword.error || !newPassword || newPassword !== confirmation) {
-  //     setModal({
-  //       title: "Error en CAMBIAR CONTRASEÑA",
-  //       message: errorPassword
-  //         ? errorPassword.error
-  //         : !newPassword
-  //         ? "La contraseña es vacía"
-  //         : "Las contraseñas no coinciden",
-  //     });
-  //     return;
-  //   }
-  //   setIsLoading(true);
-
-  //   try {
-  //     const response = await axios.post(
-  //       `${process.env.REACT_APP_BACK_URL}/update-password`,
-  //       { password: newPassword, password_confirmation: confirmation },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Accept: "application/json",
-  //           Authorization: token,
-  //         },
-  //       }
-  //     );
-  //     setIsLoading(false);
-  //     setModal({ title: "CORRECTO", message: response.data.message });
-  //     setNewPassword("");
-  //     setConfirmation("");
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     setModal({ title: "ERROR", message: error.response.data.message });
-  //   }
-  // };
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -263,7 +218,7 @@ function EditStudent() {
           <Card
             label="Nombres"
             value={student.name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, name: event.target.value });
             }}
@@ -274,7 +229,7 @@ function EditStudent() {
           <Card
             label="Apellidos"
             value={student.last_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, last_name: event.target.value });
             }}
@@ -365,7 +320,7 @@ function EditStudent() {
           <Card
             label="Nombres"
             value={student.representative_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({
                 ...student,
@@ -379,7 +334,7 @@ function EditStudent() {
           <Card
             label="Apellidos"
             value={student.representative_last_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setStudent({
                 ...student,
@@ -407,7 +362,7 @@ function EditStudent() {
           <Card
             label="Teléfono celular"
             value={student.representative_phone}
-            maxLength="15"
+            maxLength="10"
             onChange={(event) => {
               setStudent({
                 ...student,
@@ -464,36 +419,6 @@ function EditStudent() {
             />
           </Card>
         </SubContainer>
-        {/* <SubContainer
-          subTitle="CAMBIAR CONTRASEÑA"
-          buttonTitle="Cambiar"
-          onClick={changePassword}
-        >
-          <Card
-            label="Nueva contraseña"
-            value={newPassword}
-            maxLength="30"
-            validation="changePassword"
-            onChange={(event) => {
-              setNewPassword(event.target.value);
-            }}
-            setError={setErrorPassword}
-            type="password"
-            showRevealPassword
-          />
-          <Card
-            label="Confirmar contraseña"
-            value={confirmation}
-            maxLength="30"
-            validation="changePassword"
-            onChange={(event) => {
-              setConfirmation(event.target.value);
-            }}
-            setError={setErrorPassword}
-            type="password"
-            showRevealPassword
-          />
-        </SubContainer> */}
       </MainContainer>
     </form>
   );

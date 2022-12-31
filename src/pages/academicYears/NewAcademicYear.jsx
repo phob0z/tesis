@@ -15,7 +15,13 @@ function NewAcademicYear() {
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [academicYear, setAcademicYear] = useState({});
+  const [academicYear, setAcademicYear] = useState({
+    id: "",
+    name: "",
+    state: true,
+    endq1: (new Date()).toString(),
+    endq2: (new Date()).toString(),
+  });
 
   const [error, setError] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -59,17 +65,43 @@ function NewAcademicYear() {
       backButton
     >
       <SubContainer>
-        <Card
-          label="Periodo"
-          value={academicYear.identification}
-          maxLength="5"
+      <Card
+          label="Nombre"
+          value={academicYear.name}
+          maxLength="10"
           onChange={(event) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, identification: event.target.value };
+              return { ...prevState, name: event.target.value };
             });
           }}
           setError={setErrorIdentification}
-          validation="code"
+          validation="identification"
+          disabled={user.role !== "secretary"}
+        />
+        <Card
+          type="date"
+          label="Fin Q1"
+          value={academicYear.endq1}
+          maxLength="5"
+          onChange={(event) => {
+            setAcademicYear((prevState) => {
+              return { ...prevState, endq1: event.target.value };
+            });
+          }}
+          setError={setErrorIdentification}
+          disabled={user.role !== "secretary"}
+        />
+        <Card
+          type="date"
+          label="Fin Q2"
+          value={academicYear.endq2}
+          maxLength="5"
+          onChange={(event) => {
+            setAcademicYear((prevState) => {
+              return { ...prevState, endq2: event.target.value };
+            });
+          }}
+          setError={setErrorIdentification}
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

@@ -44,7 +44,7 @@ function Card(props) {
           setError("La cédula solo puede contener números");
         break;
       case "date":
-        if (!props.value) setError("El campo no puede estar vacío");
+        // if (!props.value) setError("El campo no puede estar vacío");
         break;
       case "email":
         if (!props.value) setError("El campo no puede estar vacío");

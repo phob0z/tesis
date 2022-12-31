@@ -15,7 +15,13 @@ function NewSubject() {
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [subject, setSubject] = useState({});
+  const [subject, setSubject] = useState({
+    id: "",
+    name: "",
+    teacher: "",
+    specialty: "",
+    academicYear: "",
+  });
 
   const [error, setError] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);

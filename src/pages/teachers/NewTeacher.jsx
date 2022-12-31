@@ -13,7 +13,7 @@ function NewTeacher() {
     name: "",
     last_name: "",
     identification: "",
-    birthdate: "",
+    birthdate: new Date().toString(),
     email: "",
     home_phone: "",
     personal_phone: "",
@@ -137,7 +137,7 @@ function NewTeacher() {
           <Card
             label="Nombres"
             value={teacher?.name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setTeacher({ ...teacher, name: event.target.value });
             }}
@@ -148,7 +148,7 @@ function NewTeacher() {
           <Card
             label="Apellidos"
             value={teacher?.last_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setTeacher({ ...teacher, last_name: event.target.value });
             }}
@@ -236,7 +236,7 @@ function NewTeacher() {
           />
         </SubContainer>
         <SubContainer subTitle="IMAGEN DE PERFIL">
-        <Card
+          <Card
             value={teacher?.avatar}
             type="image"
             onChange={(image) => {

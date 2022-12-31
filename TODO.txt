@@ -1,5 +1,5 @@
-Terminar:
-Home
+Hacer:
+addSubject, para Students y para Teachers
 
 Subjects:
 Al crear asignatura agregarle curso y paralelo.
@@ -47,3 +47,5 @@ Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes
 
 Internationalize
 (https://blog.shahednasser.com/how-to-internationalize-a-react-app/)
+
+Arregler bug de borrar todo del DatePicker

@@ -34,11 +34,7 @@ function EditTeacher() {
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
   const [errorAddress, setErrorAddress] = useState(false);
-  // const [errorPassword, setErrorPassword] = useState(false);
   const [error, setError] = useState(false);
-
-  // const [newPassword, setNewPassword] = useState("");
-  // const [confirmation, setConfirmation] = useState("");
 
   useEffect(() => {
     errorName.error
@@ -58,10 +54,6 @@ function EditTeacher() {
       : errorAddress.error
       ? setError(errorAddress)
       : setError(false);
-
-    // errorPassword.error
-    //   ? setErrorPassword(errorPassword)
-    //   : setErrorPassword(false);
   }, [
     errorName,
     errorLastName,
@@ -71,7 +63,6 @@ function EditTeacher() {
     errorHomePhone,
     errorPersonalPhone,
     errorAddress,
-    // errorPassword,
   ]);
 
   const fetchTeacher = useCallback(async () => {
@@ -101,42 +92,6 @@ function EditTeacher() {
   useEffect(() => {
     fetchTeacher();
   }, [fetchTeacher]);
-
-  // const changePassword = async () => {
-  //   if (errorPassword.error || !newPassword || newPassword !== confirmation) {
-  //     setModal({
-  //       title: "Error en CAMBIAR CONTRASEÑA",
-  //       message: errorPassword
-  //         ? errorPassword.error
-  //         : !newPassword
-  //         ? "La contraseña es vacía"
-  //         : "Las contraseñas no coinciden",
-  //     });
-  //     return;
-  //   }
-  //   setIsLoading(true);
-
-  //   try {
-  //     const response = await axios.post(
-  //       `${process.env.REACT_APP_BACK_URL}/update-password`,
-  //       { password: newPassword, password_confirmation: confirmation },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Accept: "application/json",
-  //           Authorization: token,
-  //         },
-  //       }
-  //     );
-  //     setIsLoading(false);
-  //     setModal({ title: "CORRECTO", message: response.data.message });
-  //     setNewPassword("");
-  //     setConfirmation("");
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     setModal({ title: "ERROR", message: error.response.data.message });
-  //   }
-  // };
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -212,7 +167,7 @@ function EditTeacher() {
           <Card
             label="Nombres"
             value={teacher.name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setTeacher({ ...teacher, name: event.target.value });
             }}
@@ -223,7 +178,7 @@ function EditTeacher() {
           <Card
             label="Apellidos"
             value={teacher.last_name}
-            maxLength="50"
+            maxLength="35"
             onChange={(event) => {
               setTeacher({ ...teacher, last_name: event.target.value });
             }}
@@ -333,36 +288,6 @@ function EditTeacher() {
             />
           </Card>
         </SubContainer>
-        {/* <SubContainer
-          buttonTitle="Cambiar"
-          onClick={changePassword}
-          subTitle="CAMBIAR CONTRASEÑA"
-        >
-          <Card
-            label="Nueva contraseña"
-            value={newPassword}
-            maxLength="30"
-            validation="changePassword"
-            onChange={(event) => {
-              setNewPassword(event.target.value);
-            }}
-            setError={setErrorPassword}
-            type="password"
-            showRevealPassword
-          />
-          <Card
-            label="Confirmar contraseña"
-            value={confirmation}
-            maxLength="30"
-            validation="changePassword"
-            onChange={(event) => {
-              setConfirmation(event.target.value);
-            }}
-            setError={setErrorPassword}
-            type="password"
-            showRevealPassword
-          />
-        </SubContainer> */}
       </MainContainer>
     </form>
   );
