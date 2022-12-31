@@ -75,9 +75,9 @@ function LongMainContainer(props) {
           )}
           <Input
             theme="simple"
-            label="Identificación"
+            label={props.searchBarLabel}
             maxLength="10"
-            value={props.identification}
+            value={props.searchBar}
             onChange={props.onIdentificationChange}
           />
           <div style={{ zIndex: "-1" }}>

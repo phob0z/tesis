@@ -13,7 +13,7 @@ function Teachers() {
 
   const [teachers, setTeachers] = useState([]);
 
-  const [identification, setIdentification] = useState("");
+  const [searchBar, setSearchBar] = useState("");
   const [search, setSearch] = useState({
     identification: "",
   });
@@ -184,7 +184,7 @@ function Teachers() {
 
   const onSearch = () => {
     setSearch((prevState) => {
-      return { ...prevState, identification: identification };
+      return { ...prevState, identification: searchBar };
     });
   };
 
@@ -203,9 +203,10 @@ function Teachers() {
       }}
       onSearch={onSearch}
       showSearchInput
-      identification={identification}
+      searchBar={searchBar}
+      searchBarLabel="Identificación"
       onIdentificationChange={(event) => {
-        setIdentification(event.target.value);
+        setSearchBar(event.target.value);
       }}
     >
       {teachers.length === 0 ? (

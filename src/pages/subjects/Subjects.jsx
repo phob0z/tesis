@@ -12,7 +12,7 @@ function Subjects() {
   const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [subjects, setSubjects] = useState([]);
-  const [identification, setIdentification] = useState("");
+  const [searchBar, setSearchBar] = useState("");
   const [search, setSearch] = useState({
     identification: "",
   });
@@ -66,7 +66,7 @@ function Subjects() {
 
   const onSearch = () => {
     setSearch((prevState) => {
-      return { ...prevState, identification: identification };
+      return { ...prevState, identification: searchBar };
     });
   };
 
@@ -86,9 +86,10 @@ function Subjects() {
       onClick={() => {
         navigate("newSubject");
       }}
-      identification={identification}
+      searchBar={searchBar}
+      searchBarLabel="Asignatura"
       onIdentificationChange={(event) => {
-        setIdentification(event.target.value);
+        setSearchBar(event.target.value);
       }}
     >
       {subjects.length === 0 ? (
