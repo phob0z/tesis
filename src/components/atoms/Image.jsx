@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Fragment } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./Image.module.css";
@@ -51,13 +51,13 @@ function Image(props) {
 }
 
 Image.propTypes = {
-  src: PropTypes.string,
+  value: PropTypes.string,
   alt: PropTypes.string,
   onClick: PropTypes.func,
 };
 
 Image.defaultProps = {
-  src: "https://www.hallmarktour.com/img/profile-img.jpg",
+  value: "https://www.hallmarktour.com/img/profile-img.jpg",
   alt: "Imagen de perfil",
   onClick: () => {},
 };
