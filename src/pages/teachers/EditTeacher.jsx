@@ -7,6 +7,7 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
+import OnOffInput from "../../components/atoms/OnOffInput";
 
 function EditTeacher() {
   const [teacher, setTeacher] = useState({
@@ -137,7 +138,7 @@ function EditTeacher() {
   //   }
   // };
 
-  const saveProfile = async (event) => {
+  const saveData = async (event) => {
     event.preventDefault();
     if (error) {
       setModal({
@@ -199,7 +200,7 @@ function EditTeacher() {
   };
 
   return (
-    <form onSubmit={saveProfile}>
+    <form onSubmit={saveData}>
       <MainContainer
         title="Editar profesor"
         buttonTitle="Guardar"
@@ -321,6 +322,16 @@ function EditTeacher() {
             validation="image"
             // disabled={user.role !== "secretary"}
           />
+        </SubContainer>
+        <SubContainer subTitle="ESTADO">
+          <Card>
+            <OnOffInput
+              value={teacher.state}
+              onChange={(state) => {
+                setTeacher({ ...teacher, state });
+              }}
+            />
+          </Card>
         </SubContainer>
         {/* <SubContainer
           buttonTitle="Cambiar"

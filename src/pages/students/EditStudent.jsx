@@ -7,6 +7,7 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
+import OnOffInput from "../../components/atoms/OnOffInput";
 
 function EditStudent() {
   const [student, setStudent] = useState({
@@ -18,6 +19,7 @@ function EditStudent() {
     home_phone: "",
     personal_phone: "",
     address: "",
+    state: false,
     avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
   });
   const { user, token } = useContext(AuthContext);
@@ -113,6 +115,7 @@ function EditStudent() {
         representative_phone: "0982513230",
         course: "8vo",
         parallel: "C",
+        state: true,
       };
       setStudent(data);
       setIsLoading(false);
@@ -180,7 +183,7 @@ function EditStudent() {
   //   }
   // };
 
-  const saveProfile = async (event) => {
+  const saveData = async (event) => {
     event.preventDefault();
     if (error) {
       setModal({
@@ -248,7 +251,7 @@ function EditStudent() {
   };
 
   return (
-    <form onSubmit={saveProfile}>
+    <form onSubmit={saveData}>
       <MainContainer
         title="Editar estudiante"
         buttonTitle="Guardar"
@@ -450,6 +453,16 @@ function EditStudent() {
               setStudent({ ...student, parallel: event.target.value });
             }}
           />
+        </SubContainer>
+        <SubContainer subTitle="ESTADO">
+          <Card>
+            <OnOffInput
+              value={student.state}
+              onChange={(state) => {
+                setStudent({ ...student, state });
+              }}
+            />
+          </Card>
         </SubContainer>
         {/* <SubContainer
           subTitle="CAMBIAR CONTRASEÑA"

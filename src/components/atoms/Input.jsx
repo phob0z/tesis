@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 import DatePicker from "./DatePicker";
 import Image from "./Image";
+import Button from "./Button";
 
 const Input = (props) => {
   const [focused, setFocussed] = useState(false);
@@ -71,20 +72,14 @@ const Input = (props) => {
               {props.label}
             </option>
           )}
-          {/* {props.filter !== "year" ? (
-            <option className={classes.option} value="">
-              Todos
-            </option>
-          ) : (
-            ""
-          )} */}
-          {props.options && props.options.map((option) => {
-            return (
-              <option className={classes.option} key={option} value={option}>
-                {option}
-              </option>
-            );
-          })}
+          {props.options &&
+            props.options.map((option) => {
+              return (
+                <option className={classes.option} key={option} value={option}>
+                  {option}
+                </option>
+              );
+            })}
         </select>
       );
       break;

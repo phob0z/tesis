@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import OnOffIcon from "../icons/OnOffIcon";
 import classes from "./OnOffCard.module.css";
 
-function CourseCard(props) {
+function OnOffCard(props) {
   const navigate = useNavigate();
 
   return (
@@ -25,4 +25,4 @@ function CourseCard(props) {
   );
 }
 
-export default CourseCard;
+export default OnOffCard;

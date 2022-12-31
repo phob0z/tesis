@@ -18,23 +18,15 @@ function Information() {
   const fetchInformation = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Information/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
       const response = await fetch("https://swapi.dev/api/people/");
-      const data = await response.json();
-      const Information = {
+      const data1 = await response.json();
+      const data = {
         name: "Miguel de Santiago",
         director: "Juanita Perez",
         secretary: "Juanito Perez",
         logo: "http://www.quitoinforma.gob.ec/wp-content/uploads/2019/05/logoquito-1-800x445.png",
       };
-      setInformation({ ...Information });
+      setInformation(data);
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error });
@@ -58,7 +50,7 @@ function Information() {
       : setError(false);
   }, [errorName, errorSecretary, errorDirector, errorLogo]);
 
-  const saveInformation = (event) => {
+  const saveData = async (event) => {
     event.preventDefault();
     if (error) {
       setModal({
@@ -70,25 +62,17 @@ function Information() {
     setIsLoading(true);
 
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Information/`,
-      //   { method: "POST" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
+      const response = await fetch("https://swapi.dev/api/people/");
+      const data1 = await response.json();
     } catch (error) {
       setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-    console.log("TODO CORRECTO, guardar");
-    setInformation(information);
   };
 
   return (
-    <form onSubmit={saveInformation}>
+    <form onSubmit={saveData}>
       <MainContainer title="Información" buttonTitle="Guardar" type="submit">
         <SubContainer subTitle="INFO PERSONAL">
           <Card

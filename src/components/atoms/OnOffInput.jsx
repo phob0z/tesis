@@ -5,9 +5,6 @@ import classes from "./OnOffInput.module.css";
 import Button from "./Button";
 
 const OnOffInput = (props) => {
-  const onChangeState = () => {
-    props.onChange(!props.value);
-  };
   const onIcon = (
     <span style={{ cursor: "default" }} className="material-symbols-outlined">
       check_circle
@@ -24,7 +21,12 @@ const OnOffInput = (props) => {
         {props.value ? onIcon : offIcon}
       </div>
       <div>
-        <Button onClick={onChangeState} className="editButton">
+        <Button
+          onClick={() => {
+            props.onChange(!props.value);
+          }}
+          className="editButton"
+        >
           {props.value ? "Desactivar" : "Activar"}
         </Button>
       </div>
