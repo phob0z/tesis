@@ -13,7 +13,7 @@ function NewStudent() {
     name: "",
     last_name: "",
     identification: "",
-    birthdate: new Date().toString(),
+    birthdate: "",
     email: "",
     home_phone: "",
     personal_phone: "",
@@ -38,6 +38,8 @@ function NewStudent() {
   const [errorRepreIdentification, setErrorRepreIdentification] =
     useState(false);
   const [errorReprePersonalPhone, setErrorReprePersonalPhone] = useState(false);
+  // const [errorCourse, setErrorCourse] = useState(false);
+  // const [errorParallel, setErrorParallel] = useState(false);
   const [error, setError] = useState(false);
 
   const [filters, setFilters] = useState([]);
@@ -67,6 +69,10 @@ function NewStudent() {
       ? setError(errorRepreIdentification)
       : errorReprePersonalPhone.error
       ? setError(errorReprePersonalPhone)
+      // : errorCourse.error
+      // ? setError(errorCourse)
+      // : errorParallel.error
+      // ? setError(errorParallel)
       : setError(false);
   }, [
     errorName,
@@ -81,6 +87,8 @@ function NewStudent() {
     errorRepreLastName,
     errorRepreIdentification,
     errorReprePersonalPhone,
+    // errorCourse,
+    // errorParallel
   ]);
 
   const fetchFilters = useCallback(async () => {
@@ -114,7 +122,6 @@ function NewStudent() {
       return;
     }
     setIsLoading(true);
-    console.log(student);
 
     try {
       const response = await axios.post(
@@ -149,7 +156,7 @@ function NewStudent() {
       if (avatarChanged) {
         formData.append("image", avatarFile);
         try {
-          const response = await axios.post(
+          await axios.post(
             `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
             formData,
             {
@@ -222,9 +229,8 @@ function NewStudent() {
             value={student.birthdate}
             maxLength="10"
             type="date"
-            onChange={(event) => {
-              console.log(event.target.value);
-              setStudent({ ...student, birthdate: event.target.value });
+            onChange={(date) => {
+              setStudent({ ...student, birthdate: date });
             }}
             setError={setErrorBirthdate}
             validation="date"
@@ -280,6 +286,7 @@ function NewStudent() {
               setStudent({ ...student, address: event.target.value });
             }}
             setError={setErrorAddress}
+            validation="nonEmpty"
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -364,6 +371,8 @@ function NewStudent() {
             onChange={(event) => {
               setStudent({ ...student, course: event.target.value });
             }}
+            // setError={setErrorCourse}
+            // validation="select"
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -375,6 +384,8 @@ function NewStudent() {
             onChange={(event) => {
               setStudent({ ...student, parallel: event.target.value });
             }}
+            // setError={setErrorParallel}
+            // validation="select"
             disabled={user.role !== "secretary"}
           />
         </SubContainer>

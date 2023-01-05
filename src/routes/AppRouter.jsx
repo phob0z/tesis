@@ -83,38 +83,32 @@ const AppRouter = () => {
                     <Route path="/students">
                       <Route path="" element={<Students />} />
                       <Route path="newStudent" element={<NewStudent />} />
-                      <Route path=":identification" element={<EditStudent />} />
+                      <Route path=":id" element={<EditStudent />} />
                     </Route>
                     <Route path="/teachers">
                       <Route path="" element={<Teachers />} />
                       <Route path="newTeacher" element={<NewTeacher />} />
-                      <Route path=":identification" element={<EditTeacher />} />
+                      <Route path=":id" element={<EditTeacher />} />
                     </Route>
                     <Route path="/courses">
                       <Route path="" element={<Courses />} />
                       <Route path="newCourse" element={<NewCourse />} />
-                      <Route path=":identification" element={<EditCourse />} />
+                      <Route path=":id" element={<EditCourse />} />
                     </Route>
                     <Route path="/parallels">
                       <Route path="" element={<Parallels />} />
                       <Route path="newParallel" element={<NewParallel />} />
-                      <Route
-                        path=":identification"
-                        element={<EditParallel />}
-                      />
+                      <Route path=":id" element={<EditParallel />} />
                     </Route>
                     <Route path="/subjects">
                       <Route path="" element={<Subjects />} />
                       <Route path="newSubject" element={<NewSubject />} />
-                      <Route path=":identification" element={<EditSubject />} />
+                      <Route path=":id" element={<EditSubject />} />
                     </Route>
                     <Route path="/specialties">
                       <Route path="" element={<Specialties />} />
                       <Route path="newSpecialty" element={<NewSpecialty />} />
-                      <Route
-                        path=":identification"
-                        element={<EditSpecialty />}
-                      />
+                      <Route path=":id" element={<EditSpecialty />} />
                     </Route>
                     <Route path="/academicYears">
                       <Route path="" element={<AcademicYears />} />
@@ -122,14 +116,11 @@ const AppRouter = () => {
                         path="newAcademicYear"
                         element={<NewAcademicYear />}
                       />
-                      <Route
-                        path=":identification"
-                        element={<EditAcademicYear />}
-                      />
+                      <Route path=":id" element={<EditAcademicYear />} />
                     </Route>
                     <Route path="/grades">
                       <Route path="" element={<Grades />} />
-                      <Route path=":identification" element={<EditGrades />} />
+                      <Route path=":id" element={<EditGrades />} />
                     </Route>
                   </Routes>
                 </Fragment>

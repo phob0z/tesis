@@ -1,3 +1,5 @@
+En Student/Secretary/Teacher Raul no me devulve la imagen
+
 Preguntar:
     - Filtros: buscan al cambiar automaticamente o hay que hacer clic en buscar?
 

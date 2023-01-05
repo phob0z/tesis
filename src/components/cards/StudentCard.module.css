@@ -1,7 +1,7 @@
 .student {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 3fr 1.5fr 1fr 1fr 4fr 1fr 1fr;
+  grid-template-columns: 3fr 2fr 1fr 1fr 4fr 1fr 1fr;
   height: fit-content;
   padding-left: 1rem;
   font-family: "Open Sans";
@@ -12,5 +12,6 @@
 }
 
 .student div {
+  overflow: hidden;
   align-self: center;
 }

@@ -9,7 +9,6 @@ import LongSubContainer from "../../components/containers/LongSubContainer";
 import StudentCard from "../../components/cards/StudentCard";
 import axios from "axios";
 
-
 function Students() {
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
@@ -322,6 +321,7 @@ function Students() {
           return (
             <LongSubContainer key={student.identification}>
               <StudentCard
+                id={student.id}
                 name={student.name}
                 last_name={student.last_name}
                 identification={student.identification}

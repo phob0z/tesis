@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 
 function DatePicker(props) {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const ref = useRef();
 
   const today = new Date();

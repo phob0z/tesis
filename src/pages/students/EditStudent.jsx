@@ -8,8 +8,10 @@ import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 import OnOffInput from "../../components/atoms/OnOffInput";
+import { useParams } from "react-router-dom";
 
 function EditStudent() {
+  const params = useParams();
   const [student, setStudent] = useState({
     name: "",
     last_name: "",
@@ -42,6 +44,8 @@ function EditStudent() {
   const [errorRepreIdentification, setErrorRepreIdentification] =
     useState(false);
   const [errorReprePersonalPhone, setErrorReprePersonalPhone] = useState(false);
+  // const [errorCourse, setErrorCourse] = useState(false);
+  // const [errorParallel, setErrorParallel] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -69,7 +73,11 @@ function EditStudent() {
       ? setError(errorRepreIdentification)
       : errorReprePersonalPhone.error
       ? setError(errorReprePersonalPhone)
-      : setError(false);
+      : // : errorCourse.error
+        // ? setError(errorCourse)
+        // : errorParallel.error
+        // ? setError(errorParallel)
+        setError(false);
   }, [
     errorName,
     errorLastName,
@@ -83,60 +91,76 @@ function EditStudent() {
     errorRepreLastName,
     errorRepreIdentification,
     errorReprePersonalPhone,
+    // errorCourse,
+    // errorParallel
   ]);
 
   const fetchStudent = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = {
-        name: "Leonel",
-        last_name: "Molina",
-        personal_phone: "0963680605",
-        home_phone: "022454236",
-        address: "Quito",
-        email: "leonel_alfonso@hotmail.com",
-        identification: "1758963050",
-        birthdate: "1988/06/18",
-        avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-        representative_name: "Laudin",
-        representative_last_name: "Molina",
-        representative_identification: "2459690",
-        representative_phone: "0982513230",
-        course: "8vo",
-        parallel: "C",
-        state: true,
-      };
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/student/${params.id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.user;
       setStudent(data);
-      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
-  }, [setIsLoading, setModal, token]);
+    setIsLoading(false);
+  }, [setIsLoading, setModal, token, params.id]);
 
   const fetchFilters = useCallback(async () => {
-    setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
+      // const response = await axios.get(
+      //   `${process.env.REACT_APP_BACK_URL}/filters`,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Accept: "application/json",
+      //       Authorization: token,
+      //     },
+      //   }
+      // );
       const data = {
         course: ["1ero", "8vo", "9no", "10mo"],
         parallel: ["A", "B", "C", "D"],
       };
       setFilters(data);
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error });
     }
-    setIsLoading(false);
-  }, [setIsLoading, setModal]);
+  }, [setModal, token]);
 
   useEffect(() => {
     fetchStudent();
     fetchFilters();
   }, [fetchStudent, fetchFilters]);
+
+  const deactivate = async () => {
+    setIsLoading(true);
+    try {
+      await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/student/${params.id}/destroy`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+    } catch (error) {
+      setModal({ title: "ERROR", message: error });
+    }
+    setIsLoading(false);
+  };
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -151,7 +175,7 @@ function EditStudent() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/student`,
+        `${process.env.REACT_APP_BACK_URL}/student/${params.id}/update`,
         {
           name: student.name,
           last_name: student.last_name,
@@ -167,7 +191,7 @@ function EditStudent() {
           representative_phone: student.representative_phone,
           course: student.course,
           parallel: student.parallel,
-          role: "student",
+          // role: "student",
         },
         {
           headers: {
@@ -256,8 +280,8 @@ function EditStudent() {
             value={student.birthdate}
             maxLength="10"
             type="date"
-            onChange={(event) => {
-              setStudent({ ...student, birthdate: event.target.value });
+            onChange={(date) => {
+              setStudent({ ...student, birthdate: date });
             }}
             setError={setErrorBirthdate}
             validation="date"
@@ -313,6 +337,7 @@ function EditStudent() {
               setStudent({ ...student, address: event.target.value });
             }}
             setError={setErrorAddress}
+            validation="nonEmpty"
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -397,6 +422,8 @@ function EditStudent() {
             onChange={(event) => {
               setStudent({ ...student, course: event.target.value });
             }}
+            // setError={setErrorCourse}
+            // validation="select"
           />
           <Card
             label="Paralelo"
@@ -407,6 +434,8 @@ function EditStudent() {
             onChange={(event) => {
               setStudent({ ...student, parallel: event.target.value });
             }}
+            // setError={setErrorParallel}
+            // validation="select"
           />
         </SubContainer>
         <SubContainer subTitle="ESTADO">
@@ -414,6 +443,7 @@ function EditStudent() {
             <OnOffInput
               value={student.state}
               onChange={(state) => {
+                deactivate();
                 setStudent({ ...student, state });
               }}
             />

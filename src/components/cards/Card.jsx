@@ -44,12 +44,13 @@ function Card(props) {
           setError("La cédula solo puede contener números");
         break;
       case "date":
-        // if (!props.value) setError("El campo no puede estar vacío");
+        if (!props.value) setError("El campo no puede estar vacío");
         break;
       case "email":
         if (!props.value) setError("El campo no puede estar vacío");
         else if (
-          !props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/)
+          // !props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/)
+          !props.value.match(/^\w+([.-]?)*@\w+([.-]?)*(\.\w{2,})+$/)
         )
           setError("Debe ingresar un correo válido");
         break;
@@ -106,8 +107,16 @@ function Card(props) {
             setError("La contraseña debe tener al menos un carácter especial");
         }
         break;
-      default:
+      case "textBig":
         if (!props.value) setError("El campo no puede estar vacío");
+        break;
+      case "select":
+        if (!props.value) setError("Debe seleccionar una opción");
+        break;
+      case "nonEmpty":
+        if (!props.value) setError("El campo no puede estar vacío");
+        break;
+      default:
         break;
     }
     // eslint-disable-next-line
