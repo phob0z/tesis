@@ -50,7 +50,7 @@ function Card(props) {
         if (!props.value) setError("El campo no puede estar vacío");
         else if (
           // !props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/)
-          !props.value.match(/^\w+([.-]?)*@\w+([.-]?)*(\.\w{2,})+$/)
+          !props.value.match(/^(\w[.-]?)*@(\w[.-]?)*(\.\w{2,})+$/)
         )
           setError("Debe ingresar un correo válido");
         break;

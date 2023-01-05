@@ -13,7 +13,7 @@ function NewTeacher() {
     name: "",
     last_name: "",
     identification: "",
-    birthdate: new Date().toString(),
+    birthdate: "",
     email: "",
     home_phone: "",
     personal_phone: "",
@@ -74,20 +74,19 @@ function NewTeacher() {
       return;
     }
     setIsLoading(true);
-
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/teacher`,
+        `${process.env.REACT_APP_BACK_URL}/teacher/create`,
         {
           name: teacher.name,
           last_name: teacher.last_name,
-          personal_phone: teacher.personal_phone,
-          home_phone: teacher.home_phone,
-          address: teacher.address,
-          email: teacher.email,
           identification: teacher.identification,
           birthdate: teacher.birthdate,
-          role: "teacher",
+          email: teacher.email,
+          home_phone: teacher.home_phone,
+          personal_phone: teacher.personal_phone,
+          address: teacher.address,
+          // role: "teacher",
         },
         {
           headers: {
@@ -102,7 +101,7 @@ function NewTeacher() {
       if (avatarChanged) {
         formData.append("image", avatarFile);
         try {
-          const response = await axios.post(
+          await axios.post(
             `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
             formData,
             {
@@ -113,16 +112,14 @@ function NewTeacher() {
             }
           );
         } catch {
-          setIsLoading(false);
           setModal({ title: "ERROR", message: error.response.data.message });
         }
       }
-      setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -232,6 +229,7 @@ function NewTeacher() {
               setTeacher({ ...teacher, address: event.target.value });
             }}
             setError={setErrorAddress}
+            validation="nonEmpty"
             disabled={user.role !== "secretary"}
           />
         </SubContainer>

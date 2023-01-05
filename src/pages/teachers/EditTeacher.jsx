@@ -8,8 +8,10 @@ import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 import OnOffInput from "../../components/atoms/OnOffInput";
+import { useParams } from "react-router-dom";
 
 function EditTeacher() {
+  const params = useParams();
   const [teacher, setTeacher] = useState({
     name: "",
     last_name: "",
@@ -19,6 +21,7 @@ function EditTeacher() {
     home_phone: "",
     personal_phone: "",
     address: "",
+    state: false,
     avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
   });
   const { user, token } = useContext(AuthContext);
@@ -68,30 +71,46 @@ function EditTeacher() {
   const fetchTeacher = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = {
-        name: "Leonel",
-        last_name: "Molina",
-        identification: "1758963050",
-        birthdate: "1988/06/18",
-        email: "leonel_alfonso@hotmail.com",
-        home_phone: "022454236",
-        personal_phone: "0963680605",
-        address: "Quito",
-        avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-      };
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/teacher/${params.id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.user;
       setTeacher(data);
-      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
-  }, [setIsLoading, setModal, token]);
+    setIsLoading(false);
+  }, [setIsLoading, setModal, token, params.id]);
 
   useEffect(() => {
     fetchTeacher();
   }, [fetchTeacher]);
+
+  const deactivate = async () => {
+    setIsLoading(true);
+    try {
+      await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/teacher/${params.id}/destroy`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+    } catch (error) {
+      setModal({ title: "ERROR", message: error });
+    }
+    setIsLoading(false);
+  };
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -103,10 +122,9 @@ function EditTeacher() {
       return;
     }
     setIsLoading(true);
-
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/teacher`,
+        `${process.env.REACT_APP_BACK_URL}/teacher/${params.id}/update`,
         {
           name: teacher.name,
           last_name: teacher.last_name,
@@ -116,7 +134,7 @@ function EditTeacher() {
           home_phone: teacher.home_phone,
           personal_phone: teacher.personal_phone,
           address: teacher.address,
-          role: "teacher",
+          // role: "teacher",
         },
         {
           headers: {
@@ -131,7 +149,7 @@ function EditTeacher() {
       if (avatarChanged) {
         formData.append("image", avatarFile);
         try {
-          const response = await axios.post(
+          await axios.post(
             `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
             formData,
             {
@@ -142,16 +160,14 @@ function EditTeacher() {
             }
           );
         } catch {
-          setIsLoading(false);
           setModal({ title: "ERROR", message: error.response.data.message });
         }
       }
-      setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -205,8 +221,8 @@ function EditTeacher() {
             value={teacher.birthdate}
             maxLength="10"
             type="date"
-            onChange={(event) => {
-              setTeacher({ ...teacher, birthdate: event.target.value });
+            onChange={(date) => {
+              setTeacher({ ...teacher, birthdate: date });
             }}
             setError={setErrorBirthdate}
             validation="date"
@@ -262,6 +278,7 @@ function EditTeacher() {
               setTeacher({ ...teacher, address: event.target.value });
             }}
             setError={setErrorAddress}
+            validation="nonEmpty"
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -283,6 +300,7 @@ function EditTeacher() {
             <OnOffInput
               value={teacher.state}
               onChange={(state) => {
+                deactivate();
                 setTeacher({ ...teacher, state });
               }}
             />

@@ -172,7 +172,6 @@ function EditStudent() {
       return;
     }
     setIsLoading(true);
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/${params.id}/update`,
@@ -206,7 +205,7 @@ function EditStudent() {
       if (avatarChanged) {
         formData.append("image", avatarFile);
         try {
-          const response = await axios.post(
+          await axios.post(
             `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
             formData,
             {
@@ -217,16 +216,14 @@ function EditStudent() {
             }
           );
         } catch {
-          setIsLoading(false);
           setModal({ title: "ERROR", message: error.response.data.message });
         }
       }
-      setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (

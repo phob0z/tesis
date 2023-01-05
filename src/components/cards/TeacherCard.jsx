@@ -8,7 +8,7 @@ function TeacherCard(props) {
   const navigate = useNavigate();
 
   const onEditHandler = () => {
-    navigate(props.identification);
+    navigate(`./${props.id}`);
   };
   return (
     <div className={classes.teacher}>

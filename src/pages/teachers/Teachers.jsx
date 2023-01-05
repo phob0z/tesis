@@ -1,7 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
+import AuthContext from "../../contexts/auth/AuthContext";
 
 import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
@@ -9,6 +11,7 @@ import TeacherCard from "../../components/cards/TeacherCard";
 
 function Teachers() {
   const navigate = useNavigate();
+  const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [teachers, setTeachers] = useState([]);
@@ -21,157 +24,23 @@ function Teachers() {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Teachers/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = [
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/teacher`,
         {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "1758963050",
-          state: true,
-        },
-        {
-          name: "asdasd",
-          last_name: "qweqwe",
-          identification: "1111111111",
-          state: false,
-        },
-        {
-          name: "ASDASD",
-          last_name: "QWEQWE",
-          identification: "2222222222",
-          state: false,
-        },
-        {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "3333333333",
-          state: true,
-        },
-        {
-          name: "asdasd",
-          last_name: "qweqwe",
-          identification: "4444444444",
-          state: true,
-        },
-        {
-          name: "ASDASD",
-          last_name: "QWEQWE",
-          identification: "5555555555",
-          state: false,
-        },
-        {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "6666666666",
-          state: true,
-        },
-        {
-          name: "asdasd",
-          last_name: "qweqwe",
-          identification: "7777777777",
-          state: false,
-        },
-        {
-          name: "ASDASD",
-          last_name: "QWEQWE",
-          identification: "8888888888",
-          state: true,
-        },
-        {
-          name: "ASDASD1",
-          last_name: "QWEQWE1",
-          identification: "9999999999",
-          state: true,
-        },
-        {
-          name: "ASDASD2",
-          last_name: "QWEQWE2",
-          identification: "0000000000",
-          state: false,
-        },
-        {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "2758963050",
-          state: true,
-        },
-        {
-          name: "asdasd",
-          last_name: "qweqwe",
-          identification: "2111111111",
-          state: true,
-        },
-        {
-          name: "ASDASD",
-          last_name: "QWEQWE",
-          identification: "3222222222",
-          state: true,
-        },
-        {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "2333333333",
-          state: true,
-        },
-        {
-          name: "asdasd",
-          last_name: "qweqwe",
-          identification: "2444444444",
-          state: true,
-        },
-        {
-          name: "ASDASD",
-          last_name: "QWEQWE",
-          identification: "2555555555",
-          state: true,
-        },
-        {
-          name: "Leonel",
-          last_name: "Molina",
-          identification: "2666666666",
-          state: true,
-        },
-        {
-          name: "asdasd",
-          last_name: "qweqwe",
-          identification: "2777777777",
-          state: true,
-        },
-        {
-          name: "ASDASD",
-          last_name: "QWEQWE",
-          identification: "2888888888",
-          state: true,
-        },
-        {
-          name: "ASDASD1",
-          last_name: "QWEQWE1",
-          identification: "2999999999",
-          state: true,
-        },
-        {
-          name: "ASDASD2",
-          last_name: "QWEQWE2",
-          identification: "2000000000",
-          state: true,
-        },
-      ];
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.users;
       setTeachers([...data]);
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal]);
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchData();
@@ -218,6 +87,7 @@ function Teachers() {
           return (
             <LongSubContainer key={teacher.identification}>
               <TeacherCard
+                id={teacher.id}
                 name={teacher.name}
                 last_name={teacher.last_name}
                 identification={teacher.identification}

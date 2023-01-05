@@ -167,16 +167,14 @@ function NewStudent() {
             }
           );
         } catch {
-          setIsLoading(false);
           setModal({ title: "ERROR", message: error.response.data.message });
         }
       }
-      setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (
