@@ -1,3 +1,6 @@
+Preguntar:
+    - Filtros: buscan al cambiar automaticamente o hay que hacer clic en buscar?
+
 Hacer:
 addSubject, para Students y para Teachers
 

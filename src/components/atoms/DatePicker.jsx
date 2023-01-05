@@ -9,11 +9,12 @@ function DatePicker(props) {
   const [date, setDate] = useState(new Date());
   const ref = useRef();
 
-  const thisYear = new Date().getFullYear();
-  const min = thisYear - 40;
+  const today = new Date();
+  const max = today.getFullYear() - 10;
+  const min = today.getFullYear() - 100;
 
   var years = [];
-  for (var year = min; year <= thisYear; year++) {
+  for (var year = min; year <= max; year++) {
     years.push(year);
   }
 
@@ -50,11 +51,14 @@ function DatePicker(props) {
         ref={ref}
         dateFormat="dd/MM/yyyy"
         selected={date}
-        onChange={(date) => setDate(date)}
+        onChange={(date) => {
+          setDate(new Date(date));
+          props.onChange(date);
+        }}
         locale="es"
         className={classes.inputDate}
-        minDate={new Date("1980/01/01")}
-        maxDate={new Date()}
+        minDate={new Date(`${min}/${today.getMonth()+1}/${today.getDate()}`)}
+        maxDate={new Date(`${max}/${today.getMonth()+1}/${today.getDate()}`)}
         fixedHeight
         disabled={props.disabled}
         renderCustomHeader={({

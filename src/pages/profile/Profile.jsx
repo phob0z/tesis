@@ -161,7 +161,7 @@ function Profile() {
       if (avatarChanged) {
         formData.append("image", avatarFile);
         try {
-          const response = await axios.post(
+          await axios.post(
             `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
             formData,
             {
@@ -231,8 +231,8 @@ function Profile() {
             value={userProfile.birthdate}
             maxLength="10"
             type="date"
-            onChange={(event) => {
-              setUserProfile({ ...userProfile, birthdate: event.target.value });
+            onChange={(date) => {
+              setUserProfile({ ...userProfile, birthdate:date });
             }}
             setError={setErrorBirthdate}
             validation="date"

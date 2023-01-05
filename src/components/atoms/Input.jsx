@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 import DatePicker from "./DatePicker";
 import Image from "./Image";
-import Button from "./Button";
 
 const Input = (props) => {
   const [focused, setFocussed] = useState(false);
@@ -34,7 +33,22 @@ const Input = (props) => {
 
   switch (props.type) {
     case "date":
-      input = <DatePicker value={props.value} disabled={props.disabled} />;
+      input = (
+        <DatePicker
+          onChange={(date) => {
+            if (date) {
+              const newDate = `${date.getFullYear()}-${
+                date.getMonth() + 1 < 10 ? "0" : ""
+              }${date.getMonth() + 1}-${
+                date.getDate() < 10 ? "0" : ""
+              }${date.getDate()}`;
+              props.onChange(newDate);
+            }
+          }}
+          value={props.value}
+          disabled={props.disabled}
+        />
+      );
       break;
     case "image":
       input = (

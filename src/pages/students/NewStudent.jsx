@@ -86,8 +86,8 @@ function NewStudent() {
   const fetchFilters = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
+      // const response = await fetch("https://swapi.dev/api/people/");
+      // const data1 = await response.json();
       const data = {
         course: ["1ero", "8vo", "9no", "10mo"],
         parallel: ["A", "B", "C", "D"],
@@ -114,10 +114,11 @@ function NewStudent() {
       return;
     }
     setIsLoading(true);
+    console.log(student);
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/student`,
+        `${process.env.REACT_APP_BACK_URL}/student/create`,
         {
           name: student.name,
           last_name: student.last_name,
@@ -133,7 +134,7 @@ function NewStudent() {
           representative_phone: student.representative_phone,
           course: student.course,
           parallel: student.parallel,
-          role: "student",
+          // role: "student",
         },
         {
           headers: {
@@ -222,6 +223,7 @@ function NewStudent() {
             maxLength="10"
             type="date"
             onChange={(event) => {
+              console.log(event.target.value);
               setStudent({ ...student, birthdate: event.target.value });
             }}
             setError={setErrorBirthdate}
