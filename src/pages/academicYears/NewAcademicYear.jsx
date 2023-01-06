@@ -11,7 +11,6 @@ import Card from "../../components/cards/Card";
 
 function NewAcademicYear() {
   const navigate = useNavigate();
-
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -19,16 +18,24 @@ function NewAcademicYear() {
     id: "",
     name: "",
     state: true,
-    endq1: (new Date()).toString(),
-    endq2: (new Date()).toString(),
+    endq1: "",
+    endq2: "",
   });
 
   const [error, setError] = useState(false);
-  const [errorIdentification, setErrorIdentification] = useState(false);
+  const [errorName, setErrorName] = useState(false);
+  const [errorEndQ1, setErrorEndQ1] = useState(false);
+  const [errorEndQ2, setErrorEndQ2] = useState(false);
 
   useEffect(() => {
-    errorIdentification.error ? setError(errorIdentification) : setError(false);
-  }, [errorIdentification]);
+    errorName.error
+      ? setError(errorName)
+      : errorEndQ1.error
+      ? setError(errorEndQ1)
+      : errorEndQ2.error
+      ? setError(errorEndQ2)
+      : setError(false);
+  }, [errorName, errorEndQ1, errorEndQ2]);
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -65,43 +72,43 @@ function NewAcademicYear() {
       backButton
     >
       <SubContainer>
-      <Card
+        <Card
           label="Nombre"
           value={academicYear.name}
-          maxLength="10"
+          maxLength="4"
           onChange={(event) => {
             setAcademicYear((prevState) => {
               return { ...prevState, name: event.target.value };
             });
           }}
-          setError={setErrorIdentification}
-          validation="identification"
+          setError={setErrorName}
+          validation="academicYear"
           disabled={user.role !== "secretary"}
         />
         <Card
           type="date"
           label="Fin Q1"
           value={academicYear.endq1}
-          maxLength="5"
-          onChange={(event) => {
+          onChange={(date) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, endq1: event.target.value };
+              return { ...prevState, endq1: date };
             });
           }}
-          setError={setErrorIdentification}
+          setError={setErrorEndQ1}
+          validation="date"
           disabled={user.role !== "secretary"}
         />
         <Card
           type="date"
           label="Fin Q2"
           value={academicYear.endq2}
-          maxLength="5"
-          onChange={(event) => {
+          onChange={(date) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, endq2: event.target.value };
+              return { ...prevState, endq2: date };
             });
           }}
-          setError={setErrorIdentification}
+          setError={setErrorEndQ2}
+          validation="date"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

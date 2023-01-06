@@ -58,7 +58,7 @@ function AcademicYears() {
               minWidth: "100%",
             }}
           >
-            No se encontraron preriodos académicos.
+            No se encontraron periodos académicos.
           </div>
         </LongSubContainer>
       ) : (

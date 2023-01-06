@@ -20,8 +20,8 @@ function EditAcademicYear() {
 
   const [error, setError] = useState(false);
   const [errorName, setErrorName] = useState(false);
-  const [errorEndQ1, seterrorEndQ1] = useState(false);
-  const [errorEndQ2, seterrorEndQ2] = useState(false);
+  const [errorEndQ1, setErrorEndQ1] = useState(false);
+  const [errorEndQ2, setErrorEndQ2] = useState(false);
 
   useEffect(() => {
     errorName.error
@@ -152,13 +152,12 @@ function EditAcademicYear() {
           type="date"
           label="Fin Q1"
           value={academicYear.endq1}
-          maxLength="5"
           onChange={(date) => {
             setAcademicYear((prevState) => {
               return { ...prevState, endq1: date };
             });
           }}
-          setError={seterrorEndQ1}
+          setError={setErrorEndQ1}
           validation="date"
           disabled={user.role !== "secretary"}
         />
@@ -166,13 +165,12 @@ function EditAcademicYear() {
           type="date"
           label="Fin Q2"
           value={academicYear.endq2}
-          maxLength="5"
           onChange={(date) => {
             setAcademicYear((prevState) => {
               return { ...prevState, endq2: date };
             });
           }}
-          setError={seterrorEndQ2}
+          setError={setErrorEndQ2}
           validation="date"
           disabled={user.role !== "secretary"}
         />
