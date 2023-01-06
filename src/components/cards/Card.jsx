@@ -175,6 +175,8 @@ function Card(props) {
               disabled={props.disabled}
               alt={props.alt}
               options={props.options}
+              minDate={props.minDate}
+              maxDate={props.maxDate}
             />
           </div>
           {error && (

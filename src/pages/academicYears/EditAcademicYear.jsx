@@ -159,6 +159,8 @@ function EditAcademicYear() {
           }}
           setError={setErrorEndQ1}
           validation="date"
+          // minDate="06/01/2020"
+          // maxDate={academicYear.endq2}
           disabled={user.role !== "secretary"}
         />
         <Card
@@ -172,6 +174,8 @@ function EditAcademicYear() {
           }}
           setError={setErrorEndQ2}
           validation="date"
+          // minDate={academicYear.endq1}
+          // maxDate="06/01/2021"
           disabled={user.role !== "secretary"}
         />
         <Card label="Estado">

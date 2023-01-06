@@ -47,6 +47,8 @@ const Input = (props) => {
           }}
           value={props.value}
           disabled={props.disabled}
+          minDate={props.minDate}
+          maxDate={props.maxDate}
         />
       );
       break;

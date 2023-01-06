@@ -48,19 +48,27 @@ function NewAcademicYear() {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      setIsLoading(false);
-      // setModal({ title: "CORRECTO", message: response.data.message });
-      setModal({
-        title: "CORRECTO",
-        message: "Cambiar este modal por el del mensaje correcto",
-      });
-      navigate("/academicYears");
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/period/create`,
+        {
+          name: academicYear.name,
+          finq1: academicYear.endq1,
+          finq2: academicYear.endq2,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setModal({ title: "CORRECTO", message: response.data.message });
+      navigate("../");
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -96,6 +104,8 @@ function NewAcademicYear() {
           }}
           setError={setErrorEndQ1}
           validation="date"
+          // minDate="06/01/2020"
+          // miaxDate="06/01/2021"
           disabled={user.role !== "secretary"}
         />
         <Card
@@ -109,6 +119,8 @@ function NewAcademicYear() {
           }}
           setError={setErrorEndQ2}
           validation="date"
+          // minDate="06/01/2020"
+          // miaxDate="06/01/2021"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

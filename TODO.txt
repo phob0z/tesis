@@ -6,6 +6,9 @@ Hacer:
 addSubject, para Students
 Secretary
 
+DatePicker:
+Poner asignar max y min por props, para resolver el problema en AcademicYears
+
 Subjects:
 Al crear asignatura agregarle periodo, especialidad, y profesor.
 
