@@ -7,9 +7,6 @@ import classes from "./TeacherCard.module.css";
 function TeacherCard(props) {
   const navigate = useNavigate();
 
-  const onEditHandler = () => {
-    navigate(`./${props.id}`);
-  };
   return (
     <div className={classes.teacher}>
       <div className={classes.name}>
@@ -18,7 +15,12 @@ function TeacherCard(props) {
       <div>{props.identification}</div>
       <OnOffIcon state={props.state} />
       <div>
-        <Button className="editButton" onClick={onEditHandler}>
+        <Button
+          className="editButton"
+          onClick={() => {
+            navigate(`./${props.id}`);
+          }}
+        >
           Editar
         </Button>
       </div>

@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -11,7 +11,6 @@ import Card from "../../components/cards/Card";
 import OnOffInput from "../../components/atoms/OnOffInput";
 
 function EditCourse() {
-  const navigate = useNavigate();
   const params = useParams();
 
   const { user, token } = useContext(AuthContext);
@@ -29,19 +28,23 @@ function EditCourse() {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = {
-        identification: params.identification,
-        state: true,
-      };
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/course/${params.id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.course;
       setCourse(data);
-      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
-  }, [params.identification, setIsLoading, setModal]);
+    setIsLoading(false);
+  }, [setIsLoading, setModal, token, params.id]);
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -54,24 +57,51 @@ function EditCourse() {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      setIsLoading(false);
-      // setModal({ title: "CORRECTO", message: response.data.message });
-      setModal({
-        title: "CORRECTO",
-        message: "Cambiar este modal por el del mensaje correcto",
-      });
-      navigate("/courses");
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/course/${params.id}/update`,
+        {
+          name: course.name,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  const deactivate = async (state) => {
+    setIsLoading(true);
+    try {
+      await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/course/${params.id}/destroy`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setCourse((prevState) => {
+        return { ...prevState, state };
+      });
+    } catch (error) {
+      setModal({ title: "ERROR", message: error.response.data.message });
+    }
+    setIsLoading(false);
+  };
 
   return (
     <MainContainer
@@ -84,24 +114,22 @@ function EditCourse() {
       <SubContainer>
         <Card
           label="Curso"
-          value={course.identification}
-          maxLength="5"
+          value={course.name}
+          maxLength="30"
           onChange={(event) => {
             setCourse((prevState) => {
-              return { ...prevState, identification: event.target.value };
+              return { ...prevState, name: event.target.value };
             });
           }}
           setError={setErrorIdentification}
-          validation="code"
+          validation="course"
           disabled={user.role !== "secretary"}
         />
         <Card label="Estado">
           <OnOffInput
             value={course.state}
             onChange={(state) => {
-              setCourse((prevState) => {
-                return { ...prevState, state: state };
-              });
+              deactivate(state);
             }}
           />
         </Card>

@@ -1,17 +1,21 @@
 .student {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 3fr 2fr 1fr 1fr 4fr 1fr 1fr;
-  height: fit-content;
+  grid-template-columns: 4fr 2.5fr 1fr 1fr 4fr 0.8fr 1.5fr;
   padding-left: 1rem;
+  padding-right: 1rem;
   font-family: "Open Sans";
   font-size: 0.9rem;
   color: #414141;
   font-weight: 900;
   cursor: default;
+  column-gap: 1rem;
+}
+
+.name {
+  overflow: hidden;
 }
 
 .student div {
-  overflow: hidden;
   align-self: center;
 }

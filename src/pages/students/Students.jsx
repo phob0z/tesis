@@ -14,7 +14,7 @@ function Students() {
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState(null);
   const [filters, setFilters] = useState([]);
 
   const [searchBar, setSearchBar] = useState("");
@@ -29,21 +29,32 @@ function Students() {
   const fetchFilters = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await fetch("https://swapi.dev/api/people/");
-      // const data1 = await response.json();
-      const data = {
-        course: ["Todos", "1ero", "8vo", "9no", "10mo"],
-        parallel: ["Todos", "A", "B", "C", "D"],
-        specialty: ["Todos", "asd", "qwe", "zxc1ASDASDASD"],
-        academicYear: ["2023", "2022", "2021", "2020"],
-      };
-      setFilters(data);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/filter`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      // const data = {
+      //   course: ["Todos", "1ero", "8vo", "9no", "10mo", "asdasd"],
+      //   parallel: ["Todos", "A", "B", "C", "D"],
+      //   specialty: ["Todos", "asd", "qwe", "zxc1ASDASDASD"],
+      //   academicYear: ["2023", "2022", "2021", "2020"],
+      // };
+      const course = response.data.data.courses;
+      const parallel = response.data.data.parallels;
+      const specialty = response.data.data.specialties;
+      const academicYear = response.data.data.periods;
+      setFilters({ course, parallel, specialty, academicYear });
     } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal]);
+  }, [setIsLoading, setModal, token]);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -61,31 +72,21 @@ function Students() {
       const data = response.data.data.users;
       setStudents([...data]);
     } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
   }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchFilters();
-    fetchData();
-  }, [fetchFilters, fetchData]);
-
-  useEffect(() => {
-    onChange();
-    // eslint-disable-next-line
-  }, [search]);
+  }, [fetchFilters]);
 
   const onSearch = () => {
+    console.log(search);
+    console.log("Haciendo el pedido al back con los nuevos parametros");
     setSearch((prevState) => {
       return { ...prevState, identification: searchBar };
     });
-  };
-
-  const onChange = () => {
-    console.log(search);
-    console.log("Haciendo el pedido al back con los nuevos parametros");
     fetchData();
   };
 
@@ -111,9 +112,30 @@ function Students() {
         setSearchBar(event.target.value);
       }}
     >
-      {students.length === 0 ? (
+      {!students ? (
         <LongSubContainer>
-          No se encontraron estudiantes con esos parámetros.
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            Usar los filtros y/o una identificación y posteriormente hacer clic
+            en el botón "Buscar"
+          </div>
+        </LongSubContainer>
+      ) : students.length === 0 ? (
+        <LongSubContainer>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            No se encontraron estudiantes con esos parámetros.
+          </div>
         </LongSubContainer>
       ) : (
         students.map((student) => {

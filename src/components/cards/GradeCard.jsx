@@ -7,9 +7,6 @@ import classes from "./GradeCard.module.css";
 function GradeCard(props) {
   const navigate = useNavigate();
 
-  const onEditHandler = () => {
-    navigate(props.identification);
-  };
   return (
     <div className={classes.grade}>
       <div className={classes.name}>
@@ -21,7 +18,12 @@ function GradeCard(props) {
       <div>{props.specialty}</div>
       <OnOffIcon state={props.state} />
       <div>
-        <Button className="editButton" onClick={onEditHandler}>
+        <Button
+          className="editButton"
+          onClick={() => {
+            navigate(`./${props.id}`);
+          }}
+        >
           Editar
         </Button>
       </div>

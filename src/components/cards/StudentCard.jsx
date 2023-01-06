@@ -7,13 +7,10 @@ import classes from "./StudentCard.module.css";
 function StudentCard(props) {
   const navigate = useNavigate();
 
-  const onEditHandler = () => {
-    navigate(`./${props.id}`);
-  };
   return (
     <div className={classes.student}>
       <div className={classes.name}>
-        {props.name.split(" ")[0]} {props.last_name.split(" ")[0]}
+        {props.name?.split(" ")[0]} {props.last_name?.split(" ")[0]}
       </div>
       <div>{props.identification}</div>
       <div>{props.course}</div>
@@ -21,7 +18,12 @@ function StudentCard(props) {
       <div>{props.specialty}</div>
       <OnOffIcon state={props.state} />
       <div>
-        <Button className="editButton" onClick={onEditHandler}>
+        <Button
+          className="editButton"
+          onClick={() => {
+            navigate(`./${props.id}`);
+          }}
+        >
           Editar
         </Button>
       </div>

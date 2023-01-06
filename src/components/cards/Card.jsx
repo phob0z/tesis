@@ -48,6 +48,8 @@ function Card(props) {
         break;
       case "email":
         if (!props.value) setError("El campo no puede estar vacío");
+        else if (props.value.trim().length > 50)
+          setError("Debe tener menos de 50 caracteres");
         else if (
           // !props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/)
           !props.value.match(/^(\w[.-]?)*@(\w[.-]?)*(\.\w{2,})+$/)
@@ -115,6 +117,32 @@ function Card(props) {
         break;
       case "nonEmpty":
         if (!props.value) setError("El campo no puede estar vacío");
+        break;
+      case "parallel":
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (!props.value.match(/^\w+$/))
+        setError("Solo puede contener letras o números");
+        else if (props.value.length > 2)
+          setError("La contraseña debe tener menos de 2 caracteres");
+        break;
+      case "course":
+        if (!props.value.match(/^(\w+|\s|[à-ú]|[À-Ú])+$/))
+          setError("Solo puede contener letras, números o espacios");
+        else if (!props.value) setError("El campo no puede estar vacío");
+        else if (props.value.length > 30)
+          setError("La contraseña debe tener menos de 30 caracteres");
+        break;
+      case "specialty":
+        if (!props.value.match(/^(\w+|\s|[à-ú]|[À-Ú])+$/))
+          setError("Solo puede contener letras, números o espacios");
+        else if (!props.value) setError("El campo no puede estar vacío");
+        else if (props.value.length > 50)
+          setError("La contraseña debe tener menos de 50 caracteres");
+        break;
+      case "academicYear":
+        if (!props.value) setError("El campo no puede estar vacío");
+        else if (props.value.length > 4)
+          setError("La contraseña debe tener menos de 4 caracteres");
         break;
       default:
         break;

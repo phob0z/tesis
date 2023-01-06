@@ -14,7 +14,7 @@ function Teachers() {
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [teachers, setTeachers] = useState([]);
+  const [teachers, setTeachers] = useState(null);
 
   const [searchBar, setSearchBar] = useState("");
   const [search, setSearch] = useState({
@@ -37,7 +37,7 @@ function Teachers() {
       const data = response.data.data.users;
       setTeachers([...data]);
     } catch (error) {
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
   }, [setIsLoading, setModal, token]);
@@ -78,9 +78,30 @@ function Teachers() {
         setSearchBar(event.target.value);
       }}
     >
-      {teachers.length === 0 ? (
+      {!teachers ? (
         <LongSubContainer>
-          No se encontraron profesores con esos parámetros.
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            Escribir una identificación y posteriormente hacer clic en el botón
+            "Buscar"
+          </div>
+        </LongSubContainer>
+      ) : teachers.length === 0 ? (
+        <LongSubContainer>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            No se encontraron profesores con esos parámetros.
+          </div>
         </LongSubContainer>
       ) : (
         teachers.map((teacher) => {

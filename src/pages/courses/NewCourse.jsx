@@ -11,7 +11,6 @@ import Card from "../../components/cards/Card";
 
 function NewCourse() {
   const navigate = useNavigate();
-
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -35,19 +34,25 @@ function NewCourse() {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      setIsLoading(false);
-      // setModal({ title: "CORRECTO", message: response.data.message });
-      setModal({
-        title: "CORRECTO",
-        message: "Cambiar este modal por el del mensaje correcto",
-      });
-      navigate("/courses");
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/course/create`,
+        {
+          name: course.name,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      navigate("../");
+      setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -61,15 +66,15 @@ function NewCourse() {
       <SubContainer>
         <Card
           label="Curso"
-          value={course.identification}
-          maxLength="5"
+          value={course.name}
+          maxLength="30"
           onChange={(event) => {
             setCourse((prevState) => {
-              return { ...prevState, identification: event.target.value };
+              return { ...prevState, name: event.target.value };
             });
           }}
           setError={setErrorIdentification}
-          validation="code"
+          validation="course"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

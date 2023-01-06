@@ -93,7 +93,7 @@ function EditTeacher() {
     fetchTeacher();
   }, [fetchTeacher]);
 
-  const deactivate = async () => {
+  const deactivate = async (state) => {
     setIsLoading(true);
     try {
       await axios.get(
@@ -106,8 +106,11 @@ function EditTeacher() {
           },
         }
       );
+      setTeacher((prevState) => {
+        return { ...prevState, state };
+      });
     } catch (error) {
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
   };
@@ -300,8 +303,7 @@ function EditTeacher() {
             <OnOffInput
               value={teacher.state}
               onChange={(state) => {
-                deactivate();
-                setTeacher({ ...teacher, state });
+                deactivate(state);
               }}
             />
           </Card>

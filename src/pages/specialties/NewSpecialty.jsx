@@ -11,7 +11,6 @@ import Card from "../../components/cards/Card";
 
 function NewSpecialty() {
   const navigate = useNavigate();
-
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -35,19 +34,25 @@ function NewSpecialty() {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      setIsLoading(false);
-      // setModal({ title: "CORRECTO", message: response.data.message });
-      setModal({
-        title: "CORRECTO",
-        message: "Cambiar este modal por el del mensaje correcto",
-      });
-      navigate("/specialties");
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/specialty/create`,
+        {
+          name: specialty.name,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setModal({ title: "CORRECTO", message: response.data.message });
+      navigate("../");
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -61,15 +66,15 @@ function NewSpecialty() {
       <SubContainer>
         <Card
           label="Especialidad"
-          value={specialty.identification}
-          maxLength="5"
+          value={specialty.name}
+          maxLength="50"
           onChange={(event) => {
             setSpecialty((prevState) => {
-              return { ...prevState, identification: event.target.value };
+              return { ...prevState, name: event.target.value };
             });
           }}
           setError={setErrorIdentification}
-          validation="code"
+          validation="specialty"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

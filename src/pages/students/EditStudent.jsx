@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -8,20 +9,10 @@ import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 import OnOffInput from "../../components/atoms/OnOffInput";
-import { useParams } from "react-router-dom";
 
 function EditStudent() {
   const params = useParams();
   const [student, setStudent] = useState({
-    name: "",
-    last_name: "",
-    identification: "",
-    birthdate: "",
-    email: "",
-    home_phone: "",
-    personal_phone: "",
-    address: "",
-    state: false,
     avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
   });
   const { user, token } = useContext(AuthContext);
@@ -73,11 +64,7 @@ function EditStudent() {
       ? setError(errorRepreIdentification)
       : errorReprePersonalPhone.error
       ? setError(errorReprePersonalPhone)
-      : // : errorCourse.error
-        // ? setError(errorCourse)
-        // : errorParallel.error
-        // ? setError(errorParallel)
-        setError(false);
+      : setError(false);
   }, [
     errorName,
     errorLastName,
@@ -91,8 +78,6 @@ function EditStudent() {
     errorRepreLastName,
     errorRepreIdentification,
     errorReprePersonalPhone,
-    // errorCourse,
-    // errorParallel
   ]);
 
   const fetchStudent = useCallback(async () => {
@@ -118,23 +103,23 @@ function EditStudent() {
 
   const fetchFilters = useCallback(async () => {
     try {
-      // const response = await axios.get(
-      //   `${process.env.REACT_APP_BACK_URL}/filters`,
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       Accept: "application/json",
-      //       Authorization: token,
-      //     },
-      //   }
-      // );
-      const data = {
-        course: ["1ero", "8vo", "9no", "10mo"],
-        parallel: ["A", "B", "C", "D"],
-      };
-      setFilters(data);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/filter`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const course = response.data.data.courses;
+      const parallel = response.data.data.parallels;
+      const specialty = response.data.data.specialties;
+      const academicYear = response.data.data.periods;
+      setFilters({ course, parallel, specialty, academicYear });
     } catch (error) {
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
   }, [setModal, token]);
 
@@ -143,7 +128,7 @@ function EditStudent() {
     fetchFilters();
   }, [fetchStudent, fetchFilters]);
 
-  const deactivate = async () => {
+  const deactivate = async (state) => {
     setIsLoading(true);
     try {
       await axios.get(
@@ -156,8 +141,11 @@ function EditStudent() {
           },
         }
       );
+      setStudent((prevState) => {
+        return { ...prevState, state };
+      });
     } catch (error) {
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
   };
@@ -190,7 +178,6 @@ function EditStudent() {
           representative_phone: student.representative_phone,
           course: student.course,
           parallel: student.parallel,
-          // role: "student",
         },
         {
           headers: {
@@ -419,8 +406,7 @@ function EditStudent() {
             onChange={(event) => {
               setStudent({ ...student, course: event.target.value });
             }}
-            // setError={setErrorCourse}
-            // validation="select"
+            disabled={user.role !== "secretary"}
           />
           <Card
             label="Paralelo"
@@ -431,8 +417,18 @@ function EditStudent() {
             onChange={(event) => {
               setStudent({ ...student, parallel: event.target.value });
             }}
-            // setError={setErrorParallel}
-            // validation="select"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Especialidad"
+            type="select"
+            options={filters.specialty}
+            theme="simple"
+            value={student.specialty}
+            onChange={(event) => {
+              setStudent({ ...student, specialty: event.target.value });
+            }}
+            disabled={user.role !== "secretary"}
           />
         </SubContainer>
         <SubContainer subTitle="ESTADO">
@@ -440,8 +436,7 @@ function EditStudent() {
             <OnOffInput
               value={student.state}
               onChange={(state) => {
-                deactivate();
-                setStudent({ ...student, state });
+                deactivate(state);
               }}
             />
           </Card>

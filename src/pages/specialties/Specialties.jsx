@@ -1,7 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
+import AuthContext from "../../contexts/auth/AuthContext";
 
 import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
@@ -9,52 +11,31 @@ import OnOffCard from "../../components/cards/OnOffCard";
 
 function Specialties() {
   const navigate = useNavigate();
+  const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [specialty, setSpecialties] = useState([]);
+  const [specialty, setSpecialties] = useState(null);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Specialties/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = [
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/specialty`,
         {
-          id: "1",
-          name: "Electrónica",
-          state: true,
-        },
-        {
-          id: "2",
-          name: "Informática",
-          state: true,
-        },
-        {
-          id: "3",
-          name: "Madera",
-          state: true,
-        },
-        {
-          id: "4",
-          name: "Eletricidad",
-          state: false,
-        },
-      ];
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.specialties;
       setSpecialties([...data]);
     } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal]);
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchData();
@@ -68,8 +49,18 @@ function Specialties() {
         navigate("newSpecialty");
       }}
     >
-      {specialty.length === 0 ? (
-        <LongSubContainer>No se encontraron especialidades.</LongSubContainer>
+      {!specialty || specialty?.length === 0 ? (
+        <LongSubContainer>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            No se encontraron especialidades.
+          </div>
+        </LongSubContainer>
       ) : (
         specialty.map((course) => {
           return (

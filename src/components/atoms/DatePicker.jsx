@@ -34,7 +34,7 @@ function DatePicker(props) {
   ];
 
   useEffect(() => {
-    if (props.value !== "") {
+    if (props.value && props.value !== "") {
       setDate(new Date(props.value.replace(/-/g, "/")));
     }
   }, [props.value]);

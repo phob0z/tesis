@@ -11,7 +11,7 @@ function Subjects() {
   const navigate = useNavigate();
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [subjects, setSubjects] = useState([]);
+  const [subjects, setSubjects] = useState(null);
   const [searchBar, setSearchBar] = useState("");
   const [search, setSearch] = useState({
     identification: "",
@@ -80,7 +80,6 @@ function Subjects() {
     <LongMainContainer
       title="Asignaturas"
       buttonTitle="Nueva"
-      
       onSearch={onSearch}
       showSearchInput
       onClick={() => {
@@ -92,8 +91,31 @@ function Subjects() {
         setSearchBar(event.target.value);
       }}
     >
-      {subjects.length === 0 ? (
-        <LongSubContainer>No se encontraron asignaturas.</LongSubContainer>
+      {!subjects ? (
+        <LongSubContainer>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            Escribir una identificación y posteriormente hacer clic en el botón
+            "Buscar"
+          </div>
+        </LongSubContainer>
+      ) : subjects?.length === 0 ? (
+        <LongSubContainer>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            No se encontraron asignaturas.
+          </div>
+        </LongSubContainer>
       ) : (
         subjects.map((course) => {
           return (

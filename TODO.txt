@@ -1,28 +1,25 @@
-En Student/Secretary/Teacher Raul no me devulve la imagen
-
-Preguntar:
-    - Filtros: buscan al cambiar automaticamente o hay que hacer clic en buscar?
+12 ya deberia tener todo
+17-19 MÁXIMO
+La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
 Hacer:
-addSubject, para Students y para Teachers
+addSubject, para Students
+Secretary
 
 Subjects:
-Al crear asignatura agregarle curso y paralelo.
-Agregar buscador por código.
+Al crear asignatura agregarle periodo, especialidad, y profesor.
 
 EditStudent:
 EditTeacher:
 Mostrar las asignaturas en las que están registrados.
 
 En las rutas:
-Hacer chequeo del role para el ruteo... que student no pueda acceder a /students, /teachers, etc.
+Hacer chequeo del rol para el ruteo... que student no pueda acceder a /students, /teachers, etc.
 
 Fecha límite para editar campos de notas (Un campo adicional en cada nota para la fecha máxima de edición)
 (Más simple, una fecha para finalización de quimestre y que ahí se bloqueen los campos)
 Leer fecha de fin de Quimestre1, si ya paso, disabled en los campos, si no ha pasado quitar el disabled.
 Leer fecha de fin de Quimestre2, si ya paso, disabled en los campos, si no ha pasado quitar el disabled.
-
-Páginación...
 
 Reportes: API con un array con la información.
 
@@ -32,14 +29,13 @@ RAÚL, revisar cuando arregle que no sea solo con Mailtrap ¬¬
 EmailSent
 ResetPassword
 
-
 -------
 RAÚL!!!
 -------
 Filtra el Backend
 No me llega el correo (RAUUUULLL ARREGLA QUE SOLO MANDA A MAILTRAP)
 EmailSent: Creo que no debería devolverme un error si la identificación no existe...
-
+En Student/Secretary/Teacher Raul no me devulve la imagen
 
 ---------------------------------------
 -- Menos importante, pero importante --
@@ -53,4 +49,8 @@ Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes
 Internationalize
 (https://blog.shahednasser.com/how-to-internationalize-a-react-app/)
 
-Arregler bug de borrar todo del DatePicker
+EditAcademicYear:
+NewAcademicYear:
+Check endQ1 < endQ2
+
+Páginación...

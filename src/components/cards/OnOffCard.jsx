@@ -15,7 +15,7 @@ function OnOffCard(props) {
         <Button
           className="editButton"
           onClick={() => {
-            navigate(props.id);
+            navigate(`./${props.id}`);
           }}
         >
           Editar

@@ -89,8 +89,8 @@ const Input = (props) => {
           {props.options &&
             props.options.map((option) => {
               return (
-                <option className={classes.option} key={option} value={option}>
-                  {option}
+                <option className={classes.option} key={option.id} value={option.id}>
+                  {option.name}
                 </option>
               );
             })}

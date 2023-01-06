@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -9,15 +10,8 @@ import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 
 function NewStudent() {
+  const navigate = useNavigate();
   const [student, setStudent] = useState({
-    name: "",
-    last_name: "",
-    identification: "",
-    birthdate: "",
-    email: "",
-    home_phone: "",
-    personal_phone: "",
-    address: "",
     avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
   });
   const { user, token } = useContext(AuthContext);
@@ -69,11 +63,11 @@ function NewStudent() {
       ? setError(errorRepreIdentification)
       : errorReprePersonalPhone.error
       ? setError(errorReprePersonalPhone)
-      // : errorCourse.error
-      // ? setError(errorCourse)
-      // : errorParallel.error
-      // ? setError(errorParallel)
-      : setError(false);
+      : // : errorCourse.error
+        // ? setError(errorCourse)
+        // : errorParallel.error
+        // ? setError(errorParallel)
+        setError(false);
   }, [
     errorName,
     errorLastName,
@@ -94,19 +88,26 @@ function NewStudent() {
   const fetchFilters = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await fetch("https://swapi.dev/api/people/");
-      // const data1 = await response.json();
-      const data = {
-        course: ["1ero", "8vo", "9no", "10mo"],
-        parallel: ["A", "B", "C", "D"],
-      };
-      setFilters(data);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/filter`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const course = response.data.data.courses;
+      const parallel = response.data.data.parallels;
+      const specialty = response.data.data.specialties;
+      const academicYear = response.data.data.periods;
+      setFilters({ course, parallel, specialty, academicYear });
     } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal]);
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchFilters();
@@ -122,7 +123,6 @@ function NewStudent() {
       return;
     }
     setIsLoading(true);
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/create`,
@@ -171,6 +171,7 @@ function NewStudent() {
         }
       }
       setModal({ title: "CORRECTO", message: response.data.message });
+      navigate("../");
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -383,6 +384,19 @@ function NewStudent() {
               setStudent({ ...student, parallel: event.target.value });
             }}
             // setError={setErrorParallel}
+            // validation="select"
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Especialidad"
+            type="select"
+            options={filters.specialty}
+            theme="simple"
+            value={student.specialty}
+            onChange={(event) => {
+              setStudent({ ...student, specialty: event.target.value });
+            }}
+            // setError={setErrorCourse}
             // validation="select"
             disabled={user.role !== "secretary"}
           />

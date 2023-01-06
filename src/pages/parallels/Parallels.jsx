@@ -1,7 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
+import AuthContext from "../../contexts/auth/AuthContext";
 
 import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
@@ -9,57 +11,31 @@ import OnOffCard from "../../components/cards/OnOffCard";
 
 function Parallels() {
   const navigate = useNavigate();
+  const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [parallels, setParallels] = useState([]);
+  const [parallels, setParallels] = useState(null);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Parallels/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = [
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/parallel`,
         {
-          id: "1",
-          name: "A",
-          state: true,
-        },
-        {
-          id: "2",
-          name: "B",
-          state: true,
-        },
-        {
-          id: "3",
-          name: "C",
-          state: true,
-        },
-        {
-          id: "4",
-          name: "A1",
-          state: false,
-        },
-        {
-          id: "5",
-          name: "D4",
-          state: true,
-        },
-      ];
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.parallels;
       setParallels([...data]);
     } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal]);
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchData();
@@ -73,16 +49,26 @@ function Parallels() {
         navigate("newParallel");
       }}
     >
-      {parallels.length === 0 ? (
-        <LongSubContainer>No se encontraron paralelos.</LongSubContainer>
+      {!parallels || parallels?.length === 0 ? (
+        <LongSubContainer>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            No se encontraron paralelos.
+          </div>
+        </LongSubContainer>
       ) : (
-        parallels.map((course) => {
+        parallels.map((parallel) => {
           return (
-            <LongSubContainer key={course.id}>
+            <LongSubContainer key={parallel.id}>
               <OnOffCard
-                id={course.id}
-                name={course.name}
-                state={course.state}
+                id={parallel.id}
+                name={parallel.name}
+                state={parallel.state}
               />
             </LongSubContainer>
           );
