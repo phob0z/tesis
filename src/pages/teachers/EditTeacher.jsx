@@ -153,7 +153,7 @@ function EditTeacher() {
         formData.append("image", avatarFile);
         try {
           await axios.post(
-            `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+            `${process.env.REACT_APP_BACK_URL}/${params.id}/save`,
             formData,
             {
               headers: {

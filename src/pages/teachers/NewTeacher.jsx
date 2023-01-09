@@ -23,8 +23,8 @@ function NewTeacher() {
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [avatarFile, setAvatarFile] = useState();
-  const [avatarChanged, setAvatarChanged] = useState(false);
+  // const [avatarFile, setAvatarFile] = useState();
+  // const [avatarChanged, setAvatarChanged] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -97,24 +97,24 @@ function NewTeacher() {
         }
       );
 
-      var formData = new FormData();
-      if (avatarChanged) {
-        formData.append("image", avatarFile);
-        try {
-          await axios.post(
-            `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                Authorization: token,
-              },
-            }
-          );
-        } catch {
-          setModal({ title: "ERROR", message: error.response.data.message });
-        }
-      }
+      // var formData = new FormData();
+      // if (avatarChanged) {
+      //   formData.append("image", avatarFile);
+      //   try {
+      //     await axios.post(
+      //       `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+      //       formData,
+      //       {
+      //         headers: {
+      //           "Content-Type": "multipart/form-data",
+      //           Authorization: token,
+      //         },
+      //       }
+      //     );
+      //   } catch {
+      //     setModal({ title: "ERROR", message: error.response.data.message });
+      //   }
+      // }
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -242,7 +242,7 @@ function NewTeacher() {
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
-        <SubContainer subTitle="IMAGEN DE PERFIL">
+        {/* <SubContainer subTitle="IMAGEN DE PERFIL">
           <Card
             value={teacher?.avatar}
             type="image"
@@ -254,7 +254,7 @@ function NewTeacher() {
             validation="image"
             // disabled={user.role !== "secretary"}
           />
-        </SubContainer>
+        </SubContainer> */}
       </MainContainer>
     </form>
   );

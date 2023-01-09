@@ -97,6 +97,7 @@ function EditStudent() {
         response.data.data.user[key] = response.data.data.user[key] ?? "";
       });
       const data = response.data.data.user;
+      console.log(data);
       setStudent({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -179,10 +180,10 @@ function EditStudent() {
           representative_last_name: student.representative_last_name,
           representative_identification: student.representative_identification,
           representative_personal_phone: student.representative_personal_phone,
-          course: student.course,
-          parallel: student.parallel,
-          specialty: student.specialty,
-          academic_period: student.academic_period,
+          course_id: student.course,
+          parallel_id: student.parallel,
+          specialty_id: student.specialty,
+          academic_period_id: student.academic_period,
         },
         {
           headers: {
@@ -198,7 +199,7 @@ function EditStudent() {
         formData.append("image", avatarFile);
         try {
           await axios.post(
-            `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+            `${process.env.REACT_APP_BACK_URL}/${params.id}/save`,
             formData,
             {
               headers: {

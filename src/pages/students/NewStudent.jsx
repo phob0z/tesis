@@ -17,8 +17,8 @@ function NewStudent() {
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [avatarFile, setAvatarFile] = useState();
-  const [avatarChanged, setAvatarChanged] = useState(false);
+  // const [avatarFile, setAvatarFile] = useState();
+  // const [avatarChanged, setAvatarChanged] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -115,6 +115,7 @@ function NewStudent() {
       return;
     }
     setIsLoading(true);
+    console.log(student);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/create`,
@@ -131,9 +132,10 @@ function NewStudent() {
           representative_last_name: student.representative_last_name,
           representative_identification: student.representative_identification,
           representative_phone: student.representative_phone,
-          course: student.course,
-          parallel: student.parallel,
-          specialty: student.specialty,
+          course_id: student.course,
+          parallel_id: student.parallel,
+          specialty_id: student.specialty,
+          academic_period_id: student.academicYear,
         },
         {
           headers: {
@@ -144,24 +146,24 @@ function NewStudent() {
         }
       );
 
-      var formData = new FormData();
-      if (avatarChanged) {
-        formData.append("image", avatarFile);
-        try {
-          await axios.post(
-            `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                Authorization: token,
-              },
-            }
-          );
-        } catch {
-          setModal({ title: "ERROR", message: error.response.data.message });
-        }
-      }
+      // var formData = new FormData();
+      // if (avatarChanged) {
+      //   formData.append("image", avatarFile);
+      //   try {
+      //     await axios.post(
+      //       `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+      //       formData,
+      //       {
+      //         headers: {
+      //           "Content-Type": "multipart/form-data",
+      //           Authorization: token,
+      //         },
+      //       }
+      //     );
+      //   } catch {
+      //     setModal({ title: "ERROR", message: error.response.data.message });
+      //   }
+      // }
       setModal({ title: "CORRECTO", message: response.data.message });
       navigate("../");
     } catch (error) {
@@ -348,7 +350,7 @@ function NewStudent() {
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
-        <SubContainer subTitle="IMAGEN DE PERFIL">
+        {/* <SubContainer subTitle="IMAGEN DE PERFIL">
           <Card
             value={student.avatar}
             type="image"
@@ -360,7 +362,7 @@ function NewStudent() {
             validation="image"
             // disabled={user.role !== "secretary"}
           />
-        </SubContainer>
+        </SubContainer> */}
         <SubContainer subTitle="DATOS DE LA MATRÍCULA">
           <Card
             label="Curso"
@@ -392,6 +394,17 @@ function NewStudent() {
             value={student.specialty}
             onChange={(event) => {
               setStudent({ ...student, specialty: event.target.value });
+            }}
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Periodo"
+            type="select"
+            options={filters.academicYears}
+            theme="simple"
+            value={student.academicYear}
+            onChange={(event) => {
+              setStudent({ ...student, academicYear: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />

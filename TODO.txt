@@ -2,15 +2,8 @@
 17-19 MÁXIMO
 La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
-Arreglar las rutas para cambiar las fotos de los usuarios (student, teacher, secretary)
-
-Raul, porque me mandas valores null? porque no ""?
-Raul hay error en /student/search, si se manda con "" da error.
-Hacer el mismo endpoint para teachers/secretaries/subjects
-
-No me esta actualizando curso/paralelo/especialidad en /student/${params.id}/update
-En secretaria/profesor el mensaje decia Estudiante creado correctamente
-En secretaria/profesor pedia que la identificacion fuera de al menos 10 caracteres (deberia ser 5-15 igual que todos)
+SEARCH:
+Si busco todo vacio que muestre un modal diciendo que tiene que llenar algun dato.
 
 Necesito un endpoint que me muestre las asignaturas en las que el estudiante esta registrado, te mando el ID ya
 tu me devuelves las asignaturas (nombre e id), con el profesor (nombre y apellido e id)
@@ -28,6 +21,8 @@ Leer fecha de fin de Quimestre1, si ya paso, disabled en los campos, si no ha pa
 Leer fecha de fin de Quimestre2, si ya paso, disabled en los campos, si no ha pasado quitar el disabled.
 
 Reportes: API con un array con la información.
+
+Hacer un fix para los 404, si recibo un 404 mostrar un modal propio.
 
 ------------------------------------------------------------
 RAÚL, revisar cuando arregle que no sea solo con Mailtrap ¬¬
