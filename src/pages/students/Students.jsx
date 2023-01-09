@@ -17,13 +17,12 @@ function Students() {
   const [students, setStudents] = useState(null);
   const [filters, setFilters] = useState([]);
 
-  const [searchBar, setSearchBar] = useState("");
   const [search, setSearch] = useState({
     identification: "",
-    course: "",
-    parallel: "",
-    specialty: "",
-    academicYear: "",
+    courses: "",
+    parallels: "",
+    specialties: "",
+    academicYears: "",
   });
 
   const fetchFilters = useCallback(async () => {
@@ -39,7 +38,6 @@ function Students() {
           },
         }
       );
-      console.log(response.data.data);
       const courses = response.data.data.courses;
       const parallels = response.data.data.parallels;
       const specialties = response.data.data.specialties;
@@ -54,8 +52,15 @@ function Students() {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/student`,
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/student/search`,
+        {
+          identification: search.identification,
+          course_id: search.courses,
+          parallel_id: search.parallels,
+          specialty_id: search.specialties,
+          academic_period_id: search.academicYears,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -70,6 +75,7 @@ function Students() {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
+    // eslint-disable-next-line
   }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
@@ -78,10 +84,6 @@ function Students() {
 
   const onSearch = () => {
     console.log(search);
-    console.log("Haciendo el pedido al back con los nuevos parametros");
-    setSearch((prevState) => {
-      return { ...prevState, identification: searchBar };
-    });
     fetchData();
   };
 
@@ -101,11 +103,7 @@ function Students() {
           return { ...prevState, ...value };
         });
       }}
-      searchBar={searchBar}
       searchBarLabel="Identificación"
-      onIdentificationChange={(event) => {
-        setSearchBar(event.target.value);
-      }}
     >
       {!students ? (
         <LongSubContainer>

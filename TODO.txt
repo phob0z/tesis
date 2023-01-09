@@ -3,7 +3,12 @@
 La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
 Raul, porque me mandas valores null? porque no ""?
+Raul hay error en /student/search, si se manda con "" da error.
+Hacer el mismo endpoint para teachers/secretaries/subjects
+
 No me esta actualizando curso/paralelo/especialidad en /student/${params.id}/update
+En secretaria/profesor el mensaje decia Estudiante creado correctamente
+En secretaria/profesor pedia que la identificacion fuera de al menos 10 caracteres (deberia ser 5-15 igual que todos)
 
 Necesito un endpoint que me muestre las asignaturas en las que el estudiante esta registrado, te mando el ID ya
 tu me devuelves las asignaturas (nombre e id), con el profesor (nombre y apellido e id)
@@ -11,14 +16,6 @@ tu me devuelves las asignaturas (nombre e id), con el profesor (nombre y apellid
 Hacer:
 verSubjects, para Student
 verSubjects, para Teacher
-Secretary
-
-Subjects:
-Al crear asignatura agregarle periodo, especialidad, y profesor.
-
-EditStudent:
-EditTeacher:
-Mostrar las asignaturas en las que están registrados.
 
 En las rutas:
 Hacer chequeo del rol para el ruteo... que student no pueda acceder a /students, /teachers, etc.
@@ -39,7 +36,6 @@ ResetPassword
 -------
 RAÚL!!!
 -------
-Filtra el Backend
 No me llega el correo (RAUUUULLL ARREGLA QUE SOLO MANDA A MAILTRAP)
 EmailSent: Creo que no debería devolverme un error si la identificación no existe...
 En Student/Secretary/Teacher Raul no me devulve la imagen
@@ -55,9 +51,5 @@ Consolidar los Containers en 1 y los subContainers en 1, crear clases diferentes
 
 Internationalize
 (https://blog.shahednasser.com/how-to-internationalize-a-react-app/)
-
-EditAcademicYear:
-NewAcademicYear:
-Check endQ1 < endQ2
 
 Páginación...

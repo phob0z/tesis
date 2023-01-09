@@ -7,14 +7,14 @@ import AuthContext from "../../contexts/auth/AuthContext";
 
 import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
-import SubjectCard from "../../components/cards/SubjectCard";
+import TeacherCard from "../../components/cards/TeacherCard";
 
-function Subjects() {
+function Secretaries() {
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [subjects, setSubjects] = useState(null);
+  const [secretaries, setSecretaries] = useState(null);
 
   const [search, setSearch] = useState({
     identification: "",
@@ -37,7 +37,7 @@ function Subjects() {
         }
       );
       const data = response.data.data.users;
-      setSubjects([...data]);
+      setSecretaries([...data]);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -52,10 +52,10 @@ function Subjects() {
 
   return (
     <LongMainContainer
-      title="Asignaturas"
-      buttonTitle="Nueva"
+      title="Secretarias"
+      buttonTitle="Nuevo"
       onClick={() => {
-        navigate("newSubject");
+        navigate("newSecretary");
       }}
       onSearch={onSearch}
       showSearchInput
@@ -67,7 +67,7 @@ function Subjects() {
       }}
       searchBarLabel="Identificación"
     >
-      {!subjects ? (
+      {!secretaries ? (
         <LongSubContainer>
           <div
             style={{
@@ -80,7 +80,7 @@ function Subjects() {
             "Buscar"
           </div>
         </LongSubContainer>
-      ) : subjects?.length === 0 ? (
+      ) : secretaries.length === 0 ? (
         <LongSubContainer>
           <div
             style={{
@@ -89,22 +89,19 @@ function Subjects() {
               minWidth: "100%",
             }}
           >
-            No se encontraron asignaturas con esos parámetros.
+            No se encontraron secretarias con esos parámetros.
           </div>
         </LongSubContainer>
       ) : (
-        subjects.map((subject) => {
+        secretaries.map((secretary) => {
           return (
-            <LongSubContainer key={subject.id}>
-              <SubjectCard
-                id={subject.id}
-                name={subject.name}
-                teacher={subject.teacher}
-                course={subject.course}
-                parallel={subject.parallel}
-                specialty={subject.specialty}
-                academicYear={subject.academic_period}
-                state={subject.state}
+            <LongSubContainer key={secretary.identification}>
+              <TeacherCard
+                id={secretary.id}
+                name={secretary.name}
+                last_name={secretary.last_name}
+                identification={secretary.identification}
+                state={secretary.state}
               />
             </LongSubContainer>
           );
@@ -114,4 +111,4 @@ function Subjects() {
   );
 }
 
-export default Subjects;
+export default Secretaries;

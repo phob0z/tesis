@@ -27,6 +27,10 @@ import Teachers from "../pages/teachers/Teachers";
 import NewTeacher from "../pages/teachers/NewTeacher";
 import EditTeacher from "../pages/teachers/EditTeacher";
 
+import Secretaries from "../pages/secretaries/Secretaries";
+import EditSecretary from "../pages/secretaries/EditSecretary";
+import NewSecretary from "../pages/secretaries/NewSecretary";
+
 import Courses from "../pages/courses/Courses";
 import NewCourse from "../pages/courses/NewCourse";
 import EditCourse from "../pages/courses/EditCourse";
@@ -89,6 +93,11 @@ const AppRouter = () => {
                       <Route path="" element={<Teachers />} />
                       <Route path="newTeacher" element={<NewTeacher />} />
                       <Route path=":id" element={<EditTeacher />} />
+                    </Route>
+                    <Route path="/secretaries">
+                      <Route path="" element={<Secretaries />} />
+                      <Route path="newSecretary" element={<NewSecretary />} />
+                      <Route path=":id" element={<EditSecretary />} />
                     </Route>
                     <Route path="/courses">
                       <Route path="" element={<Courses />} />

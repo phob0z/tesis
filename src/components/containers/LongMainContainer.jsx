@@ -77,8 +77,10 @@ function LongMainContainer(props) {
             theme="simple"
             label={props.searchBarLabel}
             maxLength="15"
-            value={props.searchBar}
-            onChange={props.onIdentificationChange}
+            value={props.search.identification}
+            onChange={(event) => {
+              props.onChange({ identification: event.target.value });
+            }}
           />
           <div style={{ zIndex: "-1" }}>
             <Button className="searchButton" onClick={props.onSearch}>

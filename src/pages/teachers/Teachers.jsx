@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -16,7 +16,6 @@ function Teachers() {
 
   const [teachers, setTeachers] = useState(null);
 
-  const [searchBar, setSearchBar] = useState("");
   const [search, setSearch] = useState({
     identification: "",
   });
@@ -24,8 +23,11 @@ function Teachers() {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/teacher`,
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACK_URL}/student/search`,
+        {
+          identification: search.identification,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -40,26 +42,11 @@ function Teachers() {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
+    // eslint-disable-next-line
   }, [setIsLoading, setModal, token]);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  useEffect(() => {
-    onChange();
-    // eslint-disable-next-line
-  }, [search]);
-
   const onSearch = () => {
-    setSearch((prevState) => {
-      return { ...prevState, identification: searchBar };
-    });
-  };
-
-  const onChange = () => {
     console.log(search);
-    console.log("Haciendo el pedido al back con los nuevos parametros");
     fetchData();
   };
 
@@ -72,11 +59,13 @@ function Teachers() {
       }}
       onSearch={onSearch}
       showSearchInput
-      searchBar={searchBar}
-      searchBarLabel="Identificación"
-      onIdentificationChange={(event) => {
-        setSearchBar(event.target.value);
+      search={search}
+      onChange={(value) => {
+        setSearch((prevState) => {
+          return { ...prevState, ...value };
+        });
       }}
+      searchBarLabel="Identificación"
     >
       {!teachers ? (
         <LongSubContainer>

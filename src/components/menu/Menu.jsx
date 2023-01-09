@@ -28,6 +28,7 @@ const Menu = () => {
         subMenu: [
           { title: "Estudiantes", route: "/students" },
           { title: "Profesores", route: "/teachers" },
+          { title: "Secretarias", route: "/secretaries" },
         ],
         route: "#",
       },

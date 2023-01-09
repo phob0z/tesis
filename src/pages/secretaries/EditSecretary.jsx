@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -8,10 +7,21 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
+import OnOffInput from "../../components/atoms/OnOffInput";
+import { useParams } from "react-router-dom";
 
-function NewStudent() {
-  const navigate = useNavigate();
-  const [student, setStudent] = useState({
+function EditSecretary() {
+  const params = useParams();
+  const [secretary, setSecretary] = useState({
+    name: "",
+    last_name: "",
+    identification: "",
+    birthdate: "",
+    email: "",
+    home_phone: "",
+    personal_phone: "",
+    address: "",
+    state: false,
     avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
   });
   const { user, token } = useContext(AuthContext);
@@ -27,14 +37,7 @@ function NewStudent() {
   const [errorHomePhone, setErrorHomePhone] = useState(false);
   const [errorPersonalPhone, setErrorPersonalPhone] = useState(false);
   const [errorAddress, setErrorAddress] = useState(false);
-  const [errorRepreName, setErrorRepreName] = useState(false);
-  const [errorRepreLastName, setErrorRepreLastName] = useState(false);
-  const [errorRepreIdentification, setErrorRepreIdentification] =
-    useState(false);
-  const [errorReprePersonalPhone, setErrorReprePersonalPhone] = useState(false);
   const [error, setError] = useState(false);
-
-  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     errorName.error
@@ -53,14 +56,6 @@ function NewStudent() {
       ? setError(errorPersonalPhone)
       : errorAddress.error
       ? setError(errorAddress)
-      : errorRepreName.error
-      ? setError(errorRepreName)
-      : errorRepreLastName.error
-      ? setError(errorRepreLastName)
-      : errorRepreIdentification.error
-      ? setError(errorRepreIdentification)
-      : errorReprePersonalPhone.error
-      ? setError(errorReprePersonalPhone)
       : setError(false);
   }, [
     errorName,
@@ -71,17 +66,13 @@ function NewStudent() {
     errorHomePhone,
     errorPersonalPhone,
     errorAddress,
-    errorRepreName,
-    errorRepreLastName,
-    errorRepreIdentification,
-    errorReprePersonalPhone,
   ]);
 
-  const fetchFilters = useCallback(async () => {
+  const fetchSecretary = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/filter`,
+        `${process.env.REACT_APP_BACK_URL}/secretary/${params.id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -90,22 +81,41 @@ function NewStudent() {
           },
         }
       );
-      const courses = response.data.data.courses;
-      const parallels = response.data.data.parallels;
-      const specialties = response.data.data.specialties;
-      const academicYears = response.data.data.periods;
-      setFilters({ courses, parallels, specialties, academicYears });
+      const data = response.data.data.user;
+      setSecretary(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal, token]);
+  }, [setIsLoading, setModal, token, params.id]);
 
   useEffect(() => {
-    fetchFilters();
-  }, [fetchFilters]);
+    fetchSecretary();
+  }, [fetchSecretary]);
 
-  const saveProfile = async (event) => {
+  const deactivate = async (state) => {
+    setIsLoading(true);
+    try {
+      await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/secretary/${params.id}/destroy`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setSecretary((prevState) => {
+        return { ...prevState, state };
+      });
+    } catch (error) {
+      setModal({ title: "ERROR", message: error.response.data.message });
+    }
+    setIsLoading(false);
+  };
+
+  const saveData = async (event) => {
     event.preventDefault();
     if (error) {
       setModal({
@@ -117,23 +127,16 @@ function NewStudent() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/student/create`,
+        `${process.env.REACT_APP_BACK_URL}/secretary/${params.id}/update`,
         {
-          name: student.name,
-          last_name: student.last_name,
-          identification: student.identification,
-          birthdate: student.birthdate,
-          email: student.email,
-          home_phone: student.home_phone,
-          personal_phone: student.personal_phone,
-          address: student.address,
-          representative_name: student.representative_name,
-          representative_last_name: student.representative_last_name,
-          representative_identification: student.representative_identification,
-          representative_phone: student.representative_phone,
-          course: student.course,
-          parallel: student.parallel,
-          specialty: student.specialty,
+          name: secretary.name,
+          last_name: secretary.last_name,
+          identification: secretary.identification,
+          birthdate: secretary.birthdate,
+          email: secretary.email,
+          home_phone: secretary.home_phone,
+          personal_phone: secretary.personal_phone,
+          address: secretary.address,
         },
         {
           headers: {
@@ -163,7 +166,6 @@ function NewStudent() {
         }
       }
       setModal({ title: "CORRECTO", message: response.data.message });
-      navigate("../");
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -171,20 +173,21 @@ function NewStudent() {
   };
 
   return (
-    <form onSubmit={saveProfile}>
+    <form onSubmit={saveData}>
       <MainContainer
-        title="Nuevo estudiante"
+        title="Editar secretaria"
         buttonTitle="Guardar"
         type="submit"
         backButton
+        // addSubjectButton
       >
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={student.name}
+            value={secretary.name}
             maxLength="35"
             onChange={(event) => {
-              setStudent({ ...student, name: event.target.value });
+              setSecretary({ ...secretary, name: event.target.value });
             }}
             setError={setErrorName}
             validation="text"
@@ -193,10 +196,10 @@ function NewStudent() {
           />
           <Card
             label="Apellidos"
-            value={student.last_name}
+            value={secretary.last_name}
             maxLength="35"
             onChange={(event) => {
-              setStudent({ ...student, last_name: event.target.value });
+              setSecretary({ ...secretary, last_name: event.target.value });
             }}
             setError={setErrorLastName}
             validation="text"
@@ -205,11 +208,11 @@ function NewStudent() {
           />
           <Card
             label="Identificación"
-            value={student.identification}
+            value={secretary.identification}
             maxLength="15"
             onChange={(event) => {
-              setStudent({
-                ...student,
+              setSecretary({
+                ...secretary,
                 identification: event.target.value,
               });
             }}
@@ -220,11 +223,11 @@ function NewStudent() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={student.birthdate}
+            value={secretary.birthdate}
             maxLength="10"
             type="date"
             onChange={(date) => {
-              setStudent({ ...student, birthdate: date });
+              setSecretary({ ...secretary, birthdate: date });
             }}
             setError={setErrorBirthdate}
             validation="date"
@@ -237,10 +240,10 @@ function NewStudent() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={student.email}
+            value={secretary.email}
             maxLength="50"
             onChange={(event) => {
-              setStudent({ ...student, email: event.target.value });
+              setSecretary({ ...secretary, email: event.target.value });
             }}
             setError={setErrorEmail}
             validation="email"
@@ -249,11 +252,11 @@ function NewStudent() {
           />
           <Card
             label="Teléfono fijo"
-            value={student.home_phone}
+            value={secretary.home_phone}
             maxLength="9"
             onChange={(event) => {
-              setStudent({
-                ...student,
+              setSecretary({
+                ...secretary,
                 home_phone: event.target.value,
               });
             }}
@@ -264,11 +267,11 @@ function NewStudent() {
           />
           <Card
             label="Teléfono celular"
-            value={student.personal_phone}
+            value={secretary.personal_phone}
             maxLength="10"
             onChange={(event) => {
-              setStudent({
-                ...student,
+              setSecretary({
+                ...secretary,
                 personal_phone: event.target.value,
               });
             }}
@@ -280,125 +283,41 @@ function NewStudent() {
           <Card
             type="textBig"
             label="Dirección"
-            value={student.address}
+            value={secretary.address}
             maxLength="150"
             onChange={(event) => {
-              setStudent({ ...student, address: event.target.value });
+              setSecretary({ ...secretary, address: event.target.value });
             }}
             setError={setErrorAddress}
             must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
-        <SubContainer subTitle="DATOS DEL REPRESENTANTE">
-          <Card
-            label="Nombres"
-            value={student.representative_name}
-            maxLength="35"
-            onChange={(event) => {
-              setStudent({
-                ...student,
-                representative_name: event.target.value,
-              });
-            }}
-            setError={setErrorRepreName}
-            validation="text"
-            disabled={user.role !== "secretary"}
-          />
-          <Card
-            label="Apellidos"
-            value={student.representative_last_name}
-            maxLength="35"
-            onChange={(event) => {
-              setStudent({
-                ...student,
-                representative_last_name: event.target.value,
-              });
-            }}
-            setError={setErrorRepreLastName}
-            validation="text"
-            disabled={user.role !== "secretary"}
-          />
-          <Card
-            label="Identificación"
-            value={student.representative_identification}
-            maxLength="15"
-            onChange={(event) => {
-              setStudent({
-                ...student,
-                representative_identification: event.target.value,
-              });
-            }}
-            setError={setErrorRepreIdentification}
-            validation="identification"
-            disabled={user.role !== "secretary"}
-          />
-          <Card
-            label="Teléfono celular"
-            value={student.representative_phone}
-            maxLength="10"
-            onChange={(event) => {
-              setStudent({
-                ...student,
-                representative_phone: event.target.value,
-              });
-            }}
-            setError={setErrorReprePersonalPhone}
-            validation="personalPhone"
-            disabled={user.role !== "secretary"}
-          />
-        </SubContainer>
         <SubContainer subTitle="IMAGEN DE PERFIL">
           <Card
-            value={student.avatar}
+            value={secretary.avatar}
             type="image"
             onChange={(image) => {
               setAvatarChanged(true);
-              setStudent({ ...student, avatar: image.base64 });
+              setSecretary({ ...secretary, avatar: image.base64 });
               setAvatarFile(image.file);
             }}
             validation="image"
-            // disabled={user.role !== "secretary"}
           />
         </SubContainer>
-        <SubContainer subTitle="DATOS DE LA MATRÍCULA">
-          <Card
-            label="Curso"
-            type="select"
-            options={filters.courses}
-            theme="simple"
-            value={student.course}
-            onChange={(event) => {
-              setStudent({ ...student, course: event.target.value });
-            }}
-            disabled={user.role !== "secretary"}
-          />
-          <Card
-            label="Paralelo"
-            type="select"
-            options={filters.parallels}
-            theme="simple"
-            value={student.parallel}
-            onChange={(event) => {
-              setStudent({ ...student, parallel: event.target.value });
-            }}
-            disabled={user.role !== "secretary"}
-          />
-          <Card
-            label="Especialidad"
-            type="select"
-            options={filters.specialties}
-            theme="simple"
-            value={student.specialty}
-            onChange={(event) => {
-              setStudent({ ...student, specialty: event.target.value });
-            }}
-            disabled={user.role !== "secretary"}
-          />
+        <SubContainer subTitle="ESTADO">
+          <Card>
+            <OnOffInput
+              value={secretary.state}
+              onChange={(state) => {
+                deactivate(state);
+              }}
+            />
+          </Card>
         </SubContainer>
       </MainContainer>
     </form>
   );
 }
 
-export default NewStudent;
+export default EditSecretary;

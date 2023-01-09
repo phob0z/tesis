@@ -92,11 +92,11 @@ function EditStudent() {
         }
       );
       const avatar = response.data.data.avatar;
+      // eslint-disable-next-line
       Object.keys(response.data.data.user).map((key) => {
         response.data.data.user[key] = response.data.data.user[key] ?? "";
       });
       const data = response.data.data.user;
-      console.log(data);
       setStudent({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -164,7 +164,6 @@ function EditStudent() {
     }
     setIsLoading(true);
     try {
-      console.log(student);
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/${params.id}/update`,
         {
@@ -214,7 +213,6 @@ function EditStudent() {
       }
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
-      console.log(error);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);

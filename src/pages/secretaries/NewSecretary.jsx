@@ -8,8 +8,8 @@ import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 
-function NewTeacher() {
-  const [teacher, setTeacher] = useState({
+function NewSecretary() {
+  const [secretary, setSecretary] = useState({
     name: "",
     last_name: "",
     identification: "",
@@ -76,17 +76,16 @@ function NewTeacher() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/teacher/create`,
+        `${process.env.REACT_APP_BACK_URL}/secretary/create`,
         {
-          name: teacher.name,
-          last_name: teacher.last_name,
-          identification: teacher.identification,
-          birthdate: teacher.birthdate,
-          email: teacher.email,
-          home_phone: teacher.home_phone,
-          personal_phone: teacher.personal_phone,
-          address: teacher.address,
-          // role: "teacher",
+          name: secretary.name,
+          last_name: secretary.last_name,
+          identification: secretary.identification,
+          birthdate: secretary.birthdate,
+          email: secretary.email,
+          home_phone: secretary.home_phone,
+          personal_phone: secretary.personal_phone,
+          address: secretary.address,
         },
         {
           headers: {
@@ -125,7 +124,7 @@ function NewTeacher() {
   return (
     <form onSubmit={saveProfile}>
       <MainContainer
-        title="Nuevo profesor"
+        title="Nueva secretaria"
         buttonTitle="Guardar"
         type="submit"
         backButton
@@ -133,10 +132,10 @@ function NewTeacher() {
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={teacher?.name}
+            value={secretary?.name}
             maxLength="35"
             onChange={(event) => {
-              setTeacher({ ...teacher, name: event.target.value });
+              setSecretary({ ...secretary, name: event.target.value });
             }}
             setError={setErrorName}
             validation="text"
@@ -145,10 +144,10 @@ function NewTeacher() {
           />
           <Card
             label="Apellidos"
-            value={teacher?.last_name}
+            value={secretary?.last_name}
             maxLength="35"
             onChange={(event) => {
-              setTeacher({ ...teacher, last_name: event.target.value });
+              setSecretary({ ...secretary, last_name: event.target.value });
             }}
             setError={setErrorLastName}
             validation="text"
@@ -157,11 +156,11 @@ function NewTeacher() {
           />
           <Card
             label="Identificación"
-            value={teacher?.identification}
+            value={secretary?.identification}
             maxLength="15"
             onChange={(event) => {
-              setTeacher({
-                ...teacher,
+              setSecretary({
+                ...secretary,
                 identification: event.target.value,
               });
             }}
@@ -172,11 +171,11 @@ function NewTeacher() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={teacher.birthdate}
+            value={secretary.birthdate}
             maxLength="10"
             type="date"
             onChange={(date) => {
-              setTeacher({ ...teacher, birthdate: date });
+              setSecretary({ ...secretary, birthdate: date });
             }}
             setError={setErrorBirthdate}
             validation="date"
@@ -189,10 +188,10 @@ function NewTeacher() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={teacher?.email}
+            value={secretary?.email}
             maxLength="50"
             onChange={(event) => {
-              setTeacher({ ...teacher, email: event.target.value });
+              setSecretary({ ...secretary, email: event.target.value });
             }}
             setError={setErrorEmail}
             validation="email"
@@ -201,11 +200,11 @@ function NewTeacher() {
           />
           <Card
             label="Teléfono fijo"
-            value={teacher?.home_phone}
+            value={secretary?.home_phone}
             maxLength="9"
             onChange={(event) => {
-              setTeacher({
-                ...teacher,
+              setSecretary({
+                ...secretary,
                 home_phone: event.target.value,
               });
             }}
@@ -216,11 +215,11 @@ function NewTeacher() {
           />
           <Card
             label="Teléfono celular"
-            value={teacher?.personal_phone}
+            value={secretary?.personal_phone}
             maxLength="10"
             onChange={(event) => {
-              setTeacher({
-                ...teacher,
+              setSecretary({
+                ...secretary,
                 personal_phone: event.target.value,
               });
             }}
@@ -232,10 +231,10 @@ function NewTeacher() {
           <Card
             type="textBig"
             label="Dirección"
-            value={teacher?.address}
+            value={secretary?.address}
             maxLength="150"
             onChange={(event) => {
-              setTeacher({ ...teacher, address: event.target.value });
+              setSecretary({ ...secretary, address: event.target.value });
             }}
             setError={setErrorAddress}
             must
@@ -244,15 +243,14 @@ function NewTeacher() {
         </SubContainer>
         <SubContainer subTitle="IMAGEN DE PERFIL">
           <Card
-            value={teacher?.avatar}
+            value={secretary?.avatar}
             type="image"
             onChange={(image) => {
               setAvatarChanged(true);
-              setTeacher({ ...teacher, avatar: image.base64 });
+              setSecretary({ ...secretary, avatar: image.base64 });
               setAvatarFile(image.file);
             }}
             validation="image"
-            // disabled={user.role !== "secretary"}
           />
         </SubContainer>
       </MainContainer>
@@ -260,4 +258,4 @@ function NewTeacher() {
   );
 }
 
-export default NewTeacher;
+export default NewSecretary;
