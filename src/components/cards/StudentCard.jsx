@@ -24,7 +24,7 @@ function StudentCard(props) {
             navigate(`./${props.id}`);
           }}
         >
-          Editar
+          {props.buttonTitle}
         </Button>
       </div>
     </div>

@@ -6,7 +6,7 @@ import classes from "./LongMainContainer.module.css";
 function LongMainContainer(props) {
   return (
     <Fragment>
-      <div className={classes.mainContainer}> {props.children} </div>
+      <div className={`${classes.mainContainer} ${props.big? classes.big: ""}`}> {props.children} </div>
       {props.onSearch && (
         <div className={classes.searchInput}>
           {props.filters && (

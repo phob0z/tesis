@@ -143,6 +143,7 @@ function Students() {
                 parallel={student.parallel}
                 specialty={student.specialty}
                 state={student.state}
+                buttonTitle="Editar"
               />
             </LongSubContainer>
           );

@@ -2,125 +2,139 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import AuthContext from "../../contexts/auth/AuthContext";
 import AlertContext from "../../contexts/alert/AlertContext";
+import AuthContext from "../../contexts/auth/AuthContext";
 
-import MainContainer from "../../components/containers/MainContainer";
+import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
-import GradeCard from "../../components/cards/GradeCard";
+import GradesCard from "../../components/cards/GradesCard";
 
-function EditGrades() {
+function Grades() {
   const params = useParams();
-
-  const { user, token } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [student, setStudent] = useState();
-  const [userGrades, setUserGrades] = useState({ user });
+  const [subjects, setSubjects] = useState(null);
 
-  const fetchStudent = useCallback(async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Gradess/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
+      // const response = await axios.get(
+      //   `${process.env.REACT_APP_BACK_URL}/grades/${params.id}`,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Accept: "application/json",
+      //       Authorization: token,
+      //     },
+      //   }
       // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = {
-        name: "Leonel",
-        last_name: "Molina",
-        identification: "1758963050",
-        course: "8vo",
-        parallel: "A",
-        state: true,
-        specialty: "Especialidad",
-      };
-      console.log(data);
-      setStudent({ ...data });
-      console.log(student);
-    } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
-    }
-    setIsLoading(false);
-  }, [setIsLoading, setModal]);
-
-  const fetchGrades = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Gradess/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
+      // const data = response.data.data.users;
       const data = [
         {
-          name: "matemática",
-          q1n1: "Molina",
-          q1n2: "1758963050",
-          q1n3: "8vo",
-          q1comp: "A",
-          q2n1: "Molina",
-          q2n2: "1758963050",
-          q2n3: "8vo",
-          q2comp: "A",
-          state: true,
-          specialty: "Especialidad",
+          identification: "asd",
+          name: "Mate",
+          id: "1",
+          q1blocked: "1",
+          q2blocked: "0",
+          q1p1: "10",
+          q1p2: "10",
+          q1p3: "10",
+          q2p1: "10",
+          q2p2: "10",
+          q2p3: "10",
+          supletory: "10",
+          remedial: "10",
+          grace: "10",
+          final: "10",
         },
         {
-          name: "matemática",
-          last_name: "Molina",
-          identification: "1758963050",
-          course: "8vo",
-          parallel: "A",
-          state: true,
-          specialty: "Especialidad",
+          identification: "123",
+          name: "Calc",
+          id: "2",
+          q1blocked: "1",
+          q2blocked: "0",
+          q1p1: "10",
+          q1p2: "10",
+          q1p3: "10",
+          q2p1: "10",
+          q2p2: "10",
+          q2p3: "10",
+          supletory: "10",
+          remedial: "10",
+          grace: "10",
+          final: "10",
+        },
+        {
+          identification: "aweqwed",
+          name: "ASCASD",
+          id: "3",
+          q1blocked: "1",
+          q2blocked: "0",
+          q1p1: "10",
+          q1p2: "10",
+          q1p3: "10",
+          q2p1: "10",
+          q2p2: "10",
+          q2p3: "10",
+          supletory: "10",
+          remedial: "10",
+          grace: "10",
+          final: "10",
         },
       ];
-      setUserGrades(...data);
+      setSubjects([...data]);
     } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal]);
+    // eslint-disable-next-line
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
-    fetchStudent();
-    fetchGrades();
-  }, [fetchStudent, fetchGrades]);
+    fetchData();
+  }, [fetchData]);
 
   return (
-    <MainContainer
-      title="Calificaciones"
-      buttonTitle="Guardar"
-      type="submit"
-      backButton
-    >
-      <LongSubContainer>
-        {/* {console.log(student.name)} */}
-        {/* <GradeCard
-          name={student.name}
-          last_name={student.last_name}
-          identification={student.identification}
-          course={student.course}
-          parallel={student.parallel}
-          specialty={student.specialty}
-          state={student.state}
-        /> */}
-      </LongSubContainer>
-    </MainContainer>
+    <LongMainContainer big title="Notas">
+      {!subjects || subjects.length === 0 ? (
+        <LongSubContainer>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              minWidth: "100%",
+            }}
+          >
+            El estudiante no tiene asignaturas inscritas.
+          </div>
+        </LongSubContainer>
+      ) : (
+        subjects.map((subject) => {
+          return (
+            <LongSubContainer key={subject.identification}>
+              <GradesCard
+                id={subject.id}
+                name={subject.name}
+                q1blocked={subject.q1blocked}
+                q2blocked={subject.q2blocked}
+                q1p1={subject.q1p1}
+                q1p2={subject.q1p2}
+                q1p3={subject.q1p3}
+                q2p1={subject.q2p1}
+                q2p2={subject.q2p2}
+                q2p3={subject.q2p3}
+                supletory={subject.supletory}
+                remedial={subject.remedial}
+                grace={subject.grace}
+                final={subject.final}
+              />
+            </LongSubContainer>
+          );
+        })
+      )}
+    </LongMainContainer>
   );
 }
 
-export default EditGrades;
+export default Grades;

@@ -20,6 +20,10 @@
   row-gap: 0.5rem;
 }
 
+.big {
+  min-width: 80%;
+}
+
 .containerTitle {
   position: absolute;
   background: #6d1119;

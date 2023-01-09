@@ -2,6 +2,8 @@
 17-19 MÁXIMO
 La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
+Arreglar las rutas para cambiar las fotos de los usuarios (student, teacher, secretary)
+
 Raul, porque me mandas valores null? porque no ""?
 Raul hay error en /student/search, si se manda con "" da error.
 Hacer el mismo endpoint para teachers/secretaries/subjects
