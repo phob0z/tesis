@@ -9,9 +9,13 @@ function DatePicker(props) {
   const [date, setDate] = useState();
   const ref = useRef();
 
-  const today = new Date();
-  const max = today.getFullYear() - 10;
-  const min = today.getFullYear() - 100;
+  const minDate = new Date();
+  minDate.setFullYear(minDate.getFullYear() + parseInt(props.minDate));
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() + parseInt(props.maxDate));
+
+  const min = minDate.getFullYear();
+  const max = maxDate.getFullYear();
 
   var years = [];
   for (var year = min; year <= max; year++) {
@@ -57,8 +61,16 @@ function DatePicker(props) {
         }}
         locale="es"
         className={classes.inputDate}
-        minDate={new Date(`${min}/${today.getMonth()+1}/${today.getDate()}`)}
-        maxDate={new Date(`${max}/${today.getMonth()+1}/${today.getDate()}`)}
+        minDate={minDate}
+        maxDate={maxDate}
+        // minDate={
+        //   new Date(`${min}/${minDate.getDate()}/${minDate.getMonth() + 1}`)
+        // }
+        // maxDate={
+        //   new Date(`${max}/${maxDate.getDate()}/${maxDate.getMonth() + 1}`)
+        // }
+        // minDate={new Date(`${min}/${minDate.getMonth()+1}/${minDate.getDate()}`)}
+        // maxDate={new Date(`${max}/${maxDate.getMonth()+1}/${maxDate.getDate()}`)}
         fixedHeight
         disabled={props.disabled}
         renderCustomHeader={({

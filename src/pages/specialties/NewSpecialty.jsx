@@ -75,6 +75,7 @@ function NewSpecialty() {
           }}
           setError={setErrorIdentification}
           validation="specialty"
+          must
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

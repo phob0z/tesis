@@ -39,17 +39,12 @@ function Students() {
           },
         }
       );
-      // const data = {
-      //   course: ["Todos", "1ero", "8vo", "9no", "10mo", "asdasd"],
-      //   parallel: ["Todos", "A", "B", "C", "D"],
-      //   specialty: ["Todos", "asd", "qwe", "zxc1ASDASDASD"],
-      //   academicYear: ["2023", "2022", "2021", "2020"],
-      // };
-      const course = response.data.data.courses;
-      const parallel = response.data.data.parallels;
-      const specialty = response.data.data.specialties;
-      const academicYear = response.data.data.periods;
-      setFilters({ course, parallel, specialty, academicYear });
+      console.log(response.data.data);
+      const courses = response.data.data.courses;
+      const parallels = response.data.data.parallels;
+      const specialties = response.data.data.specialties;
+      const academicYears = response.data.data.periods;
+      setFilters({ courses, parallels, specialties, academicYears });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }

@@ -13,7 +13,7 @@ import OnOffInput from "../../components/atoms/OnOffInput";
 function EditStudent() {
   const params = useParams();
   const [student, setStudent] = useState({
-    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
+    avatar: "",
   });
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
@@ -35,8 +35,6 @@ function EditStudent() {
   const [errorRepreIdentification, setErrorRepreIdentification] =
     useState(false);
   const [errorReprePersonalPhone, setErrorReprePersonalPhone] = useState(false);
-  // const [errorCourse, setErrorCourse] = useState(false);
-  // const [errorParallel, setErrorParallel] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -93,8 +91,13 @@ function EditStudent() {
           },
         }
       );
+      const avatar = response.data.data.avatar;
+      Object.keys(response.data.data.user).map((key) => {
+        response.data.data.user[key] = response.data.data.user[key] ?? "";
+      });
       const data = response.data.data.user;
-      setStudent(data);
+      console.log(data);
+      setStudent({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -161,6 +164,7 @@ function EditStudent() {
     }
     setIsLoading(true);
     try {
+      console.log(student);
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/${params.id}/update`,
         {
@@ -175,9 +179,11 @@ function EditStudent() {
           representative_name: student.representative_name,
           representative_last_name: student.representative_last_name,
           representative_identification: student.representative_identification,
-          representative_phone: student.representative_phone,
+          representative_personal_phone: student.representative_personal_phone,
           course: student.course,
           parallel: student.parallel,
+          specialty: student.specialty,
+          academic_period: student.academic_period,
         },
         {
           headers: {
@@ -208,6 +214,7 @@ function EditStudent() {
       }
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
+      console.log(error);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
@@ -232,6 +239,7 @@ function EditStudent() {
             }}
             setError={setErrorName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -243,6 +251,7 @@ function EditStudent() {
             }}
             setError={setErrorLastName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -257,6 +266,7 @@ function EditStudent() {
             }}
             setError={setErrorIdentification}
             validation="identification"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -269,6 +279,9 @@ function EditStudent() {
             }}
             setError={setErrorBirthdate}
             validation="date"
+            minDate="-100"
+            maxDate="-10"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -282,6 +295,7 @@ function EditStudent() {
             }}
             setError={setErrorEmail}
             validation="email"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -296,6 +310,7 @@ function EditStudent() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -310,6 +325,7 @@ function EditStudent() {
             }}
             setError={setErrorPersonalPhone}
             validation="personalPhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -321,7 +337,7 @@ function EditStudent() {
               setStudent({ ...student, address: event.target.value });
             }}
             setError={setErrorAddress}
-            validation="nonEmpty"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -370,12 +386,12 @@ function EditStudent() {
           />
           <Card
             label="Teléfono celular"
-            value={student.representative_phone}
+            value={student.representative_personal_phone}
             maxLength="10"
             onChange={(event) => {
               setStudent({
                 ...student,
-                representative_phone: event.target.value,
+                representative_personal_phone: event.target.value,
               });
             }}
             setError={setErrorReprePersonalPhone}

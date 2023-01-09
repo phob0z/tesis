@@ -34,6 +34,7 @@ function NewStudent() {
   const [errorReprePersonalPhone, setErrorReprePersonalPhone] = useState(false);
   // const [errorCourse, setErrorCourse] = useState(false);
   // const [errorParallel, setErrorParallel] = useState(false);
+  // const [errorSpecialty, setErrorSpecialty] = useState(false);
   const [error, setError] = useState(false);
 
   const [filters, setFilters] = useState([]);
@@ -67,6 +68,8 @@ function NewStudent() {
         // ? setError(errorCourse)
         // : errorParallel.error
         // ? setError(errorParallel)
+        // : errorSpecialty.error
+        // ? setError(errorSpecialty)
         setError(false);
   }, [
     errorName,
@@ -82,7 +85,8 @@ function NewStudent() {
     errorRepreIdentification,
     errorReprePersonalPhone,
     // errorCourse,
-    // errorParallel
+    // errorParallel,
+    // errorSpecialty,
   ]);
 
   const fetchFilters = useCallback(async () => {
@@ -98,11 +102,11 @@ function NewStudent() {
           },
         }
       );
-      const course = response.data.data.courses;
-      const parallel = response.data.data.parallels;
-      const specialty = response.data.data.specialties;
-      const academicYear = response.data.data.periods;
-      setFilters({ course, parallel, specialty, academicYear });
+      const courses = response.data.data.courses;
+      const parallels = response.data.data.parallels;
+      const specialties = response.data.data.specialties;
+      const academicYears = response.data.data.periods;
+      setFilters({ courses, parallels, specialties, academicYears });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -141,7 +145,7 @@ function NewStudent() {
           representative_phone: student.representative_phone,
           course: student.course,
           parallel: student.parallel,
-          // role: "student",
+          specialty: student.specialty,
         },
         {
           headers: {
@@ -196,6 +200,7 @@ function NewStudent() {
             }}
             setError={setErrorName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -207,6 +212,7 @@ function NewStudent() {
             }}
             setError={setErrorLastName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -221,6 +227,7 @@ function NewStudent() {
             }}
             setError={setErrorIdentification}
             validation="identification"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -233,6 +240,9 @@ function NewStudent() {
             }}
             setError={setErrorBirthdate}
             validation="date"
+            minDate="-100"
+            maxDate="-10"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -246,6 +256,7 @@ function NewStudent() {
             }}
             setError={setErrorEmail}
             validation="email"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -260,6 +271,7 @@ function NewStudent() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -274,6 +286,7 @@ function NewStudent() {
             }}
             setError={setErrorPersonalPhone}
             validation="personalPhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -285,7 +298,7 @@ function NewStudent() {
               setStudent({ ...student, address: event.target.value });
             }}
             setError={setErrorAddress}
-            validation="nonEmpty"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -364,40 +377,34 @@ function NewStudent() {
           <Card
             label="Curso"
             type="select"
-            options={filters.course}
+            options={filters.courses}
             theme="simple"
             value={student.course}
             onChange={(event) => {
               setStudent({ ...student, course: event.target.value });
             }}
-            // setError={setErrorCourse}
-            // validation="select"
             disabled={user.role !== "secretary"}
           />
           <Card
             label="Paralelo"
             type="select"
-            options={filters.parallel}
+            options={filters.parallels}
             theme="simple"
             value={student.parallel}
             onChange={(event) => {
               setStudent({ ...student, parallel: event.target.value });
             }}
-            // setError={setErrorParallel}
-            // validation="select"
             disabled={user.role !== "secretary"}
           />
           <Card
             label="Especialidad"
             type="select"
-            options={filters.specialty}
+            options={filters.specialties}
             theme="simple"
             value={student.specialty}
             onChange={(event) => {
               setStudent({ ...student, specialty: event.target.value });
             }}
-            // setError={setErrorCourse}
-            // validation="select"
             disabled={user.role !== "secretary"}
           />
         </SubContainer>

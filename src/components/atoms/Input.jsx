@@ -169,17 +169,22 @@ Input.propTypes = {
   showRevealPassword: PropTypes.bool,
   disabled: PropTypes.bool,
   theme: PropTypes.string,
+  alt: PropTypes.string,
+  options: PropTypes.array,
 };
 
 Input.defaultProps = {
   type: "text",
   value: "",
   onChange: () => "",
+  label: "",
   onBlur: () => "",
   maxLength: "35",
   showRevealPassword: false,
   disabled: false,
   theme: "red",
+  alt: "",
+  options: [],
 };
 
 export default Input;

@@ -1,0 +1,22 @@
+.subject {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 3fr 3fr 2fr 1fr 1fr 1fr;
+  height: fit-content;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: "Open Sans";
+  font-size: 0.9rem;
+  color: #414141;
+  font-weight: 900;
+  cursor: default;
+}
+
+.name {
+  min-width: 8rem;
+  overflow: hidden;
+}
+
+.subject div {
+  align-self: center;
+}

@@ -28,18 +28,16 @@ function Image(props) {
 
   return (
     <div className={classes.imageInput}>
-      <label htmlFor={props.label}>Seleccionar</label>
+      <label>Seleccionar</label>
       <input
         ref={chooseImage}
         type="file"
         accept="image/*"
-        id={props.label}
         onChange={onImageChange}
       />
       <div className={classes.imageBox}>
         <div className={classes.image}>
           <img
-            id={props.label}
             src={image}
             alt={props.alt}
             onClick={onImageClick}
@@ -51,15 +49,17 @@ function Image(props) {
 }
 
 Image.propTypes = {
+  label: PropTypes.string,
   value: PropTypes.string,
   alt: PropTypes.string,
-  onClick: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 Image.defaultProps = {
+  label: "",
   value: "https://www.hallmarktour.com/img/profile-img.jpg",
   alt: "Imagen de perfil",
-  onClick: () => {},
+  onChange: () => {},
 };
 
 export default Image;

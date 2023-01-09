@@ -180,7 +180,7 @@ function EditTeacher() {
         buttonTitle="Guardar"
         type="submit"
         backButton
-        addSubjectButton
+        // addSubjectButton
       >
         <SubContainer subTitle="INFO PERSONAL">
           <Card
@@ -192,6 +192,7 @@ function EditTeacher() {
             }}
             setError={setErrorName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -203,6 +204,7 @@ function EditTeacher() {
             }}
             setError={setErrorLastName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -217,6 +219,7 @@ function EditTeacher() {
             }}
             setError={setErrorIdentification}
             validation="identification"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -229,6 +232,9 @@ function EditTeacher() {
             }}
             setError={setErrorBirthdate}
             validation="date"
+            minDate="-100"
+            maxDate="-10"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -242,6 +248,7 @@ function EditTeacher() {
             }}
             setError={setErrorEmail}
             validation="email"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -256,6 +263,7 @@ function EditTeacher() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -270,6 +278,7 @@ function EditTeacher() {
             }}
             setError={setErrorPersonalPhone}
             validation="personalPhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -281,7 +290,7 @@ function EditTeacher() {
               setTeacher({ ...teacher, address: event.target.value });
             }}
             setError={setErrorAddress}
-            validation="nonEmpty"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>

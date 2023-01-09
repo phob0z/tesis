@@ -46,20 +46,8 @@ function EditAcademicYear() {
           },
         }
       );
-      const {
-        id,
-        name,
-        finq1: endq1,
-        finq2: endq2,
-        state,
-      } = response.data.data.academic_period;
-      setAcademicYear({
-        id,
-        name,
-        endq1,
-        endq2,
-        state,
-      });
+      const data = response.data.data.academic_period;
+      setAcademicYear(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -81,8 +69,8 @@ function EditAcademicYear() {
         `${process.env.REACT_APP_BACK_URL}/period/${params.id}/update`,
         {
           name: academicYear.name,
-          finq1: academicYear.endq1,
-          finq2: academicYear.endq2,
+          finq1: academicYear.finq1,
+          finq2: academicYear.finq2,
         },
         {
           headers: {
@@ -146,15 +134,16 @@ function EditAcademicYear() {
           }}
           setError={setErrorName}
           validation="academicYear"
+          must
           disabled={user.role !== "secretary"}
         />
         <Card
           type="date"
           label="Fin Q1"
-          value={academicYear.endq1}
+          value={academicYear.finq1}
           onChange={(date) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, endq1: date };
+              return { ...prevState, finq1: date };
             });
           }}
           setError={setErrorEndQ1}
@@ -166,10 +155,10 @@ function EditAcademicYear() {
         <Card
           type="date"
           label="Fin Q2"
-          value={academicYear.endq2}
+          value={academicYear.finq2}
           onChange={(date) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, endq2: date };
+              return { ...prevState, finq2: date };
             });
           }}
           setError={setErrorEndQ2}

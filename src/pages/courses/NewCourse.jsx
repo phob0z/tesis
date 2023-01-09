@@ -75,6 +75,7 @@ function NewCourse() {
           }}
           setError={setErrorIdentification}
           validation="course"
+          must
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

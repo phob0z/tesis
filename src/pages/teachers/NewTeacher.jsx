@@ -140,6 +140,7 @@ function NewTeacher() {
             }}
             setError={setErrorName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -151,6 +152,7 @@ function NewTeacher() {
             }}
             setError={setErrorLastName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -165,6 +167,7 @@ function NewTeacher() {
             }}
             setError={setErrorIdentification}
             validation="identification"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -177,6 +180,9 @@ function NewTeacher() {
             }}
             setError={setErrorBirthdate}
             validation="date"
+            minDate="-100"
+            maxDate="-10"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -190,6 +196,7 @@ function NewTeacher() {
             }}
             setError={setErrorEmail}
             validation="email"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -204,6 +211,7 @@ function NewTeacher() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -218,6 +226,7 @@ function NewTeacher() {
             }}
             setError={setErrorPersonalPhone}
             validation="personalPhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -229,7 +238,7 @@ function NewTeacher() {
               setTeacher({ ...teacher, address: event.target.value });
             }}
             setError={setErrorAddress}
-            validation="nonEmpty"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>

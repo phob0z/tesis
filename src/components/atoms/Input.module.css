@@ -169,7 +169,7 @@
   min-height: 2rem;
   height: 100%;
   background: #c1adaf;
-  min-width: 6rem;
+  min-width: max-content;
 }
 
 .container.simple:hover {
@@ -274,4 +274,8 @@
   background-color: #c1adaf;
   border: 0;
   outline: 0;
+}
+
+.filter {
+  width: fit-content;
 }

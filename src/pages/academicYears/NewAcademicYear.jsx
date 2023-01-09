@@ -18,8 +18,8 @@ function NewAcademicYear() {
     id: "",
     name: "",
     state: true,
-    endq1: "",
-    endq2: "",
+    finq1: "",
+    finq2: "",
   });
 
   const [error, setError] = useState(false);
@@ -52,8 +52,8 @@ function NewAcademicYear() {
         `${process.env.REACT_APP_BACK_URL}/period/create`,
         {
           name: academicYear.name,
-          finq1: academicYear.endq1,
-          finq2: academicYear.endq2,
+          finq1: academicYear.finq1,
+          finq2: academicYear.finq2,
         },
         {
           headers: {
@@ -76,7 +76,20 @@ function NewAcademicYear() {
       title="Nuevo periodo"
       buttonTitle="Guardar"
       type="submit"
-      onClick={saveData}
+      onClick={(event) => {
+        if (
+          new Date(academicYear.finq1).getTime() >
+          new Date(academicYear.finq2).getTime()
+        ) {
+          setModal({
+            title: "Error en el campo " + "fechas".toUpperCase(),
+            message:
+              "La fecha de finalización del Q1 no puede ser mayor a la del Q2",
+          });
+          return;
+        }
+        saveData(event);
+      }}
       backButton
     >
       <SubContainer>
@@ -91,36 +104,37 @@ function NewAcademicYear() {
           }}
           setError={setErrorName}
           validation="academicYear"
+          must
           disabled={user.role !== "secretary"}
         />
         <Card
           type="date"
           label="Fin Q1"
-          value={academicYear.endq1}
+          value={academicYear.finq1}
           onChange={(date) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, endq1: date };
+              return { ...prevState, finq1: date };
             });
           }}
           setError={setErrorEndQ1}
           validation="date"
-          // minDate="06/01/2020"
-          // miaxDate="06/01/2021"
+          minDate="0"
+          maxDate="1"
           disabled={user.role !== "secretary"}
         />
         <Card
           type="date"
           label="Fin Q2"
-          value={academicYear.endq2}
+          value={academicYear.finq2}
           onChange={(date) => {
             setAcademicYear((prevState) => {
-              return { ...prevState, endq2: date };
+              return { ...prevState, finq2: date };
             });
           }}
           setError={setErrorEndQ2}
           validation="date"
-          // minDate="06/01/2020"
-          // miaxDate="06/01/2021"
+          minDate="0"
+          maxDate="1"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

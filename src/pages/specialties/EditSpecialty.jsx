@@ -123,6 +123,7 @@ function EditSpecialty() {
           }}
           setError={setErrorIdentification}
           validation="specialty"
+          must
           disabled={user.role !== "secretary"}
         />
         <Card label="Estado">

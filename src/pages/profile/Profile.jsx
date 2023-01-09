@@ -43,11 +43,10 @@ function Profile() {
       );
       const { user, avatar } = response.data.data;
       setUserProfile({ ...user, avatar: avatar });
-      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
@@ -114,14 +113,13 @@ function Profile() {
           },
         }
       );
-      setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
       setNewPassword("");
       setConfirmation("");
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   const saveProfile = async (event) => {
@@ -176,14 +174,13 @@ function Profile() {
           setModal({ title: "ERROR", message: error.response.data.message });
         }
       }
-      setIsLoading(false);
       setModal({ title: "CORRECTO", message: response.data.message });
       setProfile({ ...userProfile });
       user.avatar = userProfile.avatar;
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -199,6 +196,7 @@ function Profile() {
             }}
             setError={setErrorName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -210,6 +208,7 @@ function Profile() {
             }}
             setError={setErrorLastName}
             validation="text"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -224,6 +223,7 @@ function Profile() {
             }}
             setError={setErrorIdentification}
             validation="identification"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -232,10 +232,13 @@ function Profile() {
             maxLength="10"
             type="date"
             onChange={(date) => {
-              setUserProfile({ ...userProfile, birthdate:date });
+              setUserProfile({ ...userProfile, birthdate: date });
             }}
+            minDate="-100"
+            maxDate="-10"
             setError={setErrorBirthdate}
             validation="date"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
@@ -249,6 +252,7 @@ function Profile() {
             }}
             setError={setErrorEmail}
             validation="email"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -263,6 +267,7 @@ function Profile() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -277,6 +282,7 @@ function Profile() {
             }}
             setError={setErrorPersonalPhone}
             validation="personalPhone"
+            must
             disabled={user.role !== "secretary"}
           />
           <Card
@@ -287,13 +293,13 @@ function Profile() {
             onChange={(event) => {
               setUserProfile({ ...userProfile, address: event.target.value });
             }}
-            validation="nonEmpty"
+            must
             setError={setErrorAddress}
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
         <SubContainer subTitle="IMAGEN DE PERFIL">
-        <Card
+          <Card
             value={userProfile.avatar}
             type="image"
             onChange={(image) => {

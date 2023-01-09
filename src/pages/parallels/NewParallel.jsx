@@ -75,6 +75,7 @@ function NewParallel() {
           }}
           setError={setErrorIdentification}
           validation="parallel"
+          must
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

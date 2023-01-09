@@ -1,33 +1,44 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import MainContainer from "../../components/containers/MainContainer";
-import SubContainer from "../../components/containers/SubContainer";
+import axios from "axios";
+
 import AlertContext from "../../contexts/alert/AlertContext";
 import AuthContext from "../../contexts/auth/AuthContext";
+
+import MainContainer from "../../components/containers/MainContainer";
+import SubContainer from "../../components/containers/SubContainer";
+
 
 import classes from "./Home.module.css";
 
 function Home() {
   const { setIsLoading, setModal } = useContext(AlertContext);
-  const { user, token } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
-  const [logo, setLogo] = useState({
+  const [information, setInformation] = useState({
+    name: "",
     logo: "",
   });
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = {
-        logo: "http://www.quitoinforma.gob.ec/wp-content/uploads/2019/05/logoquito-1-800x445.png",
-      };
-      setLogo(data);
-      setIsLoading(false);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/information`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.info;
+      const logo = response.data.data.avatar;
+      setInformation({ ...data, logo });
     } catch (error) {
-      setIsLoading(false);
       setModal({ title: "ERROR", message: error.response.data.message });
     }
+    setIsLoading(false);
   }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
@@ -38,12 +49,11 @@ function Home() {
     <MainContainer title="Bienvenido" style={{bottom: "auto"}}>
       <SubContainer>
         <div className={classes.title}>
-          Bienvenido al sistema de gestión de notas del Instituto Educativo
-          Fiscal Miguel de Santiago
+          {information.name}
         </div>
         <div className={classes.imageBox}>
           <div className={classes.image}>
-            <img src={logo.logo} alt="Logo institucional" />
+            <img src={information.logo} alt="Logo institucional" />
           </div>
         </div>
       </SubContainer>

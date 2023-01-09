@@ -2,12 +2,16 @@
 17-19 MÁXIMO
 La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
-Hacer:
-addSubject, para Students
-Secretary
+Raul, porque me mandas valores null? porque no ""?
+No me esta actualizando curso/paralelo/especialidad en /student/${params.id}/update
 
-DatePicker:
-Poner asignar max y min por props, para resolver el problema en AcademicYears
+Necesito un endpoint que me muestre las asignaturas en las que el estudiante esta registrado, te mando el ID ya
+tu me devuelves las asignaturas (nombre e id), con el profesor (nombre y apellido e id)
+
+Hacer:
+verSubjects, para Student
+verSubjects, para Teacher
+Secretary
 
 Subjects:
 Al crear asignatura agregarle periodo, especialidad, y profesor.

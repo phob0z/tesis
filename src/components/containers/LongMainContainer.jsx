@@ -16,13 +16,13 @@ function LongMainContainer(props) {
                   {filter.label}
                 </label> */}
                 <Input
-                  value={props.search.course}
+                  value={props.search.courses}
                   type="select"
                   label="Cursos"
-                  options={props.filters.course}
+                  options={props.filters.courses}
                   theme="simple"
                   onChange={(event) => {
-                    props.onChange({ course: event.target.value });
+                    props.onChange({ courses: event.target.value });
                   }}
                 />
               </div>
@@ -31,13 +31,13 @@ function LongMainContainer(props) {
                   {filter.label}
                 </label> */}
                 <Input
-                  value={props.search.parallel}
+                  value={props.search.parallels}
                   type="select"
                   label="Paralelos"
-                  options={props.filters.parallel}
+                  options={props.filters.parallels}
                   theme="simple"
                   onChange={(event) => {
-                    props.onChange({ parallel: event.target.value });
+                    props.onChange({ parallels: event.target.value });
                   }}
                 />
               </div>
@@ -46,13 +46,13 @@ function LongMainContainer(props) {
                   {filter.label}
                 </label> */}
                 <Input
-                  value={props.search.specialty}
+                  value={props.search.specialties}
                   type="select"
                   label="Especialidad"
-                  options={props.filters.specialty}
+                  options={props.filters.specialties}
                   theme="simple"
                   onChange={(event) => {
-                    props.onChange({ specialty: event.target.value });
+                    props.onChange({ specialties: event.target.value });
                   }}
                 />
               </div>
@@ -61,13 +61,13 @@ function LongMainContainer(props) {
                   {filter.label}
                 </label> */}
                 <Input
-                  value={props.search.academicYear}
+                  value={props.search.academicYears}
                   type="select"
                   label="Periodo"
-                  options={props.filters.academicYear}
+                  options={props.filters.academicYears}
                   theme="simple"
                   onChange={(event) => {
-                    props.onChange({ academicYear: event.target.value });
+                    props.onChange({ academicYears: event.target.value });
                   }}
                 />
               </div>
@@ -76,7 +76,7 @@ function LongMainContainer(props) {
           <Input
             theme="simple"
             label={props.searchBarLabel}
-            maxLength="10"
+            maxLength="15"
             value={props.searchBar}
             onChange={props.onIdentificationChange}
           />

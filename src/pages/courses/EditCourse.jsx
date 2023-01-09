@@ -123,6 +123,7 @@ function EditCourse() {
           }}
           setError={setErrorIdentification}
           validation="course"
+          must
           disabled={user.role !== "secretary"}
         />
         <Card label="Estado">

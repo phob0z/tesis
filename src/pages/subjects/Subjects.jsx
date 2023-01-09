@@ -1,14 +1,17 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
+import AuthContext from "../../contexts/auth/AuthContext";
 
 import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
-import OnOffCard from "../../components/cards/OnOffCard";
+import SubjectCard from "../../components/cards/SubjectCard";
 
 function Subjects() {
   const navigate = useNavigate();
+  const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
   const [subjects, setSubjects] = useState(null);
@@ -20,44 +23,27 @@ function Subjects() {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_BACK_URL}/Subjects/`,
-      //   { method: "GET" },
-      //   { user },
-      //   { headers: { accept: "application/json" } }
-      // );
-      // const { access_token, token_type, user, avatar } = response.data.data;
-      // console.log("USER: " + user + "AT: " + access_token + "TT: " + token_type + "Avatar: " + avatar);
-      const response = await fetch("https://swapi.dev/api/people/");
-      const data1 = await response.json();
-      const data = [
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/subject`,
         {
-          id: "1",
-          name: "Matemáticas",
-          state: true,
-        },
-        {
-          id: "2",
-          name: "Deporte",
-          state: false,
-        },
-        {
-          id: "3",
-          name: "Lenguaje",
-          state: true,
-        },
-      ];
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      const data = response.data.data.subjects;
       setSubjects([...data]);
     } catch (error) {
-      setIsLoading(false);
-      setModal({ title: "ERROR", message: error });
+      setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal]);
+  }, [setIsLoading, setModal, token]);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   useEffect(() => {
     onChange();
@@ -117,13 +103,18 @@ function Subjects() {
           </div>
         </LongSubContainer>
       ) : (
-        subjects.map((course) => {
+        subjects.map((subject) => {
           return (
-            <LongSubContainer key={course.id}>
-              <OnOffCard
-                id={course.id}
-                name={course.name}
-                state={course.state}
+            <LongSubContainer key={subject.id}>
+              <SubjectCard
+                id={subject.id}
+                name={subject.name}
+                teacher={subject.teacher}
+                course={subject.course}
+                parallel={subject.parallel}
+                specialty={subject.specialty}
+                academicYear={subject.academic_period}
+                state={subject.state}
               />
             </LongSubContainer>
           );
