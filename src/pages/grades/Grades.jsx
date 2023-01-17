@@ -98,6 +98,12 @@ function Grades() {
       return;
     }
     fetchData();
+    setSearch((prevState) => {
+      return {
+        ...prevState,
+        identification: ""
+      };
+    });
   };
 
   return (

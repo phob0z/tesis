@@ -133,6 +133,14 @@ function Card(props) {
           if (props.value.trim().length > props.maxLength)
             setError(`Debe tener menos de ${props.maxLength} caracteres`);
           break;
+        case "grade":
+          if (
+            !props.value.match(
+              /^(([0-1][0-9]{0,1})([.][0-9]{1,2}){0,1})$|(20([.][0]{1,2}){0,1})$/
+            )
+          )
+            setError("El formato debe ser #, ##, ##.# o ##.## entre 0 y 20");
+          break;
         default:
           break;
       }
@@ -169,11 +177,7 @@ function Card(props) {
               maxDate={props.maxDate}
             />
           </div>
-          {error && (
-            <div className={classes.error}>
-              {error}
-            </div>
-          )}
+          {error && <div className={classes.error}>{error}</div>}
         </Fragment>
       )}
     </div>

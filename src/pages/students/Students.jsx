@@ -97,7 +97,24 @@ function Students() {
       });
       return;
     }
+    if (search.identification !== "") {
+      setSearch((prevState) => {
+        return {
+          ...prevState,
+          course: "",
+          parallel: "",
+          specialty: "",
+          academicYear: ""
+        };
+      });
+    }
     fetchData();
+    setSearch((prevState) => {
+      return {
+        ...prevState,
+        identification: ""
+      };
+    });
   };
 
   return (

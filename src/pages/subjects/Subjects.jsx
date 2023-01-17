@@ -46,17 +46,31 @@ function Subjects() {
   }, [setIsLoading, setModal, token]);
 
   const onSearch = () => {
-    if (
-      search.identification === ""
-    ) {
+    if (search.identification === "") {
       setModal({
         title: "ERROR",
-        message:
-          "Debe introducir una identificación a buscar",
+        message: "Debe introducir una identificación a buscar",
       });
       return;
     }
+    if (search.identification !== "") {
+      setSearch((prevState) => {
+        return {
+          ...prevState,
+          course: "",
+          parallel: "",
+          specialty: "",
+          academicYear: "",
+        };
+      });
+    }
     fetchData();
+    setSearch((prevState) => {
+      return {
+        ...prevState,
+        identification: "",
+      };
+    });
   };
 
   return (

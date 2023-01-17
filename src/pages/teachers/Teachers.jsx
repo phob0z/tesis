@@ -57,6 +57,12 @@ function Teachers() {
       return;
     }
     fetchData();
+    setSearch((prevState) => {
+      return {
+        ...prevState,
+        identification: ""
+      };
+    });
   };
 
   return (
