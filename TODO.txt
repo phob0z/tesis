@@ -2,9 +2,6 @@
 17-19 MÁXIMO
 La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
-SEARCH:
-Si busco todo vacio que muestre un modal diciendo que tiene que llenar algun dato.
-
 Necesito un endpoint que me muestre las asignaturas en las que el estudiante esta registrado, te mando el ID ya
 tu me devuelves las asignaturas (nombre e id), con el profesor (nombre y apellido e id)
 
@@ -35,7 +32,6 @@ RAÚL!!!
 -------
 No me llega el correo (RAUUUULLL ARREGLA QUE SOLO MANDA A MAILTRAP)
 EmailSent: Creo que no debería devolverme un error si la identificación no existe...
-En Student/Secretary/Teacher Raul no me devulve la imagen
 
 ---------------------------------------
 -- Menos importante, pero importante --

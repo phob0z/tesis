@@ -19,10 +19,10 @@ function Grades() {
 
   const [search, setSearch] = useState({
     identification: "",
-    courses: "",
-    parallels: "",
-    specialties: "",
-    academicYears: "",
+    course: "",
+    parallel: "",
+    specialty: "",
+    academicYear: "",
   });
 
   const fetchFilters = useCallback(async () => {
@@ -49,17 +49,17 @@ function Grades() {
     setIsLoading(false);
   }, [setIsLoading, setModal, token]);
 
-  const fetchData = useCallback(async () => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/search`,
         {
           identification: search.identification,
-          course_id: search.courses,
-          parallel_id: search.parallels,
-          specialty_id: search.specialties,
-          academic_period_id: search.academicYears,
+          course_id: search.course,
+          parallel_id: search.parallel,
+          specialty_id: search.specialtie,
+          academic_period_id: search.academicYear,
         },
         {
           headers: {
@@ -76,24 +76,33 @@ function Grades() {
     }
     setIsLoading(false);
     // eslint-disable-next-line
-  }, [setIsLoading, setModal, token]);
+  };
 
   useEffect(() => {
     fetchFilters();
   }, [fetchFilters]);
 
   const onSearch = () => {
-    console.log(search);
+    if (
+      search.identification === "" &&
+      search.course === "" &&
+      search.parallel === "" &&
+      search.specialty === "" &&
+      search.academicYear === ""
+    ) {
+      setModal({
+        title: "ERROR",
+        message:
+          "Debe seleccionar al menos un filtro o introducir una identificación a buscar",
+      });
+      return;
+    }
     fetchData();
   };
 
   return (
     <LongMainContainer
       title="Estudiantes"
-      // buttonTitle="Nuevo"
-      // onClick={() => {
-      //   navigate("newStudent");
-      // }}
       onSearch={onSearch}
       showSearchInput
       search={search}

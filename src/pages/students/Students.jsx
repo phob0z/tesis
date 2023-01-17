@@ -69,9 +69,7 @@ function Students() {
           },
         }
       );
-      console.log(response.data.data.users);
       const data = response.data.data.users;
-      console.log(data.length);
       setStudents([...data]);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -85,6 +83,20 @@ function Students() {
   }, [fetchFilters]);
 
   const onSearch = () => {
+    if (
+      search.identification === "" &&
+      search.course === "" &&
+      search.parallel === "" &&
+      search.specialty === "" &&
+      search.academicYear === ""
+    ) {
+      setModal({
+        title: "ERROR",
+        message:
+          "Debe seleccionar al menos un filtro o introducir una identificación a buscar",
+      });
+      return;
+    }
     fetchData();
   };
 

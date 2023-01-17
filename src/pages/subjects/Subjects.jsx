@@ -46,7 +46,16 @@ function Subjects() {
   }, [setIsLoading, setModal, token]);
 
   const onSearch = () => {
-    console.log(search);
+    if (
+      search.identification === ""
+    ) {
+      setModal({
+        title: "ERROR",
+        message:
+          "Debe introducir una identificación a buscar",
+      });
+      return;
+    }
     fetchData();
   };
 

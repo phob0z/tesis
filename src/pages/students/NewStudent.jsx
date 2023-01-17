@@ -115,7 +115,6 @@ function NewStudent() {
       return;
     }
     setIsLoading(true);
-    console.log(student);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/create`,

@@ -1,5 +1,11 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, {
+  Fragment,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -10,6 +16,7 @@ import LongSubContainer from "../../components/containers/LongSubContainer";
 import GradesCard from "../../components/cards/GradesCard";
 
 function Grades() {
+  const navigate = useNavigate();
   const params = useParams();
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
@@ -96,7 +103,14 @@ function Grades() {
   }, [fetchData]);
 
   return (
-    <LongMainContainer big title="Notas">
+    <LongMainContainer
+      big
+      title="Notas"
+      buttonTitle="Volver"
+      onClick={() => {
+        navigate("../");
+      }}
+    >
       {!subjects || subjects.length === 0 ? (
         <LongSubContainer>
           <div
@@ -110,28 +124,45 @@ function Grades() {
           </div>
         </LongSubContainer>
       ) : (
-        subjects.map((subject) => {
-          return (
-            <LongSubContainer key={subject.identification}>
-              <GradesCard
-                id={subject.id}
-                name={subject.name}
-                q1blocked={subject.q1blocked}
-                q2blocked={subject.q2blocked}
-                q1p1={subject.q1p1}
-                q1p2={subject.q1p2}
-                q1p3={subject.q1p3}
-                q2p1={subject.q2p1}
-                q2p2={subject.q2p2}
-                q2p3={subject.q2p3}
-                supletory={subject.supletory}
-                remedial={subject.remedial}
-                grace={subject.grace}
-                final={subject.final}
-              />
-            </LongSubContainer>
-          );
-        })
+        <Fragment>
+          <LongSubContainer>
+            <GradesCard
+              name="Asignatura"
+              q1p1="P1"
+              q1p2="P2"
+              q1p3="P3"
+              q2p1="P1"
+              q2p2="P2"
+              q2p3="P3"
+              supletory="Supletorio"
+              remedial="Remedial"
+              grace="Gracia"
+              final="Final"
+            />
+          </LongSubContainer>
+          {subjects.map((subject) => {
+            return (
+              <LongSubContainer key={subject.identification}>
+                <GradesCard
+                  id={subject.id}
+                  name={subject.name}
+                  q1blocked={subject.q1blocked}
+                  q2blocked={subject.q2blocked}
+                  q1p1={subject.q1p1}
+                  q1p2={subject.q1p2}
+                  q1p3={subject.q1p3}
+                  q2p1={subject.q2p1}
+                  q2p2={subject.q2p2}
+                  q2p3={subject.q2p3}
+                  supletory={subject.supletory}
+                  remedial={subject.remedial}
+                  grace={subject.grace}
+                  final={subject.final}
+                />
+              </LongSubContainer>
+            );
+          })}
+        </Fragment>
       )}
     </LongMainContainer>
   );

@@ -24,7 +24,7 @@ function Secretaries() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/student/search`,
+        `${process.env.REACT_APP_BACK_URL}/secretary/search`,
         {
           identification: search.identification,
         },
@@ -46,7 +46,16 @@ function Secretaries() {
   }, [setIsLoading, setModal, token]);
 
   const onSearch = () => {
-    console.log(search);
+    if (
+      search.identification === ""
+    ) {
+      setModal({
+        title: "ERROR",
+        message:
+          "Debe introducir una identificación a buscar",
+      });
+      return;
+    }
     fetchData();
   };
 

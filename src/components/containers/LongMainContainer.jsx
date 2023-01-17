@@ -12,9 +12,6 @@ function LongMainContainer(props) {
           {props.filters && (
             <Fragment>
               <div className={classes.filter}>
-                {/* <label className={classes.label} htmlFor={filter.label}>
-                  {filter.label}
-                </label> */}
                 <Input
                   value={props.search.course}
                   type="select"
@@ -27,9 +24,6 @@ function LongMainContainer(props) {
                 />
               </div>
               <div className={classes.filter}>
-                {/* <label className={classes.label} htmlFor={filter.label}>
-                  {filter.label}
-                </label> */}
                 <Input
                   value={props.search.parallel}
                   type="select"
@@ -42,9 +36,6 @@ function LongMainContainer(props) {
                 />
               </div>
               <div className={classes.filter}>
-                {/* <label className={classes.label} htmlFor={filter.label}>
-                  {filter.label}
-                </label> */}
                 <Input
                   value={props.search.specialty}
                   type="select"
@@ -57,9 +48,6 @@ function LongMainContainer(props) {
                 />
               </div>
               <div className={classes.filter}>
-                {/* <label className={classes.label} htmlFor={filter.label}>
-                  {filter.label}
-                </label> */}
                 <Input
                   value={props.search.academicYear}
                   type="select"

@@ -84,14 +84,25 @@ const Input = (props) => {
           value={props.value}
         >
           {props.label && (
-            <option className={classes.option} value="" disabled>
-              {props.label}
-            </option>
+            <Fragment>
+              <option className={classes.option} value="" disabled>
+                {props.label}
+              </option>
+              {props.label !== "Periodo" && (
+                <option className={classes.option} value="">
+                  Todos
+                </option>
+              )}
+            </Fragment>
           )}
           {props.options &&
             props.options.map((option) => {
               return (
-                <option className={classes.option} key={option.id} value={option.id}>
+                <option
+                  className={classes.option}
+                  key={option.id}
+                  value={option.id}
+                >
                   {option.name}
                 </option>
               );

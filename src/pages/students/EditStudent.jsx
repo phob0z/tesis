@@ -97,7 +97,6 @@ function EditStudent() {
         response.data.data.user[key] = response.data.data.user[key] ?? "";
       });
       const data = response.data.data.user;
-      console.log(data);
       setStudent({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });

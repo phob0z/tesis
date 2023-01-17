@@ -1,0 +1,106 @@
+.mainContainer {
+  position: absolute;
+  top: 25%;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%);
+  background: #000000bb;
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  max-width: 88%;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(3.15rem, max-content));
+  width: max-content;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1.6rem transparent solid;
+  border-top: 2rem transparent solid;
+  border-radius: 1.25rem;
+  -moz-border-radius: 1.25rem;
+  -webkit-border-radius: 1.25rem;
+  row-gap: 0.5rem;
+  min-width: 80%;
+}
+
+.containerTitle {
+  position: absolute;
+  background: #6d1119;
+  border-radius: 0.625rem;
+  top: 19%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 0.4rem;
+  width: 12rem;
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.4rem;
+  color: #d2a647;
+  text-shadow: -0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
+  box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  top: 25%;
+}
+
+.button {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.gradesHeader {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 4fr 3fr 3fr 1fr 1fr 1fr 1fr;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: "Open Sans";
+  font-size: 0.9rem;
+  color: #414141;
+  font-weight: 900;
+  cursor: default;
+  column-gap: 1rem;
+  align-self: center;
+  text-align: center;
+}
+
+.gradesHeader div {
+  align-self: center;
+}
+
+.quimester {
+  width: 7.5rem;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr 1fr;
+}
+
+.subHeader {
+  width: 2.5rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.name {
+  width: 10rem;
+  overflow: hidden;
+}
+
