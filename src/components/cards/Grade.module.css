@@ -1,0 +1,24 @@
+.cardContainer {
+  border-radius: 0.625rem;
+  height: max-content;
+  width: max-content;
+}
+
+.main {
+  display: flex;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+}
+
+.error {
+  text-align: center;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.6rem;
+  color: #6d1118;
+  text-decoration: none;
+}

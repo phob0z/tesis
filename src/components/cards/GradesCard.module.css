@@ -10,8 +10,8 @@
   font-weight: 900;
   cursor: default;
   column-gap: 1rem;
-  align-self: center;  
   text-align: center;
+  align-items: center;
 }
 
 .quimester {

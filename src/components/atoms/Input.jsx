@@ -58,7 +58,7 @@ const Input = (props) => {
           label={props.label}
           value={props.value}
           onChange={props.onChange}
-          disabled={props.disabled}
+          // disabled={props.disabled}
           alt={props.alt}
         />
       );
@@ -121,6 +121,7 @@ const Input = (props) => {
           onBlur={onBlur}
           maxLength={props.maxLength}
           disabled={props.disabled}
+          style={type === "grade"? {textAlign: "center"} : {}}
         />
       );
       break;
@@ -136,7 +137,7 @@ const Input = (props) => {
         {(props.children !== undefined && (
           <div className={classes.imageBox}>{props.children}</div>
         )) ||
-          (props.disabled && (
+          (props.type !== "grade" && props.disabled && (
             <div className={classes.imageBox}>
               <div className={classes.imageBoxIcon}>
                 <span className="material-symbols-outlined">lock</span>

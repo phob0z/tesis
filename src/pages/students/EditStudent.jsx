@@ -207,7 +207,7 @@ function EditStudent() {
               },
             }
           );
-        } catch {
+        } catch (error) {
           setModal({ title: "ERROR", message: error.response.data.message });
         }
       }
@@ -225,7 +225,7 @@ function EditStudent() {
         buttonTitle="Guardar"
         type="submit"
         backButton
-        addSubjectButton
+        // addSubjectButton
       >
         <SubContainer subTitle="INFO PERSONAL">
           <Card

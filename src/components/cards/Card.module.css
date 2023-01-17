@@ -7,6 +7,7 @@
   margin-right: 0.625rem;
   margin-left: 0.625rem;
   height: max-content;
+  /* width: min-content; */
 }
 
 .main {
@@ -15,7 +16,7 @@
 
 .label {
   display: flex;
-  min-width: 6rem;
+  min-width: 2.7rem;
   font-family: "Carter One";
   font-style: normal;
   font-weight: 400;
@@ -31,11 +32,11 @@
 .inputBox {
   display: flex;
   align-items: center;
-  margin: 0 0 0.625rem 0;
+  /* margin: 0 0 0.625rem 0; */
 }
 
 .error {
-  margin-top: -0.5rem;
+  /* margin-top: -0.5rem; */
   text-align: center;
   font-family: "Open Sans";
   font-style: normal;

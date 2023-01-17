@@ -139,7 +139,7 @@ function Card(props) {
               /^(([0-1][0-9]{0,1})([.][0-9]{1,2}){0,1})$|(20([.][0]{1,2}){0,1})$/
             )
           )
-            setError("El formato debe ser #, ##, ##.# o ##.## entre 0 y 20");
+            setError("Min 0.00\nMax 20.00");
           break;
         default:
           break;

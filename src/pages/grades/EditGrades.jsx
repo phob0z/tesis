@@ -59,7 +59,7 @@ function Grades() {
           identification: "123",
           name: "Calc",
           id: "2",
-          q1blocked: "1",
+          q1blocked: true,
           q2blocked: "0",
           q1p1: "10",
           q1p2: "10",
@@ -127,6 +127,7 @@ function Grades() {
         <Fragment>
           <LongSubContainer>
             <GradesCard
+              header
               name="Asignatura"
               q1p1="P1"
               q1p2="P2"
