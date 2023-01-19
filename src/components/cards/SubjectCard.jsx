@@ -10,17 +10,13 @@ function SubjectCard(props) {
   return (
     <div className={classes.subject}>
       <div className={classes.name}>{props.name}</div>
-      {/* <div>{props.teacher.split(" ")[0]}</div> */}
-      <div>NOMBRE</div>
+      <div>{props.teacher_name?.split(" ")[0]} {props.teacher_last_name?.split(" ")[0]}</div>
       <div>
-        {/* {props.course} {props.parallel} */}
-        Curso y Paralelo
+        {props.course} {props.parallel}
       </div>
-      {/* <div>{props.specialty}</div> */}
-      <div>Especialidad</div>
-      {/* <div>{props.academicYear}</div> */}
-      <div>Periodo</div>
-      <OnOffIcon state={props.state} />
+      <div>{props.specialty}</div>
+      <div>{props.academicYear}</div>
+      {/* <OnOffIcon state={props.state} /> */}
       <div>
         <Button
           className="editButton"

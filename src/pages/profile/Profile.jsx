@@ -293,8 +293,9 @@ function Profile() {
             onChange={(event) => {
               setUserProfile({ ...userProfile, address: event.target.value });
             }}
-            must
             setError={setErrorAddress}
+            validation="address"
+            must
             disabled={user.role !== "secretary"}
           />
         </SubContainer>

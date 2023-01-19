@@ -131,10 +131,10 @@ function NewStudent() {
           representative_last_name: student.representative_last_name,
           representative_identification: student.representative_identification,
           representative_phone: student.representative_phone,
-          course_id: student.course,
-          parallel_id: student.parallel,
-          specialty_id: student.specialty,
-          academic_period_id: student.academicYear,
+          course_id: student.course_id,
+          parallel_id: student.parallel_id,
+          specialty_id: student.specialty_id,
+          academic_period_id: student.academic_period_id,
         },
         {
           headers: {
@@ -287,6 +287,7 @@ function NewStudent() {
               setStudent({ ...student, address: event.target.value });
             }}
             setError={setErrorAddress}
+            validation="address"
             must
             disabled={user.role !== "secretary"}
           />
@@ -368,9 +369,9 @@ function NewStudent() {
             type="select"
             options={filters.courses}
             theme="simple"
-            value={student.course}
+            value={student.course_id}
             onChange={(event) => {
-              setStudent({ ...student, course: event.target.value });
+              setStudent({ ...student, course_id: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />
@@ -379,9 +380,9 @@ function NewStudent() {
             type="select"
             options={filters.parallels}
             theme="simple"
-            value={student.parallel}
+            value={student.parallel_id}
             onChange={(event) => {
-              setStudent({ ...student, parallel: event.target.value });
+              setStudent({ ...student, parallel_id: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />
@@ -390,9 +391,9 @@ function NewStudent() {
             type="select"
             options={filters.specialties}
             theme="simple"
-            value={student.specialty}
+            value={student.specialty_id}
             onChange={(event) => {
-              setStudent({ ...student, specialty: event.target.value });
+              setStudent({ ...student, specialty_id: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />
@@ -401,9 +402,9 @@ function NewStudent() {
             type="select"
             options={filters.academicYears}
             theme="simple"
-            value={student.academicYear}
+            value={student.academic_period_id}
             onChange={(event) => {
-              setStudent({ ...student, academicYear: event.target.value });
+              setStudent({ ...student, academic_period_id: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />

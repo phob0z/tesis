@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -20,13 +20,13 @@ function Subjects() {
     identification: "",
   });
 
-  const fetchData = useCallback(async () => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/student/search`,
+        `${process.env.REACT_APP_BACK_URL}/subject/search`,
         {
-          identification: search.identification,
+          name: search.identification,
         },
         {
           headers: {
@@ -36,14 +36,14 @@ function Subjects() {
           },
         }
       );
-      const data = response.data.data.users;
+      const data = response.data.data.subjects;
       setSubjects([...data]);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
     // eslint-disable-next-line
-  }, [setIsLoading, setModal, token]);
+  };
 
   const onSearch = () => {
     if (search.identification === "") {
@@ -53,24 +53,8 @@ function Subjects() {
       });
       return;
     }
-    if (search.identification !== "") {
-      setSearch((prevState) => {
-        return {
-          ...prevState,
-          course: "",
-          parallel: "",
-          specialty: "",
-          academicYear: "",
-        };
-      });
-    }
     fetchData();
-    setSearch((prevState) => {
-      return {
-        ...prevState,
-        identification: "",
-      };
-    });
+    setSearch({ identification: "" });
   };
 
   return (
@@ -88,7 +72,7 @@ function Subjects() {
           return { ...prevState, ...value };
         });
       }}
-      searchBarLabel="Identificación"
+      searchBarLabel="Asignatura"
     >
       {!subjects ? (
         <LongSubContainer>
@@ -99,7 +83,7 @@ function Subjects() {
               minWidth: "100%",
             }}
           >
-            Escribir una identificación y posteriormente hacer clic en el botón
+            Escribir el nombre de una asignatura y posteriormente hacer clic en el botón
             "Buscar"
           </div>
         </LongSubContainer>
@@ -122,12 +106,18 @@ function Subjects() {
               <SubjectCard
                 id={subject.id}
                 name={subject.name}
-                teacher={subject.teacher}
+                // teacher_id={teacher_id}
+                teacher_name={subject.teacher_name}
+                teacher_last_name={subject.teacher_last_name}
                 course={subject.course}
+                // course_id={subject.course_id}
                 parallel={subject.parallel}
+                // parallel_id={subject.parallel_id}
                 specialty={subject.specialty}
+                // specialty_id={subject.specialty_id}
                 academicYear={subject.academic_period}
-                state={subject.state}
+                // academicYear_id={subject.academic_period_id}
+                // state={subject.state}
               />
             </LongSubContainer>
           );

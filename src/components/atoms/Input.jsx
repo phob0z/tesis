@@ -81,7 +81,7 @@ const Input = (props) => {
         <select
           onChange={props.onChange}
           className={classes.filter}
-          value={props.value}
+          value={props.value? props.value : ""}
         >
           {props.label && (
             <Fragment>
@@ -173,7 +173,6 @@ const Input = (props) => {
 
 Input.propTypes = {
   type: PropTypes.string,
-  value: PropTypes.string,
   onChange: PropTypes.func,
   label: PropTypes.string,
   onBlur: PropTypes.func,

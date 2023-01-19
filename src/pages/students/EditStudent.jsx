@@ -97,6 +97,7 @@ function EditStudent() {
         response.data.data.user[key] = response.data.data.user[key] ?? "";
       });
       const data = response.data.data.user;
+      console.log(data);
       setStudent({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -116,11 +117,11 @@ function EditStudent() {
           },
         }
       );
-      const course = response.data.data.courses;
-      const parallel = response.data.data.parallels;
-      const specialty = response.data.data.specialties;
-      const academicYear = response.data.data.periods;
-      setFilters({ course, parallel, specialty, academicYear });
+      const courses = response.data.data.courses;
+      const parallels = response.data.data.parallels;
+      const specialties = response.data.data.specialties;
+      const academicYears = response.data.data.periods;
+      setFilters({ courses, parallels, specialties, academicYears });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -179,10 +180,10 @@ function EditStudent() {
           representative_last_name: student.representative_last_name,
           representative_identification: student.representative_identification,
           representative_personal_phone: student.representative_personal_phone,
-          course_id: student.course,
-          parallel_id: student.parallel,
-          specialty_id: student.specialty,
-          academic_period_id: student.academic_period,
+          course_id: student.course_id,
+          parallel_id: student.parallel_id,
+          specialty_id: student.specialty_id,
+          academic_period_id: student.academic_period_id,
         },
         {
           headers: {
@@ -335,6 +336,7 @@ function EditStudent() {
               setStudent({ ...student, address: event.target.value });
             }}
             setError={setErrorAddress}
+            validation="address"
             must
             disabled={user.role !== "secretary"}
           />
@@ -414,33 +416,44 @@ function EditStudent() {
           <Card
             label="Curso"
             type="select"
-            options={filters.course}
+            options={filters.courses}
             theme="simple"
-            value={student.course}
+            value={student.course_id}
             onChange={(event) => {
-              setStudent({ ...student, course: event.target.value });
+              setStudent({ ...student, course_id: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />
           <Card
             label="Paralelo"
             type="select"
-            options={filters.parallel}
+            options={filters.parallels}
             theme="simple"
-            value={student.parallel}
+            value={student.parallel_id}
             onChange={(event) => {
-              setStudent({ ...student, parallel: event.target.value });
+              setStudent({ ...student, parallel_id: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />
           <Card
             label="Especialidad"
             type="select"
-            options={filters.specialty}
+            options={filters.specialties}
             theme="simple"
-            value={student.specialty}
+            value={student.specialty_id}
             onChange={(event) => {
-              setStudent({ ...student, specialty: event.target.value });
+              setStudent({ ...student, specialty_id: event.target.value });
+            }}
+            disabled={user.role !== "secretary"}
+          />
+          <Card
+            label="Periodo"
+            type="select"
+            options={filters.academicYears}
+            theme="simple"
+            value={student.academic_period_id}
+            onChange={(event) => {
+              setStudent({ ...student, academic_period_id: event.target.value });
             }}
             disabled={user.role !== "secretary"}
           />

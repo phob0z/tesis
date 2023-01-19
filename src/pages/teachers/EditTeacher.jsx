@@ -290,6 +290,7 @@ function EditTeacher() {
               setTeacher({ ...teacher, address: event.target.value });
             }}
             setError={setErrorAddress}
+            validation="address"
             must
             disabled={user.role !== "secretary"}
           />

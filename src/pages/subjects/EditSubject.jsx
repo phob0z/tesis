@@ -65,36 +65,8 @@ function EditSubject() {
           },
         }
       );
-      const {
-        id,
-        name,
-        teacher,
-        // teacher_id: teacherId,
-        academic_period: academicYear,
-        // academic_period_id: academicYearId,
-        course,
-        // course_id: courseId,
-        parallel,
-        // parallel_id: parallelId,
-        specialty,
-        // specialty_id: specialtyId,
-        state,
-      } = response.data.data.subject;
-      setSubject({
-        id,
-        name,
-        teacher,
-        // teacherId,
-        academicYear,
-        // academicYearId,
-        course,
-        // courseId,
-        parallel,
-        // parallelId,
-        specialty,
-        // specialtyId,
-        state,
-      });
+      const data = response.data.data.subject
+      setSubject(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -105,7 +77,7 @@ function EditSubject() {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/filter`,
+        `${process.env.REACT_APP_BACK_URL}/subject/filter`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -160,14 +132,14 @@ function EditSubject() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACK_URL}/subject/create`,
+        `${process.env.REACT_APP_BACK_URL}/subject/${params.id}/update`,
         {
           name: subject.name,
-          course: subject.course,
-          parallel: subject.parallel,
-          specialty: subject.specialty,
-          academicYear: subject.academicYear,
-          teacher: subject.teacher,
+          user_id: subject.teacher_id,
+          course_id: subject.course_id,
+          parallel_id: subject.parallel_id,
+          specialty_id: subject.specialty_id,
+          academic_period_id: subject.academic_period_id,
         },
         {
           headers: {
@@ -218,27 +190,27 @@ function EditSubject() {
           type="select"
           options={filters.teachers}
           theme="simple"
-          value={subject.teacher}
+          value={subject.teacher_id}
           onChange={(event) => {
-            setSubject({ ...subject, teacher: event.target.value });
+            setSubject({ ...subject, teacher_id: event.target.value });
           }}
           setError={setErrorTeacher}
           validation="select"
           disabled={user.role !== "secretary"}
         />
-        <Card
+        {/* <Card
           label="Periodo"
           type="select"
           options={filters.academicYears}
           theme="simple"
-          value={subject.academicYear}
+          value={subject.academic_period_id}
           onChange={(event) => {
-            setSubject({ ...subject, academicYear: event.target.value });
+            setSubject({ ...subject, academic_period_id: event.target.value });
           }}
           setError={setErroracademicYear}
           validation="select"
           disabled={user.role !== "secretary"}
-        />
+        /> */}
       </SubContainer>
       <SubContainer>
         <Card
@@ -246,9 +218,9 @@ function EditSubject() {
           type="select"
           options={filters.courses}
           theme="simple"
-          value={subject.course}
+          value={subject.course_id}
           onChange={(event) => {
-            setSubject({ ...subject, course: event.target.value });
+            setSubject({ ...subject, course_id: event.target.value });
           }}
           setError={setErrorCourse}
           validation="select"
@@ -259,9 +231,9 @@ function EditSubject() {
           type="select"
           options={filters.parallels}
           theme="simple"
-          value={subject.parallel}
+          value={subject.parallel_id}
           onChange={(event) => {
-            setSubject({ ...subject, parallel: event.target.value });
+            setSubject({ ...subject, parallel_id: event.target.value });
           }}
           setError={setErrorParallel}
           validation="select"
@@ -272,16 +244,16 @@ function EditSubject() {
           type="select"
           options={filters.specialties}
           theme="simple"
-          value={subject.specialty}
+          value={subject.specialty_id}
           onChange={(event) => {
-            setSubject({ ...subject, specialty: event.target.value });
+            setSubject({ ...subject, specialty_id: event.target.value });
           }}
           setError={setErrorSpecialty}
           validation="select"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>
-      <SubContainer>
+      {/* <SubContainer>
         <Card label="Estado">
           <OnOffInput
             value={subject.state}
@@ -290,7 +262,7 @@ function EditSubject() {
             }}
           />
         </Card>
-      </SubContainer>
+      </SubContainer> */}
     </MainContainer>
   );
 }

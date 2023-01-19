@@ -51,6 +51,7 @@ function Students() {
 
   const fetchData = async () => {
     setIsLoading(true);
+    console.log(search);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/search`,

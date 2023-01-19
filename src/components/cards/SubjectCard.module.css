@@ -1,8 +1,7 @@
 .subject {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 3fr 3fr 2fr 1fr 1fr 1fr;
-  height: fit-content;
+  grid-template-columns: 4fr 4fr 6fr 6fr 1fr 1.5fr;
   padding-left: 1rem;
   padding-right: 1rem;
   font-family: "Open Sans";
@@ -13,7 +12,6 @@
 }
 
 .name {
-  min-width: 8rem;
   overflow: hidden;
 }
 

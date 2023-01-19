@@ -53,6 +53,10 @@ function Card(props) {
           )
             setError("Debe ingresar un correo válido");
           break;
+        case "address":
+          if (props.value.trim().length < 5)
+            setError("Debe tener al menos 5 caracteres");
+          break;
         case "homePhone":
           if (!props.value.match(/^[0-9]+$/))
             setError("Solo puede contener números");
@@ -186,7 +190,6 @@ function Card(props) {
 
 Card.propTypes = {
   type: PropTypes.string,
-  value: PropTypes.string,
   onChange: PropTypes.func,
   label: PropTypes.string,
   maxLength: PropTypes.string,
