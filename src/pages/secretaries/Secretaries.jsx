@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -20,7 +20,7 @@ function Secretaries() {
     identification: "",
   });
 
-  const fetchData = useCallback(async () => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -43,7 +43,7 @@ function Secretaries() {
     }
     setIsLoading(false);
     // eslint-disable-next-line
-  }, [setIsLoading, setModal, token]);
+  };
 
   const onSearch = () => {
     if (

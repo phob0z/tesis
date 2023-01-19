@@ -20,7 +20,7 @@ function Teachers() {
     identification: "",
   });
 
-  const fetchData = useCallback(async () => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -43,7 +43,7 @@ function Teachers() {
     }
     setIsLoading(false);
     // eslint-disable-next-line
-  }, [setIsLoading, setModal, token]);
+  };
 
   const onSearch = () => {
     if (

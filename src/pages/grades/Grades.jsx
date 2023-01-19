@@ -97,11 +97,22 @@ function Grades() {
       });
       return;
     }
+    if (search.identification !== "") {
+      setSearch((prevState) => {
+        return {
+          ...prevState,
+          course: "",
+          parallel: "",
+          specialty: "",
+          academicYear: "",
+        };
+      });
+    }
     fetchData();
     setSearch((prevState) => {
       return {
         ...prevState,
-        identification: ""
+        identification: "",
       };
     });
   };
@@ -157,6 +168,7 @@ function Grades() {
                 course={student.course}
                 parallel={student.parallel}
                 specialty={student.specialty}
+                academic_period={student.academic_period}
                 state={student.state}
                 buttonTitle="Notas"
               />

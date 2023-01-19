@@ -96,7 +96,6 @@ function NewSubject() {
       return;
     }
     setIsLoading(true);
-    console.log(filters.academicYears[0].id);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/subject/create`,

@@ -13,7 +13,24 @@ import OnOffInput from "../../components/atoms/OnOffInput";
 function EditStudent() {
   const params = useParams();
   const [student, setStudent] = useState({
-    avatar: "",
+    name: "",
+    last_name: "",
+    identification: "",
+    birthdate: "",
+    email: "",
+    home_phone: "",
+    personal_phone: "",
+    address: "",
+    representative_name: "",
+    representative_last_name: "",
+    representative_identification: "",
+    representative_personal_phone: "",
+    course_id: "",
+    parallel_id: "",
+    specialty_id: "",
+    academic_period_id: "",
+    state: false,
+    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
   });
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
@@ -92,12 +109,7 @@ function EditStudent() {
         }
       );
       const avatar = response.data.data.avatar;
-      // eslint-disable-next-line
-      Object.keys(response.data.data.user).map((key) => {
-        response.data.data.user[key] = response.data.data.user[key] ?? "";
-      });
       const data = response.data.data.user;
-      console.log(data);
       setStudent({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });

@@ -81,8 +81,9 @@ function EditSecretary() {
           },
         }
       );
+      const avatar = response.data.data.avatar;
       const data = response.data.data.user;
-      setSecretary(data);
+      setSecretary({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }

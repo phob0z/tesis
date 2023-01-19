@@ -81,8 +81,9 @@ function EditTeacher() {
           },
         }
       );
+      const avatar = response.data.data.avatar;
       const data = response.data.data.user;
-      setTeacher(data);
+      setTeacher({ ...data, avatar });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }

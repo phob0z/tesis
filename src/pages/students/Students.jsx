@@ -51,7 +51,6 @@ function Students() {
 
   const fetchData = async () => {
     setIsLoading(true);
-    console.log(search);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/student/search`,
@@ -173,6 +172,7 @@ function Students() {
                 course={student.course}
                 parallel={student.parallel}
                 specialty={student.specialty}
+                academic_period={student.academic_period}
                 state={student.state}
                 buttonTitle="Editar"
               />

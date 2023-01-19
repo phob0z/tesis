@@ -13,9 +13,9 @@ function StudentCard(props) {
         {props.name?.split(" ")[0]} {props.last_name?.split(" ")[0]}
       </div>
       <div>{props.identification}</div>
-      <div>{props.course}</div>
-      <div>{props.parallel}</div>
+      <div>{props.course} {props.parallel}</div>
       <div>{props.specialty}</div>
+      <div>{props.academic_period}</div>
       <OnOffIcon state={props.state} />
       <div>
         <Button
