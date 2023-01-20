@@ -32,7 +32,7 @@ function EditGrades() {
     setIsLoading(true);
     try {
       // const response = await axios.get(
-      //   `${process.env.REACT_APP_BACK_URL}/secretary/${params.id}/${params.academicYear}/grades/`,
+      //   `${process.env.REACT_APP_BACK_URL}/secretary/${params.id}/${params.academicYear}/grades`,
       //   {
       //     headers: {
       //       "Content-Type": "application/json",
@@ -41,7 +41,8 @@ function EditGrades() {
       //     },
       //   }
       // );
-      // const data = response.data.data;
+      // const data = response.data.data.grades;
+      // console.log(data);
       const user = {
         student_name: "Karlee Dylan",
         student_last_name: "Corwin Nikolaus",
@@ -113,12 +114,12 @@ function EditGrades() {
     setIsLoading(false);
   };
 
-  const onBehaviourChange = (behaviour1, behaviour2) => {
+  const onBehaviourChange = (behaviours) => {
     setUser((prevState) => {
       return {
         ...prevState,
-        comportamiento1: behaviour1,
-        comportamiento2: behaviour2,
+        comportamiento1: behaviours.behaviour1,
+        comportamiento2: behaviours.behaviour2,
       };
     });
   };

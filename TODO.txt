@@ -4,13 +4,7 @@ La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (S
 
 Secretaria no modifica las notas, solo los comportamientos
 
-El profesor no modifica los comportamientos, solo las notar
-
-En las notas:
-Si el promedio final de las notas < 7,
-entonces desbloquear suple, si suple < 7,
-entonces desbloquear remedial, si remedial < 7
-entonces desbloquear gracia.
+El profesor no modifica los comportamientos, solo las notas
 
 Boton de finalizar el periodo
 

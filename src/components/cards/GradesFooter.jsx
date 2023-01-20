@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event";
 import React, { Fragment, useEffect, useState } from "react";
 import Grade from "./Grade";
 
@@ -11,7 +12,7 @@ function GradesFooter(props) {
   });
 
   useEffect(() => {
-    props.onBehaviourChange(student.behaviour1, student.behaviour2);
+    props.onBehaviourChange(student);
   }, [student.behaviour1, student.behaviour2]);
 
   return (
