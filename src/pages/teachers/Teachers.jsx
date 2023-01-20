@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -42,7 +42,6 @@ function Teachers() {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-    // eslint-disable-next-line
   };
 
   const onSearch = () => {

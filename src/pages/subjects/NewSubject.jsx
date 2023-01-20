@@ -21,7 +21,6 @@ function NewSubject() {
     course_id: "",
     parallel_id: "",
     specialty_id: "",
-    academic_period_id: "",
   });
 
   const [error, setError] = useState(false);
@@ -29,7 +28,6 @@ function NewSubject() {
   const [errorCourse, setErrorCourse] = useState(false);
   const [errorParallel, setErrorParallel] = useState(false);
   const [errorSpecialty, setErrorSpecialty] = useState(false);
-  const [errorAcademicYear, setErrorAcademicYear] = useState(false);
   const [errorTeacher, setErrorTeacher] = useState(false);
 
   const [filters, setFilters] = useState([]);
@@ -43,8 +41,6 @@ function NewSubject() {
       ? setError(errorParallel)
       : errorSpecialty.error
       ? setError(errorSpecialty)
-      : errorAcademicYear.error
-      ? setError(errorAcademicYear)
       : errorTeacher.error
       ? setError(errorTeacher)
       : setError(false);
@@ -53,7 +49,6 @@ function NewSubject() {
     errorCourse,
     errorParallel,
     errorSpecialty,
-    errorAcademicYear,
     errorTeacher,
   ]);
 
@@ -105,7 +100,6 @@ function NewSubject() {
           course_id: subject.course_id,
           parallel_id: subject.parallel_id,
           specialty_id: subject.specialty_id,
-          // academic_period_id: subject.academic_period_id,
           academic_period_id: filters.academicYears[0].id,
         },
         {
@@ -160,19 +154,6 @@ function NewSubject() {
           validation="select"
           disabled={user.role !== "secretary"}
         />
-        {/* <Card
-          label="Periodo"
-          type="select"
-          options={filters.academicYears}
-          theme="simple"
-          value={subject.academic_period_id}
-          onChange={(event) => {
-            setSubject({ ...subject, academic_period_id: event.target.value });
-          }}
-          setError={setErrorAcademicYear}
-          validation="select"
-          disabled={user.role !== "secretary"}
-        /> */}
       </SubContainer>
       <SubContainer>
         <Card

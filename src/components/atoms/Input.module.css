@@ -104,9 +104,9 @@
   display: flex;
   border-radius: 0.625rem;
   border: 0.0625rem transparent solid;
-  /* margin: 0.625rem 0 0.625rem 0; */
   margin: 0.1rem 0 0.1rem 0;
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  max-width: 3.3rem;
   width: 100%;
   min-height: 1.5rem;
   background: #bbcbd5;
@@ -118,6 +118,12 @@
 
 .container.blue.focused {
   border: 0.0625rem #208ccd solid;
+}
+
+.container.blue [disabled] {
+  border-radius: 0.625rem;
+  margin: -0.0625rem;
+  background-color: #41414133;
 }
 
 .revealPassword.blue {
@@ -138,13 +144,12 @@
 
 .inputContainer.blue {
   display: flex;
-  /* width: 100%; */
+  width: 100%;
 }
 
 .inputContainer.blue input {
   border: 0;
   background-color: transparent;
-  padding-left: 0.3rem;
   font-family: "Open Sans";
   font-weight: 900;
   font-size: 0.8rem;

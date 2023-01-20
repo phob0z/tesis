@@ -2,12 +2,17 @@
 17-19 MÁXIMO
 La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
-Necesito un endpoint que me muestre las asignaturas en las que el estudiante esta registrado, te mando el ID ya
-tu me devuelves las asignaturas (nombre e id), con el profesor (nombre y apellido e id)
+Secretaria no modifica las notas, solo los comportamientos
 
-Agregar editar imagenes a EditTeacher y EditSecretary
+El profesor no modifica los comportamientos, solo las notar
 
-Cambiar 
+En las notas:
+Si el promedio final de las notas < 7,
+entonces desbloquear suple, si suple < 7,
+entonces desbloquear remedial, si remedial < 7
+entonces desbloquear gracia.
+
+Boton de finalizar el periodo
 
 Hacer:
 verSubjects, para Student
@@ -32,14 +37,4 @@ RAÚL!!!
 No me llega el correo (RAUUUULLL ARREGLA QUE SOLO MANDA A MAILTRAP)
 EmailSent: Creo que no debería devolverme un error si la identificación no existe...
 
----------------------------------------
--- Menos importante, pero importante --
----------------------------------------
-Mover la lógica de validaciones fuera del Card, en una archivo aparte donde se llame a una función y devuelva
-true si todo es correcto, o el mensaje de error en caso contrario, la funcion debe recibir el tipo de
-validación y la cadena a validar.
-
-Internationalize
-(https://blog.shahednasser.com/how-to-internationalize-a-react-app/)
-
-Páginación...
+Páginación

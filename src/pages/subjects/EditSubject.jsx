@@ -8,7 +8,6 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
-import OnOffInput from "../../components/atoms/OnOffInput";
 
 function EditSubject() {
   const navigate = useNavigate();
@@ -24,7 +23,6 @@ function EditSubject() {
   const [errorCourse, setErrorCourse] = useState(false);
   const [errorParallel, setErrorParallel] = useState(false);
   const [errorSpecialty, setErrorSpecialty] = useState(false);
-  const [erroracademicYear, setErroracademicYear] = useState(false);
   const [errorTeacher, setErrorTeacher] = useState(false);
 
   const [filters, setFilters] = useState([]);
@@ -38,8 +36,6 @@ function EditSubject() {
       ? setError(errorParallel)
       : errorSpecialty.error
       ? setError(errorSpecialty)
-      : erroracademicYear.error
-      ? setError(erroracademicYear)
       : errorTeacher.error
       ? setError(errorTeacher)
       : setError(false);
@@ -48,7 +44,6 @@ function EditSubject() {
     errorCourse,
     errorParallel,
     errorSpecialty,
-    erroracademicYear,
     errorTeacher,
   ]);
 
@@ -98,28 +93,6 @@ function EditSubject() {
     setIsLoading(false);
   }, [setIsLoading, setModal, token]);
 
-  const deactivate = async (state) => {
-    setIsLoading(true);
-    try {
-      await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/subject/${params.id}/destroy`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: token,
-          },
-        }
-      );
-      setSubject((prevState) => {
-        return { ...prevState, state };
-      });
-    } catch (error) {
-      setModal({ title: "ERROR", message: error.response.data.message });
-    }
-    setIsLoading(false);
-  };
-
   const saveData = async (event) => {
     event.preventDefault();
     if (error) {
@@ -139,7 +112,7 @@ function EditSubject() {
           course_id: subject.course_id,
           parallel_id: subject.parallel_id,
           specialty_id: subject.specialty_id,
-          academic_period_id: subject.academic_period_id,
+          academic_period_id: filters.academicYears[0].id,
         },
         {
           headers: {
@@ -198,19 +171,6 @@ function EditSubject() {
           validation="select"
           disabled={user.role !== "secretary"}
         />
-        {/* <Card
-          label="Periodo"
-          type="select"
-          options={filters.academicYears}
-          theme="simple"
-          value={subject.academic_period_id}
-          onChange={(event) => {
-            setSubject({ ...subject, academic_period_id: event.target.value });
-          }}
-          setError={setErroracademicYear}
-          validation="select"
-          disabled={user.role !== "secretary"}
-        /> */}
       </SubContainer>
       <SubContainer>
         <Card
@@ -253,16 +213,6 @@ function EditSubject() {
           disabled={user.role !== "secretary"}
         />
       </SubContainer>
-      {/* <SubContainer>
-        <Card label="Estado">
-          <OnOffInput
-            value={subject.state}
-            onChange={(state) => {
-              deactivate(state);
-            }}
-          />
-        </Card>
-      </SubContainer> */}
     </MainContainer>
   );
 }

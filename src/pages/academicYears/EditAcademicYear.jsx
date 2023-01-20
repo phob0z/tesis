@@ -47,6 +47,7 @@ function EditAcademicYear() {
         }
       );
       const data = response.data.data.academic_period;
+      console.log(data);
       setAcademicYear(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -119,7 +120,20 @@ function EditAcademicYear() {
       title="Periodo"
       buttonTitle="Guardar"
       type="submit"
-      onClick={saveData}
+      onClick={(event) => {
+        if (
+          new Date(academicYear.finq1).getTime() >
+          new Date(academicYear.finq2).getTime()
+        ) {
+          setModal({
+            title: "Error en el campo " + "fechas".toUpperCase(),
+            message:
+              "La fecha de finalización del Q1 no puede ser mayor a la del Q2",
+          });
+          return;
+        }
+        saveData(event);
+      }}
       backButton
     >
       <SubContainer>
@@ -148,8 +162,8 @@ function EditAcademicYear() {
           }}
           setError={setErrorEndQ1}
           validation="date"
-          // minDate="06/01/2020"
-          // maxDate={academicYear.endq2}
+          minDate="0"
+          maxDate="1"
           disabled={user.role !== "secretary"}
         />
         <Card
@@ -163,8 +177,8 @@ function EditAcademicYear() {
           }}
           setError={setErrorEndQ2}
           validation="date"
-          // minDate={academicYear.endq1}
-          // maxDate="06/01/2021"
+          minDate="0"
+          maxDate="1"
           disabled={user.role !== "secretary"}
         />
         <Card label="Estado">

@@ -15,17 +15,25 @@ function Grade(props) {
   useEffect(() => {
     setError(false);
     if (!props.value) {
-      if (props.must) setError("El campo no puede estar vacío");
+      if (props.must) setError("Min 0.00\nMax 10.00");
     } else {
-      if (
-        !props.value.match(
-          /^(([0-1][0-9]{0,1})([.][0-9]{1,2}){0,1})$|(20([.][0]{1,2}){0,1})$/
-        )
-      )
-        setError("Min 0.00\nMax 20.00");
+      switch (props.validation) {
+        case "behaviour":
+          if (!props.value.match(/^([ABCDEFabcdef])+$/))
+            setError("[A,B,C,D,E,F]");
+          break;
+        default:
+          let val = parseFloat(props.value);
+          if (
+            !props.value.match(/^[0-9]+[.]{0,1}[0-9]{0,3}$/) ||
+            val > 10 ||
+            val < 0
+          )
+            setError("Min 0.00\nMax 10.00");
+          break;
+      }
     }
-    // eslint-disable-next-line
-  }, [props.value, inputTouched]);
+  }, [props.value, props.must, inputTouched]);
 
   useEffect(() => {
     props.setError({ label: props.label, error: error });
@@ -44,16 +52,18 @@ function Grade(props) {
           maxLength={props.maxLength}
           theme="blue"
           disabled={props.disabled}
+          className={props.className}
         />
       </div>
-      {error && <div className={classes.error}>{error}</div>}
+      {props.validation && error && (
+        <div className={classes.error}>{error}</div>
+      )}
     </div>
   );
 }
 
 Grade.propTypes = {
   type: PropTypes.string,
-  value: PropTypes.string,
   onChange: PropTypes.func,
   label: PropTypes.string,
   maxLength: PropTypes.string,

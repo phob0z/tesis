@@ -129,7 +129,7 @@ const AppRouter = () => {
                     </Route>
                     <Route path="/grades">
                       <Route path="" element={<Grades />} />
-                      <Route path=":id" element={<EditGrades />} />
+                      <Route path=":id/:academicYear" element={<EditGrades />} />
                     </Route>
                   </Routes>
                 </Fragment>

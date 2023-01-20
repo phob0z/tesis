@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -10,7 +9,6 @@ import LongSubContainer from "../../components/containers/LongSubContainer";
 import StudentCard from "../../components/cards/StudentCard";
 
 function Grades() {
-  const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -75,7 +73,6 @@ function Grades() {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-    // eslint-disable-next-line
   };
 
   useEffect(() => {
@@ -169,6 +166,7 @@ function Grades() {
                 parallel={student.parallel}
                 specialty={student.specialty}
                 academic_period={student.academic_period}
+                academic_period_id={student.academic_period_id}
                 state={student.state}
                 buttonTitle="Notas"
               />

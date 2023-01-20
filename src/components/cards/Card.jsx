@@ -39,7 +39,7 @@ function Card(props) {
         case "cedula":
           if (props.value.trim().length !== 10)
             setError("La cédula debe tener 10 dígitos");
-          else if (!/^[0-9]+$/.test(props.value))
+          else if (!props.value.match(/^[0-9]+$/))
             setError("La cédula solo puede contener números");
           break;
         case "date":

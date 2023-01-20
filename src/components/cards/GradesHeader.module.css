@@ -1,9 +1,8 @@
-.subject {
+.subjectHeader {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 3.5fr 3fr 6fr 6fr 1fr 1.5fr;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  grid-template-columns: 4fr 6fr 6fr 1.5fr 1.5fr 1.5fr 1.5fr;
+  padding: 1rem 1rem 0 1rem;
   font-family: "Open Sans";
   font-size: 0.9rem;
   color: #414141;
@@ -14,34 +13,43 @@
   align-items: center;
 }
 
-.quimester {
-  
+.studentInfo {
   display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1rem;
+  font-family: "Open Sans";
+  font-size: 0.9rem;
+  color: #414141;
+  font-weight: 900;
+  cursor: default;
+  border-bottom: 1px solid #414141;
 }
 
-.quimester div {
-  
+.subInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quimester {
+  padding-bottom: 0.4rem;
+}
+
+.subquimester {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr;
+  column-gap: 0.5rem;
 }
 
 .extra {
-  
 }
 
 .final {
-  
 }
 
 .grade {
-  
 }
 
 .name {
   overflow: hidden;
   padding-right: 0.2rem;
-}
-
-.blocked {
-
 }

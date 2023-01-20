@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
-import OnOffIcon from "../icons/OnOffIcon";
 import classes from "./SubjectCard.module.css";
 
 function SubjectCard(props) {
@@ -16,7 +15,6 @@ function SubjectCard(props) {
       </div>
       <div>{props.specialty}</div>
       <div>{props.academicYear}</div>
-      {/* <OnOffIcon state={props.state} /> */}
       <div>
         <Button
           className="editButton"

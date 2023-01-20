@@ -429,7 +429,7 @@ function EditStudent() {
             label="Curso"
             type="select"
             options={filters.courses}
-            theme="simple"
+            // theme="simple"
             value={student.course_id}
             onChange={(event) => {
               setStudent({ ...student, course_id: event.target.value });
@@ -440,7 +440,7 @@ function EditStudent() {
             label="Paralelo"
             type="select"
             options={filters.parallels}
-            theme="simple"
+            // theme="simple"
             value={student.parallel_id}
             onChange={(event) => {
               setStudent({ ...student, parallel_id: event.target.value });
@@ -451,7 +451,7 @@ function EditStudent() {
             label="Especialidad"
             type="select"
             options={filters.specialties}
-            theme="simple"
+            // theme="simple"
             value={student.specialty_id}
             onChange={(event) => {
               setStudent({ ...student, specialty_id: event.target.value });

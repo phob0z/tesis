@@ -75,7 +75,6 @@ function Students() {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-    // eslint-disable-next-line
   };
 
   useEffect(() => {

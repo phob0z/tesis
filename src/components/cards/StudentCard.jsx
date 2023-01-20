@@ -21,7 +21,7 @@ function StudentCard(props) {
         <Button
           className="editButton"
           onClick={() => {
-            navigate(`./${props.id}`);
+            navigate(`./${props.id}/${props.academic_period_id}`);
           }}
         >
           {props.buttonTitle}
