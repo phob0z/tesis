@@ -146,7 +146,7 @@ function EditSubject() {
       <SubContainer>
         <Card
           label="Asignatura"
-          value={subject.name}
+          value={subject.name??""}
           maxLength="30"
           onChange={(event) => {
             setSubject((prevState) => {
@@ -209,7 +209,7 @@ function EditSubject() {
             setSubject({ ...subject, specialty_id: event.target.value });
           }}
           setError={setErrorSpecialty}
-          validation="select"
+          validation="select" 
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

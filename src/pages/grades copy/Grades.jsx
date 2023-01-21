@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -9,8 +8,7 @@ import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
 import StudentCard from "../../components/cards/StudentCard";
 
-function Students() {
-  const navigate = useNavigate();
+function Grades() {
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -58,7 +56,7 @@ function Students() {
           identification: search.identification,
           course_id: search.course,
           parallel_id: search.parallel,
-          specialty_id: search.specialty,
+          specialty_id: search.specialtie,
           academic_period_id: search.academicYear,
         },
         {
@@ -80,10 +78,6 @@ function Students() {
   useEffect(() => {
     fetchFilters();
   }, [fetchFilters]);
-
-  const onClick = (userId) => {
-    navigate(`./${userId}`);
-  }
 
   const onSearch = () => {
     if (
@@ -107,7 +101,7 @@ function Students() {
           course: "",
           parallel: "",
           specialty: "",
-          academicYear: ""
+          academicYear: "",
         };
       });
     }
@@ -115,7 +109,7 @@ function Students() {
     setSearch((prevState) => {
       return {
         ...prevState,
-        identification: ""
+        identification: "",
       };
     });
   };
@@ -123,10 +117,6 @@ function Students() {
   return (
     <LongMainContainer
       title="Estudiantes"
-      buttonTitle="Nuevo"
-      onClick={() => {
-        navigate("newStudent");
-      }}
       onSearch={onSearch}
       showSearchInput
       search={search}
@@ -166,18 +156,19 @@ function Students() {
       ) : (
         students.map((student) => {
           return (
-            <LongSubContainer key={student.id}>
+            <LongSubContainer key={student.identification}>
               <StudentCard
                 id={student.id}
-                name={student.name??""}
-                last_name={student.last_name??""}
-                identification={student.identification??""}
-                course={student.course??""}
-                parallel={student.parallel??""}
-                specialty={student.specialty??""}
-                academic_period={student.academic_period??""}
+                name={student.name}
+                last_name={student.last_name}
+                identification={student.identification}
+                course={student.course}
+                parallel={student.parallel}
+                specialty={student.specialty}
+                academic_period={student.academic_period}
+                academic_period_id={student.academic_period_id}
                 state={student.state}
-                onClick={onClick}
+                buttonTitle="Notas"
               />
             </LongSubContainer>
           );
@@ -187,4 +178,4 @@ function Students() {
   );
 }
 
-export default Students;
+export default Grades;

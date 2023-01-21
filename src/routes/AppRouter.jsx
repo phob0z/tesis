@@ -51,8 +51,12 @@ import AcademicYears from "../pages/academicYears/AcademicYears";
 import NewAcademicYear from "../pages/academicYears/NewAcademicYear";
 import EditAcademicYear from "../pages/academicYears/EditAcademicYear";
 
-import Grades from "../pages/grades/Grades";
 import EditGrades from "../pages/grades/EditGrades";
+
+import SecretaryStudents from "../pages/grades/SecretaryStudents";
+
+import TeacherStudents from "../pages/grades/TeacherStudents";
+import TeacherSubjects from "../pages/grades/TeacherSubjects";
 
 const AppRouter = () => {
   return (
@@ -127,9 +131,28 @@ const AppRouter = () => {
                       />
                       <Route path=":id" element={<EditAcademicYear />} />
                     </Route>
-                    <Route path="/grades">
-                      <Route path="" element={<Grades />} />
-                      <Route path=":id/:academicYear" element={<EditGrades />} />
+                    <Route path="/grades/secretary">
+                      <Route path="" element={<SecretaryStudents />} />
+                      <Route
+                        path=":studentId/:academicYearId"
+                        element={<EditGrades />}
+                      />
+                    </Route>
+                    <Route path="/grades/teacher">
+                      <Route path="" element={<TeacherSubjects />} />
+                      <Route path=":subjectId" element={<TeacherStudents />} />
+                      <Route
+                        path=":subjectId/:studentId"
+                        element={<EditGrades />}
+                      />
+                    </Route>
+                    <Route path="/grades/student">
+                      {/* <Route path="" element={<StudentSubjects />} /> */}
+                      <Route
+                        path=""
+                        // path=":academicYearId"
+                        element={<EditGrades />}
+                      />
                     </Route>
                   </Routes>
                 </Fragment>
@@ -137,36 +160,6 @@ const AppRouter = () => {
             }
           />
         </Routes>
-
-        {/* <Route
-          path="/*"
-          element={
-            <PrivateRoute>
-              <Routes>
-                <Route element={<DashboardTemplate />}>
-                  <Route index path="/" element={<App />} />
-                  <Route index path="/directors" element={<ListDirectors />} />
-                  <Route
-                    index
-                    path="/directors/show/:id"
-                    element={<ShowDirector />}
-                  />
-                  <Route
-                    index
-                    path="/directors/create"
-                    element={<CreateDirector />}
-                  />
-                  <Route
-                    index
-                    path="/directors/edit/:id"
-                    element={<UpdateDirector />}
-                  />
-                </Route>
-              </Routes>
-            </PrivateRoute>
-          }
-        />
-        </Routes> */}
       </AuthProvider>
     </Fragment>
   );

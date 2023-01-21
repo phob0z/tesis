@@ -243,7 +243,7 @@ function EditStudent() {
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={student.name}
+            value={student.name??""}
             maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, name: event.target.value });
@@ -255,7 +255,7 @@ function EditStudent() {
           />
           <Card
             label="Apellidos"
-            value={student.last_name}
+            value={student.last_name??""}
             maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, last_name: event.target.value });
@@ -267,7 +267,7 @@ function EditStudent() {
           />
           <Card
             label="Identificación"
-            value={student.identification}
+            value={student.identification??""}
             maxLength="15"
             onChange={(event) => {
               setStudent({
@@ -282,7 +282,7 @@ function EditStudent() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={student.birthdate}
+            value={student.birthdate??""}
             maxLength="10"
             type="date"
             onChange={(date) => {
@@ -299,7 +299,7 @@ function EditStudent() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={student.email}
+            value={student.email??""}
             maxLength="50"
             onChange={(event) => {
               setStudent({ ...student, email: event.target.value });
@@ -311,7 +311,7 @@ function EditStudent() {
           />
           <Card
             label="Teléfono fijo"
-            value={student.home_phone}
+            value={student.home_phone??""}
             maxLength="9"
             onChange={(event) => {
               setStudent({
@@ -326,7 +326,7 @@ function EditStudent() {
           />
           <Card
             label="Teléfono celular"
-            value={student.personal_phone}
+            value={student.personal_phone??""}
             maxLength="10"
             onChange={(event) => {
               setStudent({
@@ -342,7 +342,7 @@ function EditStudent() {
           <Card
             type="textBig"
             label="Dirección"
-            value={student.address}
+            value={student.address??""}
             maxLength="150"
             onChange={(event) => {
               setStudent({ ...student, address: event.target.value });
@@ -356,7 +356,7 @@ function EditStudent() {
         <SubContainer subTitle="DATOS DEL REPRESENTANTE">
           <Card
             label="Nombres"
-            value={student.representative_name}
+            value={student.representative_name??""}
             maxLength="35"
             onChange={(event) => {
               setStudent({
@@ -370,7 +370,7 @@ function EditStudent() {
           />
           <Card
             label="Apellidos"
-            value={student.representative_last_name}
+            value={student.representative_last_name??""}
             maxLength="35"
             onChange={(event) => {
               setStudent({
@@ -384,7 +384,7 @@ function EditStudent() {
           />
           <Card
             label="Identificación"
-            value={student.representative_identification}
+            value={student.representative_identification??""}
             maxLength="15"
             onChange={(event) => {
               setStudent({
@@ -398,7 +398,7 @@ function EditStudent() {
           />
           <Card
             label="Teléfono celular"
-            value={student.representative_personal_phone}
+            value={student.representative_personal_phone??""}
             maxLength="10"
             onChange={(event) => {
               setStudent({
@@ -413,7 +413,7 @@ function EditStudent() {
         </SubContainer>
         <SubContainer subTitle="IMAGEN DE PERFIL">
           <Card
-            value={student.avatar}
+            value={student.avatar??""}
             type="image"
             onChange={(image) => {
               setAvatarChanged(true);
@@ -421,7 +421,6 @@ function EditStudent() {
               setAvatarFile(image.file);
             }}
             validation="image"
-            // disabled={user.role !== "secretary"}
           />
         </SubContainer>
         <SubContainer subTitle="DATOS DE LA MATRÍCULA">
@@ -429,7 +428,6 @@ function EditStudent() {
             label="Curso"
             type="select"
             options={filters.courses}
-            // theme="simple"
             value={student.course_id}
             onChange={(event) => {
               setStudent({ ...student, course_id: event.target.value });
@@ -440,7 +438,6 @@ function EditStudent() {
             label="Paralelo"
             type="select"
             options={filters.parallels}
-            // theme="simple"
             value={student.parallel_id}
             onChange={(event) => {
               setStudent({ ...student, parallel_id: event.target.value });
@@ -451,7 +448,6 @@ function EditStudent() {
             label="Especialidad"
             type="select"
             options={filters.specialties}
-            // theme="simple"
             value={student.specialty_id}
             onChange={(event) => {
               setStudent({ ...student, specialty_id: event.target.value });
@@ -462,7 +458,6 @@ function EditStudent() {
             label="Periodo"
             type="select"
             options={filters.academicYears}
-            theme="simple"
             value={student.academic_period_id}
             onChange={(event) => {
               setStudent({ ...student, academic_period_id: event.target.value });

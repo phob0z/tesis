@@ -129,7 +129,7 @@ function NewSubject() {
       <SubContainer>
         <Card
           label="Asignatura"
-          value={subject.name}
+          value={subject.name??""}
           maxLength="30"
           onChange={(event) => {
             setSubject((prevState) => {
@@ -144,7 +144,7 @@ function NewSubject() {
         <Card
           label="Profesor"
           type="select"
-          options={filters.teachers}
+          options={filters.teachers??""}
           theme="simple"
           value={subject.teacher_id}
           onChange={(event) => {
@@ -159,7 +159,7 @@ function NewSubject() {
         <Card
           label="Curso"
           type="select"
-          options={filters.courses}
+          options={filters.courses??""}
           theme="simple"
           value={subject.course_id}
           onChange={(event) => {
@@ -172,7 +172,7 @@ function NewSubject() {
         <Card
           label="Paralelo"
           type="select"
-          options={filters.parallels}
+          options={filters.parallels??""}
           theme="simple"
           value={subject.parallel_id}
           onChange={(event) => {
@@ -185,7 +185,7 @@ function NewSubject() {
         <Card
           label="Especialidad"
           type="select"
-          options={filters.specialties}
+          options={filters.specialties??""}
           theme="simple"
           value={subject.specialty_id}
           onChange={(event) => {

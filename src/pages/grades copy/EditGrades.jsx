@@ -1,4 +1,10 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, {
+  Fragment,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -24,36 +30,21 @@ function EditGrades() {
 
   const fetchData = async () => {
     setIsLoading(true);
-    var url;
     try {
-      switch (user.role) {
-        case "secretary":
-          url = `${process.env.REACT_APP_BACK_URL}/secretary/${params.studentId}/${params.academicYearId}/grades`;
-          //http://localhost:3000/grades/secretary/19/1
-          break;
-        case "teacher":
-          url = `${process.env.REACT_APP_BACK_URL}/teacher/${params.studentId}/${params.subjectId}/grades`;
-          //http://localhost:3000/grades/teacher/15/19
-          break;
-        case "student":
-          url = `${process.env.REACT_APP_BACK_URL}/student/${params.academicYearId}/grades`;
-          break;
-        default:
-          url = `${process.env.REACT_APP_BACK_URL}/student/${params.academicYearId}/grades`;
-          break;
-      }
-      const response = await axios.get(url, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: token,
-        },
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/secretary/${params.id}/${params.academicYear}/grades`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
       const data = response.data.data.grades;
       const student = response.data.data.user;
       setStudent(student);
-      // if (data.length === undefined) setSubjects([data]);
-      /* else  */setSubjects(data);
+      setSubjects(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }

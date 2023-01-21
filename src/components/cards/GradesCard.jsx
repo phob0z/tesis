@@ -79,7 +79,7 @@ function GradesCard(props) {
             final: prom([grades.q1f, grades.q2f]),
           };
         });
-      } else {
+      } else if (grades.supletory >= 7) {
         setGrades((prevState) => {
           return { ...prevState, final: 7, remedial: "", grace: "" };
         });
@@ -110,7 +110,7 @@ function GradesCard(props) {
             final: prom([grades.q1f, grades.q2f]),
           };
         });
-      } else {
+      } else if (grades.remedial >= 7) {
         setGrades((prevState) => {
           return { ...prevState, final: 7, grace: "" };
         });
@@ -118,6 +118,30 @@ function GradesCard(props) {
       setGraceDisabled(true);
     }
   }, [grades.remedial]);
+
+  useEffect(() => {
+    if (grades.grace.trim() !== "" && grades.grace >= 0 && grades.grace < 7) {
+      setGrades((prevState) => {
+        return {
+          ...prevState,
+          final: prom([grades.q1f, grades.q2f]),
+        };
+      });
+    } else {
+      if (grades.grace.trim() === "") {
+        setGrades((prevState) => {
+          return {
+            ...prevState,
+            final: prom([grades.q1f, grades.q2f]),
+          };
+        });
+      } else if (grades.grace >= 7) {
+        setGrades((prevState) => {
+          return { ...prevState, final: 7 };
+        });
+      }
+    }
+  }, [grades.grace]);
 
   useEffect(() => {
     props.onFinalChange(grades.id, grades.final);
@@ -202,7 +226,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorq1p1}
-              disabled={false}
+              disabled={props.role !== "teacher"}
             />
           </div>
           <div className={classes.grade}>
@@ -218,7 +242,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorq1p2}
-              disabled={false}
+              disabled={props.role !== "teacher"}
             />
           </div>
           <div className={classes.grade}>
@@ -234,7 +258,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorq1p3}
-              disabled={false}
+              disabled={props.role !== "teacher"}
             />
           </div>
           <div className={classes.grade}>
@@ -262,7 +286,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorq2p1}
-              disabled={false}
+              disabled={props.role !== "teacher"}
             />
           </div>
           <div className={classes.grade}>
@@ -278,7 +302,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorq2p2}
-              disabled={false}
+              disabled={props.role !== "teacher"}
             />
           </div>
           <div className={classes.grade}>
@@ -294,7 +318,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorq2p3}
-              disabled={false}
+              disabled={props.role !== "teacher"}
             />
           </div>
           <div className={classes.grade}>
@@ -321,7 +345,7 @@ function GradesCard(props) {
           validation="grade"
           maxLength="5"
           setError={setErrorSupletory}
-          disabled={supletoryDisabled}
+          disabled={props.role !== "teacher" || supletoryDisabled}
         />
       </div>
       <div className={classes.extra}>
@@ -337,7 +361,7 @@ function GradesCard(props) {
           validation="grade"
           maxLength="5"
           setError={setErrorRemedial}
-          disabled={remedialDisabled}
+          disabled={props.role !== "teacher" || remedialDisabled}
         />
       </div>
       <div className={classes.extra}>
@@ -353,7 +377,7 @@ function GradesCard(props) {
           validation="grade"
           maxLength="5"
           setError={setErrorGrace}
-          disabled={graceDisabled}
+          disabled={props.role !== "teacher" || graceDisabled}
         />
       </div>
       <div className={`${classes.final}`}>{grades.final}</div>

@@ -67,7 +67,7 @@ function Specialties() {
             <LongSubContainer key={course.id}>
               <OnOffCard
                 id={course.id}
-                name={course.name}
+                name={course.name??""}
                 state={course.state}
               />
             </LongSubContainer>

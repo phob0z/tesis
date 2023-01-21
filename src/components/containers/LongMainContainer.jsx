@@ -91,13 +91,18 @@ function LongMainContainer(props) {
         </div>
       )}
 
-      {props.buttonTitle && (
-        <div className={classes.button}>
+      <div className={classes.buttons}>
+        {props.buttonTitle && (
           <Button type="submit" onClick={props.onClick}>
             {props.buttonTitle}
           </Button>
-        </div>
-      )}
+        )}
+        {props.buttonSave && (
+          <Button type="submit" onSave={props.onSave}>
+            Guardar
+          </Button>
+        )}
+      </div>
     </Fragment>
   );
 }

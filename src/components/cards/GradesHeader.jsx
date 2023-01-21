@@ -8,51 +8,6 @@ import AuthContext from "../../contexts/auth/AuthContext";
 import classes from "./GradesHeader.module.css";
 
 function GradesHeader(props) {
-  const params = useParams();
-  const [student, setStudent] = useState({
-    student_name: "",
-    student_last_name: "",
-    course: "",
-    parallel: "",
-    specialty: "",
-    academic_period: "",
-    behaviour1: "",
-    behaviour2: "",
-  });
-
-  const { token } = useContext(AuthContext);
-  const { setIsLoading, setModal } = useContext(AlertContext);
-
-  const fetchStudent = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/student/${params.id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: token,
-          },
-        }
-      );
-      const data = response.data.data.user;
-      data.birthdate = new Date(data.birthdate)
-        .toISOString()
-        .split("T", 1)[0]
-        .split("-");
-      setStudent(data);
-    } catch (error) {
-      setModal({ title: "ERROR", message: error.response.data.message });
-    }
-    setIsLoading(false);
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    fetchStudent();
-  }, [fetchStudent]);
-
   return (
     <Fragment>
       <div className={classes.studentInfo}>
@@ -60,15 +15,7 @@ function GradesHeader(props) {
           <div>
             Estudiante: {props.student_name} {props.student_last_name}
           </div>
-          {/* <div>Identificación: {props.identification}</div> */}
         </div>
-        {/* <div className={classes.subInfo}>
-          <div>
-            Nacimiento: {props.birthdate[2]}-{props.birthdate[1]}-
-            {props.birthdate[0]}
-          </div>
-          <div>Correo: {props.email}</div>
-        </div> */}
         <div className={classes.subInfo}>
           <div>Especialidad: {props.specialty}</div>
         </div>

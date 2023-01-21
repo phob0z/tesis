@@ -45,7 +45,9 @@ function Card(props) {
         case "date":
           break;
         case "email":
-          if (props.value.trim().length > props.maxLength)
+          if (props.value.trim().length < 10)
+            setError("Debe tener al menos 10 caracteres");
+          else if (props.value.trim().length > props.maxLength)
             setError(`Debe tener menos de ${props.maxLength} caracteres`);
           else if (
             // !props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/)

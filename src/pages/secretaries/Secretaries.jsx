@@ -113,9 +113,9 @@ function Secretaries() {
             <LongSubContainer key={secretary.identification}>
               <TeacherCard
                 id={secretary.id}
-                name={secretary.name}
-                last_name={secretary.last_name}
-                identification={secretary.identification}
+                name={secretary.name??""}
+                last_name={secretary.last_name??""}
+                identification={secretary.identification??""}
                 state={secretary.state}
               />
             </LongSubContainer>

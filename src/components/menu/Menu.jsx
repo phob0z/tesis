@@ -43,7 +43,7 @@ const Menu = () => {
         ],
         route: "#",
       },
-      { title: "Calificaciones", route: "/grades" },
+      { title: "Calificaciones", route: "/grades/secretary" },
       { title: "Reportes", route: "/reports" },
     ],
     []
@@ -52,7 +52,7 @@ const Menu = () => {
   const menuTeacher = useMemo(
     () => [
       { title: "Perfil", route: "/profile" },
-      { title: "Calificaciones", route: "/grades" },
+      { title: "Calificaciones", route: "/grades/teacher" },
       { title: "Reportes", route: "/reports" },
     ],
     []
@@ -61,7 +61,7 @@ const Menu = () => {
   const menuStudent = useMemo(
     () => [
       { title: "Perfil", route: "/profile" },
-      { title: "Calificaciones", route: "/grades" },
+      { title: "Calificaciones", route: "/grades/student" },
       { title: "Reportes", route: "/reports" },
     ],
     []

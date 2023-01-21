@@ -2,11 +2,12 @@
 17-19 MÁXIMO
 La semana del 16 al 17 dedicarse al documento al menos hasta antes de pruebas (Sprint 4)
 
-Secretaria no modifica las notas, solo los comportamientos
-
-El profesor no modifica los comportamientos, solo las notas
+Botones de Guardar en EditGrades de teacher y de Secretary
+En EditStudent, si los 4 campos de matrícula están, bloquearlos que no se puedan cambiar
 
 Boton de finalizar el periodo
+
+En student el telefono fijo no es obligatorio
 
 Hacer:
 verSubjects, para Student

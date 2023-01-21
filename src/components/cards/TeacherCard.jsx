@@ -21,7 +21,7 @@ function TeacherCard(props) {
             navigate(`./${props.id}`);
           }}
         >
-          Editar
+          {props.buttonTitle ?? "Editar"}
         </Button>
       </div>
     </div>

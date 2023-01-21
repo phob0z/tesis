@@ -8,24 +8,29 @@ function MainContainer(props) {
 
   return (
     <Fragment>
-      <div className={classes.mainContainer} style={props.style}> {props.children} </div>
+      <div className={classes.mainContainer} style={props.style}>
+        {" "}
+        {props.children}{" "}
+      </div>
       {props.title && (
         <div className={classes.containerTitle}> {props.title} </div>
       )}
-      {props.buttonTitle && (
-        <div className={classes.buttons}>
-          {props.backButton && (
-            <Button onClick={() => navigate("../")}>Volver</Button>
-          )}
-          {props.addSubjectButton? (
-            <Button onClick={() => navigate("./addSubject")}>Agregar asignatura</Button>
-          ) : <div />}
-          
+
+      <div className={classes.buttons}>
+        {props.backButton && (
+          <Button onClick={() => navigate("../")}>Volver</Button>
+        )}
+        {props.addSubjectButton && (
+          <Button onClick={() => navigate("./seeSubjects")}>
+            Ver asignaturas
+          </Button>
+        )}
+        {props.buttonTitle && (
           <Button type="submit" onClick={props.onClick}>
             {props.buttonTitle}
           </Button>
-        </div>
-      )}
+        )}
+      </div>
     </Fragment>
   );
 }

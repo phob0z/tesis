@@ -7,12 +7,14 @@ import AuthContext from "../../contexts/auth/AuthContext";
 import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
 import StudentCard from "../../components/cards/StudentCard";
+import { useNavigate } from "react-router-dom";
 
-function Grades() {
+function SecretaryStudents() {
+  const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  const [grades, setGrades] = useState(null);
+  const [students, setStudents] = useState(null);
   const [filters, setFilters] = useState([]);
 
   const [search, setSearch] = useState({
@@ -23,7 +25,7 @@ function Grades() {
     academicYear: "",
   });
 
-  const fetchFilters = useCallback(async () => {
+  const fetchFilters = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -45,7 +47,7 @@ function Grades() {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal, token]);
+  };
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -68,16 +70,20 @@ function Grades() {
         }
       );
       const data = response.data.data.users;
-      setGrades([...data]);
+      setStudents([...data]);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
   };
 
+  const onClick = (studentId) => {
+    navigate(`./${studentId}/${filters.academicYears[0].id}`);
+  }
+
   useEffect(() => {
     fetchFilters();
-  }, [fetchFilters]);
+  }, []);
 
   const onSearch = () => {
     if (
@@ -128,7 +134,7 @@ function Grades() {
       }}
       searchBarLabel="Identificación"
     >
-      {!grades ? (
+      {!students ? (
         <LongSubContainer>
           <div
             style={{
@@ -141,7 +147,7 @@ function Grades() {
             en el botón "Buscar"
           </div>
         </LongSubContainer>
-      ) : grades.length === 0 ? (
+      ) : students.length === 0 ? (
         <LongSubContainer>
           <div
             style={{
@@ -154,7 +160,7 @@ function Grades() {
           </div>
         </LongSubContainer>
       ) : (
-        grades.map((student) => {
+        students.map((student) => {
           return (
             <LongSubContainer key={student.identification}>
               <StudentCard
@@ -169,6 +175,7 @@ function Grades() {
                 academic_period_id={student.academic_period_id}
                 state={student.state}
                 buttonTitle="Notas"
+                onClick={onClick}
               />
             </LongSubContainer>
           );
@@ -178,4 +185,4 @@ function Grades() {
   );
 }
 
-export default Grades;
+export default SecretaryStudents;

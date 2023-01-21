@@ -66,7 +66,7 @@ function NewCourse() {
       <SubContainer>
         <Card
           label="Curso"
-          value={course.name}
+          value={course.name??""}
           maxLength="30"
           onChange={(event) => {
             setCourse((prevState) => {

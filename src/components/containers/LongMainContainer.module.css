@@ -46,7 +46,11 @@
   top: 25%;
 }
 
-.button {
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 60%;
   position: absolute;
   bottom: 5%;
   left: 50%;

@@ -185,7 +185,7 @@ function EditSecretary() {
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={secretary.name}
+            value={secretary.name??""}
             maxLength="35"
             onChange={(event) => {
               setSecretary({ ...secretary, name: event.target.value });
@@ -197,7 +197,7 @@ function EditSecretary() {
           />
           <Card
             label="Apellidos"
-            value={secretary.last_name}
+            value={secretary.last_name??""}
             maxLength="35"
             onChange={(event) => {
               setSecretary({ ...secretary, last_name: event.target.value });
@@ -209,7 +209,7 @@ function EditSecretary() {
           />
           <Card
             label="Identificación"
-            value={secretary.identification}
+            value={secretary.identification??""}
             maxLength="15"
             onChange={(event) => {
               setSecretary({
@@ -224,7 +224,7 @@ function EditSecretary() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={secretary.birthdate}
+            value={secretary.birthdate??""}
             maxLength="10"
             type="date"
             onChange={(date) => {
@@ -241,7 +241,7 @@ function EditSecretary() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={secretary.email}
+            value={secretary.email??""}
             maxLength="50"
             onChange={(event) => {
               setSecretary({ ...secretary, email: event.target.value });
@@ -253,7 +253,7 @@ function EditSecretary() {
           />
           <Card
             label="Teléfono fijo"
-            value={secretary.home_phone}
+            value={secretary.home_phone??""}
             maxLength="9"
             onChange={(event) => {
               setSecretary({
@@ -268,7 +268,7 @@ function EditSecretary() {
           />
           <Card
             label="Teléfono celular"
-            value={secretary.personal_phone}
+            value={secretary.personal_phone??""}
             maxLength="10"
             onChange={(event) => {
               setSecretary({
@@ -284,7 +284,7 @@ function EditSecretary() {
           <Card
             type="textBig"
             label="Dirección"
-            value={secretary.address}
+            value={secretary.address??""}
             maxLength="150"
             onChange={(event) => {
               setSecretary({ ...secretary, address: event.target.value });

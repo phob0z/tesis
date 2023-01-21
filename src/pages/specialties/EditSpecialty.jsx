@@ -114,7 +114,7 @@ function EditSpecialty() {
       <SubContainer>
         <Card
           label="Especialidad"
-          value={specialty.name}
+          value={specialty.name??""}
           maxLength="50"
           onChange={(event) => {
             setSpecialty((prevState) => {

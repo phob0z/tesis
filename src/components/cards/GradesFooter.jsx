@@ -32,7 +32,7 @@ function GradesFooter(props) {
             }}
             setError={props.setErrorBehaviour1}
             validation="behaviour"
-            disabled={false}
+            disabled={props.role !== "secretary"}
           />
         </div>
         <div>
@@ -48,7 +48,7 @@ function GradesFooter(props) {
             }}
             setError={props.setErrorBehaviour2}
             validation="behaviour"
-            disabled={false}
+            disabled={props.role !== "secretary"}
           />
         </div>
         <div />

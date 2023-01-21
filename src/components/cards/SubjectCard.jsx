@@ -9,7 +9,10 @@ function SubjectCard(props) {
   return (
     <div className={classes.subject}>
       <div className={classes.name}>{props.name}</div>
-      <div>{props.teacher_name?.split(" ")[0]} {props.teacher_last_name?.split(" ")[0]}</div>
+      <div>
+        {props.teacher_name?.split(" ")[0]}{" "}
+        {props.teacher_last_name?.split(" ")[0]}
+      </div>
       <div>
         {props.course} {props.parallel}
       </div>
@@ -22,7 +25,7 @@ function SubjectCard(props) {
             navigate(`./${props.id}`);
           }}
         >
-          Editar
+          {props.buttonTitle??"Editar"}
         </Button>
       </div>
     </div>
