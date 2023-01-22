@@ -52,8 +52,8 @@ function EditGrades() {
       const data = response.data.data.grades;
       const student = response.data.data.user;
       setStudent(student);
-      // if (data.length === undefined) setSubjects([data]);
-      /* else  */setSubjects(data);
+      if (data.length === undefined) setSubjects([data]);
+      else setSubjects(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }

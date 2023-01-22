@@ -55,8 +55,11 @@ import EditGrades from "../pages/grades/EditGrades";
 
 import SecretaryStudents from "../pages/grades/SecretaryStudents";
 
+import StudentCourses from "../pages/grades/StudentCourses";
+
 import TeacherStudents from "../pages/grades/TeacherStudents";
 import TeacherSubjects from "../pages/grades/TeacherSubjects";
+
 
 const AppRouter = () => {
   return (
@@ -147,12 +150,8 @@ const AppRouter = () => {
                       />
                     </Route>
                     <Route path="/grades/student">
-                      {/* <Route path="" element={<StudentSubjects />} /> */}
-                      <Route
-                        path=""
-                        // path=":academicYearId"
-                        element={<EditGrades />}
-                      />
+                      <Route path="" element={<StudentCourses />} />
+                      <Route path=":academicYearId" element={<EditGrades />} />
                     </Route>
                   </Routes>
                 </Fragment>
