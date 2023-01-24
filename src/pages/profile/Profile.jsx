@@ -43,6 +43,7 @@ function Profile() {
       );
       const { user, avatar } = response.data.data;
       setUserProfile({ ...user, avatar: avatar });
+      console.log(user);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -185,11 +186,16 @@ function Profile() {
 
   return (
     <form onSubmit={saveProfile}>
-      <MainContainer title="Perfil" buttonTitle="Guardar" type="submit">
+      <MainContainer
+        title="Perfil"
+        buttonTitle="Guardar"
+        type="submit"
+        // subjectButton="/subjects"
+      >
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={userProfile.name??""}
+            value={userProfile.name ?? ""}
             maxLength="50"
             onChange={(event) => {
               setUserProfile({ ...userProfile, name: event.target.value });
@@ -201,7 +207,7 @@ function Profile() {
           />
           <Card
             label="Apellidos"
-            value={userProfile.last_name??""}
+            value={userProfile.last_name ?? ""}
             maxLength="50"
             onChange={(event) => {
               setUserProfile({ ...userProfile, last_name: event.target.value });
@@ -213,7 +219,7 @@ function Profile() {
           />
           <Card
             label="Identificación"
-            value={userProfile.identification??""}
+            value={userProfile.identification ?? ""}
             maxLength="15"
             onChange={(event) => {
               setUserProfile({
@@ -228,7 +234,7 @@ function Profile() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={userProfile.birthdate??""}
+            value={userProfile.birthdate ?? ""}
             maxLength="10"
             type="date"
             onChange={(date) => {
@@ -245,7 +251,7 @@ function Profile() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={userProfile.email??""}
+            value={userProfile.email ?? ""}
             maxLength="50"
             onChange={(event) => {
               setUserProfile({ ...userProfile, email: event.target.value });
@@ -257,7 +263,7 @@ function Profile() {
           />
           <Card
             label="Teléfono fijo"
-            value={userProfile.home_phone??""}
+            value={userProfile.home_phone ?? ""}
             maxLength="9"
             onChange={(event) => {
               setUserProfile({
@@ -272,7 +278,7 @@ function Profile() {
           />
           <Card
             label="Teléfono celular"
-            value={userProfile.personal_phone??""}
+            value={userProfile.personal_phone ?? ""}
             maxLength="10"
             onChange={(event) => {
               setUserProfile({
@@ -288,7 +294,7 @@ function Profile() {
           <Card
             type="textBig"
             label="Dirección"
-            value={userProfile.address??""}
+            value={userProfile.address ?? ""}
             maxLength="150"
             onChange={(event) => {
               setUserProfile({ ...userProfile, address: event.target.value });

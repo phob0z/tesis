@@ -117,14 +117,21 @@
   background-color: #6d1118;
 }
 
-@media (max-height: 320px), (max-width: 440px){
-  .ball1, .ball2, .ball3, .ball4, .ball5, .ball6, .ball7 {
+@media (max-height: 320px), (max-width: 440px) {
+  .ball1,
+  .ball2,
+  .ball3,
+  .ball4,
+  .ball5,
+  .ball6,
+  .ball7 {
     display: none;
   }
 }
 
 @keyframes ball1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
   50% {
@@ -133,7 +140,8 @@
 }
 
 @keyframes ball2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
   50% {
@@ -142,7 +150,8 @@
 }
 
 @keyframes ball3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
   50% {
@@ -151,7 +160,8 @@
 }
 
 @keyframes ball4 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
   50% {
@@ -160,7 +170,8 @@
 }
 
 @keyframes ball5 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
   50% {
@@ -169,7 +180,8 @@
 }
 
 @keyframes ball6 {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -178,7 +190,8 @@
 }
 
 @keyframes ball7 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
   50% {

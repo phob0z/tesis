@@ -83,8 +83,8 @@ function Subjects() {
               minWidth: "100%",
             }}
           >
-            Escribir el nombre de una asignatura y posteriormente hacer clic en el botón
-            "Buscar"
+            Escribir el nombre de una asignatura y posteriormente hacer clic en
+            el botón "Buscar"
           </div>
         </LongSubContainer>
       ) : subjects?.length === 0 ? (
@@ -106,18 +106,12 @@ function Subjects() {
               <SubjectCard
                 id={subject.id}
                 name={subject.name}
-                // teacher_id={teacher_id}
                 teacher_name={subject.teacher_name}
                 teacher_last_name={subject.teacher_last_name}
                 course={subject.course}
-                // course_id={subject.course_id}
                 parallel={subject.parallel}
-                // parallel_id={subject.parallel_id}
                 specialty={subject.specialty}
-                // specialty_id={subject.specialty_id}
                 academicYear={subject.academic_period}
-                // academicYear_id={subject.academic_period_id}
-                // state={subject.state}
               />
             </LongSubContainer>
           );

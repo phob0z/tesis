@@ -5,35 +5,26 @@ import classes from "./Grade.module.css";
 import Input from "../atoms/Input";
 
 function Grade(props) {
-  const [inputTouched, setInputTouched] = useState(false);
   const [error, setError] = useState(false);
-
-  const onBlur = () => {
-    setInputTouched(true);
-  };
 
   useEffect(() => {
     setError(false);
-    if (!props.value) {
+    var value = props.value.toString();
+    if (!value) {
       if (props.must) setError("Min 0.00\nMax 10.00");
     } else {
       switch (props.validation) {
         case "behaviour":
-          if (!props.value.match(/^([ABCDEFabcdef])+$/))
-            setError("[A,B,C,D,E,F]");
+          if (!value.match(/^([ABCDEFabcdef])+$/)) setError("[A,B,C,D,E,F]");
           break;
         default:
-          let val = parseFloat(props.value);
-          if (
-            !props.value.match(/^[0-9]+[.]{0,1}[0-9]{0,3}$/) ||
-            val > 10 ||
-            val < 0
-          )
+          let val = parseFloat(value);
+          if (!value.match(/^[0-9]+[.]{0,1}[0-9]{0,3}$/) || val > 10 || val < 0)
             setError("Min 0.00\nMax 10.00");
           break;
       }
     }
-  }, [props.value, props.must, inputTouched]);
+  }, [props.validation, props.value, props.must]);
 
   useEffect(() => {
     props.setError({ label: props.label, error: error });
@@ -48,7 +39,6 @@ function Grade(props) {
           label={props.label}
           type={props.type}
           onChange={props.onChange}
-          onBlur={onBlur}
           maxLength={props.maxLength}
           theme="blue"
           disabled={props.disabled}

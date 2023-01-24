@@ -40,16 +40,15 @@ function StudentCourses() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   const onClick = (academicYearId) => {
     navigate(`./${academicYearId}`);
-  }
+  };
 
   return (
-    <LongMainContainer
-      title="Cursos"
-    >
+    <LongMainContainer title="Cursos" buttonBack>
       {!courses || courses.length === 0 ? (
         <LongSubContainer>
           <div
@@ -67,11 +66,11 @@ function StudentCourses() {
           return (
             <LongSubContainer key={course.academic_period_id}>
               <StudentCoursesCard
-                course={course.course_name??""}
-                parallel={course.parallel_name??""}
-                specialty={course.specialty_name??""}
-                academic_period={course.academic_period_name??""}
-                academic_period_id={course.academic_period_id??""}
+                course={course.course_name ?? ""}
+                parallel={course.parallel_name ?? ""}
+                specialty={course.specialty_name ?? ""}
+                academic_period={course.academic_period_name ?? ""}
+                academic_period_id={course.academic_period_id ?? ""}
                 onClick={onClick}
               />
             </LongSubContainer>

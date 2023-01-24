@@ -20,8 +20,8 @@ function MainContainer(props) {
         {props.backButton && (
           <Button onClick={() => navigate("../")}>Volver</Button>
         )}
-        {props.addSubjectButton && (
-          <Button onClick={() => navigate("./seeSubjects")}>
+        {props.subjectButton && (
+          <Button onClick={() => navigate(props.subjectButton)}>
             Ver asignaturas
           </Button>
         )}

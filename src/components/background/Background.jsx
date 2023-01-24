@@ -12,9 +12,8 @@ const Background = () => {
       <div className={classes.ball5}></div>
       <div className={classes.ball6}></div>
       <div className={classes.ball7}></div>
-      {/* <Mancha color="white"/> */}
     </Fragment>
   );
-}
+};
 
 export default Background;

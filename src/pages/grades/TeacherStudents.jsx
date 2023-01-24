@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -41,16 +41,15 @@ function TeacherStudents() {
 
   const onClick = (studentId) => {
     navigate(`./${studentId}`);
-  }
+  };
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <LongMainContainer
-      title="Estudiantes"
-    >
+    <LongMainContainer title="Estudiantes" buttonBack>
       {!students || students.length === 0 ? (
         <LongSubContainer>
           <div
@@ -68,16 +67,16 @@ function TeacherStudents() {
           return (
             <LongSubContainer key={student.identification}>
               <StudentCard
-                id={student.id}
-                name={student.name}
-                last_name={student.last_name}
-                identification={student.identification}
-                course={student.course}
-                parallel={student.parallel}
-                specialty={student.specialty}
-                academic_period={student.academic_period}
-                academic_period_id={student.academic_period_id}
-                state={student.state}
+                id={student.id ?? ""}
+                name={student.name ?? ""}
+                last_name={student.last_name ?? ""}
+                identification={student.identification ?? ""}
+                course={student.course ?? ""}
+                parallel={student.parallel ?? ""}
+                specialty={student.specialty ?? ""}
+                academic_period={student.academic_period ?? ""}
+                academic_period_id={student.academic_period_id ?? ""}
+                state={student.state ?? ""}
                 buttonTitle="Notas"
                 onClick={onClick}
               />

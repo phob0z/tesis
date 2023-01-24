@@ -79,9 +79,10 @@ const Input = (props) => {
     case "select":
       input = (
         <select
+          disabled={props.disabled}
           onChange={props.onChange}
           className={classes.filter}
-          value={props.value? props.value : ""}
+          value={props.value ? props.value : ""}
         >
           {props.label && (
             <Fragment>
@@ -90,7 +91,7 @@ const Input = (props) => {
               </option>
               {props.label !== "Periodo" && (
                 <option className={classes.option} value="">
-                  Todos
+                  Ninguno
                 </option>
               )}
             </Fragment>
@@ -121,7 +122,7 @@ const Input = (props) => {
           onBlur={onBlur}
           maxLength={props.maxLength}
           disabled={props.disabled}
-          style={type === "grade"? {textAlign: "center"} : {}}
+          style={type === "grade" ? { textAlign: "center" } : {}}
         />
       );
       break;

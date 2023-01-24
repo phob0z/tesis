@@ -38,10 +38,16 @@ function ResetNewPassword() {
     else if (!newPassword.match(".*\\d.*"))
       setNewPasswordError("La contraseña debe tener al menos un número");
     else if (!newPassword.match(".*[a-z].*"))
-      setNewPasswordError("La contraseña debe tener al menos una letra minúscula");
+      setNewPasswordError(
+        "La contraseña debe tener al menos una letra minúscula"
+      );
     else if (!newPassword.match(".*[A-Z].*"))
-      setNewPasswordError("La contraseña debe tener al menos una letra mayúscula");
-    else if (!newPassword.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/))
+      setNewPasswordError(
+        "La contraseña debe tener al menos una letra mayúscula"
+      );
+    else if (
+      !newPassword.match(/(?=.*?[#?¿=_!¡°¬´|@$\-\\%^&*`~()[\]{};:'",<.>/+])/)
+    )
       setNewPasswordError(
         "La contraseña debe tener al menos un carácter especial"
       );
@@ -75,7 +81,7 @@ function ResetNewPassword() {
     setConfirmationTouched(true);
   };
 
-  const onResetNewPassword = async(event) => {
+  const onResetNewPassword = async (event) => {
     event.preventDefault();
     setNewPasswordTouched(true);
     setConfirmationTouched(true);
@@ -95,7 +101,11 @@ function ResetNewPassword() {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/update-newPassword`,
-        { password: newPassword, password_confirmation: confirmation, identification },
+        {
+          password: newPassword,
+          password_confirmation: confirmation,
+          identification,
+        },
         {
           headers: {
             "Content-Type": "application/json",

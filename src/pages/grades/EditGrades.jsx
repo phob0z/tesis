@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -12,7 +12,6 @@ import GradesHeader from "../../components/cards/GradesHeader";
 import GradesFooter from "../../components/cards/GradesFooter";
 
 function EditGrades() {
-  const navigate = useNavigate();
   const params = useParams();
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
@@ -21,6 +20,9 @@ function EditGrades() {
   const [subjects, setSubjects] = useState(null);
   const [promedioFinal, setPromedioFinal] = useState(0);
   const [finals, setFinals] = useState({});
+  const [grades, setGrades] = useState({});
+
+  const [error, setError] = useState(false);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -29,11 +31,9 @@ function EditGrades() {
       switch (user.role) {
         case "secretary":
           url = `${process.env.REACT_APP_BACK_URL}/secretary/${params.studentId}/${params.academicYearId}/grades`;
-          //http://localhost:3000/grades/secretary/19/1
           break;
         case "teacher":
           url = `${process.env.REACT_APP_BACK_URL}/teacher/${params.studentId}/${params.subjectId}/grades`;
-          //http://localhost:3000/grades/teacher/15/19
           break;
         case "student":
           url = `${process.env.REACT_APP_BACK_URL}/student/${params.academicYearId}/grades`;
@@ -90,15 +90,64 @@ function EditGrades() {
     setPromedioFinal(result);
   }, [finals]);
 
+  const onSave = async () => {
+    if (error) {
+      setModal({
+        title: "Error en el campo " + error.label.toUpperCase(),
+        message: error.error,
+      });
+      return;
+    }
+    setIsLoading(true);
+
+    var url;
+    var send;
+    try {
+      switch (user.role) {
+        case "secretary":
+          url = `${process.env.REACT_APP_BACK_URL}/secretary/${params.studentId}/finalStudentGrade`;
+          send = {
+            comportamiento1: student.comportamiento1,
+            comportamiento2: student.comportamiento2,
+          };
+          break;
+        case "teacher":
+          url = `${process.env.REACT_APP_BACK_URL}/teacher/${params.studentId}/${params.subjectId}/updateGrade`;
+          send = {
+            ...grades,
+          };
+          console.log(send);
+          break;
+        default:
+          url = `${process.env.REACT_APP_BACK_URL}/secretary/${params.studentId}/finalStudentGrade`;
+          break;
+      }
+      const response = await axios.post(
+        url,
+        {
+          ...send,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setModal({ title: "CORRECTO", message: response.data.message });
+    } catch (error) {
+      setModal({ title: "ERROR", message: error.response.data.message });
+    }
+    setIsLoading(false);
+  };
+
   return (
     <LongMainContainer
       big
       title="Notas"
-      buttonTitle="Volver"
-      onClick={() => {
-        navigate("../");
-      }}
-      buttonSave
+      onSave={user.role !== "student" ? onSave : false}
+      buttonBack={user.role === "secretary" ? "./../../" : true}
     >
       {!subjects || subjects.length === 0 ? (
         <LongSubContainer>
@@ -128,22 +177,35 @@ function EditGrades() {
             return (
               <LongSubContainer key={subject.subject_id}>
                 <GradesCard
-                  id={subject.subject_id ?? ""}
+                  subject_id={subject.subject_id ?? ""}
                   name={subject.subject_name ?? ""}
-                  // q1blocked={subject.q1blocked}
-                  // q2blocked={subject.q2blocked}
-                  q1p1={subject.q1p1 ?? ""}
-                  q1p2={subject.q1p2 ?? ""}
-                  q1p3={subject.q1p3 ?? ""}
-                  q2p1={subject.q2p1 ?? ""}
-                  q2p2={subject.q2p2 ?? ""}
-                  q2p3={subject.q2p3 ?? ""}
-                  supletory={subject.supletory ?? ""}
+                  p1q1={subject.p1q1 ?? ""}
+                  p2q1={subject.p2q1 ?? ""}
+                  p3q1={subject.p3q1 ?? ""}
+                  p1q2={subject.p1q2 ?? ""}
+                  p2q2={subject.p2q2 ?? ""}
+                  p3q2={subject.p3q2 ?? ""}
+                  supletorio={subject.supletorio ?? ""}
                   remedial={subject.remedial ?? ""}
-                  grace={subject.grace ?? ""}
+                  gracia={subject.gracia ?? ""}
                   final={subject.final ?? ""}
                   onFinalChange={onFinalChange}
                   role={user.role}
+                  onGradesChange={(grades) => {
+                    setGrades(grades);
+                    // setSubjects(
+                    //   subjects.map((subject) => {
+                    //     if (subject.subject_id === grades.subject_id) {
+                    //       return grades;
+                    //     } else {
+                    //       return subject;
+                    //     }
+                    //   })
+                    // );
+                  }}
+                  setError={(error) => {
+                    setError(error);
+                  }}
                 />
               </LongSubContainer>
             );
@@ -154,6 +216,9 @@ function EditGrades() {
               behaviour2={student.comportamiento2 ?? ""}
               promedioFinal={promedioFinal}
               onBehaviourChange={onBehaviourChange}
+              setError={(error) => {
+                setError(error);
+              }}
               role={user.role}
             />
           </LongSubContainer>

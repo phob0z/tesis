@@ -157,6 +157,12 @@
   width: 100%;
 }
 
+.inputContainer.blue ::placeholder {
+  opacity: 1;
+  font-weight: 500;
+  font-size: 0.5rem;
+}
+
 .inputContainer.blue.focused input {
   outline: 0;
 }
@@ -263,7 +269,7 @@
 .inputContainer select {
   font-family: "Open Sans";
   font-weight: 900;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #414141;
   font-weight: 900;
   background: transparent;

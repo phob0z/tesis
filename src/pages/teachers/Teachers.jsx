@@ -45,13 +45,10 @@ function Teachers() {
   };
 
   const onSearch = () => {
-    if (
-      search.identification === ""
-    ) {
+    if (search.identification === "") {
       setModal({
         title: "ERROR",
-        message:
-          "Debe introducir una identificación a buscar",
+        message: "Debe introducir una identificación a buscar",
       });
       return;
     }
@@ -59,7 +56,7 @@ function Teachers() {
     setSearch((prevState) => {
       return {
         ...prevState,
-        identification: ""
+        identification: "",
       };
     });
   };

@@ -263,7 +263,6 @@ function EditTeacher() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
-            must
             disabled={user.role !== "secretary"}
           />
           <Card

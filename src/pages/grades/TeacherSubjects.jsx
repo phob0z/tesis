@@ -42,7 +42,7 @@ function TeacherSubjects() {
   }, []);
 
   return (
-    <LongMainContainer title="Asignaturas">
+    <LongMainContainer title="Asignaturas" buttonBack>
       {!subjects || subjects.length === 0 ? (
         <LongSubContainer>
           <div
@@ -61,20 +61,14 @@ function TeacherSubjects() {
             <LongSubContainer key={subject.id}>
               <SubjectCard
                 buttonTitle="Estudiantes"
-                id={subject.id}
-                name={subject.name}
-                // teacher_id={teacher_id}
-                teacher_name={subject.teacher_name}
-                teacher_last_name={subject.teacher_last_name}
-                course={subject.course}
-                // course_id={subject.course_id}
-                parallel={subject.parallel}
-                // parallel_id={subject.parallel_id}
-                specialty={subject.specialty}
-                // specialty_id={subject.specialty_id}
-                academicYear={subject.academic_period}
-                // academicYear_id={subject.academic_period_id}
-                // state={subject.state}
+                id={subject.id ?? ""}
+                name={subject.name ?? ""}
+                // teacher_name={subject.teacher_name ?? ""}
+                // teacher_last_name={subject.teacher_last_name ?? ""}
+                course={subject.course ?? ""}
+                parallel={subject.parallel ?? ""}
+                specialty={subject.specialty ?? ""}
+                academicYear={subject.academic_period ?? ""}
               />
             </LongSubContainer>
           );

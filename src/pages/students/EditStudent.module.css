@@ -1,0 +1,10 @@
+.error {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: #6d1118;
+  text-decoration: none;
+}

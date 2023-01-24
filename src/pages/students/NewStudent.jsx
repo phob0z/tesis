@@ -183,7 +183,7 @@ function NewStudent() {
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={student.name??""}
+            value={student.name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, name: event.target.value });
@@ -195,7 +195,7 @@ function NewStudent() {
           />
           <Card
             label="Apellidos"
-            value={student.last_name??""}
+            value={student.last_name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setStudent({ ...student, last_name: event.target.value });
@@ -207,7 +207,7 @@ function NewStudent() {
           />
           <Card
             label="Identificación"
-            value={student.identification??""}
+            value={student.identification ?? ""}
             maxLength="15"
             onChange={(event) => {
               setStudent({
@@ -222,7 +222,7 @@ function NewStudent() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={student.birthdate??""}
+            value={student.birthdate ?? ""}
             maxLength="10"
             type="date"
             onChange={(date) => {
@@ -239,7 +239,7 @@ function NewStudent() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={student.email??""}
+            value={student.email ?? ""}
             maxLength="50"
             onChange={(event) => {
               setStudent({ ...student, email: event.target.value });
@@ -251,7 +251,7 @@ function NewStudent() {
           />
           <Card
             label="Teléfono fijo"
-            value={student.home_phone??""}
+            value={student.home_phone ?? ""}
             maxLength="9"
             onChange={(event) => {
               setStudent({
@@ -265,7 +265,7 @@ function NewStudent() {
           />
           <Card
             label="Teléfono celular"
-            value={student.personal_phone??""}
+            value={student.personal_phone ?? ""}
             maxLength="10"
             onChange={(event) => {
               setStudent({
@@ -281,7 +281,7 @@ function NewStudent() {
           <Card
             type="textBig"
             label="Dirección"
-            value={student.address??""}
+            value={student.address ?? ""}
             maxLength="150"
             onChange={(event) => {
               setStudent({ ...student, address: event.target.value });
@@ -295,7 +295,7 @@ function NewStudent() {
         <SubContainer subTitle="DATOS DEL REPRESENTANTE">
           <Card
             label="Nombres"
-            value={student.representative_name??""}
+            value={student.representative_name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setStudent({
@@ -309,7 +309,7 @@ function NewStudent() {
           />
           <Card
             label="Apellidos"
-            value={student.representative_last_name??""}
+            value={student.representative_last_name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setStudent({
@@ -323,7 +323,7 @@ function NewStudent() {
           />
           <Card
             label="Identificación"
-            value={student.representative_identification??""}
+            value={student.representative_identification ?? ""}
             maxLength="15"
             onChange={(event) => {
               setStudent({
@@ -337,7 +337,7 @@ function NewStudent() {
           />
           <Card
             label="Teléfono celular"
-            value={student.representative_phone??""}
+            value={student.representative_phone ?? ""}
             maxLength="10"
             onChange={(event) => {
               setStudent({
@@ -404,7 +404,10 @@ function NewStudent() {
             theme="simple"
             value={student.academic_period_id}
             onChange={(event) => {
-              setStudent({ ...student, academic_period_id: event.target.value });
+              setStudent({
+                ...student,
+                academic_period_id: event.target.value,
+              });
             }}
             disabled={user.role !== "secretary"}
           />

@@ -66,7 +66,7 @@ function NewParallel() {
       <SubContainer>
         <Card
           label="Paralelo"
-          value={parallel.name??""}
+          value={parallel.name ?? ""}
           maxLength="2"
           onChange={(event) => {
             setParallel((prevState) => {

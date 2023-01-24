@@ -39,13 +39,7 @@ function EditSubject() {
       : errorTeacher.error
       ? setError(errorTeacher)
       : setError(false);
-  }, [
-    errorName,
-    errorCourse,
-    errorParallel,
-    errorSpecialty,
-    errorTeacher,
-  ]);
+  }, [errorName, errorCourse, errorParallel, errorSpecialty, errorTeacher]);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -60,7 +54,7 @@ function EditSubject() {
           },
         }
       );
-      const data = response.data.data.subject
+      const data = response.data.data.subject;
       setSubject(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -146,7 +140,7 @@ function EditSubject() {
       <SubContainer>
         <Card
           label="Asignatura"
-          value={subject.name??""}
+          value={subject.name ?? ""}
           maxLength="30"
           onChange={(event) => {
             setSubject((prevState) => {
@@ -155,7 +149,7 @@ function EditSubject() {
           }}
           setError={setErrorName}
           validation="course"
-            must
+          must
           disabled={user.role !== "secretary"}
         />
         <Card
@@ -209,7 +203,7 @@ function EditSubject() {
             setSubject({ ...subject, specialty_id: event.target.value });
           }}
           setError={setErrorSpecialty}
-          validation="select" 
+          validation="select"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>

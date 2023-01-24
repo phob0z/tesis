@@ -56,7 +56,7 @@ function ForgotPassword() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BACK_URL}/forgot-password`,
         { identification },
         { headers: { accept: "application/json" } }

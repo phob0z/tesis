@@ -124,7 +124,7 @@ function Information() {
           <Card
             type="textBig"
             label="Nombre de la intitución"
-            value={information.name??""}
+            value={information.name ?? ""}
             maxLength="150"
             onChange={(event) => {
               setInformation({ ...information, name: event.target.value });
@@ -135,7 +135,7 @@ function Information() {
           />
           <Card
             label="Director/a"
-            value={information.director_name??""}
+            value={information.director_name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setInformation({
@@ -150,7 +150,7 @@ function Information() {
           />
           <Card
             label="Secretario/a"
-            value={information.secretary_name??""}
+            value={information.secretary_name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setInformation({

@@ -37,11 +37,7 @@ function Image(props) {
       />
       <div className={classes.imageBox}>
         <div className={classes.image}>
-          <img
-            src={image}
-            alt={props.alt}
-            onClick={onImageClick}
-          />
+          <img src={image} alt={props.alt} onClick={onImageClick} />
         </div>
       </div>
     </div>

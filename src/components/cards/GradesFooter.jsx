@@ -1,10 +1,13 @@
-import userEvent from "@testing-library/user-event";
 import React, { Fragment, useEffect, useState } from "react";
 import Grade from "./Grade";
 
 import classes from "./GradesFooter.module.css";
 
 function GradesFooter(props) {
+  const [errorComp1, setErrorComp1] = useState(false);
+  const [errorComp2, setErrorComp2] = useState(false);
+  const [error, setError] = useState(false);
+
   const [student, setStudent] = useState({
     behaviour1: props.behaviour1,
     behaviour2: props.behaviour2,
@@ -13,7 +16,18 @@ function GradesFooter(props) {
 
   useEffect(() => {
     props.onBehaviourChange(student);
+    // eslint-disable-next-line
   }, [student.behaviour1, student.behaviour2]);
+
+  useEffect(() => {
+    errorComp1.error
+      ? setError(errorComp1)
+      : errorComp2.error
+      ? setError(errorComp2)
+      : setError(false);
+    props.setError(error);
+    // eslint-disable-next-line
+  }, [errorComp1, errorComp2, error]);
 
   return (
     <Fragment>
@@ -22,6 +36,7 @@ function GradesFooter(props) {
         <div>
           Comportamiento 1
           <Grade
+            label="Comportamiento Q1"
             type="grade"
             value={student.behaviour1}
             maxLength="1"
@@ -30,7 +45,7 @@ function GradesFooter(props) {
                 return { ...prevState, behaviour1: event.target.value };
               });
             }}
-            setError={props.setErrorBehaviour1}
+            setError={setErrorComp1}
             validation="behaviour"
             disabled={props.role !== "secretary"}
           />
@@ -38,6 +53,7 @@ function GradesFooter(props) {
         <div>
           Comportamiento 2
           <Grade
+            label="Comportamiento Q2"
             type="grade"
             value={student.behaviour2}
             maxLength="1"
@@ -46,7 +62,7 @@ function GradesFooter(props) {
                 return { ...prevState, behaviour2: event.target.value };
               });
             }}
-            setError={props.setErrorBehaviour2}
+            setError={setErrorComp2}
             validation="behaviour"
             disabled={props.role !== "secretary"}
           />

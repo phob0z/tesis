@@ -67,7 +67,7 @@ function Parallels() {
             <LongSubContainer key={parallel.id}>
               <OnOffCard
                 id={parallel.id}
-                name={parallel.name??""}
+                name={parallel.name ?? ""}
                 state={parallel.state}
               />
             </LongSubContainer>

@@ -7,7 +7,6 @@ import AuthContext from "../../contexts/auth/AuthContext";
 import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 
-
 import classes from "./Home.module.css";
 
 function Home() {
@@ -46,11 +45,9 @@ function Home() {
   }, [fetchData]);
 
   return (
-    <MainContainer title="Bienvenido" style={{bottom: "auto"}}>
+    <MainContainer title="Bienvenido" style={{ bottom: "auto" }}>
       <SubContainer>
-        <div className={classes.title}>
-          {information.name}
-        </div>
+        <div className={classes.title}>{information.name}</div>
         <div className={classes.imageBox}>
           <div className={classes.image}>
             <img src={information.logo} alt="Logo institucional" />

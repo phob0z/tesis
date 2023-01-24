@@ -25,7 +25,7 @@ function SubjectCard(props) {
             navigate(`./${props.id}`);
           }}
         >
-          {props.buttonTitle??"Editar"}
+          {props.buttonTitle ?? "Editar"}
         </Button>
       </div>
     </div>

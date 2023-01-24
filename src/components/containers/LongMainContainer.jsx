@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
 import Input from "../atoms/Input";
 import classes from "./LongMainContainer.module.css";
 
 function LongMainContainer(props) {
+  const navigate = useNavigate();
   return (
     <Fragment>
       <div
@@ -92,13 +94,23 @@ function LongMainContainer(props) {
       )}
 
       <div className={classes.buttons}>
+        {props.buttonBack && (
+          <Button
+            type="submit"
+            onClick={() => {
+              navigate(props.buttonBack === true ? "./../" : props.buttonBack);
+            }}
+          >
+            Volver
+          </Button>
+        )}
         {props.buttonTitle && (
           <Button type="submit" onClick={props.onClick}>
             {props.buttonTitle}
           </Button>
         )}
-        {props.buttonSave && (
-          <Button type="submit" onSave={props.onSave}>
+        {props.onSave && (
+          <Button type="submit" onClick={props.onSave}>
             Guardar
           </Button>
         )}

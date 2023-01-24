@@ -47,7 +47,6 @@ function EditAcademicYear() {
         }
       );
       const data = response.data.data.academic_period;
-      console.log(data);
       setAcademicYear(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -139,7 +138,7 @@ function EditAcademicYear() {
       <SubContainer>
         <Card
           label="Nombre"
-          value={academicYear.name??""}
+          value={academicYear.name ?? ""}
           maxLength="4"
           onChange={(event) => {
             setAcademicYear((prevState) => {
@@ -154,7 +153,7 @@ function EditAcademicYear() {
         <Card
           type="date"
           label="Fin Q1"
-          value={academicYear.finq1??""}
+          value={academicYear.finq1 ?? ""}
           onChange={(date) => {
             setAcademicYear((prevState) => {
               return { ...prevState, finq1: date };
@@ -169,7 +168,7 @@ function EditAcademicYear() {
         <Card
           type="date"
           label="Fin Q2"
-          value={academicYear.finq2??""}
+          value={academicYear.finq2 ?? ""}
           onChange={(date) => {
             setAcademicYear((prevState) => {
               return { ...prevState, finq2: date };

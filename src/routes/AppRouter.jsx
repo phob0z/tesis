@@ -51,15 +51,7 @@ import AcademicYears from "../pages/academicYears/AcademicYears";
 import NewAcademicYear from "../pages/academicYears/NewAcademicYear";
 import EditAcademicYear from "../pages/academicYears/EditAcademicYear";
 
-import EditGrades from "../pages/grades/EditGrades";
-
-import SecretaryStudents from "../pages/grades/SecretaryStudents";
-
-import StudentCourses from "../pages/grades/StudentCourses";
-
-import TeacherStudents from "../pages/grades/TeacherStudents";
-import TeacherSubjects from "../pages/grades/TeacherSubjects";
-
+import GradesRouter from "../pages/grades/GradesRouter";
 
 const AppRouter = () => {
   return (
@@ -134,25 +126,7 @@ const AppRouter = () => {
                       />
                       <Route path=":id" element={<EditAcademicYear />} />
                     </Route>
-                    <Route path="/grades/secretary">
-                      <Route path="" element={<SecretaryStudents />} />
-                      <Route
-                        path=":studentId/:academicYearId"
-                        element={<EditGrades />}
-                      />
-                    </Route>
-                    <Route path="/grades/teacher">
-                      <Route path="" element={<TeacherSubjects />} />
-                      <Route path=":subjectId" element={<TeacherStudents />} />
-                      <Route
-                        path=":subjectId/:studentId"
-                        element={<EditGrades />}
-                      />
-                    </Route>
-                    <Route path="/grades/student">
-                      <Route path="" element={<StudentCourses />} />
-                      <Route path=":academicYearId" element={<EditGrades />} />
-                    </Route>
+                    <Route path="/grades/*" element={<GradesRouter />} />
                   </Routes>
                 </Fragment>
               </PrivateRoute>

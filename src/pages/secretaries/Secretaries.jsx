@@ -46,13 +46,10 @@ function Secretaries() {
   };
 
   const onSearch = () => {
-    if (
-      search.identification === ""
-    ) {
+    if (search.identification === "") {
       setModal({
         title: "ERROR",
-        message:
-          "Debe introducir una identificación a buscar",
+        message: "Debe introducir una identificación a buscar",
       });
       return;
     }
@@ -60,7 +57,7 @@ function Secretaries() {
     setSearch((prevState) => {
       return {
         ...prevState,
-        identification: ""
+        identification: "",
       };
     });
   };
@@ -113,9 +110,9 @@ function Secretaries() {
             <LongSubContainer key={secretary.identification}>
               <TeacherCard
                 id={secretary.id}
-                name={secretary.name??""}
-                last_name={secretary.last_name??""}
-                identification={secretary.identification??""}
+                name={secretary.name ?? ""}
+                last_name={secretary.last_name ?? ""}
+                identification={secretary.identification ?? ""}
                 state={secretary.state}
               />
             </LongSubContainer>

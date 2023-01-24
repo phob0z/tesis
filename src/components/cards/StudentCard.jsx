@@ -17,7 +17,12 @@ function StudentCard(props) {
       <div>{props.academic_period}</div>
       <OnOffIcon state={props.state} />
       <div>
-        <Button className="editButton" onClick={() => {props.onClick(props.id)}}>
+        <Button
+          className="editButton"
+          onClick={() => {
+            props.onClick(props.id);
+          }}
+        >
           {props.buttonTitle ?? "Editar"}
         </Button>
       </div>

@@ -1,9 +1,4 @@
-import axios from "axios";
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import { useCallback } from "react";
-import { useParams } from "react-router-dom";
-import AlertContext from "../../contexts/alert/AlertContext";
-import AuthContext from "../../contexts/auth/AuthContext";
+import React, { Fragment } from "react";
 
 import classes from "./GradesHeader.module.css";
 

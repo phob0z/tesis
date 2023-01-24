@@ -133,7 +133,7 @@ function NewTeacher() {
         <SubContainer subTitle="INFO PERSONAL">
           <Card
             label="Nombres"
-            value={teacher.name??""}
+            value={teacher.name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setTeacher({ ...teacher, name: event.target.value });
@@ -145,7 +145,7 @@ function NewTeacher() {
           />
           <Card
             label="Apellidos"
-            value={teacher.last_name??""}
+            value={teacher.last_name ?? ""}
             maxLength="35"
             onChange={(event) => {
               setTeacher({ ...teacher, last_name: event.target.value });
@@ -157,7 +157,7 @@ function NewTeacher() {
           />
           <Card
             label="Identificación"
-            value={teacher.identification??""}
+            value={teacher.identification ?? ""}
             maxLength="15"
             onChange={(event) => {
               setTeacher({
@@ -172,7 +172,7 @@ function NewTeacher() {
           />
           <Card
             label="Fecha de nacimiento"
-            value={teacher.birthdate??""}
+            value={teacher.birthdate ?? ""}
             maxLength="10"
             type="date"
             onChange={(date) => {
@@ -189,7 +189,7 @@ function NewTeacher() {
         <SubContainer subTitle="INFO DE CONTACTO">
           <Card
             label="Correo"
-            value={teacher.email??""}
+            value={teacher.email ?? ""}
             maxLength="50"
             onChange={(event) => {
               setTeacher({ ...teacher, email: event.target.value });
@@ -201,7 +201,7 @@ function NewTeacher() {
           />
           <Card
             label="Teléfono fijo"
-            value={teacher.home_phone??""}
+            value={teacher.home_phone ?? ""}
             maxLength="9"
             onChange={(event) => {
               setTeacher({
@@ -211,12 +211,11 @@ function NewTeacher() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
-            must
             disabled={user.role !== "secretary"}
           />
           <Card
             label="Teléfono celular"
-            value={teacher.personal_phone??""}
+            value={teacher.personal_phone ?? ""}
             maxLength="10"
             onChange={(event) => {
               setTeacher({
@@ -232,7 +231,7 @@ function NewTeacher() {
           <Card
             type="textBig"
             label="Dirección"
-            value={teacher?.address??""}
+            value={teacher?.address ?? ""}
             maxLength="150"
             onChange={(event) => {
               setTeacher({ ...teacher, address: event.target.value });

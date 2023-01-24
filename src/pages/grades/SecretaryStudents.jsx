@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import AlertContext from "../../contexts/alert/AlertContext";
@@ -79,10 +79,11 @@ function SecretaryStudents() {
 
   const onClick = (studentId) => {
     navigate(`./${studentId}/${filters.academicYears[0].id}`);
-  }
+  };
 
   useEffect(() => {
     fetchFilters();
+    // eslint-disable-next-line
   }, []);
 
   const onSearch = () => {
@@ -133,6 +134,7 @@ function SecretaryStudents() {
         });
       }}
       searchBarLabel="Identificación"
+      buttonBack
     >
       {!students ? (
         <LongSubContainer>
@@ -164,16 +166,16 @@ function SecretaryStudents() {
           return (
             <LongSubContainer key={student.identification}>
               <StudentCard
-                id={student.id}
-                name={student.name}
-                last_name={student.last_name}
-                identification={student.identification}
-                course={student.course}
-                parallel={student.parallel}
-                specialty={student.specialty}
-                academic_period={student.academic_period}
-                academic_period_id={student.academic_period_id}
-                state={student.state}
+                id={student.id ?? ""}
+                name={student.name ?? ""}
+                last_name={student.last_name ?? ""}
+                identification={student.identification ?? ""}
+                course={student.course ?? ""}
+                parallel={student.parallel ?? ""}
+                specialty={student.specialty ?? ""}
+                academic_period={student.academic_period ?? ""}
+                academic_period_id={student.academic_period_id ?? ""}
+                state={student.state ?? ""}
                 buttonTitle="Notas"
                 onClick={onClick}
               />

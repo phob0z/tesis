@@ -83,7 +83,7 @@ function Students() {
 
   const onClick = (userId) => {
     navigate(`./${userId}`);
-  }
+  };
 
   const onSearch = () => {
     if (
@@ -107,7 +107,7 @@ function Students() {
           course: "",
           parallel: "",
           specialty: "",
-          academicYear: ""
+          academicYear: "",
         };
       });
     }
@@ -115,7 +115,7 @@ function Students() {
     setSearch((prevState) => {
       return {
         ...prevState,
-        identification: ""
+        identification: "",
       };
     });
   };
@@ -169,13 +169,13 @@ function Students() {
             <LongSubContainer key={student.id}>
               <StudentCard
                 id={student.id}
-                name={student.name??""}
-                last_name={student.last_name??""}
-                identification={student.identification??""}
-                course={student.course??""}
-                parallel={student.parallel??""}
-                specialty={student.specialty??""}
-                academic_period={student.academic_period??""}
+                name={student.name ?? ""}
+                last_name={student.last_name ?? ""}
+                identification={student.identification ?? ""}
+                course={student.course ?? ""}
+                parallel={student.parallel ?? ""}
+                specialty={student.specialty ?? ""}
+                academic_period={student.academic_period ?? ""}
                 state={student.state}
                 onClick={onClick}
               />
