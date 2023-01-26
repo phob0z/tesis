@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "auto",
     flexDirection: "row",
+    // alignItems: "center",
+  },
+  subject: {
+    marginTop: "5px",
   },
   cell: {
     width: "auto",
@@ -41,7 +45,6 @@ const styles = StyleSheet.create({
     height: "50px",
     alignSelf: "center",
   },
-
   gradesHeader: {
     width: "auto",
     borderStyle: "solid",
@@ -60,6 +63,12 @@ const styles = StyleSheet.create({
   grade: {
     width: "60px",
     alignItems: "center",
+  },
+  subjectName: {
+    width: "200%",
+    alignItems: "center",
+    borderRightWidth: "1px",
+    borderTopWidth: "1px",
   },
 });
 
@@ -120,7 +129,7 @@ const Table = () => (
         </View>
         <View style={styles.gradesHeader}>
           <View style={styles.row}>
-            <View style={styles.title}>
+            <View style={styles.subjectName}>
               <Text>Asignatura</Text>
             </View>
             <View style={styles.col}>
@@ -179,8 +188,50 @@ const Table = () => (
             </View>
           </View>
         </View>
-        <View style={styles.body}>
-          <Text>BODY</Text>
+        <View style={styles.subject}>
+          <View style={styles.gradesHeader}>
+            <View style={styles.row}>
+              <View style={styles.subjectName}>
+                <Text>Asignatura</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Parcial 1</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Parcial 2</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Parcial 3</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Final Q1</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Parcial 1</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Parcial 2</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Parcial 3</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Final Q2</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Supletorio</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Remedial</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Gracia</Text>
+              </View>
+              <View style={styles.title}>
+                <Text>Final</Text>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </Page>
