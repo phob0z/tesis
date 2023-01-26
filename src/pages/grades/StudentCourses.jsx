@@ -9,7 +9,7 @@ import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
 import StudentCoursesCard from "../../components/cards/StudentCoursesCard";
 
-function StudentCourses() {
+function StudentCourses(props) {
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
@@ -66,6 +66,7 @@ function StudentCourses() {
           return (
             <LongSubContainer key={course.academic_period_id}>
               <StudentCoursesCard
+                buttonTitle={props.buttonTitle ?? null}
                 course={course.course_name ?? ""}
                 parallel={course.parallel_name ?? ""}
                 specialty={course.specialty_name ?? ""}

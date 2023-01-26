@@ -99,6 +99,7 @@ function ForgotPassword() {
           <span className={classes.boxFooter}>&nbsp;</span>
         </div>
         <Button type="submit">Recuperar</Button>
+        <span style={{height: "1rem"}}/>
         <Button onClick={onVolver}>Volver</Button>
       </form>
     </Fragment>

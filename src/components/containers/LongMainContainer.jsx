@@ -67,18 +67,20 @@ function LongMainContainer(props) {
               </div>
             </Fragment>
           )}
-          <Input
-            theme="simple"
-            label={props.searchBarLabel}
-            maxLength="15"
-            value={props.search.identification}
-            onChange={(event) => {
-              props.onChange({ identification: event.target.value });
-            }}
-          />
+          {!props.hideSearchInput && (
+            <Input
+              theme="simple"
+              label={props.searchBarLabel}
+              maxLength="15"
+              value={props.search.identification}
+              onChange={(event) => {
+                props.onChange({ identification: event.target.value });
+              }}
+            />
+          )}
           <div style={{ zIndex: "-1" }}>
             <Button className="searchButton" onClick={props.onSearch}>
-              Buscar
+              {props.searchButtonTitle ?? "Buscar"}
             </Button>
           </div>
         </div>

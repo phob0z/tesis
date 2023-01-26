@@ -23,7 +23,7 @@ function GradesHeader(props) {
           >
             Paralelo: {props.parallel}
           </div>
-          <div>Periodo: {props.academic_period}</div>
+          <div>Periodo: {props.academic_period}-{parseInt(props.academic_period)+1}</div>
         </div>
       </div>
       <div className={classes.subjectHeader}>

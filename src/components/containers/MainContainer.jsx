@@ -9,13 +9,11 @@ function MainContainer(props) {
   return (
     <Fragment>
       <div className={classes.mainContainer} style={props.style}>
-        {" "}
-        {props.children}{" "}
+        {props.children}
       </div>
       {props.title && (
         <div className={classes.containerTitle}> {props.title} </div>
       )}
-
       <div className={classes.buttons}>
         {props.backButton && (
           <Button onClick={() => navigate("../")}>Volver</Button>

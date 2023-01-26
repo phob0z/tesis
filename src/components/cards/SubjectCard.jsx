@@ -6,6 +6,10 @@ import classes from "./SubjectCard.module.css";
 function SubjectCard(props) {
   const navigate = useNavigate();
 
+  const onClick = () => {
+    navigate(`./${props.id}`);
+  };
+
   return (
     <div className={classes.subject}>
       <div className={classes.name}>{props.name}</div>
@@ -19,12 +23,7 @@ function SubjectCard(props) {
       <div>{props.specialty}</div>
       <div>{props.academicYear}</div>
       <div>
-        <Button
-          className="editButton"
-          onClick={() => {
-            navigate(`./${props.id}`);
-          }}
-        >
+        <Button className="editButton" onClick={onClick}>
           {props.buttonTitle ?? "Editar"}
         </Button>
       </div>

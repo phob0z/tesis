@@ -70,6 +70,7 @@ function GradesFooter(props) {
         <div />
         <div />
         <div />
+
         <div>
           Promedio
           <Grade

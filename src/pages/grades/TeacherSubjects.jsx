@@ -8,7 +8,7 @@ import LongMainContainer from "../../components/containers/LongMainContainer";
 import LongSubContainer from "../../components/containers/LongSubContainer";
 import SubjectCard from "../../components/cards/SubjectCard";
 
-function TeacherSubjects() {
+function TeacherSubjects(props) {
   const { token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -60,11 +60,9 @@ function TeacherSubjects() {
           return (
             <LongSubContainer key={subject.id}>
               <SubjectCard
-                buttonTitle="Estudiantes"
+                buttonTitle={props.buttonTitle ?? "Estudiantes"}
                 id={subject.id ?? ""}
                 name={subject.name ?? ""}
-                // teacher_name={subject.teacher_name ?? ""}
-                // teacher_last_name={subject.teacher_last_name ?? ""}
                 course={subject.course ?? ""}
                 parallel={subject.parallel ?? ""}
                 specialty={subject.specialty ?? ""}

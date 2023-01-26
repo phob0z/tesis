@@ -125,7 +125,6 @@ function SecretaryStudents() {
     <LongMainContainer
       title="Estudiantes"
       onSearch={onSearch}
-      showSearchInput
       search={search}
       filters={filters}
       onChange={(value) => {

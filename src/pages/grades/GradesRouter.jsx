@@ -27,13 +27,6 @@ function GradesRouter() {
             <Route path=":subjectId/:studentId" element={<EditGrades />} />
           </Fragment>
         );
-      case "student":
-        return (
-          <Fragment>
-            <Route path="" element={<StudentCourses />} />
-            <Route path=":academicYearId" element={<EditGrades />} />
-          </Fragment>
-        );
       default:
         return (
           <Fragment>

@@ -35,9 +35,6 @@ function EditGrades() {
         case "teacher":
           url = `${process.env.REACT_APP_BACK_URL}/teacher/${params.studentId}/${params.subjectId}/grades`;
           break;
-        case "student":
-          url = `${process.env.REACT_APP_BACK_URL}/student/${params.academicYearId}/grades`;
-          break;
         default:
           url = `${process.env.REACT_APP_BACK_URL}/student/${params.academicYearId}/grades`;
           break;
@@ -54,6 +51,7 @@ function EditGrades() {
       setStudent(student);
       if (data.length === undefined) setSubjects([data]);
       else setSubjects(data);
+      setPromedioFinal(student.total);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -209,18 +207,20 @@ function EditGrades() {
               </LongSubContainer>
             );
           })}
-          <LongSubContainer>
-            <GradesFooter
-              behaviour1={student.comportamiento1 ?? ""}
-              behaviour2={student.comportamiento2 ?? ""}
-              promedioFinal={promedioFinal}
-              onBehaviourChange={onBehaviourChange}
-              setError={(error) => {
-                setError(error);
-              }}
-              role={user.role}
-            />
-          </LongSubContainer>
+          {user.role !== "teacher" && (
+            <LongSubContainer>
+              <GradesFooter
+                behaviour1={student.comportamiento1 ?? ""}
+                behaviour2={student.comportamiento2 ?? ""}
+                promedioFinal={promedioFinal}
+                onBehaviourChange={onBehaviourChange}
+                setError={(error) => {
+                  setError(error);
+                }}
+                role={user.role}
+              />
+            </LongSubContainer>
+          )}
         </Fragment>
       )}
     </LongMainContainer>
