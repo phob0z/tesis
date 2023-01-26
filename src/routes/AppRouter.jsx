@@ -52,6 +52,7 @@ import NewAcademicYear from "../pages/academicYears/NewAcademicYear";
 import EditAcademicYear from "../pages/academicYears/EditAcademicYear";
 
 import GradesRouter from "../pages/grades/GradesRouter";
+import Report from "../pages/reports/Report";
 
 const AppRouter = () => {
   return (
@@ -127,6 +128,8 @@ const AppRouter = () => {
                       <Route path=":id" element={<EditAcademicYear />} />
                     </Route>
                     <Route path="/grades/*" element={<GradesRouter />} />
+
+                    <Route path="/reports" element={<Report />} />
                   </Routes>
                 </Fragment>
               </PrivateRoute>

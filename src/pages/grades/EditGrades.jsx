@@ -116,7 +116,6 @@ function EditGrades() {
           send = {
             ...grades,
           };
-          console.log(send);
           break;
         default:
           url = `${process.env.REACT_APP_BACK_URL}/secretary/${params.studentId}/finalStudentGrade`;
