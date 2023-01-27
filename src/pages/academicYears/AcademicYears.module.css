@@ -1,0 +1,23 @@
+.endPeriod {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  flex-flow: column;
+}
+
+.alert {
+  /* margin-top: -0.5rem; */
+  text-align: center;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #6d1118;
+  text-decoration: none;
+}
+
+.bold {
+    font-weight: 900;
+    font-size: 0.9rem;
+}

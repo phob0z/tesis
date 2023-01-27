@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import AuthContext from "../../contexts/auth/AuthContext";
@@ -8,10 +8,14 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import MainContainer from "../../components/containers/MainContainer";
 import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
-import OnOffInput from "../../components/atoms/OnOffInput";
+import Button from "../../components/atoms/Button";
+
+import classes from "./AcademicYears.module.css";
+import Input from "../../components/atoms/Input";
 
 function EditAcademicYear() {
   const params = useParams();
+  const navigate = useNavigate();
 
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
@@ -22,6 +26,8 @@ function EditAcademicYear() {
   const [errorName, setErrorName] = useState(false);
   const [errorEndQ1, setErrorEndQ1] = useState(false);
   const [errorEndQ2, setErrorEndQ2] = useState(false);
+  const [confirm, setConfirm] = useState("");
+  const [check, setCheck] = useState(false);
 
   useEffect(() => {
     errorName.error
@@ -33,7 +39,38 @@ function EditAcademicYear() {
       : setError(false);
   }, [errorName, errorEndQ1, errorEndQ2]);
 
-  const fetchData = useCallback(async () => {
+  const endPeriod = async () => {
+    if (confirm !== "Finalizar " + academicYear.name) {
+      setConfirm("");
+      setCheck(false);
+      setModal({
+        title: "ERROR",
+        message: "El mensaje no coincide.\nNo se finalizó el periodo.",
+      });
+    } else {
+      setIsLoading(true);
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_BACK_URL}/secretary/endPeriod`,
+          {},
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: token,
+            },
+          }
+        );
+        setModal({ title: "CORRECTO", message: response.data.message });
+        navigate("../");
+      } catch (error) {
+        setModal({ title: "ERROR", message: error.response.data.message });
+      }
+      setIsLoading(false);
+    }
+  };
+
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -47,12 +84,13 @@ function EditAcademicYear() {
         }
       );
       const data = response.data.data.academic_period;
+      console.log(data);
       setAcademicYear(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal, token, params.id]);
+  };
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -89,30 +127,7 @@ function EditAcademicYear() {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
-
-  const deactivate = async (state) => {
-    setIsLoading(true);
-    try {
-      await axios.get(
-        `${process.env.REACT_APP_BACK_URL}/period/${params.id}/destroy`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: token,
-          },
-        }
-      );
-      setAcademicYear((prevState) => {
-        return { ...prevState, state };
-      });
-    } catch (error) {
-      setModal({ title: "ERROR", message: error.response.data.message });
-    }
-
-    setIsLoading(false);
-  };
+  }, []);
 
   return (
     <MainContainer
@@ -180,15 +195,47 @@ function EditAcademicYear() {
           maxDate="1"
           disabled={user.role !== "secretary"}
         />
-        <Card label="Estado">
-          <OnOffInput
-            value={academicYear.state}
-            onChange={(state) => {
-              deactivate(state);
-            }}
-          />
-        </Card>
       </SubContainer>
+      {academicYear.state === 1 && (
+        <SubContainer>
+          <Card label="Estado">
+            {!check ? (
+              <div className={classes.endPeriod}>
+                <Button
+                  onClick={() => {
+                    setCheck(true);
+                  }}
+                >
+                  Finalizar Periodo
+                </Button>
+              </div>
+            ) : (
+              <div className={classes.endPeriod}>
+                <div className={classes.alert}>
+                  ¿Esta seguro? Este proceso es irreversible, no podrá volver a
+                  activar el periodo, ni agregar o ni modificar nada de este
+                  periodo. Escriba{" "}
+                  <span className={classes.bold}>
+                    "Finalizar {academicYear.name}"
+                  </span>
+                  {" "}y presione el botón para finalizar el periodo.
+                </div>
+                <span style={{ height: "1rem" }}></span>
+                <Input
+                  type="text"
+                  theme="simple"
+                  value={confirm}
+                  onChange={(event) => {
+                    setConfirm(event.target.value);
+                  }}
+                />
+                <span style={{ height: "1rem" }}></span>
+                <Button onClick={endPeriod}>Finalizar Periodo</Button>
+              </div>
+            )}
+          </Card>
+        </SubContainer>
+      )}
     </MainContainer>
   );
 }

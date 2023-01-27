@@ -1,5 +1,3 @@
-Boton de finalizar el periodo
-
 Report Teacher
 
 Report Secretary
