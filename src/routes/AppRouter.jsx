@@ -67,9 +67,9 @@ const AppRouter = () => {
             element={
               <PublicRoute>
                 <Routes>
-                  <Route path="/*" element={<Login />} />
                   <Route path="/forgotPassword" element={<ForgotPassword />} />
-                  <Route path="/resetPassword" element={<ResetPassword />} />
+                  <Route path="/resetPassword/*" element={<ResetPassword />} />
+                  <Route path="/*" element={<Login />} />
                 </Routes>
               </PublicRoute>
             }
