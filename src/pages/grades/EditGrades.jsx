@@ -21,7 +21,9 @@ function EditGrades() {
   const [promedioFinal, setPromedioFinal] = useState(0);
   const [finals, setFinals] = useState({});
   const [grades, setGrades] = useState({});
-
+  const today = new Date();
+  const [blockGrades, setBlockGrades] = useState({});
+  const [dates, setDates] = useState({});
   const [error, setError] = useState(false);
 
   const fetchData = async () => {
@@ -46,6 +48,11 @@ function EditGrades() {
           Authorization: token,
         },
       });
+      if (user.role === "teacher")
+        setDates({
+          finq1: response.data.data.finq1 ?? null,
+          finq2: response.data.data.finq2 ?? null,
+        });
       const data = response.data.data.grades;
       const student = response.data.data.user;
       setStudent(student);
@@ -78,6 +85,29 @@ function EditGrades() {
       return { ...prevState, [id]: grade };
     });
   };
+
+  useEffect(() => {
+    if (dates.finq1) {
+      setBlockGrades((prevState) => {
+        return {
+          ...prevState,
+          blockq1:
+            today.getTime() >
+            new Date(dates.finq1.replace(/-/g, "/")).getTime(),
+        };
+      });
+    }
+    if (dates.finq2) {
+      setBlockGrades((prevState) => {
+        return {
+          ...prevState,
+          blockq2:
+            today.getTime() >
+            new Date(dates.finq2.replace(/-/g, "/")).getTime(),
+        };
+      });
+    }
+  }, [dates]);
 
   useEffect(() => {
     var sum = 0;
@@ -176,6 +206,8 @@ function EditGrades() {
                 <GradesCard
                   subject_id={subject.subject_id ?? ""}
                   name={subject.subject_name ?? ""}
+                  blockq1={blockGrades.blockq1}
+                  blockq2={blockGrades.blockq2}
                   p1q1={subject.p1q1 ?? ""}
                   p2q1={subject.p2q1 ?? ""}
                   p3q1={subject.p3q1 ?? ""}
@@ -212,7 +244,8 @@ function EditGrades() {
               <GradesFooter
                 behaviour1={student.comportamiento1 ?? ""}
                 behaviour2={student.comportamiento2 ?? ""}
-                promedioFinal={promedioFinal}
+                // promedioFinal={promedioFinal}
+                promedioFinal={student.total}
                 onBehaviourChange={onBehaviourChange}
                 setError={(error) => {
                   setError(error);

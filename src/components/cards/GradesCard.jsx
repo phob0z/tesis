@@ -248,7 +248,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorp1q1}
-              disabled={props.role !== "teacher"}
+              disabled={props.role !== "teacher" || props.blockq1}
             />
           </div>
           <div className={classes.grade}>
@@ -265,7 +265,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorp2q1}
-              disabled={props.role !== "teacher"}
+              disabled={props.role !== "teacher" || props.blockq1}
             />
           </div>
           <div className={classes.grade}>
@@ -282,7 +282,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorp3q1}
-              disabled={props.role !== "teacher"}
+              disabled={props.role !== "teacher" || props.blockq1}
             />
           </div>
           <div className={classes.grade}>
@@ -311,7 +311,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorp1q2}
-              disabled={props.role !== "teacher"}
+              disabled={props.role !== "teacher" || props.blockq2}
             />
           </div>
           <div className={classes.grade}>
@@ -328,7 +328,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorp2q2}
-              disabled={props.role !== "teacher"}
+              disabled={props.role !== "teacher" || props.blockq2}
             />
           </div>
           <div className={classes.grade}>
@@ -345,7 +345,7 @@ function GradesCard(props) {
               validation="grade"
               maxLength="5"
               setError={setErrorp3q2}
-              disabled={props.role !== "teacher"}
+              disabled={props.role !== "teacher" || props.blockq2}
             />
           </div>
           <div className={classes.grade}>

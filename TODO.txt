@@ -1,15 +1,8 @@
-Raul si en las notas envio suple, remedial, gracia vacios los llenas con 0s, deberian quedar como los mando
-
 Boton de finalizar el periodo
 
-En estudiante no se calcula bien la nota promedio final
+Report Teacher
 
-Hacer:
-verSubjects, para Student
-verSubjects, para Teacher
-
-En las rutas:
-Hacer chequeo del rol para el ruteo... que student no pueda acceder a /students, /teachers, etc.
+Report Secretary
 
 Hacer un fix para los 404, si recibo un 404 mostrar un modal propio.
 

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     margin: "30px",
     fontSize: 10,
   },
-  studentInfo: {
+  subjectInfo: {
     width: "auto",
     padding: "5px",
   },
@@ -61,18 +61,32 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   grade: {
-    width: "60px",
-    alignItems: "center",
+    fontSize: 12,
   },
   subjectName: {
-    width: "200%",
+    width: "400%",
     alignItems: "center",
+    borderStyle: "solid",
     borderRightWidth: "1px",
     borderTopWidth: "1px",
+  },
+  text: {
+    fontSize: 10,
   },
 });
 
 const TeacherPDF = (props) => {
+  const logo = props.data.logo;
+  const subject = props.data.subject_name;
+  const course = props.data.course;
+  const academicYear = props.data.academic_period;
+  const information = props.data.information;
+  const parallel = props.data.parallel;
+  const specialty = props.data.specialty;
+
+  // const user = props.data.user;
+  // const subjects = props.data.grades;
+  // const [subjectsTable, setSubjectsTable] = useState(false);
   console.log(props.data);
   return (
     <Document>
@@ -80,17 +94,14 @@ const TeacherPDF = (props) => {
         <View style={styles.content}>
           <View style={styles.schoolInfo}>
             <View style={styles.col}>
-              <Image
-                style={styles.image}
-                src="https://cdn-icons-png.flaticon.com/512/2231/2231696.png"
-              />
+              <Image style={styles.image} src={logo} />
               <View style={styles.cell}>
                 <Text
                   style={{
                     alignSelf: "center",
                   }}
                 >
-                  Director/a:
+                  {information.name}
                 </Text>
               </View>
               <View style={styles.cell}>
@@ -99,40 +110,49 @@ const TeacherPDF = (props) => {
                     alignSelf: "center",
                   }}
                 >
-                  Secretaria/o:
+                  Director/a: {information.director_name}
+                </Text>
+              </View>
+              <View style={styles.cell}>
+                <Text
+                  style={{
+                    alignSelf: "center",
+                  }}
+                >
+                  Secretaria/o: {information.secretary_name}
                 </Text>
               </View>
             </View>
           </View>
-          <View style={styles.studentInfo}>
+          <View style={styles.subjectInfo}>
             <View style={styles.row}>
               <View style={styles.cell}>
-                <Text>Estudiante: </Text>
+                <Text>Asignatura: {subject}</Text>
               </View>
             </View>
 
             <View style={styles.row}>
               <View style={styles.cell}>
-                <Text>Especialidad: </Text>
+                <Text>Especialidad: {specialty}</Text>
               </View>
             </View>
 
             <View style={styles.row}>
               <View style={styles.cell}>
-                <Text>Curso: </Text>
+                <Text>Curso: {course}</Text>
               </View>
               <View style={styles.cell}>
-                <Text>Paralelo: </Text>
+                <Text>Paralelo: {parallel}</Text>
               </View>
               <View style={styles.cell}>
-                <Text>Periodo: </Text>
+                <Text>Periodo: {academicYear}</Text>
               </View>
             </View>
           </View>
           <View style={styles.gradesHeader}>
             <View style={styles.row}>
               <View style={styles.subjectName}>
-                <Text>Asignatura</Text>
+                <Text>Estudiante</Text>
               </View>
               <View style={styles.col}>
                 <View style={styles.row}>
