@@ -52,15 +52,7 @@ function TeacherStudents() {
     <LongMainContainer title="Estudiantes" buttonBack>
       {!students || students.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
-            No se encontraron estudiantes asignados.
-          </div>
+          <div className="text">No se encontraron estudiantes asignados.</div>
         </LongSubContainer>
       ) : (
         students.map((student) => {

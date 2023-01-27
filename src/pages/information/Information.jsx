@@ -167,7 +167,6 @@ function Information() {
         <SubContainer subTitle="Logo de la institución">
           <Card
             value={information.logo}
-            // maxLength="20"
             type="image"
             onChange={(image) => {
               setLogoChanged(true);

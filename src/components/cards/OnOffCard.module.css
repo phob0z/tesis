@@ -1,6 +1,7 @@
 .data {
   display: grid;
   grid-auto-flow: column;
+  align-items: center;
   grid-template-columns: 2fr 1fr 1fr;
   padding-left: 1rem;
   padding-right: 1rem;

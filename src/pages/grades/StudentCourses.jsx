@@ -51,13 +51,7 @@ function StudentCourses(props) {
     <LongMainContainer title="Cursos" buttonBack>
       {!courses || courses.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             No se encontraron cursos para este estudiante.
           </div>
         </LongSubContainer>

@@ -51,15 +51,7 @@ function AcademicYears() {
     >
       {!academicYears || academicYears?.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
-            No se encontraron periodos académicos.
-          </div>
+          <div className="text">No se encontraron periodos académicos.</div>
         </LongSubContainer>
       ) : (
         academicYears.map((course) => {

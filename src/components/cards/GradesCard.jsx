@@ -1,11 +1,9 @@
 import React, { /* useContext, */ useEffect, useState } from "react";
-// import AlertContext from "../../contexts/alert/AlertContext";
 
 import Grade from "../../components/cards/Grade";
 import classes from "./GradesCard.module.css";
 
 function GradesCard(props) {
-  // const { setIsLoading, setModal } = useContext(AlertContext);
   const [grades, setGrades] = useState({
     subject_id: props.subject_id,
     p1q1: props.p1q1.toString(),
@@ -41,11 +39,7 @@ function GradesCard(props) {
   }, [grades.supletorio, grades.remedial, grades.gracia, grades.final]);
 
   useEffect(() => {
-    if (
-      grades.supletorio < 7 &&
-      grades.remedial < 7 &&
-      grades.gracia < 7
-    ) {
+    if (grades.supletorio < 7 && grades.remedial < 7 && grades.gracia < 7) {
       setGrades((prevState) => {
         return {
           ...prevState,
@@ -160,11 +154,6 @@ function GradesCard(props) {
     }
     // eslint-disable-next-line
   }, [grades.gracia]);
-
-  useEffect(() => {
-    props.onFinalChange(grades.id, grades.final);
-    // eslint-disable-next-line
-  }, [grades.id, grades.final]);
 
   useEffect(() => {
     setGrades((prevState) => {

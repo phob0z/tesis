@@ -1,7 +1,5 @@
 Estudiante Cambiar Editar por Reportes
 
-Report Teacher
-
 Report Secretary
 
 Hacer un fix para los 404, si recibo un 404 mostrar un modal propio.

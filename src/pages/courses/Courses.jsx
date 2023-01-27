@@ -51,15 +51,7 @@ function Courses() {
     >
       {!courses || courses?.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
-            No se encontraron cursos.
-          </div>
+          <div className="text">No se encontraron cursos.</div>
         </LongSubContainer>
       ) : (
         courses.map((course) => {

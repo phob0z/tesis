@@ -10,8 +10,6 @@ import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 import OnOffInput from "../../components/atoms/OnOffInput";
 
-import classes from "./EditStudent.module.css";
-
 function EditStudent() {
   const params = useParams();
   const [student, setStudent] = useState({
@@ -476,7 +474,7 @@ function EditStudent() {
             disabled={student.active || user.role !== "secretary"}
           />
           {student.active && (
-            <div className={classes.error}>
+            <div className="error">
               El estudiante ya ha iniciado el periodo académico. No puede
               modificar estos datos
             </div>

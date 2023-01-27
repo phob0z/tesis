@@ -58,7 +58,6 @@ const Input = (props) => {
           label={props.label}
           value={props.value}
           onChange={props.onChange}
-          // disabled={props.disabled}
           alt={props.alt}
         />
       );

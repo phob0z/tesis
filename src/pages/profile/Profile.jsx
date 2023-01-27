@@ -190,7 +190,7 @@ function Profile() {
         title="Perfil"
         buttonTitle="Guardar"
         type="submit"
-        // subjectButton="/subjects"
+        subjectButton={user.role !== "secretary" ? "/grades" : false}
       >
         <SubContainer subTitle="INFO PERSONAL">
           <Card

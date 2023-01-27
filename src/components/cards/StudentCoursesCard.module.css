@@ -1,6 +1,7 @@
 .course {
   display: grid;
   grid-auto-flow: column;
+  align-items: center;
   grid-template-columns: 6fr 1fr 6fr 1fr 1.5fr;
   padding-left: 1rem;
   padding-right: 1rem;

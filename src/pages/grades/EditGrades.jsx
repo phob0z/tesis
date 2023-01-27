@@ -1,4 +1,10 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -18,10 +24,10 @@ function EditGrades() {
 
   const [student, setStudent] = useState(null);
   const [subjects, setSubjects] = useState(null);
-  const [promedioFinal, setPromedioFinal] = useState(0);
-  const [finals, setFinals] = useState({});
   const [grades, setGrades] = useState({});
-  const today = new Date();
+  const today = useMemo(() => {
+    return new Date();
+  }, []);
   const [blockGrades, setBlockGrades] = useState({});
   const [dates, setDates] = useState({});
   const [error, setError] = useState(false);
@@ -58,7 +64,6 @@ function EditGrades() {
       setStudent(student);
       if (data.length === undefined) setSubjects([data]);
       else setSubjects(data);
-      setPromedioFinal(student.total);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
@@ -79,12 +84,6 @@ function EditGrades() {
     fetchData();
     // eslint-disable-next-line
   }, []);
-
-  const onFinalChange = (id, grade) => {
-    setFinals((prevState) => {
-      return { ...prevState, [id]: grade };
-    });
-  };
 
   useEffect(() => {
     if (dates.finq1) {
@@ -107,16 +106,7 @@ function EditGrades() {
         };
       });
     }
-  }, [dates]);
-
-  useEffect(() => {
-    var sum = 0;
-    for (const grade of Object.values(finals)) {
-      if (grade) sum += Number.isNaN(parseFloat(grade)) ? 0 : parseFloat(grade);
-    }
-    const result = (sum / Object.keys(finals).length).toFixed(2);
-    setPromedioFinal(result);
-  }, [finals]);
+  }, [dates, today]);
 
   const onSave = async () => {
     if (error) {
@@ -178,13 +168,7 @@ function EditGrades() {
     >
       {!subjects || subjects.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             El estudiante no tiene asignaturas inscritas.
           </div>
         </LongSubContainer>
@@ -218,19 +202,9 @@ function EditGrades() {
                   remedial={subject.remedial ?? ""}
                   gracia={subject.gracia ?? ""}
                   final={subject.final ?? ""}
-                  onFinalChange={onFinalChange}
                   role={user.role}
                   onGradesChange={(grades) => {
                     setGrades(grades);
-                    // setSubjects(
-                    //   subjects.map((subject) => {
-                    //     if (subject.subject_id === grades.subject_id) {
-                    //       return grades;
-                    //     } else {
-                    //       return subject;
-                    //     }
-                    //   })
-                    // );
                   }}
                   setError={(error) => {
                     setError(error);
@@ -244,7 +218,6 @@ function EditGrades() {
               <GradesFooter
                 behaviour1={student.comportamiento1 ?? ""}
                 behaviour2={student.comportamiento2 ?? ""}
-                // promedioFinal={promedioFinal}
                 promedioFinal={student.total}
                 onBehaviourChange={onBehaviourChange}
                 setError={(error) => {

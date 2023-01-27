@@ -51,15 +51,7 @@ function Specialties() {
     >
       {!specialty || specialty?.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
-            No se encontraron especialidades.
-          </div>
+          <div className="text">No se encontraron especialidades.</div>
         </LongSubContainer>
       ) : (
         specialty.map((course) => {

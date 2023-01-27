@@ -51,15 +51,7 @@ function Parallels() {
     >
       {!parallels || parallels?.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
-            No se encontraron paralelos.
-          </div>
+          <div className="text">No se encontraron paralelos.</div>
         </LongSubContainer>
       ) : (
         parallels.map((parallel) => {

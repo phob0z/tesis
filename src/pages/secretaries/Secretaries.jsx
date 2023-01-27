@@ -81,26 +81,14 @@ function Secretaries() {
     >
       {!secretaries ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             Escribir una identificación y posteriormente hacer clic en el botón
             "Buscar"
           </div>
         </LongSubContainer>
       ) : secretaries.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             No se encontraron secretarias con esos parámetros.
           </div>
         </LongSubContainer>

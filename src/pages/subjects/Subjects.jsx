@@ -76,26 +76,14 @@ function Subjects() {
     >
       {!subjects ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             Escribir el nombre de una asignatura y posteriormente hacer clic en
             el botón "Buscar"
           </div>
         </LongSubContainer>
       ) : subjects?.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             No se encontraron asignaturas con esos parámetros.
           </div>
         </LongSubContainer>

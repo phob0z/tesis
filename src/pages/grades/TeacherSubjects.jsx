@@ -45,15 +45,7 @@ function TeacherSubjects(props) {
     <LongMainContainer title="Asignaturas" buttonBack>
       {!subjects || subjects.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
-            No se encontraron asignaturas asociadas.
-          </div>
+          <div className="text">No se encontraron asignaturas asociadas.</div>
         </LongSubContainer>
       ) : (
         subjects.map((subject) => {

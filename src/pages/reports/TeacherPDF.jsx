@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
+import { useEffect, useState } from "react";
 
 const styles = StyleSheet.create({
   col: {
@@ -83,11 +84,67 @@ const TeacherPDF = (props) => {
   const information = props.data.information;
   const parallel = props.data.parallel;
   const specialty = props.data.specialty;
+  const grades = props.data.grades;
+  const [gradesTable, setGradesTable] = useState(false);
 
   // const user = props.data.user;
   // const subjects = props.data.grades;
   // const [subjectsTable, setSubjectsTable] = useState(false);
-  console.log(props.data);
+
+  useEffect(() => {
+    setGradesTable(
+      grades.map((grade) => {
+        return (
+          <View style={styles.subject}>
+            <View style={styles.row}>
+              <View style={styles.subjectName}>
+                <Text style={styles.text}>
+                  {grade.student_name} {grade.student_last_name}
+                </Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.p1q1 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.p2q1 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.p3q1 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.q1 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.p1q2 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.p2q2 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.p3q2 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.q2 ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.supletorio ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.remedial ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.gracia ?? "-"}</Text>
+              </View>
+              <View style={styles.title}>
+                <Text style={styles.grade}>{grade.final ?? "-"}</Text>
+              </View>
+            </View>
+          </View>
+        );
+      })
+    );
+  }, [grades]);
+
   return (
     <Document>
       <Page size="A4" orientation="landscape">
@@ -145,7 +202,7 @@ const TeacherPDF = (props) => {
                 <Text>Paralelo: {parallel}</Text>
               </View>
               <View style={styles.cell}>
-                <Text>Periodo: {academicYear}</Text>
+                <Text>Periodo: {academicYear}-{parseInt(academicYear)+1}</Text>
               </View>
             </View>
           </View>
@@ -210,51 +267,7 @@ const TeacherPDF = (props) => {
               </View>
             </View>
           </View>
-          <View style={styles.subject}>
-            <View style={styles.gradesHeader}>
-              <View style={styles.row}>
-                <View style={styles.subjectName}>
-                  <Text>Asignatura</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 1</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 2</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 3</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Final Q1</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 1</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 2</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 3</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Final Q2</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Supletorio</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Remedial</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Gracia</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Final</Text>
-                </View>
-              </View>
-            </View>
-          </View>
+          <View render={() => gradesTable} />
         </View>
       </Page>
     </Document>

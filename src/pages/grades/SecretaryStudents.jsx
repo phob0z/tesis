@@ -137,26 +137,14 @@ function SecretaryStudents() {
     >
       {!students ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             Usar los filtros y/o una identificación y posteriormente hacer clic
             en el botón "Buscar"
           </div>
         </LongSubContainer>
       ) : students.length === 0 ? (
         <LongSubContainer>
-          <div
-            style={{
-              paddingLeft: "1rem",
-              paddingRight: "1rem",
-              minWidth: "100%",
-            }}
-          >
+          <div className="text">
             No se encontraron estudiantes con esos parámetros.
           </div>
         </LongSubContainer>
