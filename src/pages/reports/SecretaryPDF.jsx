@@ -166,34 +166,34 @@ const SecretaryPDF = (props) => {
                       return (
                         <View key={i} style={styles.row}>
                           <View style={styles.cell}>
-                            <Text>{grade.q1 ?? ""}</Text>
+                            <Text>{grade.q1 ?? "-"}</Text>
                           </View>
                           <View style={styles.cell}>
-                            <Text>{grade.q2 ?? ""}</Text>
+                            <Text>{grade.q2 ?? "-"}</Text>
                           </View>
                           <View style={styles.cell}>
-                            <Text>{grade.supletorio ?? ""}</Text>
+                            <Text>{grade.supletorio ?? "-"}</Text>
                           </View>
                           <View style={styles.cell}>
-                            <Text>{grade.remedial ?? ""}</Text>
+                            <Text>{grade.remedial ?? "-"}</Text>
                           </View>
                           <View style={styles.cell}>
-                            <Text>{grade.gracia ?? ""}</Text>
+                            <Text>{grade.gracia ?? "-"}</Text>
                           </View>
                           <View style={styles.cell}>
-                            <Text>{grade.final ?? ""}</Text>
+                            <Text>{grade.final ?? "-"}</Text>
                           </View>
                         </View>
                       );
                     })}
                     <View style={styles.cell}>
-                      <Text>{student.comportamiento1 ?? ""}</Text>
+                      <Text>{student.comportamiento1 ?? "-"}</Text>
                     </View>
                     <View style={styles.cell}>
-                      <Text>{student.comportamiento2 ?? ""}</Text>
+                      <Text>{student.comportamiento2 ?? "-"}</Text>
                     </View>
                     <View style={styles.cell}>
-                      <Text>{student.total ?? ""}</Text>
+                      <Text>{student.total ?? "-"}</Text>
                     </View>
                   </View>
                 </View>
