@@ -8,236 +8,202 @@ import {
 } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
+  content: {
+    margin: "30pt",
+    fontSize: 10,
+  },
+  schoolInfo: {
+    fontSize: 11,
+  },
   col: {
     display: "flex",
-    flexWrap: "nowrap",
     flexDirection: "column",
+  },
+  image: {
+    width: "50pt",
+    height: "50pt",
+  },
+  center: {
+    alignItems: "center",
+  },
+  headerInfo: {
+    padding: "5pt",
   },
   row: {
     display: "flex",
-    flexWrap: "nowrap",
-    justifyContent: "space-between",
-    width: "auto",
     flexDirection: "row",
-    // alignItems: "center",
+    justifyContent: "space-between",
+  },
+  headerTable: {
+    border: "1pt",
+    borderRight: 0,
+    borderBottom: 0,
+  },
+  number: {
+    width: "100mm",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRight: "1pt",
+  },
+  studentName: {
+    width: "1500mm",
+    justifyContent: "center",
+    borderRight: "1pt",
+    paddingLeft: "3pt",
   },
   subject: {
-    marginTop: "5px",
-  },
-  cell: {
-    width: "auto",
-  },
-  content: {
-    width: "auto",
-    margin: "30px",
-    fontSize: 10,
-  },
-  studentInfo: {
-    width: "auto",
-    padding: "5px",
-  },
-  schoolInfo: {
-    width: "auto",
-    fontSize: 8,
-  },
-  image: {
-    width: "50px",
-    height: "50px",
-    alignSelf: "center",
-  },
-  gradesHeader: {
-    width: "auto",
-    borderStyle: "solid",
-    borderBottomWidth: "1px",
-    borderLeftWidth: "1px",
-  },
-  title: {
     width: "100%",
     alignItems: "center",
-    alignSelf: "center",
-    borderStyle: "solid",
-    borderRightWidth: "1px",
-    borderTopWidth: "1px",
-    height: "100%",
+    justifyContent: "center",
+    borderRight: "1pt",
+    borderBottom: "1pt",
   },
-  grade: {
-    width: "60px",
+  cell: {
+    width: "100%",
     alignItems: "center",
-  },
-  subjectName: {
-    width: "200%",
-    alignItems: "center",
-    borderRightWidth: "1px",
-    borderTopWidth: "1px",
+    justifyContent: "center",
+    borderRight: "1pt",
   },
 });
 
 const SecretaryPDF = (props) => {
-  console.log(props.data);
+  const logo = props.data.logo;
+  const course = props.data.course;
+  const academicYear = props.data.academic_period;
+  const information = props.data.information;
+  const parallel = props.data.parallel;
+  const specialty = props.data.specialty;
+  const students = props.data.students;
+
   return (
-    <Document>
-      <Page size="A4" orientation="landscape">
-        <View style={styles.content}>
-          <View style={styles.schoolInfo}>
-            <View style={styles.col}>
-              <Image
-                style={styles.image}
-                src="https://cdn-icons-png.flaticon.com/512/2231/2231696.png"
-              />
-              <View style={styles.cell}>
-                <Text
-                  style={{
-                    alignSelf: "center",
-                  }}
-                >
-                  Director/a:
-                </Text>
-              </View>
-              <View style={styles.cell}>
-                <Text
-                  style={{
-                    alignSelf: "center",
-                  }}
-                >
-                  Secretaria/o:
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.studentInfo}>
-            <View style={styles.row}>
-              <View style={styles.cell}>
-                <Text>Estudiante: </Text>
-              </View>
-            </View>
-
-            <View style={styles.row}>
-              <View style={styles.cell}>
-                <Text>Especialidad: </Text>
-              </View>
-            </View>
-
-            <View style={styles.row}>
-              <View style={styles.cell}>
-                <Text>Curso: </Text>
-              </View>
-              <View style={styles.cell}>
-                <Text>Paralelo: </Text>
-              </View>
-              <View style={styles.cell}>
-                <Text>Periodo: </Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.gradesHeader}>
-            <View style={styles.row}>
-              <View style={styles.subjectName}>
-                <Text>Asignatura</Text>
-              </View>
+    students && (
+      <Document>
+        <Page size="A3" orientation="landscape">
+          <View style={styles.content}>
+            <View style={styles.schoolInfo}>
               <View style={styles.col}>
-                <View style={styles.row}>
-                  <View style={styles.title}>
-                    <Text>Quimestre 1</Text>
-                  </View>
+                <View style={styles.center}>
+                  <Image style={styles.image} src={logo} />
+                  <Text>{information.name}</Text>
+                  <Text>Director/a: {information.director_name}</Text>
+                  <Text>Secretaria/o: {information.secretary_name}</Text>
                 </View>
-                <View style={styles.row}>
-                  <View style={styles.title}>
-                    <Text>Parcial 1</Text>
-                  </View>
-                  <View style={styles.title}>
-                    <Text>Parcial 2</Text>
-                  </View>
-                  <View style={styles.title}>
-                    <Text>Parcial 3</Text>
-                  </View>
-                  <View style={styles.title}>
-                    <Text>Final Q1</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.col}>
-                <View style={styles.row}>
-                  <View style={styles.title}>
-                    <Text>Quimestre 2</Text>
-                  </View>
-                </View>
-                <View style={styles.row}>
-                  <View style={styles.title}>
-                    <Text>Parcial 1</Text>
-                  </View>
-                  <View style={styles.title}>
-                    <Text>Parcial 2</Text>
-                  </View>
-                  <View style={styles.title}>
-                    <Text>Parcial 3</Text>
-                  </View>
-                  <View style={styles.title}>
-                    <Text>Final Q2</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.title}>
-                <Text>Supletorio</Text>
-              </View>
-              <View style={styles.title}>
-                <Text>Remedial</Text>
-              </View>
-              <View style={styles.title}>
-                <Text>Gracia</Text>
-              </View>
-              <View style={styles.title}>
-                <Text>Final</Text>
               </View>
             </View>
-          </View>
-          <View style={styles.subject}>
-            <View style={styles.gradesHeader}>
+            <View style={styles.headerInfo}>
               <View style={styles.row}>
-                <View style={styles.subjectName}>
-                  <Text>Asignatura</Text>
+                <Text>Curso: {course}</Text>
+                <Text>Paralelo: {parallel}</Text>
+                <Text>Especialidad: {specialty}</Text>
+                <Text>
+                  Periodo: {academicYear}-{parseInt(academicYear) + 1}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.headerTable}>
+              <View style={styles.row}>
+                <View style={styles.number}>
+                  <Text>N°</Text>
                 </View>
-                <View style={styles.title}>
-                  <Text>Parcial 1</Text>
+                <View style={styles.studentName}>
+                  <Text>Estudiante</Text>
                 </View>
-                <View style={styles.title}>
-                  <Text>Parcial 2</Text>
+                {students[0].grades.map((subject, i) => {
+                  return (
+                    <View key={i}>
+                      <View style={styles.row}>
+                        <View style={styles.subject}>
+                          <Text>{subject.subject_name}</Text>
+                        </View>
+                      </View>
+                      <View style={styles.row}>
+                        <View style={styles.cell}>
+                          <Text>Q1</Text>
+                        </View>
+                        <View style={styles.cell}>
+                          <Text>Q2</Text>
+                        </View>
+                        <View style={styles.cell}>
+                          <Text>S</Text>
+                        </View>
+                        <View style={styles.cell}>
+                          <Text>R</Text>
+                        </View>
+                        <View style={styles.cell}>
+                          <Text>G</Text>
+                        </View>
+                        <View style={styles.cell}>
+                          <Text>Final</Text>
+                        </View>
+                      </View>
+                    </View>
+                  );
+                })}
+                <View style={styles.cell}>
+                  <Text>Comp 1</Text>
                 </View>
-                <View style={styles.title}>
-                  <Text>Parcial 3</Text>
+                <View style={styles.cell}>
+                  <Text>Comp 2</Text>
                 </View>
-                <View style={styles.title}>
-                  <Text>Final Q1</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 1</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 2</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Parcial 3</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Final Q2</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Supletorio</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Remedial</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Gracia</Text>
-                </View>
-                <View style={styles.title}>
-                  <Text>Final</Text>
+                <View style={styles.cell}>
+                  <Text>Prom</Text>
                 </View>
               </View>
             </View>
+            {students.map((student, i) => {
+              return (
+                <View key={i} style={styles.headerTable}>
+                  <View style={styles.row}>
+                    <View style={styles.number}>
+                      <Text>{i + 1}</Text>
+                    </View>
+                    <View style={styles.studentName}>
+                      <Text>
+                        {student.student_name} {student.student_last_name}
+                      </Text>
+                    </View>
+                    {student.grades.map((grade, i) => {
+                      return (
+                        <View key={i} style={styles.row}>
+                          <View style={styles.cell}>
+                            <Text>{grade.q1 ?? ""}</Text>
+                          </View>
+                          <View style={styles.cell}>
+                            <Text>{grade.q2 ?? ""}</Text>
+                          </View>
+                          <View style={styles.cell}>
+                            <Text>{grade.supletorio ?? ""}</Text>
+                          </View>
+                          <View style={styles.cell}>
+                            <Text>{grade.remedial ?? ""}</Text>
+                          </View>
+                          <View style={styles.cell}>
+                            <Text>{grade.gracia ?? ""}</Text>
+                          </View>
+                          <View style={styles.cell}>
+                            <Text>{grade.final ?? ""}</Text>
+                          </View>
+                        </View>
+                      );
+                    })}
+                    <View style={styles.cell}>
+                      <Text>{student.comportamiento1 ?? ""}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{student.comportamiento2 ?? ""}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{student.total ?? ""}</Text>
+                    </View>
+                  </View>
+                </View>
+              );
+            })}
+            <View style={{ borderTop: 1 }} />
           </View>
-        </View>
-      </Page>
-    </Document>
+        </Page>
+      </Document>
+    )
   );
 };
 
