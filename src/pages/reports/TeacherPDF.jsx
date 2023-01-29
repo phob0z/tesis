@@ -6,73 +6,63 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import { useEffect, useState } from "react";
 
 const styles = StyleSheet.create({
+  content: {
+    margin: "30pt",
+    fontSize: 10,
+  },
+  schoolInfo: {
+    fontSize: 11,
+    paddingBottom: "10mm",
+  },
   col: {
     display: "flex",
-    flexWrap: "nowrap",
     flexDirection: "column",
+  },
+  image: {
+    width: "50pt",
+    height: "50pt",
+  },
+  center: {
+    alignItems: "center",
+  },
+  headerInfo: {
+    padding: "5pt",
   },
   row: {
     display: "flex",
-    flexWrap: "nowrap",
-    justifyContent: "space-between",
-    width: "auto",
     flexDirection: "row",
-    // alignItems: "center",
+    justifyContent: "space-between",
+    textAlign: "left",
   },
-  subject: {
-    marginTop: "5px",
-  },
-  cell: {
-    width: "auto",
-  },
-  content: {
-    width: "auto",
-    margin: "30px",
-    fontSize: 10,
-  },
-  subjectInfo: {
-    width: "auto",
-    padding: "5px",
-  },
-  schoolInfo: {
-    width: "auto",
-    fontSize: 8,
-  },
-  image: {
-    width: "50px",
-    height: "50px",
-    alignSelf: "center",
-  },
-  gradesHeader: {
-    width: "auto",
-    borderStyle: "solid",
-    borderBottomWidth: "1px",
-    borderLeftWidth: "1px",
-  },
-  title: {
-    width: "100%",
-    alignItems: "center",
-    alignSelf: "center",
-    borderStyle: "solid",
-    borderRightWidth: "1px",
-    borderTopWidth: "1px",
-    height: "100%",
-  },
-  grade: {
-    fontSize: 12,
+  headerTable: {
+    border: "1pt",
+    borderRight: 0,
+    borderBottom: 0,
   },
   subjectName: {
     width: "400%",
-    alignItems: "center",
-    borderStyle: "solid",
-    borderRightWidth: "1px",
-    borderTopWidth: "1px",
+    justifyContent: "center",
+    borderRight: "1pt",
+    paddingLeft: "1mm",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
-  text: {
-    fontSize: 10,
+  quimester: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRight: "1pt",
+    borderBottom: "1pt",
+  },
+  cell: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRight: "1pt",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
 });
 
@@ -85,65 +75,6 @@ const TeacherPDF = (props) => {
   const parallel = props.data.parallel;
   const specialty = props.data.specialty;
   const grades = props.data.grades;
-  const [gradesTable, setGradesTable] = useState(false);
-
-  // const user = props.data.user;
-  // const subjects = props.data.grades;
-  // const [subjectsTable, setSubjectsTable] = useState(false);
-
-  useEffect(() => {
-    setGradesTable(
-      grades.map((grade) => {
-        return (
-          <View style={styles.subject}>
-            <View style={styles.row}>
-              <View style={styles.subjectName}>
-                <Text style={styles.text}>
-                  {grade.student_name} {grade.student_last_name}
-                </Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.p1q1 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.p2q1 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.p3q1 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.q1 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.p1q2 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.p2q2 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.p3q2 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.q2 ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.supletorio ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.remedial ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.gracia ?? "-"}</Text>
-              </View>
-              <View style={styles.title}>
-                <Text style={styles.grade}>{grade.final ?? "-"}</Text>
-              </View>
-            </View>
-          </View>
-        );
-      })
-    );
-  }, [grades]);
 
   return (
     <Document>
@@ -151,123 +82,138 @@ const TeacherPDF = (props) => {
         <View style={styles.content}>
           <View style={styles.schoolInfo}>
             <View style={styles.col}>
-              <Image style={styles.image} src={logo} />
-              <View style={styles.cell}>
-                <Text
-                  style={{
-                    alignSelf: "center",
-                  }}
-                >
-                  {information.name}
-                </Text>
-              </View>
-              <View style={styles.cell}>
-                <Text
-                  style={{
-                    alignSelf: "center",
-                  }}
-                >
-                  Director/a: {information.director_name}
-                </Text>
-              </View>
-              <View style={styles.cell}>
-                <Text
-                  style={{
-                    alignSelf: "center",
-                  }}
-                >
-                  Secretaria/o: {information.secretary_name}
-                </Text>
+              <View style={styles.center}>
+                <Image style={styles.image} src={logo} />
+                <Text>{information.name}</Text>
+                <Text>Rector/a: {information.director_name}</Text>
+                <Text>Secretario/a: {information.secretary_name}</Text>
               </View>
             </View>
           </View>
-          <View style={styles.subjectInfo}>
+          <View style={styles.headerInfo}>
+            <Text>Asignatura: {subject}</Text>
+            <Text>Especialidad: {specialty}</Text>
             <View style={styles.row}>
-              <View style={styles.cell}>
-                <Text>Asignatura: {subject}</Text>
-              </View>
-            </View>
-
-            <View style={styles.row}>
-              <View style={styles.cell}>
-                <Text>Especialidad: {specialty}</Text>
-              </View>
-            </View>
-
-            <View style={styles.row}>
-              <View style={styles.cell}>
-                <Text>Curso: {course}</Text>
-              </View>
-              <View style={styles.cell}>
-                <Text>Paralelo: {parallel}</Text>
-              </View>
-              <View style={styles.cell}>
-                <Text>Periodo: {academicYear}-{parseInt(academicYear)+1}</Text>
-              </View>
+              <Text>Curso: {course}</Text>
+              <Text>Paralelo: {parallel}</Text>
+              <Text>
+                Periodo: {academicYear}-{parseInt(academicYear) + 1}
+              </Text>
             </View>
           </View>
-          <View style={styles.gradesHeader}>
+          <View style={styles.headerTable}>
             <View style={styles.row}>
               <View style={styles.subjectName}>
                 <Text>Estudiante</Text>
               </View>
               <View style={styles.col}>
                 <View style={styles.row}>
-                  <View style={styles.title}>
+                  <View style={styles.quimester}>
                     <Text>Quimestre 1</Text>
                   </View>
                 </View>
                 <View style={styles.row}>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Parcial 1</Text>
                   </View>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Parcial 2</Text>
                   </View>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Parcial 3</Text>
                   </View>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Final Q1</Text>
                   </View>
                 </View>
               </View>
               <View style={styles.col}>
                 <View style={styles.row}>
-                  <View style={styles.title}>
+                  <View style={styles.quimester}>
                     <Text>Quimestre 2</Text>
                   </View>
                 </View>
                 <View style={styles.row}>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Parcial 1</Text>
                   </View>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Parcial 2</Text>
                   </View>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Parcial 3</Text>
                   </View>
-                  <View style={styles.title}>
+                  <View style={styles.cell}>
                     <Text>Final Q2</Text>
                   </View>
                 </View>
               </View>
-              <View style={styles.title}>
+              <View style={styles.cell}>
                 <Text>Supletorio</Text>
               </View>
-              <View style={styles.title}>
+              <View style={styles.cell}>
                 <Text>Remedial</Text>
               </View>
-              <View style={styles.title}>
+              <View style={styles.cell}>
                 <Text>Gracia</Text>
               </View>
-              <View style={styles.title}>
+              <View style={styles.cell}>
                 <Text>Final</Text>
               </View>
             </View>
           </View>
-          <View render={() => gradesTable} />
+          {grades.map((grade, i) => {
+            return (
+              <View key={i} style={styles.headerTable}>
+                <View style={styles.row}>
+                  <View style={styles.subjectName}>
+                    <Text>
+                      {grade.student_name} {grade.student_last_name}
+                    </Text>
+                  </View>
+                  <View style={styles.row}>
+                    <View style={styles.cell}>
+                      <Text>{grade.p1q1 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.p2q1 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.p3q1 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.q1 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.p1q2 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.p2q2 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.p3q2 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.q2 ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.supletorio ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.remedial ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.gracia ?? "-"}</Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text>{grade.final ?? "-"}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            );
+          })}
+          <View style={{ borderTop: 1, height: "10pt" }} />
         </View>
       </Page>
     </Document>

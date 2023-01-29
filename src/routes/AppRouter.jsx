@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -67,9 +67,10 @@ const AppRouter = () => {
             element={
               <PublicRoute>
                 <Routes>
+                  <Route path="/" element={<Login />} />
                   <Route path="/forgotPassword" element={<ForgotPassword />} />
                   <Route path="/resetPassword/*" element={<ResetPassword />} />
-                  <Route path="/*" element={<Login />} />
+                  <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
               </PublicRoute>
             }

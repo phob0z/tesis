@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
   schoolInfo: {
     fontSize: 11,
+    paddingBottom: "10mm",
   },
   col: {
     display: "flex",
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     borderRight: "1pt",
     borderBottom: "1pt",
     overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   cell: {
     width: "100%",
@@ -102,7 +104,7 @@ const SecretaryPDF = (props) => {
           <View style={[styles.content, { fontSize: fontSize(numSubj) }]}>
             <View style={styles.schoolInfo}>
               <View style={styles.col}>
-                <View style={[styles.center, { paddingBottom: "10mm" }]}>
+                <View style={styles.center}>
                   <Image style={styles.image} src={logo} />
                   <Text>{information.name}</Text>
                   <Text>CUADRO FINAL DE CALIFICACIONES</Text>

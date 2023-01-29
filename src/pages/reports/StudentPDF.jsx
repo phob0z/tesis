@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   },
   schoolInfo: {
     fontSize: 11,
+    paddingBottom: "10mm",
   },
   col: {
     display: "flex",
@@ -44,7 +45,9 @@ const styles = StyleSheet.create({
     width: "400%",
     justifyContent: "center",
     borderRight: "1pt",
-    paddingLeft: "3pt",
+    paddingLeft: "1mm",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   quimester: {
     width: "100%",
@@ -58,6 +61,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRight: "1pt",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
 });
 
@@ -77,8 +82,8 @@ const StudentPDF = (props) => {
                 <View style={styles.center}>
                   <Image style={styles.image} src={logo} />
                   <Text>{information.name}</Text>
-                  <Text>Director/a: {information.director_name}</Text>
-                  <Text>Secretaria/o: {information.secretary_name}</Text>
+                  <Text>Rector/a: {information.director_name}</Text>
+                  <Text>Secretario/a: {information.secretary_name}</Text>
                 </View>
               </View>
             </View>
@@ -164,7 +169,7 @@ const StudentPDF = (props) => {
                     <View style={styles.subjectName}>
                       <Text>{grade.subject_name}</Text>
                     </View>
-                    <View key={i} style={styles.row}>
+                    <View style={styles.row}>
                       <View style={styles.cell}>
                         <Text>{grade.p1q1 ?? "-"}</Text>
                       </View>
@@ -207,28 +212,34 @@ const StudentPDF = (props) => {
               );
             })}
             <View style={{ borderTop: 1, height: "10pt" }} />
-
-              <View style={styles.row}>
-                <View style={{width: "25%"}}>
-                  <Text></Text>
-                </View>
-                <View style={{width: "25%", alignItems: "center", border: 1}}>
-                  <Text>Comportamiento 1: {user.comportamiento1}</Text>
-                </View>
-                <View style={{width: "25%", alignItems: "center", border: 1, borderLeft: 0}}>
-                  <Text>Comportamiento 2: {user.comportamiento2}</Text>
-                </View>
-                <View style={{width: "25%", border: 1, borderLeft: 0}}>
-                  <View style={styles.row}>
-                    <View style={{ width: "75%" }}>
-                      <Text style={{ alignSelf: "flex-end" }}>Promedio:</Text>
-                    </View>
-                    <View style={{ width: "25%" }}>
-                      <Text style={{ alignSelf: "center" }}>{user.total}</Text>
-                    </View>
+            <View style={styles.row}>
+              <View style={{ width: "25%" }}>
+                <Text></Text>
+              </View>
+              <View style={{ width: "25%", alignItems: "center", border: 1 }}>
+                <Text>Comportamiento 1: {user.comportamiento1}</Text>
+              </View>
+              <View
+                style={{
+                  width: "25%",
+                  alignItems: "center",
+                  border: 1,
+                  borderLeft: 0,
+                }}
+              >
+                <Text>Comportamiento 2: {user.comportamiento2}</Text>
+              </View>
+              <View style={{ width: "25%", border: 1, borderLeft: 0 }}>
+                <View style={styles.row}>
+                  <View style={{ width: "75%" }}>
+                    <Text style={{ alignSelf: "flex-end" }}>Promedio:</Text>
+                  </View>
+                  <View style={{ width: "25%" }}>
+                    <Text style={{ alignSelf: "center" }}>{user.total}</Text>
                   </View>
                 </View>
               </View>
+            </View>
           </View>
         </Page>
       </Document>
