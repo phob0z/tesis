@@ -10,7 +10,6 @@ import {
 const styles = StyleSheet.create({
   content: {
     margin: "30pt",
-    fontSize: 10,
   },
   schoolInfo: {
     fontSize: 11,
@@ -40,31 +39,51 @@ const styles = StyleSheet.create({
     borderBottom: 0,
   },
   number: {
-    width: "100mm",
+    minWidth: "5mm",
     alignItems: "center",
     justifyContent: "center",
     borderRight: "1pt",
   },
   studentName: {
-    width: "1500mm",
+    width: "600%",
     justifyContent: "center",
     borderRight: "1pt",
-    paddingLeft: "3pt",
+    paddingLeft: "1mm",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   subject: {
+    paddingLeft: "2mm",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
     borderRight: "1pt",
     borderBottom: "1pt",
+    overflow: "hidden",
   },
   cell: {
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
     borderRight: "1pt",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
 });
+
+const fontSize = (numSubj) => {
+  if (numSubj > 13) {
+    return 5;
+  } else if (numSubj > 10) {
+    return 6;
+  } else if (numSubj > 7) {
+    return 7;
+  } else if (numSubj > 4) {
+    return 8;
+  } else if (numSubj > 0) {
+    return 10;
+  }
+};
 
 const SecretaryPDF = (props) => {
   const logo = props.data.logo;
@@ -74,19 +93,22 @@ const SecretaryPDF = (props) => {
   const parallel = props.data.parallel;
   const specialty = props.data.specialty;
   const students = props.data.students;
+  const numSubj = students[0].grades.length;
 
   return (
     students && (
       <Document>
         <Page size="A3" orientation="landscape">
-          <View style={styles.content}>
+          <View style={[styles.content, { fontSize: fontSize(numSubj) }]}>
             <View style={styles.schoolInfo}>
               <View style={styles.col}>
-                <View style={styles.center}>
+                <View style={[styles.center, { paddingBottom: "10mm" }]}>
                   <Image style={styles.image} src={logo} />
                   <Text>{information.name}</Text>
-                  <Text>Director/a: {information.director_name}</Text>
-                  <Text>Secretaria/o: {information.secretary_name}</Text>
+                  <Text>CUADRO FINAL DE CALIFICACIONES</Text>
+                  <Text>
+                    AÑO LECTIVO {academicYear}-{parseInt(academicYear) + 1}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -95,9 +117,6 @@ const SecretaryPDF = (props) => {
                 <Text>Curso: {course}</Text>
                 <Text>Paralelo: {parallel}</Text>
                 <Text>Especialidad: {specialty}</Text>
-                <Text>
-                  Periodo: {academicYear}-{parseInt(academicYear) + 1}
-                </Text>
               </View>
             </View>
             <View style={styles.headerTable}>
@@ -199,7 +218,30 @@ const SecretaryPDF = (props) => {
                 </View>
               );
             })}
-            <View style={{ borderTop: 1 }} />
+            <View style={{ borderTop: 1, height: "30mm" }} />
+            <View style={styles.row}>
+              <View style={{ width: "25%" }}>
+                <Text></Text>
+              </View>
+              <View
+                style={{ width: "12.5%", borderTop: 1, alignItems: "center" }}
+              >
+                <Text>Rector/a</Text>
+                <Text>{information.director_name}</Text>
+              </View>
+              <View style={{ width: "25%" }}>
+                <Text></Text>
+              </View>
+              <View
+                style={{ width: "12.5%", borderTop: 1, alignItems: "center" }}
+              >
+                <Text>Secretario/a</Text>
+                <Text>{information.secretary_name}</Text>
+              </View>
+              <View style={{ width: "25%" }}>
+                <Text></Text>
+              </View>
+            </View>
           </View>
         </Page>
       </Document>
