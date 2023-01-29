@@ -112,7 +112,7 @@ function ResetNewPassword() {
 
     console.log("password: " + newPassword);
     console.log("password_confirmation: " + confirmation);
-    console.log("access_token: " + token);
+    console.log("token: " + token);
     console.log("identification: " + identification);
 
     try {
