@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     borderRight: 0,
     borderBottom: 0,
   },
-  quimesterName: {
+  subjectName: {
     width: "400%",
     justifyContent: "center",
     borderRight: "1pt",
@@ -98,7 +98,7 @@ const StudentPDF = (props) => {
             </View>
             <View style={styles.headerTable}>
               <View style={styles.row}>
-                <View style={styles.quimesterName}>
+                <View style={styles.subjectName}>
                   <Text>Asignatura</Text>
                 </View>
                 <View style={styles.col}>
@@ -161,8 +161,8 @@ const StudentPDF = (props) => {
               return (
                 <View key={i} style={styles.headerTable}>
                   <View style={styles.row}>
-                    <View style={styles.quimesterName}>
-                      <Text>{grade.quimester_name}</Text>
+                    <View style={styles.subjectName}>
+                      <Text>{grade.subject_name}</Text>
                     </View>
                     <View key={i} style={styles.row}>
                       <View style={styles.cell}>
