@@ -220,7 +220,23 @@ const SecretaryPDF = (props) => {
                 </View>
               );
             })}
-            <View style={{ borderTop: 1, height: "30mm" }} />
+            {/* <View style={{ borderTop: 1, height: "30mm" }} /> */}
+            <View style={{ borderTop: 1 }} />
+
+            <View style={styles.col}>
+              <View style={[styles.row, { width: "10%", textAlign: "left" }]}>
+                <Text>ASD</Text>
+                <Text>ASDASDAS</Text>
+              </View>
+              <View style={[styles.row, { textAlign: "left" }]}>
+                <Text style={{ width: "10%" }}>ASD</Text>
+                <Text style={{ width: "10%" }}>ASDASDAS</Text>
+              </View>
+              <View style={[styles.row, { textAlign: "left" }]}>
+                <Text style={{ width: "10%" }}>ASD</Text>
+                <Text style={{ width: "10%" }}>ASDASDAS</Text>
+              </View>
+            </View>
             <View style={styles.row}>
               <View style={{ width: "25%" }}>
                 <Text></Text>

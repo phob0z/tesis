@@ -127,6 +127,7 @@ function EditAcademicYear() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   return (

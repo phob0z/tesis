@@ -213,7 +213,30 @@ const TeacherPDF = (props) => {
               </View>
             );
           })}
-          <View style={{ borderTop: 1, height: "10pt" }} />
+          <View style={{ borderTop: 1, height: "30mm" }} />
+          <View style={styles.row}>
+            <View style={{ width: "25%" }}>
+              <Text></Text>
+            </View>
+            <View
+              style={{ width: "12.5%", borderTop: 1, alignItems: "center" }}
+            >
+              <Text>Rector/a</Text>
+              <Text>{information.director_name}</Text>
+            </View>
+            <View style={{ width: "25%" }}>
+              <Text></Text>
+            </View>
+            <View
+              style={{ width: "12.5%", borderTop: 1, alignItems: "center" }}
+            >
+              <Text>Secretario/a</Text>
+              <Text>{information.secretary_name}</Text>
+            </View>
+            <View style={{ width: "25%" }}>
+              <Text></Text>
+            </View>
+          </View>
         </View>
       </Page>
     </Document>

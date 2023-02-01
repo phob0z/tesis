@@ -273,7 +273,6 @@ function Profile() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
-            must
             disabled={user.role !== "secretary"}
           />
           <Card

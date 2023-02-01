@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/atoms/Button";
 
 import classes from "./Auth.module.css";
+import emailSentImg from "../../assets/emailSentImg.png";
 
 function EmailSent() {
   const navigate = useNavigate();
@@ -16,11 +17,12 @@ function EmailSent() {
     <Fragment>
       <span className={classes.title}>Correo Enviado</span>
       <form className={classes.login}>
+        <img src={emailSentImg} alt="Imagen de correo enviado" width="75rem"/>
         <div className={classes.box}>
           <span className={classes.boxTitle}>
             Si el correo se encuentra en la base de datos se enviará un mensaje
-            al correo electrónico asociado. Por favor revise su correo y siga
-            las instrucciones.
+            al correo electrónico asociado. Por favor revise su correo
+            (incluyendo la carpeta SPAM) y siga las instrucciones.
           </span>
         </div>
         <Button onClick={onVolver}>Volver</Button>

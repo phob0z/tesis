@@ -111,10 +111,10 @@ function EditStudent() {
       const avatar = response.data.data.avatar;
       const data = response.data.data.user;
       if (
-        data.course_id !== "" &&
-        data.parallel_id !== "" &&
-        data.specialty_id !== "" &&
-        data.academic_period_id !== ""
+        data.course_id !== null &&
+        data.parallel_id !== null &&
+        data.specialty_id !== null &&
+        data.academic_period_id !== null
       )
         data.active = true;
       setStudent({ ...data, avatar });
@@ -231,6 +231,15 @@ function EditStudent() {
           setModal({ title: "ERROR", message: error.response.data.message });
         }
       }
+      if (
+        student.course_id !== null &&
+        student.parallel_id !== null &&
+        student.specialty_id !== null &&
+        student.academic_period_id !== null
+      )
+        setStudent((prevState) => {
+          return { ...prevState, active: true };
+        });
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -430,6 +439,12 @@ function EditStudent() {
           />
         </SubContainer>
         <SubContainer subTitle="DATOS DE LA MATRÍCULA">
+          {student.active && (
+            <div className="error">
+              El estudiante ya ha iniciado el periodo académico. No puede
+              modificar estos datos.
+            </div>
+          )}
           <Card
             label="Curso"
             type="select"
@@ -473,12 +488,6 @@ function EditStudent() {
             }}
             disabled={student.active || user.role !== "secretary"}
           />
-          {student.active && (
-            <div className="error">
-              El estudiante ya ha iniciado el periodo académico. No puede
-              modificar estos datos
-            </div>
-          )}
         </SubContainer>
         <SubContainer subTitle="ESTADO">
           <Card>
