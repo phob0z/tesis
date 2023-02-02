@@ -29,3 +29,13 @@
   overflow: hidden;
   padding-right: 0.2rem;
 }
+
+.aproved {
+  font-size: 0.7rem;
+  color: green;
+}
+
+.failed {
+  font-size: 0.7rem;
+  color: #6d1118;
+}

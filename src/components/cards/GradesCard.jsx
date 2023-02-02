@@ -399,7 +399,10 @@ function GradesCard(props) {
           disabled={props.role !== "teacher" || graciaDisabled}
         />
       </div>
-      <div className={`${classes.final}`}>{grades.final}</div>
+      <div className={`${classes.final}`}>
+        <div>{grades.final}</div>
+        <div className={grades.final >= 7? classes.aproved: classes.failed}>{grades.final >= 7? "APRUEBA": "REPRUEBA"}</div>
+      </div>
     </div>
   );
 }
