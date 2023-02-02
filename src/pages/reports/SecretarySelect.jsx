@@ -83,6 +83,7 @@ function SecretarySelect() {
         });
       }}
       buttonBack
+      className="short"
     >
       <LongSubContainer>
         <div

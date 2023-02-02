@@ -31,7 +31,13 @@ function StudentCourses(props) {
         }
       );
       const data = response.data.data.classrooms;
-      setCourses(data);
+      if (
+        data[0].course_name &&
+        data[0].parallel_name &&
+        data[0].specialty_name &&
+        data[0].academic_period_name
+      )
+        setCourses(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }

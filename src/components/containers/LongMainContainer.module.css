@@ -20,6 +20,10 @@
   row-gap: 0.5rem;
 }
 
+.short {
+  bottom: auto;
+}
+
 .big {
   min-width: 80%;
 }

@@ -9,7 +9,7 @@ function LongMainContainer(props) {
   return (
     <Fragment>
       <div
-        className={`${classes.mainContainer} ${props.big ? classes.big : ""}`}
+        className={`${classes.mainContainer} ${props.big ? classes.big : ""} ${classes[props.className]}`}
       >
         {props.children}
       </div>
