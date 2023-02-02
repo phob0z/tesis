@@ -43,7 +43,6 @@ function Profile() {
       );
       const { user, avatar } = response.data.data;
       setUserProfile({ ...user, avatar: avatar });
-      console.log(user);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }

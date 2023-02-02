@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/atoms/Button";
 
 import classes from "./Auth.module.css";
-import emailSentImg from "../../assets/emailSentImg.png";
+import emailSentImg from "../../assets/images/emailSentImg.png";
 
 function EmailSent() {
   const navigate = useNavigate();
