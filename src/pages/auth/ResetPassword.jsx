@@ -8,18 +8,11 @@ import Button from "../../components/atoms/Button";
 import AlertContext from "../../contexts/alert/AlertContext";
 
 import classes from "./Auth.module.css";
+import TokenInvalid from "./TokenInvalid";
 
 function ResetNewPassword() {
   const navigate = useNavigate();
   const { setIsLoading, setModal } = useContext(AlertContext);
-
-  // const location = useLocation();
-  // const queryParameters = new URLSearchParams(location.search);
-  // // console.log(location);
-  // const access_token = queryParameters.get("token");
-  // const identification = queryParameters.get("email");
-  // console.log(access_token);
-  // console.log(identification);
 
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordTouched, setNewPasswordTouched] = useState(false);
@@ -29,16 +22,44 @@ function ResetNewPassword() {
   const [confirmationError, setConfirmationError] = useState("");
   const [token, setToken] = useState();
   const [identification, setIdentification] = useState();
+  const [tokenValid, setTokenValid] = useState();
 
-  //https://sismds.vercel.app/login/resetPassword/?token=6b2a52b64f1a4187d7b93ce8d3b64a9144d3e2371ab66afd6e2fcd4614b9bf3d&identification=88888
   const location = useLocation();
   const queryParameters = new URLSearchParams(location.search);
+
+  const checkToken = async () => {
+    if (token && identification) {
+      setIsLoading(true);
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_BACK_URL}/check-link`,
+          {
+            identification: identification,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        );
+        if (response.status == 200) setTokenValid(true);
+      } catch (error) {
+        setTokenValid(false);
+      }
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     setToken(queryParameters.get("token"));
     setIdentification(queryParameters.get("identification"));
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    checkToken();
+  }, [token, identification]);
 
   useEffect(() => {
     if (newPassword.trim() === "")
@@ -110,11 +131,6 @@ function ResetNewPassword() {
 
     setIsLoading(true);
 
-    console.log("password: " + newPassword);
-    console.log("password_confirmation: " + confirmation);
-    console.log("token: " + token);
-    console.log("identification: " + identification);
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACK_URL}/reset-password`,
@@ -128,7 +144,6 @@ function ResetNewPassword() {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            // Authorization: token,
           },
         }
       );
@@ -145,7 +160,9 @@ function ResetNewPassword() {
     navigate("/login");
   };
 
-  return (
+  return tokenValid === undefined ? (
+    <div />
+  ) : tokenValid === true ? (
     <Fragment>
       <span className={classes.title}>Reestablecer contraseña</span>
       <form className={classes.login} onSubmit={onResetNewPassword}>
@@ -186,6 +203,8 @@ function ResetNewPassword() {
         <Button onClick={onVolver}>Volver</Button>
       </form>
     </Fragment>
+  ) : (
+    <TokenInvalid />
   );
 }
 

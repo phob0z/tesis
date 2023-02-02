@@ -176,6 +176,7 @@ function Profile() {
       }
       setModal({ title: "CORRECTO", message: response.data.message });
       setProfile({ ...userProfile });
+      setProfile(user);
       user.avatar = userProfile.avatar;
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -183,8 +184,44 @@ function Profile() {
     setIsLoading(false);
   };
 
+  const changeAvatar = async (event) => {
+    event.preventDefault();
+    if (error) {
+      setModal({
+        title: "Error en el campo " + error.label.toUpperCase(),
+        message: error.error,
+      });
+      return;
+    }
+    setIsLoading(true);
+
+    var formData = new FormData();
+    if (avatarChanged) {
+      formData.append("image", avatarFile);
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: token,
+            },
+          }
+        );
+        setModal({ title: "CORRECTO", message: response.data.message });
+      } catch {
+        setIsLoading(false);
+        setModal({ title: "ERROR", message: error.response.data.message });
+      }
+    }
+    setProfile(user);
+    user.avatar = userProfile.avatar;
+    setIsLoading(false);
+  };
+
   return (
-    <form onSubmit={saveProfile}>
+    <form onSubmit={user.role !== "student" ? saveProfile : changeAvatar}>
       <MainContainer
         title="Perfil"
         buttonTitle="Guardar"
@@ -258,7 +295,7 @@ function Profile() {
             setError={setErrorEmail}
             validation="email"
             must
-            disabled={user.role !== "secretary"}
+            disabled={user.role === "student"}
           />
           <Card
             label="Teléfono fijo"
@@ -272,7 +309,7 @@ function Profile() {
             }}
             setError={setErrorHomePhone}
             validation="homePhone"
-            disabled={user.role !== "secretary"}
+            disabled={user.role === "student"}
           />
           <Card
             label="Teléfono celular"
@@ -287,7 +324,7 @@ function Profile() {
             setError={setErrorPersonalPhone}
             validation="personalPhone"
             must
-            disabled={user.role !== "secretary"}
+            disabled={user.role === "student"}
           />
           <Card
             type="textBig"
@@ -300,7 +337,7 @@ function Profile() {
             setError={setErrorAddress}
             validation="address"
             must
-            disabled={user.role !== "secretary"}
+            disabled={user.role === "student"}
           />
         </SubContainer>
         <SubContainer subTitle="IMAGEN DE PERFIL">

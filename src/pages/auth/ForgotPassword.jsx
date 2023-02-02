@@ -61,9 +61,7 @@ function ForgotPassword() {
         { identification },
         { headers: { accept: "application/json" } }
       );
-    } catch (error) {
-      console.log("Error: ", error.response.data.message);
-    }
+    } catch (error) {}
     setIsLoading(false);
     setSent(true);
   };
@@ -99,7 +97,7 @@ function ForgotPassword() {
           <span className={classes.boxFooter}>&nbsp;</span>
         </div>
         <Button type="submit">Recuperar</Button>
-        <span style={{height: "1rem"}}/>
+        <span style={{ height: "1rem" }} />
         <Button onClick={onVolver}>Volver</Button>
       </form>
     </Fragment>

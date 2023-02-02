@@ -13,9 +13,9 @@ const Input = (props) => {
     setFocussed(true);
   };
 
-  const onBlur = () => {
+  const onBlur = (event) => {
     setFocussed(false);
-    props.onBlur();
+    props.onBlur(event);
   };
 
   const onSetVisibility = () => {

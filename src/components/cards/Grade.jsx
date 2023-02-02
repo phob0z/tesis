@@ -6,6 +6,24 @@ import Input from "../atoms/Input";
 
 function Grade(props) {
   const [error, setError] = useState(false);
+  const [value, setValue] = useState(props.value);
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
+  const onBlur = (event) => {
+    if (value.match(/^[0-9]+[.]{0,1}[0-9]{0,3}$/)) {
+      let val = parseFloat(event.target.value);
+      if (val >= 0 || val <= 10) {
+        setValue(
+          event.target.value
+            ? (Math.round(event.target.value * 100) / 100).toFixed(2)
+            : ""
+        );
+      }
+    }
+  };
 
   useEffect(() => {
     setError(false);
@@ -35,10 +53,11 @@ function Grade(props) {
     <div className={classes.gradeContainer}>
       <div className={classes.inputBox}>
         <Input
-          value={props.value}
+          value={value}
           label={props.label}
           type={props.type}
           onChange={props.onChange}
+          onBlur={onBlur}
           maxLength={props.maxLength}
           theme="blue"
           disabled={props.disabled}

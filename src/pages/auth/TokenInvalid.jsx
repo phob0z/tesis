@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/atoms/Button";
 
 import classes from "./Auth.module.css";
-import emailSent from "../../assets/images/emailSent.png";
+import warning from "../../assets/images/warning.png";
 
-function EmailSent() {
+function TokenInvalid() {
   const navigate = useNavigate();
 
   const onVolver = () => {
@@ -15,19 +15,16 @@ function EmailSent() {
 
   return (
     <Fragment>
-      <span className={classes.title}>Correo Enviado</span>
+      <span className={classes.title}>Token Inválido</span>
       <form className={classes.login}>
-        <img src={emailSent} alt="Imagen de correo enviado" width="75rem" />
+        <img src={warning} alt="Imagen de alerta" width="75rem" />
         <div className={classes.box}>
           <span className={classes.boxTitle}>
-            <div>
-              Si el correo se encuentra en la base de datos se enviará un
-              mensaje al correo electrónico asociado.
-            </div>
+            <div>El enlace utilizado es inválido o ya fue utilizado.</div>
             <br />
             <div>
-              Por favor revise su correo (incluyendo la carpeta SPAM) y siga las
-              instrucciones.
+              Por favor, intente recuperar su contraseña nuevamente o asegúrese
+              de usar el enlace correcto.
             </div>
           </span>
         </div>
@@ -37,4 +34,4 @@ function EmailSent() {
   );
 }
 
-export default EmailSent;
+export default TokenInvalid;

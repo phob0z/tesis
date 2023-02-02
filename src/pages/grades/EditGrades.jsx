@@ -192,16 +192,56 @@ function EditGrades() {
                   name={subject.subject_name ?? ""}
                   blockq1={blockGrades.blockq1}
                   blockq2={blockGrades.blockq2}
-                  p1q1={subject.p1q1 ?? ""}
-                  p2q1={subject.p2q1 ?? ""}
-                  p3q1={subject.p3q1 ?? ""}
-                  p1q2={subject.p1q2 ?? ""}
-                  p2q2={subject.p2q2 ?? ""}
-                  p3q2={subject.p3q2 ?? ""}
-                  supletorio={subject.supletorio ?? ""}
-                  remedial={subject.remedial ?? ""}
-                  gracia={subject.gracia ?? ""}
-                  final={subject.final ?? ""}
+                  p1q1={
+                    subject.p1q1
+                      ? (Math.round(subject.p1q1 * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  p2q1={
+                    subject.p2q1
+                      ? (Math.round(subject.p2q1 * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  p3q1={
+                    subject.p3q1
+                      ? (Math.round(subject.p3q1 * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  p1q2={
+                    subject.p1q2
+                      ? (Math.round(subject.p1q2 * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  p2q2={
+                    subject.p2q2
+                      ? (Math.round(subject.p2q2 * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  p3q2={
+                    subject.p3q2
+                      ? (Math.round(subject.p3q2 * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  supletorio={
+                    subject.supletorio
+                      ? (Math.round(subject.supletorio * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  remedial={
+                    subject.remedial
+                      ? (Math.round(subject.remedial * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  gracia={
+                    subject.gracia
+                      ? (Math.round(subject.gracia * 100) / 100).toFixed(2)
+                      : ""
+                  }
+                  final={
+                    subject.final
+                      ? (Math.round(subject.final * 100) / 100).toFixed(2)
+                      : ""
+                  }
                   role={user.role}
                   onGradesChange={(grades) => {
                     setGrades(grades);
@@ -218,7 +258,11 @@ function EditGrades() {
               <GradesFooter
                 behaviour1={student.comportamiento1 ?? ""}
                 behaviour2={student.comportamiento2 ?? ""}
-                promedioFinal={student.total}
+                promedioFinal={
+                  student.total
+                    ? (Math.round(student.total * 100) / 100).toFixed(2)
+                    : ""
+                }
                 onBehaviourChange={onBehaviourChange}
                 setError={(error) => {
                   setError(error);
