@@ -138,7 +138,7 @@ function SecretaryStudents() {
       {!students ? (
         <LongSubContainer>
           <div className="text">
-            Usar los filtros y/o una identificación y posteriormente hacer clic
+            Usar los filtros o una identificación y posteriormente hacer clic
             en el botón "Buscar"
           </div>
         </LongSubContainer>
