@@ -24,3 +24,14 @@
   color: #d2a647;
   text-shadow: 0 0 #000;
 }
+
+.selected {
+  cursor: pointer;
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1rem;
+  transform: scale(1.1);
+  color: #d2a647;
+  margin-left: 15px;
+  margin-right: 15px;
+}

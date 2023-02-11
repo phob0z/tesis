@@ -10,7 +10,7 @@ function Option(props) {
   return (
     <div className={classes.subOptionBox}>
       <div
-        className={classes.subOption}
+        className={props.selected ? classes.selected : classes.subOption}
         onMouseOver={props.onMouseOver}
         onMouseOut={props.onMouseOut}
         onClick={handleClick}

@@ -31,8 +31,7 @@
   font-family: "Carter One";
   font-style: normal;
   font-size: 1.2rem;
+  transform: scale(1.1);
   color: #d2a647;
-  text-shadow: 0.08rem 0.08rem #000, -0.08rem -0.08rem #000,
-    0.08rem -0.08rem #000, -0.08rem 0.08rem #000;
   min-width: max-content;
 }
