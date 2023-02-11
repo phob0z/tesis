@@ -43,7 +43,7 @@ function ResetNewPassword() {
             },
           }
         );
-        if (response.status == 200) setTokenValid(true);
+        if (response.status === 200) setTokenValid(true);
       } catch (error) {
         setTokenValid(false);
       }
@@ -59,6 +59,7 @@ function ResetNewPassword() {
 
   useEffect(() => {
     checkToken();
+    // eslint-disable-next-line
   }, [token, identification]);
 
   useEffect(() => {

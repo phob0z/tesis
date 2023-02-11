@@ -9,7 +9,7 @@ function Option(props) {
   return (
     <div className={classes.optionBox}>
       <div
-        className={classes.option}
+        className={props.selected? classes.selected: classes.option}
         onMouseOver={props.onMouseOver}
         onMouseOut={props.onMouseOut}
         onClick={() => {

@@ -8,6 +8,7 @@
 }
 
 .option {
+  cursor: pointer;
   font-family: "Carter One";
   font-style: normal;
   font-size: 1.2rem;
@@ -23,4 +24,14 @@
   transform: scale(1.1);
   color: #d2a647;
   text-shadow: 0 0 #000;
+}
+
+.selected {
+  cursor: pointer;
+  font-family: "Carter One";
+  font-style: normal;
+  font-size: 1.32rem;
+  color: #d2a647;
+  text-shadow: 0 0 #000;
+  min-width: max-content;
 }

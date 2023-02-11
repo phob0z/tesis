@@ -11,6 +11,7 @@ import classes from "./Menu.module.css";
 import Photo from "./Photo";
 import SubMenu from "./SubMenu";
 import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
 
 const Menu = () => {
   const { user, token, logout } = useContext(AuthContext);
@@ -18,6 +19,8 @@ const Menu = () => {
 
   const [showSubMenu, setShowSubMenu] = useState(false);
   const [subMenu, setSubMenu] = useState();
+
+  const location = useLocation();
 
   const menuSecretary = useMemo(
     () => [
@@ -144,6 +147,13 @@ const Menu = () => {
       <div className={classes.options}>
         {menu.map((option) => (
           <Option
+            selected={
+              option.subMenu
+                ? option.subMenu.filter(
+                    (subMenu) => location.pathname === subMenu.route
+                  )[0]
+                : location.pathname === option.route
+            }
             route={option.route}
             key={option.title}
             onMouseOver={(e) => {
