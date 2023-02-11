@@ -27,7 +27,7 @@ const Modal = () => {
             onClick={() => {
               setModal(false);
               setHasError(false);
-              if (modal.message === "Usuario no autenticado.") {
+              if (modal.message === "Usuario no autenticado." || modal.message === "Unauthenticated.") {
                 localStorage.removeItem("user");
                 localStorage.removeItem("token");
                 window.location.reload(true);
