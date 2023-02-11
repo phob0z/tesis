@@ -306,16 +306,18 @@ function EditSecretary() {
             validation="image"
           />
         </SubContainer>
-        <SubContainer subTitle="ESTADO">
-          <Card>
-            <OnOffInput
-              value={secretary.state}
-              onChange={(state) => {
-                deactivate(state);
-              }}
-            />
-          </Card>
-        </SubContainer>
+        {parseInt(params.id) !== user.id && (
+          <SubContainer subTitle="ESTADO">
+            <Card>
+              <OnOffInput
+                value={secretary.state}
+                onChange={(state) => {
+                  deactivate(state);
+                }}
+              />
+            </Card>
+          </SubContainer>
+        )}
       </MainContainer>
     </form>
   );
