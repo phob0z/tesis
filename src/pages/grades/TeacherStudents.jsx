@@ -69,7 +69,7 @@ function TeacherStudents() {
                 academic_period={student.academic_period ?? ""}
                 academic_period_id={student.academic_period_id ?? ""}
                 state={student.state ?? ""}
-                buttonTitle="Notas"
+                buttonTitle="Calificaciones"
                 onClick={onClick}
               />
             </LongSubContainer>

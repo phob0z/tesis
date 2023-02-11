@@ -30,7 +30,7 @@ function GradesRouter() {
       default:
         return (
           <Fragment>
-            <Route path="" element={<StudentCourses buttonTitle="Notas" />} />
+            <Route path="" element={<StudentCourses buttonTitle="Calificaciones" />} />
             <Route path=":academicYearId" element={<EditGrades />} />
           </Fragment>
         );

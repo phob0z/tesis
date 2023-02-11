@@ -162,7 +162,7 @@ function EditGrades() {
   return (
     <LongMainContainer
       big
-      title="Notas"
+      title="Calificaciones"
       onSave={user.role !== "student" ? onSave : false}
       buttonBack={user.role === "secretary" ? "./../../" : true}
     >
