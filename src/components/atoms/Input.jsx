@@ -100,8 +100,8 @@ const Input = (props) => {
               return (
                 <option
                   className={classes.option}
-                  key={option.id}
-                  value={option.id}
+                  key={option.id??""}
+                  value={option.id??""}
                 >
                   {option.name}
                 </option>

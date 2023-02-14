@@ -138,54 +138,58 @@ function NewSubject() {
         <Card
           label="Profesor"
           type="select"
-          options={filters.teachers ?? ""}
+          options={filters.teachers}
           theme="simple"
           value={subject.teacher_id}
           onChange={(event) => {
             setSubject({ ...subject, teacher_id: event.target.value });
           }}
           setError={setErrorTeacher}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />
       </SubContainer>
       <SubContainer>
         <Card
-          label="Curso"
+          label="Cursos"
           type="select"
-          options={filters.courses ?? ""}
+          options={filters.courses}
           theme="simple"
           value={subject.course_id}
           onChange={(event) => {
             setSubject({ ...subject, course_id: event.target.value });
           }}
           setError={setErrorCourse}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />
         <Card
-          label="Paralelo"
+          label="Paralelos"
           type="select"
-          options={filters.parallels ?? ""}
+          options={filters.parallels}
           theme="simple"
           value={subject.parallel_id}
           onChange={(event) => {
             setSubject({ ...subject, parallel_id: event.target.value });
           }}
           setError={setErrorParallel}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />
         <Card
-          label="Especialidad"
+          label="Especialidades"
           type="select"
-          options={filters.specialties ?? ""}
+          options={filters.specialties}
           theme="simple"
           value={subject.specialty_id}
           onChange={(event) => {
             setSubject({ ...subject, specialty_id: event.target.value });
           }}
           setError={setErrorSpecialty}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />

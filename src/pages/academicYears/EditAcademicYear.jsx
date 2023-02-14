@@ -176,6 +176,7 @@ function EditAcademicYear() {
           }}
           setError={setErrorEndQ1}
           validation="date"
+          must
           minDate="0"
           maxDate="1"
           disabled={user.role !== "secretary"}
@@ -191,6 +192,7 @@ function EditAcademicYear() {
           }}
           setError={setErrorEndQ2}
           validation="date"
+          must
           minDate="0"
           maxDate="1"
           disabled={user.role !== "secretary"}

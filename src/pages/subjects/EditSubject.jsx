@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -41,7 +41,7 @@ function EditSubject() {
       : setError(false);
   }, [errorName, errorCourse, errorParallel, errorSpecialty, errorTeacher]);
 
-  const fetchData = useCallback(async () => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -59,11 +59,9 @@ function EditSubject() {
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
-    setIsLoading(false);
-  }, [setIsLoading, setModal, token, params.id]);
+  };
 
-  const fetchFilters = useCallback(async () => {
-    setIsLoading(true);
+  const fetchFilters = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BACK_URL}/subject/filter`,
@@ -85,7 +83,7 @@ function EditSubject() {
       setModal({ title: "ERROR", message: error.response.data.message });
     }
     setIsLoading(false);
-  }, [setIsLoading, setModal, token]);
+  };
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -125,9 +123,10 @@ function EditSubject() {
   };
 
   useEffect(() => {
-    fetchFilters();
     fetchData();
-  }, [fetchData, fetchFilters]);
+    fetchFilters();
+    // eslint-disable-next-line 
+  }, []);
 
   return (
     <MainContainer
@@ -162,6 +161,7 @@ function EditSubject() {
             setSubject({ ...subject, teacher_id: event.target.value });
           }}
           setError={setErrorTeacher}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />
@@ -177,6 +177,7 @@ function EditSubject() {
             setSubject({ ...subject, course_id: event.target.value });
           }}
           setError={setErrorCourse}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />
@@ -190,6 +191,7 @@ function EditSubject() {
             setSubject({ ...subject, parallel_id: event.target.value });
           }}
           setError={setErrorParallel}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />
@@ -203,6 +205,7 @@ function EditSubject() {
             setSubject({ ...subject, specialty_id: event.target.value });
           }}
           setError={setErrorSpecialty}
+          must
           validation="select"
           disabled={user.role !== "secretary"}
         />
