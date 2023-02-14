@@ -12,18 +12,7 @@ import { useParams } from "react-router-dom";
 
 function EditSecretary() {
   const params = useParams();
-  const [secretary, setSecretary] = useState({
-    name: "",
-    last_name: "",
-    identification: "",
-    birthdate: "",
-    email: "",
-    home_phone: "",
-    personal_phone: "",
-    address: "",
-    state: false,
-    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-  });
+  const [secretary, setSecretary] = useState({});
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 

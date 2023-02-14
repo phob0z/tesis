@@ -12,26 +12,7 @@ import OnOffInput from "../../components/atoms/OnOffInput";
 
 function EditStudent() {
   const params = useParams();
-  const [student, setStudent] = useState({
-    name: "",
-    last_name: "",
-    identification: "",
-    birthdate: "",
-    email: "",
-    home_phone: "",
-    personal_phone: "",
-    address: "",
-    representative_name: "",
-    representative_last_name: "",
-    representative_identification: "",
-    representative_personal_phone: "",
-    course_id: "",
-    parallel_id: "",
-    specialty_id: "",
-    academic_period_id: "",
-    state: false,
-    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-  });
+  const [student, setStudent] = useState({});
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -446,7 +427,7 @@ function EditStudent() {
             </div>
           )}
           <Card
-            label="Curso"
+            label="Cursos"
             type="select"
             options={filters.courses}
             value={student.course_id}
@@ -456,7 +437,7 @@ function EditStudent() {
             disabled={student.active || user.role !== "secretary"}
           />
           <Card
-            label="Paralelo"
+            label="Paralelos"
             type="select"
             options={filters.parallels}
             value={student.parallel_id}
@@ -466,7 +447,7 @@ function EditStudent() {
             disabled={student.active || user.role !== "secretary"}
           />
           <Card
-            label="Especialidad"
+            label="Especialidades"
             type="select"
             options={filters.specialties}
             value={student.specialty_id}
@@ -476,7 +457,7 @@ function EditStudent() {
             disabled={student.active || user.role !== "secretary"}
           />
           <Card
-            label="Periodo"
+            label="Periodos"
             type="select"
             options={filters.academicYears}
             value={student.academic_period_id}

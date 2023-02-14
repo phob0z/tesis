@@ -10,7 +10,7 @@ import AlertContext from "../../contexts/alert/AlertContext";
 import classes from "./Auth.module.css";
 import TokenInvalid from "./TokenInvalid";
 
-function ResetNewPassword() {
+function ResetPassword() {
   const navigate = useNavigate();
   const { setIsLoading, setModal } = useContext(AlertContext);
 
@@ -115,7 +115,7 @@ function ResetNewPassword() {
     setConfirmationTouched(true);
   };
 
-  const onResetNewPassword = async (event) => {
+  const onResetPassword = async (event) => {
     event.preventDefault();
     setNewPasswordTouched(true);
     setConfirmationTouched(true);
@@ -166,7 +166,7 @@ function ResetNewPassword() {
   ) : tokenValid === true ? (
     <Fragment>
       <span className={classes.title}>Reestablecer contraseña</span>
-      <form className={classes.login} onSubmit={onResetNewPassword}>
+      <form className={classes.login} onSubmit={onResetPassword}>
         <div className={classes.box}>
           <span className={classes.boxTitle}>Ingrese la contraseña</span>
           <Input
@@ -209,4 +209,4 @@ function ResetNewPassword() {
   );
 }
 
-export default ResetNewPassword;
+export default ResetPassword;

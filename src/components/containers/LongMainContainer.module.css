@@ -88,22 +88,6 @@
   transform: translate(-50%, -50%);
 }
 
-/* .filters {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 25%;
-  right: 8%;
-  transform: translateY(-50%);
-} */
-
 .filter {
   margin-right: 0.5rem;
 }
-
-/* .label {
-  position: absolute;
-  top: -1.5rem;
-  z-index: -1;
-  cursor: default;
-} */

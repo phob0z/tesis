@@ -88,7 +88,7 @@ const Input = (props) => {
               <option className={classes.option} value="" disabled>
                 {props.label}
               </option>
-              {props.label !== "Periodo" && (
+              {props.label !== "Periodos" && (
                 <option className={classes.option} value="">
                   Ninguno
                 </option>

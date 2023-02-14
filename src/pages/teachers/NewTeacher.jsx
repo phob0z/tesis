@@ -9,22 +9,10 @@ import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 
 function NewTeacher() {
-  const [teacher, setTeacher] = useState({
-    name: "",
-    last_name: "",
-    identification: "",
-    birthdate: "",
-    email: "",
-    home_phone: "",
-    personal_phone: "",
-    address: "",
-    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-  });
+  const [teacher, setTeacher] = useState({});
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  // const [avatarFile, setAvatarFile] = useState();
-  // const [avatarChanged, setAvatarChanged] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);

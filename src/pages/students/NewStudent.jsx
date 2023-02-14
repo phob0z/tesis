@@ -11,14 +11,10 @@ import Card from "../../components/cards/Card";
 
 function NewStudent() {
   const navigate = useNavigate();
-  const [student, setStudent] = useState({
-    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-  });
+  const [student, setStudent] = useState({});
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  // const [avatarFile, setAvatarFile] = useState();
-  // const [avatarChanged, setAvatarChanged] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -106,7 +102,6 @@ function NewStudent() {
   }, [fetchFilters]);
 
   const saveProfile = async (event) => {
-    console.log(student);
     event.preventDefault();
     if (error) {
       setModal({
@@ -146,24 +141,6 @@ function NewStudent() {
         }
       );
 
-      // var formData = new FormData();
-      // if (avatarChanged) {
-      //   formData.append("image", avatarFile);
-      //   try {
-      //     await axios.post(
-      //       `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
-      //       formData,
-      //       {
-      //         headers: {
-      //           "Content-Type": "multipart/form-data",
-      //           Authorization: token,
-      //         },
-      //       }
-      //     );
-      //   } catch {
-      //     setModal({ title: "ERROR", message: error.response.data.message });
-      //   }
-      // }
       setModal({ title: "CORRECTO", message: response.data.message });
       navigate("../");
     } catch (error) {
@@ -350,22 +327,9 @@ function NewStudent() {
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
-        {/* <SubContainer subTitle="IMAGEN DE PERFIL">
-          <Card
-            value={student.avatar}
-            type="image"
-            onChange={(image) => {
-              setAvatarChanged(true);
-              setStudent({ ...student, avatar: image.base64 });
-              setAvatarFile(image.file);
-            }}
-            validation="image"
-            // disabled={user.role !== "secretary"}
-          />
-        </SubContainer> */}
         <SubContainer subTitle="DATOS DE LA MATRÍCULA">
           <Card
-            label="Curso"
+            label="Cursos"
             type="select"
             options={filters.courses}
             theme="simple"
@@ -376,7 +340,7 @@ function NewStudent() {
             disabled={user.role !== "secretary"}
           />
           <Card
-            label="Paralelo"
+            label="Paralelos"
             type="select"
             options={filters.parallels}
             theme="simple"
@@ -387,7 +351,7 @@ function NewStudent() {
             disabled={user.role !== "secretary"}
           />
           <Card
-            label="Especialidad"
+            label="Especialidades"
             type="select"
             options={filters.specialties}
             theme="simple"
@@ -398,7 +362,7 @@ function NewStudent() {
             disabled={user.role !== "secretary"}
           />
           <Card
-            label="Periodo"
+            label="Periodos"
             type="select"
             options={filters.academicYears}
             theme="simple"

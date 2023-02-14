@@ -80,9 +80,6 @@ const StudentPDF = (props) => {
   const information = props.data.information;
   const user = props.data.user;
   const grades = props.data.grades;
-  console.log(user);
-  console.log(information);
-  console.log(grades);
 
   return (
     grades && (

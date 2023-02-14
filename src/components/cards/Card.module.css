@@ -7,7 +7,6 @@
   margin-right: 0.625rem;
   margin-left: 0.625rem;
   height: max-content;
-  /* width: min-content; */
 }
 
 .main {
@@ -32,11 +31,9 @@
 .inputBox {
   display: flex;
   align-items: center;
-  /* margin: 0 0 0.625rem 0; */
 }
 
 .error {
-  /* margin-top: -0.5rem; */
   text-align: center;
   font-family: "Open Sans";
   font-style: normal;

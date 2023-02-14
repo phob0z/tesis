@@ -22,7 +22,7 @@ Photo.propTypes = {
 };
 
 Photo.defaultProps = {
-  src: "https://www.hallmarktour.com/img/profile-img.jpg",
+  src: "https://cdn-icons-png.flaticon.com/512/711/711769.png",
   alt: "Usuario",
   onClick: () => {},
 };

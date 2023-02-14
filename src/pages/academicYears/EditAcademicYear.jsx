@@ -84,7 +84,6 @@ function EditAcademicYear() {
         }
       );
       const data = response.data.data.academic_period;
-      console.log(data);
       setAcademicYear(data);
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });

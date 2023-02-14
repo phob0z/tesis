@@ -45,7 +45,7 @@ function LongMainContainer(props) {
                 <Input
                   value={props.search.specialty}
                   type="select"
-                  label="Especialidad"
+                  label="Especialidades"
                   options={props.filters.specialties}
                   theme="simple"
                   onChange={(event) => {
@@ -57,7 +57,7 @@ function LongMainContainer(props) {
                 <Input
                   value={props.search.academicYear}
                   type="select"
-                  label="Periodo"
+                  label="Periodos"
                   options={props.filters.academicYears}
                   theme="simple"
                   onChange={(event) => {

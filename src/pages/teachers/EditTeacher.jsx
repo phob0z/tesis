@@ -12,18 +12,7 @@ import { useParams } from "react-router-dom";
 
 function EditTeacher() {
   const params = useParams();
-  const [teacher, setTeacher] = useState({
-    name: "",
-    last_name: "",
-    identification: "",
-    birthdate: "",
-    email: "",
-    home_phone: "",
-    personal_phone: "",
-    address: "",
-    state: false,
-    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-  });
+  const [teacher, setTeacher] = useState({});
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 

@@ -146,28 +146,27 @@ const Menu = () => {
     <div className={classes.menu}>
       <div className={classes.options}>
         {menu.map((option) => (
-          <>
-            <Option
-              selected={
-                option.subMenu
-                  ? option.subMenu.filter(
-                      (subMenu) =>
-                        location.pathname.split("/")[1] === subMenu.route.split("/")[1]
-                    )[0]
-                  : location.pathname.split("/")[1] === option.route.split("/")[1]
-              }
-              route={option.route}
-              key={option.title}
-              onMouseOver={(e) => {
-                handleMenu(e);
-              }}
-              onMouseOut={(e) => {
-                handleMenu(e);
-              }}
-            >
-              {option.title}
-            </Option>
-          </>
+          <Option
+            selected={
+              option.subMenu
+                ? option.subMenu.filter(
+                    (subMenu) =>
+                      location.pathname.split("/")[1] ===
+                      subMenu.route.split("/")[1]
+                  )[0]
+                : location.pathname.split("/")[1] === option.route.split("/")[1]
+            }
+            route={option.route}
+            key={option.title}
+            onMouseOver={(e) => {
+              handleMenu(e);
+            }}
+            onMouseOut={(e) => {
+              handleMenu(e);
+            }}
+          >
+            {option.title}
+          </Option>
         ))}
         {showSubMenu && (
           <SubMenu

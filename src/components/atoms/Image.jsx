@@ -53,7 +53,7 @@ Image.propTypes = {
 
 Image.defaultProps = {
   label: "",
-  value: "https://www.hallmarktour.com/img/profile-img.jpg",
+  src: "https://www.hallmarktour.com/img/profile-img.jpg",
   alt: "Imagen de perfil",
   onChange: () => {},
 };

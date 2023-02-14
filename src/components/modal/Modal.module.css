@@ -38,17 +38,6 @@
   white-space: pre-line;
 }
 
-.footer {
-  border-radius: 0 0 1rem 1rem;
-  background-color: #6d1118;
-  font-size: 0.7rem;
-  color: #f3f3f3;
-  font-weight: 200;
-  text-align: center;
-  padding: 0 0 0.155rem 0;
-  min-height: 0.7rem;
-}
-
 .close {
   position: absolute;
   right: 0.2rem;

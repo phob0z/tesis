@@ -9,22 +9,10 @@ import SubContainer from "../../components/containers/SubContainer";
 import Card from "../../components/cards/Card";
 
 function NewSecretary() {
-  const [secretary, setSecretary] = useState({
-    name: "",
-    last_name: "",
-    identification: "",
-    birthdate: "",
-    email: "",
-    home_phone: "",
-    personal_phone: "",
-    address: "",
-    avatar: "https://www.hallmarktour.com/img/profile-img.jpg",
-  });
+  const [secretary, setSecretary] = useState({});
   const { user, token } = useContext(AuthContext);
   const { setIsLoading, setModal } = useContext(AlertContext);
 
-  // const [avatarFile, setAvatarFile] = useState();
-  // const [avatarChanged, setAvatarChanged] = useState(false);
   const [errorName, setErrorName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorIdentification, setErrorIdentification] = useState(false);
@@ -96,24 +84,6 @@ function NewSecretary() {
         }
       );
 
-      // var formData = new FormData();
-      // if (avatarChanged) {
-      //   formData.append("image", avatarFile);
-      //   try {
-      //     await axios.post(
-      //       `${process.env.REACT_APP_BACK_URL}/profile/avatar`,
-      //       formData,
-      //       {
-      //         headers: {
-      //           "Content-Type": "multipart/form-data",
-      //           Authorization: token,
-      //         },
-      //       }
-      //     );
-      //   } catch {
-      //     setModal({ title: "ERROR", message: error.response.data.message });
-      //   }
-      // }
       setModal({ title: "CORRECTO", message: response.data.message });
     } catch (error) {
       setModal({ title: "ERROR", message: error.response.data.message });
@@ -241,18 +211,6 @@ function NewSecretary() {
             disabled={user.role !== "secretary"}
           />
         </SubContainer>
-        {/* <SubContainer subTitle="IMAGEN DE PERFIL">
-          <Card
-            value={secretary?.avatar}
-            type="image"
-            onChange={(image) => {
-              setAvatarChanged(true);
-              setSecretary({ ...secretary, avatar: image.base64 });
-              setAvatarFile(image.file);
-            }}
-            validation="image"
-          />
-        </SubContainer> */}
       </MainContainer>
     </form>
   );

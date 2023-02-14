@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-// import Mancha from "./atoms/icons/Mancha";
 import classes from "./Background.module.css";
 
 const Background = () => {

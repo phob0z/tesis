@@ -50,7 +50,6 @@ function Card(props) {
           else if (props.value.trim().length > props.maxLength)
             setError(`Debe tener menos de ${props.maxLength} caracteres`);
           else if (
-            // !props.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/)
             !props.value.match(/^(\w[.-]?)*@(\w[.-]?)*(\.\w{2,})+$/)
           )
             setError("Debe ingresar un correo válido");

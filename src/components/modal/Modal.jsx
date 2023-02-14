@@ -5,8 +5,10 @@ import classes from "./Modal.module.css";
 import CloseIcon from "../icons/CloseIcon";
 import Backdrop from "../atoms/Backdrop";
 import AlertContext from "../../contexts/alert/AlertContext";
+import { useNavigate } from "react-router-dom";
 
 const Modal = () => {
+  const navigate = useNavigate();
   const { hasError, setHasError, setModal, modal } = useContext(AlertContext);
   useEffect(() => {
     if (modal.title && modal.message) setHasError(true);
@@ -27,10 +29,19 @@ const Modal = () => {
             onClick={() => {
               setModal(false);
               setHasError(false);
-              if (modal.message === "Usuario no autenticado." || modal.message === "Unauthenticated.") {
+              if (
+                modal.message === "Usuario no autenticado." ||
+                modal.message === "Unauthenticated."
+              ) {
                 localStorage.removeItem("user");
                 localStorage.removeItem("token");
                 window.location.reload(true);
+              }
+              if (
+                // modal.message === "Usuario no autenticado." ||
+                modal.message === "This action is unauthorized."
+              ) {
+                navigate("/");
               }
             }}
           />
@@ -38,7 +49,6 @@ const Modal = () => {
         <div className={classes.body}>
           <div className={classes.message}>{modal.message}</div>
         </div>
-        {/* <div className={classes.footer}>{props.footer}</div> */}
       </div>
     </Fragment>
   );
@@ -47,7 +57,6 @@ const Modal = () => {
 Modal.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string,
-  // footer: PropTypes.string,
 };
 
 Modal.defaultProps = {
