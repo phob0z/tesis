@@ -52,8 +52,20 @@ function ResetPassword() {
   };
 
   useEffect(() => {
-    setToken(queryParameters.get("token"));
-    setIdentification(queryParameters.get("identification"));
+    setToken(queryParameters.get("token") ?? "");
+    setIdentification(queryParameters.get("identification") ?? "");
+    console.log(queryParameters.get("token"));
+    console.log(queryParameters.get("identification"));
+    if (
+      !queryParameters.get("token") ||
+      !queryParameters.get("identification")
+    ) {
+      setModal({
+        title: "Error en ENLACE",
+        message: "El enlace utilizado no es correcto",
+      });
+      navigate("/");
+    }
     // eslint-disable-next-line
   }, []);
 
