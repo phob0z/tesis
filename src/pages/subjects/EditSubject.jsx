@@ -130,7 +130,7 @@ function EditSubject() {
 
   return (
     <MainContainer
-      title="Asignatura"
+      title="Editar asignatura"
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}

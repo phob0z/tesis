@@ -131,7 +131,7 @@ function EditAcademicYear() {
 
   return (
     <MainContainer
-      title="Periodo"
+      title="Editar periodo"
       buttonTitle="Guardar"
       type="submit"
       onClick={(event) => {

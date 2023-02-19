@@ -60,7 +60,7 @@ function SecretarySelect() {
     ) {
       setModal({
         title: "ERROR",
-        message: "Debe seleccionar todos los filtros para mostrar el reporte",
+        message: "Debe seleccionar todos los filtros para generar el reporte",
       });
       return;
     }
@@ -73,7 +73,7 @@ function SecretarySelect() {
     <LongMainContainer
       title="Reportes"
       onSearch={onSearch}
-      searchButtonTitle="Reporte"
+      searchButtonTitle="Generar"
       hideSearchInput={true}
       search={search}
       filters={filters}
@@ -94,7 +94,7 @@ function SecretarySelect() {
           }}
         >
           Debe seleccionar todos los filtros y posteriormente hacer clic en el
-          botón "Buscar"
+          botón "Generar"
         </div>
       </LongSubContainer>
     </LongMainContainer>

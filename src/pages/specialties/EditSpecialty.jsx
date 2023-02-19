@@ -105,7 +105,7 @@ function EditSpecialty() {
 
   return (
     <MainContainer
-      title="Especialidad"
+      title="Editar especialidad"
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}

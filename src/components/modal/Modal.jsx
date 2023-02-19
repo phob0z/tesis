@@ -31,17 +31,11 @@ const Modal = () => {
               setHasError(false);
               if (
                 modal.message === "Usuario no autenticado." ||
-                modal.message === "Unauthenticated."
+                modal.message === "Usuario no autorizado para hacer esto."
               ) {
                 localStorage.removeItem("user");
                 localStorage.removeItem("token");
                 window.location.reload(true);
-              }
-              if (
-                // modal.message === "Usuario no autenticado." ||
-                modal.message === "This action is unauthorized."
-              ) {
-                navigate("/");
               }
             }}
           />

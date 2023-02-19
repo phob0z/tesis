@@ -105,7 +105,7 @@ function EditCourse() {
 
   return (
     <MainContainer
-      title="Curso"
+      title="Editar curso"
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}

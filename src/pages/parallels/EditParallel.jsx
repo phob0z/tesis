@@ -105,7 +105,7 @@ function EditParallel() {
 
   return (
     <MainContainer
-      title="Paralelo"
+      title="Editar paralelo"
       buttonTitle="Guardar"
       type="submit"
       onClick={saveData}
