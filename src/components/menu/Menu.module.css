@@ -20,7 +20,6 @@
 
 .subMenu {
   display: flex;
-  flex-direction: row-reverse;
   position: absolute;
   top: 4.5rem;
   right: 50%;
@@ -42,4 +41,37 @@
   align-items: center;
   justify-content: center;
   min-width: 6rem;
+}
+
+@media (max-width: 840px) {
+  .menu {
+    width: 34rem;
+  }
+
+  .options {
+    flex-wrap: wrap;
+    border-radius: 0.625rem;
+    padding: 0.5rem;
+    row-gap: 0.4rem;
+  }
+
+  .logoutBox {
+    position: fixed;
+    top: 1.4rem;
+    right: 0.5rem;
+  }
+
+  .subMenu {
+    right: unset;
+    transform: unset;
+    right: 50%;
+    transform: translateX(50%);
+    top: 6rem;
+    width: 25rem;
+  }
+
+  .subOptions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

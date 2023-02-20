@@ -5,10 +5,8 @@ import classes from "./Modal.module.css";
 import CloseIcon from "../icons/CloseIcon";
 import Backdrop from "../atoms/Backdrop";
 import AlertContext from "../../contexts/alert/AlertContext";
-import { useNavigate } from "react-router-dom";
 
 const Modal = () => {
-  const navigate = useNavigate();
   const { hasError, setHasError, setModal, modal } = useContext(AlertContext);
   useEffect(() => {
     if (modal.title && modal.message) setHasError(true);

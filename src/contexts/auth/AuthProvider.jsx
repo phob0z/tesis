@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useReducer } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useReducer, useContext } from "react";
 import AuthContext from "./AuthContext";
 
+import AlertContext from "../alert/AlertContext";
+
 const AuthProvider = ({ children }) => {
-  const navigate = useNavigate();
+  const { setModal } = useContext(AlertContext);
   const authReducer = (state, action) => {
     if (action.type === "LOGIN") {
       return {
@@ -54,10 +55,7 @@ const AuthProvider = ({ children }) => {
       });
     } catch (error) {
       if (error.response.status === 401) {
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        navigate("/login");
-        window.location.reload(true);
+        setModal({ title: "ERROR", message: error.response.data.message });
       }
     }
   };
