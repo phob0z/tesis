@@ -67,25 +67,22 @@
   background: #555;
 }
 
-@media (max-height: 400px) {
+@media (max-height: 380px) {
   .containerTitle {
     display: none;
   }
 }
 
-@media (max-width: 800px) {
-  .mainContainer {
-    top: 25%;
-  }
-}
-@media (height <= 400px ) and (width <= 800px) {
-  .mainContainer {
-    top: 25%;
+@media (height <= 380px ) and (width <= 800px) {
+  .mainContainer,
+  .containerTitle {
+    top: 29%;
   }
 }
 
-@media (height <= 380px ) and (width <= 650px) {
-  .mainContainer {
-    top: 25%;
+@media (height <= 350px ) and (width <= 800px) {
+  .mainContainer,
+  .containerTitle {
+    top: 31%;
   }
 }
