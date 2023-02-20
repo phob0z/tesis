@@ -12,6 +12,7 @@ import Button from "../../components/atoms/Button";
 
 import classes from "./AcademicYears.module.css";
 import Input from "../../components/atoms/Input";
+import OnOffInput from "../../components/atoms/OnOffInput";
 
 function EditAcademicYear() {
   const params = useParams();
@@ -129,6 +130,28 @@ function EditAcademicYear() {
     // eslint-disable-next-line
   }, []);
 
+  const deactivate = async (state) => {
+    setIsLoading(true);
+    try {
+      await axios.get(
+        `${process.env.REACT_APP_BACK_URL}/period/${params.id}/destroy`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: token,
+          },
+        }
+      );
+      setAcademicYear((prevState) => {
+        return { ...prevState, state };
+      });
+    } catch (error) {
+      setModal({ title: "ERROR", message: error.response.data.message });
+    }
+    setIsLoading(false);
+  };
+
   return (
     <MainContainer
       title="Editar periodo"
@@ -198,10 +221,11 @@ function EditAcademicYear() {
           disabled={user.role !== "secretary"}
         />
       </SubContainer>
-      {academicYear.state === 1 && (
-        <SubContainer>
-          <Card label="Estado">
-            {!check ? (
+
+      <SubContainer>
+        <Card label="Estado">
+          {academicYear.state === 1 ? (
+            !check ? (
               <div className={classes.endPeriod}>
                 <Button
                   onClick={() => {
@@ -219,8 +243,8 @@ function EditAcademicYear() {
                   periodo. Escriba{" "}
                   <span className={classes.bold}>
                     "Finalizar {academicYear.name}"
-                  </span>
-                  {" "}y presione el botón para finalizar el periodo.
+                  </span>{" "}
+                  y presione el botón para finalizar el periodo.
                 </div>
                 <span style={{ height: "1rem" }}></span>
                 <Input
@@ -234,10 +258,19 @@ function EditAcademicYear() {
                 <span style={{ height: "1rem" }}></span>
                 <Button onClick={endPeriod}>Finalizar Periodo</Button>
               </div>
-            )}
-          </Card>
-        </SubContainer>
-      )}
+            )
+          ) : academicYear.state === 0 ? (
+            <OnOffInput
+              value={academicYear.state}
+              onChange={(state) => {
+                deactivate(state);
+              }}
+            />
+          ) : (
+            <div />
+          )}
+        </Card>
+      </SubContainer>
     </MainContainer>
   );
 }
