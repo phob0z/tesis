@@ -15,7 +15,7 @@
   padding-right: 0.4rem;
   margin-left: -0.0125rem;
   max-width: fit-content;
-  max-height: 4rem;
+  min-height: 4.3rem;
 }
 
 .subMenu {
@@ -43,7 +43,7 @@
   min-width: 6rem;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 800px) {
   .menu {
     width: 34rem;
   }
@@ -67,11 +67,19 @@
     right: 50%;
     transform: translateX(50%);
     top: 6rem;
-    width: 25rem;
+    width: fit-content;
   }
 
   .subOptions {
-    flex-wrap: wrap;
     justify-content: center;
+    padding-right: unset;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .options {
+    border-radius: 0.625rem;
   }
 }

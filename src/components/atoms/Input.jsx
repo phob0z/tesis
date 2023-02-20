@@ -130,7 +130,7 @@ const Input = (props) => {
   return (
     <Fragment>
       <div
-        className={`${classes.container} ${theme} ${
+        className={`${classes.container} ${classes[props.className]} ${theme} ${
           focused ? classes.focused : ""
         }`}
       >

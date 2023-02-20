@@ -44,7 +44,7 @@
   border-radius: 0.625rem;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 900px) {
   .photoContainer {
     display: none;
   }

@@ -12,7 +12,7 @@ import Modal from "../components/modal/Modal";
 
 const AppRouter = () => {
   return (
-    <Fragment>
+    <div className="bodyWrapper">
       <Background />
       <Spinner />
       <Modal />
@@ -22,7 +22,7 @@ const AppRouter = () => {
           <Route path="/*" element={<PrivateRoute />} />
         </Routes>
       </AuthProvider>
-    </Fragment>
+    </div>
   );
 };
 

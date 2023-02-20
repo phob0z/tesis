@@ -6,8 +6,15 @@ body {
   font-family: "Open Sans";
   font-weight: 400;
   background: #d6d6d6;
-  overflow-y: hidden;
-  overflow-x: hidden;
+}
+
+.bodyWrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .text {
@@ -48,31 +55,31 @@ body {
   }
 }
 
-@media (max-width: 1024px), (max-height: 768px) {
+@media (max-width: 1024px), (max-height: 840px) {
   html {
     font-size: 80%;
   }
 }
 
-@media (max-width: 800px), (max-height: 600px) {
+@media (max-width: 800px), (max-height: 650px) {
   html {
-    font-size: 75%;
+    font-size: 70%;
   }
 }
 
-@media (max-width: 680px), (max-height: 520px) {
+@media (max-width: 680px), (max-height: 550px) {
   html {
     font-size: 60%;
   }
 }
 
-@media (max-width: 640px), (max-height: 480px) {
+@media (max-width: 640px), (max-height: 500px) {
   html {
-    font-size: 50%;
+    font-size: 55%;
   }
 }
 
-@media (max-width: 480px), (max-height: 320px) {
+@media (max-width: 300px), (max-height: 320px) {
   .minimunReached {
     display: block;
   }

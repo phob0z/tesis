@@ -70,6 +70,7 @@ function LongMainContainer(props) {
           {!props.hideSearchInput && (
             <Input
               theme="simple"
+              className="search"
               label={props.searchBarLabel}
               maxLength="15"
               value={props.search.identification}

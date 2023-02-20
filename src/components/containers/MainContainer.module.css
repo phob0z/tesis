@@ -66,3 +66,26 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+@media (max-height: 400px) {
+  .containerTitle {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .mainContainer {
+    top: 25%;
+  }
+}
+@media (height <= 400px ) and (width <= 800px) {
+  .mainContainer {
+    top: 25%;
+  }
+}
+
+@media (height <= 380px ) and (width <= 650px) {
+  .mainContainer {
+    top: 25%;
+  }
+}
