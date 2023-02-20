@@ -79,7 +79,7 @@ body {
   }
 }
 
-@media (max-width: 300px), (max-height: 320px) {
+@media (max-width: 300px), (max-height: 280px) {
   .minimunReached {
     display: block;
   }
