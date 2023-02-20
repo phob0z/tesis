@@ -108,32 +108,32 @@
     top: 30%;
   }
 }
-@media (height <= 410px ) and (width <= 800px) {
+@media (height <= 410px) and (width <= 800px) {
   .mainContainer,
   .searchInput {
     top: 31%;
   }
 }
 
-@media (height <= 380px ) and (width <= 800px) {
+@media (height <= 380px) and (width <= 800px) {
   .mainContainer,
   .searchInput {
     top: 33%;
   }
 }
-@media (height <= 330px ) and (width <= 800px) {
+@media (height <= 330px) and (width <= 800px) {
   .mainContainer,
   .searchInput {
     top: 35%;
   }
 }
-@media (height <= 310px ) and (width <= 800px) {
+@media (height <= 310px) and (width <= 800px) {
   .mainContainer,
   .searchInput {
     top: 39%;
   }
 }
-@media (height <= 350px ) {
+@media (height <= 350px) and (width > 800px) {
   .mainContainer,
   .searchInput {
     top: 31%;
