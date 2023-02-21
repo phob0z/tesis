@@ -97,11 +97,11 @@ function LongMainContainer(props) {
       )}
 
       <div className={classes.buttons}>
-        {props.buttonBack && (
+        {props.backButton && (
           <Button
             type="submit"
             onClick={() => {
-              navigate(props.buttonBack === true ? "./../" : props.buttonBack);
+              navigate(props.backButton === true ? "./../" : props.backButton);
             }}
           >
             Volver

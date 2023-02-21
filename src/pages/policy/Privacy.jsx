@@ -3,7 +3,7 @@ import LongMainContainer from "../../components/containers/LongMainContainer";
 
 const Privacy = () => {
   return (
-    <LongMainContainer title="Políticas de privacidad">
+    <LongMainContainer title="Políticas de privacidad" backButton>
       <div
         style={{
           borderRadius: "0.625rem",

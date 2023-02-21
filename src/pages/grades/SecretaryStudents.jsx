@@ -133,7 +133,7 @@ function SecretaryStudents() {
         });
       }}
       searchBarLabel="Identificación"
-      buttonBack
+      backButton
     >
       {!students ? (
         <LongSubContainer>

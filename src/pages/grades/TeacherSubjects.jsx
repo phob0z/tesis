@@ -42,7 +42,7 @@ function TeacherSubjects(props) {
   }, []);
 
   return (
-    <LongMainContainer title="Asignaturas" buttonBack>
+    <LongMainContainer title="Asignaturas" backButton>
       {!subjects || subjects.length === 0 ? (
         <LongSubContainer>
           <div className="text">No se encontraron asignaturas asociadas.</div>

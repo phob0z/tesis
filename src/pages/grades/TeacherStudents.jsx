@@ -49,7 +49,7 @@ function TeacherStudents() {
   }, []);
 
   return (
-    <LongMainContainer title="Estudiantes" buttonBack>
+    <LongMainContainer title="Estudiantes" backButton>
       {!students || students.length === 0 ? (
         <LongSubContainer>
           <div className="text">No se encontraron estudiantes asignados.</div>

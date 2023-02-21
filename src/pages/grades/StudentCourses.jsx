@@ -54,7 +54,7 @@ function StudentCourses(props) {
   };
 
   return (
-    <LongMainContainer title="Cursos" buttonBack>
+    <LongMainContainer title="Cursos" backButton>
       {!courses || courses.length === 0 ? (
         <LongSubContainer>
           <div className="text">

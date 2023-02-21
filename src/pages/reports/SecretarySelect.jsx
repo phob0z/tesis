@@ -82,7 +82,7 @@ function SecretarySelect() {
           return { ...prevState, ...value };
         });
       }}
-      buttonBack
+      backButton
       className="short"
     >
       <LongSubContainer>

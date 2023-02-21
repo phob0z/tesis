@@ -164,7 +164,7 @@ function EditGrades() {
       big
       title="Calificaciones"
       onSave={user.role !== "student" ? onSave : false}
-      buttonBack={user.role === "secretary" ? "./../../" : true}
+      backButton={user.role === "secretary" ? "./../../" : true}
     >
       {!subjects || subjects.length === 0 ? (
         <LongSubContainer>
