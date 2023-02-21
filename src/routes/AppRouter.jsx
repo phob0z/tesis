@@ -9,7 +9,7 @@ import AuthProvider from "../contexts/auth/AuthProvider";
 import Background from "../components/background/Background";
 import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
-import Privacy from "../pages/politics/Privacy";
+import Privacy from "../pages/policy/Privacy";
 
 const AppRouter = () => {
   return (
