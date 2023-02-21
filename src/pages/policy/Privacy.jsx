@@ -3,7 +3,7 @@ import LongMainContainer from "../../components/containers/LongMainContainer";
 
 const Privacy = () => {
   return (
-    <LongMainContainer title="Politicas de privacidad">
+    <LongMainContainer title="Políticas de privacidad">
       <h1>Política de privacidad de Gestión de Notas</h1>
       <div>
         Para recibir la información sobre sus Datos Personales, la finalidad y
