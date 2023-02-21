@@ -9,6 +9,7 @@ import AuthProvider from "../contexts/auth/AuthProvider";
 import Background from "../components/background/Background";
 import Spinner from "../components/spinner/Spinner";
 import Modal from "../components/modal/Modal";
+import Privacy from "../pages/politics/Privacy";
 
 const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
       <Modal />
       <AuthProvider>
         <Routes>
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="login/*" element={<PublicRoute />} />
           <Route path="/*" element={<PrivateRoute />} />
         </Routes>
