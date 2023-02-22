@@ -163,9 +163,9 @@ function EditAcademicYear() {
           new Date(academicYear.finq2).getTime()
         ) {
           setModal({
-            title: "Error en el campo " + "fechas".toUpperCase(),
+            title: "Error en los campos de " + "fechas".toUpperCase(),
             message:
-              "La fecha de finalización del Q1 no puede ser mayor a la del Q2",
+              "La fecha de finalización del primer quimestre\nno puede ser mayor a la del segundo quimestre",
           });
           return;
         }

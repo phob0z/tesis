@@ -58,7 +58,7 @@ function SecretaryStudents() {
           identification: search.identification,
           course_id: search.course,
           parallel_id: search.parallel,
-          specialty_id: search.specialtie,
+          specialty_id: search.specialty,
           academic_period_id: search.academicYear,
         },
         {

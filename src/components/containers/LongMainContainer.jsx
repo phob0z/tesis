@@ -9,7 +9,9 @@ function LongMainContainer(props) {
   return (
     <Fragment>
       <div
-        className={`${classes.mainContainer} ${props.big ? classes.big : ""} ${classes[props.className]}`}
+        className={`${classes.mainContainer} ${props.big ? classes.big : ""} ${
+          classes[props.className]
+        }`}
       >
         {props.children}
       </div>
@@ -17,54 +19,62 @@ function LongMainContainer(props) {
         <div className={classes.searchInput}>
           {props.filters && (
             <Fragment>
-              <div className={classes.filter}>
-                <Input
-                  value={props.search.course}
-                  type="select"
-                  label="Cursos"
-                  options={props.filters.courses}
-                  theme="simple"
-                  onChange={(event) => {
-                    props.onChange({ course: event.target.value });
-                  }}
-                />
-              </div>
-              <div className={classes.filter}>
-                <Input
-                  value={props.search.parallel}
-                  type="select"
-                  label="Paralelos"
-                  options={props.filters.parallels}
-                  theme="simple"
-                  onChange={(event) => {
-                    props.onChange({ parallel: event.target.value });
-                  }}
-                />
-              </div>
-              <div className={classes.filter}>
-                <Input
-                  value={props.search.specialty}
-                  type="select"
-                  label="Especialidades"
-                  options={props.filters.specialties}
-                  theme="simple"
-                  onChange={(event) => {
-                    props.onChange({ specialty: event.target.value });
-                  }}
-                />
-              </div>
-              <div className={classes.filter}>
-                <Input
-                  value={props.search.academicYear}
-                  type="select"
-                  label="Periodos"
-                  options={props.filters.academicYears}
-                  theme="simple"
-                  onChange={(event) => {
-                    props.onChange({ academicYear: event.target.value });
-                  }}
-                />
-              </div>
+              {props.filters.courses && (
+                <div className={classes.filter}>
+                  <Input
+                    value={props.search.course}
+                    type="select"
+                    label="Cursos"
+                    options={props.filters.courses}
+                    theme="simple"
+                    onChange={(event) => {
+                      props.onChange({ course: event.target.value });
+                    }}
+                  />
+                </div>
+              )}
+              {props.filters.parallels && (
+                <div className={classes.filter}>
+                  <Input
+                    value={props.search.parallel}
+                    type="select"
+                    label="Paralelos"
+                    options={props.filters.parallels}
+                    theme="simple"
+                    onChange={(event) => {
+                      props.onChange({ parallel: event.target.value });
+                    }}
+                  />
+                </div>
+              )}
+              {props.filters.specialties && (
+                <div className={classes.filter}>
+                  <Input
+                    value={props.search.specialty}
+                    type="select"
+                    label="Especialidades"
+                    options={props.filters.specialties}
+                    theme="simple"
+                    onChange={(event) => {
+                      props.onChange({ specialty: event.target.value });
+                    }}
+                  />
+                </div>
+              )}
+              {props.filters.academicYears && (
+                <div className={classes.filter}>
+                  <Input
+                    value={props.search.academicYear}
+                    type="select"
+                    label="Periodos"
+                    options={props.filters.academicYears}
+                    theme="simple"
+                    onChange={(event) => {
+                      props.onChange({ academicYear: event.target.value });
+                    }}
+                  />
+                </div>
+              )}
             </Fragment>
           )}
           {!props.hideSearchInput && (
