@@ -31,6 +31,7 @@ function EditGrades() {
   const [blockGrades, setBlockGrades] = useState({});
   const [dates, setDates] = useState({});
   const [error, setError] = useState(false);
+  const [promTotal, setPromTotal] = useState(0);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -60,6 +61,12 @@ function EditGrades() {
           finq2: response.data.data.finq2 ?? null,
         });
       const data = response.data.data.grades;
+      var total = 0;
+      for (let grade of data) {
+        total += grade.final;
+      }
+      setPromTotal(total / data.length);
+
       const student = response.data.data.user;
       setStudent(student);
       if (data.length === undefined) setSubjects([data]);
@@ -259,8 +266,8 @@ function EditGrades() {
                 behaviour1={student.comportamiento1 ?? ""}
                 behaviour2={student.comportamiento2 ?? ""}
                 promedioFinal={
-                  student.total
-                    ? (Math.round(student.total * 100) / 100).toFixed(2)
+                  promTotal
+                    ? (Math.round(promTotal * 100) / 100).toFixed(2)
                     : ""
                 }
                 onBehaviourChange={onBehaviourChange}

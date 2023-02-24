@@ -11,7 +11,6 @@ function GradesFooter(props) {
   const [student, setStudent] = useState({
     behaviour1: props.behaviour1,
     behaviour2: props.behaviour2,
-    promedioFinal: props.promedioFinal,
   });
 
   useEffect(() => {
