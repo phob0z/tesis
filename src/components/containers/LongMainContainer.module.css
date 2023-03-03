@@ -8,6 +8,7 @@
   box-shadow: -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   max-width: 88%;
   display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(3.15rem, max-content));
   width: max-content;
   overflow-y: auto;
   overflow-x: hidden;
