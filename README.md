@@ -38,7 +38,7 @@ git clone https://github.com/phob0z/tesis.git
 npm install
 ```
 
-## :computer: Uso :computer:
+### :computer: Uso :computer:
 
 Para acceder al proyecto de deben seguir los siguientes pasos:
 
