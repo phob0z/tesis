@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+<div align="center" width="100%">
+  <img style="height: 200px" src="https://res.cloudinary.com/dch0w0eyr/image/upload/v1673277950/avatars/img-mds.jpg" />
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+## :blue_book: **DESARROLLO DE UN SISTEMA PARA LA GESTIÓN ESTUDIANTIL DEL I.E.F MIGUEL DE SANTIAGO** :blue_book:
 
-## Available Scripts
+### :book: Desarrollo de un *frontend* :book:
+En este proyecto se desarrolla un *frontend*, que permite, a través de consumo de *endpoints* de un *backend*, la gestión estudiantil del Instituto Educativo Fiscal Miguel de Santiago. La implementación y despliegue del *frontend* permite a los usuarios del sistema acceder y gestionar, dependiendo de los roles asignados, la información del sistema.
 
-In the project directory, you can run:
+### :hammer_and_wrench: Tecnologías :hammer_and_wrench:
+![React](https://img.shields.io/badge/React-asd?style=for-the-badge&logo=react&logoColor=61DAFB&logoWidth=20&color=9B9B9B&link=https://reactjs.org/) ![Vercel](https://img.shields.io/badge/Vercel-asd?style=for-the-badge&logo=vercel&logoColor=000000&logoWidth=20&color=47A141&link=https://vercel.com/) ![Axios](https://img.shields.io/badge/Axios-asd?style=for-the-badge&logo=axios&logoColor=512BD4&logoWidth=20&color=ECD53F&link=https://axios-http.com/) ![GitHub](https://img.shields.io/badge/Github-asd?style=for-the-badge&logo=github&logoColor=000000&logoWidth=20&color=40AEF0&link=https://github.com/)
 
-### `npm start`
+### :desktop_computer: Despliegue :desktop_computer:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Se puede acceder al despliegue en: [SisMDS](https://sismds.vercel.app)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### :notebook: Manual de Usuario :notebook:
 
-### `npm test`
+Se puede acceder al video de las funcionalidades del sistema en: [Manual de usuario](https://youtu.be/EUrQTQ31aV8)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### :gear: Instalación :gear:
 
-### `npm run build`
+#### :toolbox: Requerimientos previos :toolbox:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/)
+- [Git](https://git-scm.com/) (se recomienda para clonar el proyecto)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para instalar localmente el proyecto, se debe:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clonar el repositorio usando git con el comando:
+```
+git clone https://github.com/phob0z/tesis.git
+```
 
-### `npm run eject`
+2. Ir a la carpeta donde se encuentra el proyecto e instalar las dependencias necesarias:
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## :computer: Uso :computer:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para acceder al proyecto de deben seguir los siguientes pasos:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Ejecutar el servidor:
+```
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Acceder desde un navegador web a la dirección:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[localhost:3000](http://localhost:3000/)
